@@ -1,2 +1,0 @@
-del /s *.xml
-pause

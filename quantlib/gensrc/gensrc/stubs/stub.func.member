@@ -1,7 +1,0 @@
-
-        // invoke the member function
-
-        %(libraryReturnType)s%(objectId)s%(memberAccess)s%(libraryFunction)s(%(parameterList)s);
-
-        // convert and return the return value
-

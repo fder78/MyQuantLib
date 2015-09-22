@@ -1,2 +1,0 @@
-#!/bin/sh
-find $1 | grep '\.hpp$' | xargs grep 'class \+[a-zA-Z0-9]\+ \+[{:]' | wc -l
