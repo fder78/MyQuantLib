@@ -104,7 +104,7 @@ XL-Launcher/bin/Configuration/UserConfigured/
 XL-Launcher/bin/Debug/
 XL-Launcher/bin/Release/
 XL-Launcher/obj/
-Examples/*/bin/
+*/*/Examples/*/bin/
 
 # Build outputs
 **/x64/Debug
