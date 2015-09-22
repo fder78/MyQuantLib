@@ -1,6 +1,0 @@
-#ifndef %(libRootDirectory)s_vo_all_hpp
-#define %(libRootDirectory)s_vo_all_hpp
-
-%(allIncludes)s
-#endif
-

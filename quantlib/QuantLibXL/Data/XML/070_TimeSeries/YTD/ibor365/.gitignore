@@ -1,3 +1,0 @@
-# There is a bug in git which causes empty directories to be deleted
-# and the presence of this .gitignore file prevents that.
-*.xml

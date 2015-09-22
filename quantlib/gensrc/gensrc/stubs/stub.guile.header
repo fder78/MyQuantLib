@@ -1,8 +1,0 @@
-#ifndef %(prefix)s_%(categoryName)s_h
-#define %(prefix)s_%(categoryName)s_h
-
-#include <guile/gh.h>
-
-%(prototypes)s
-#endif
-

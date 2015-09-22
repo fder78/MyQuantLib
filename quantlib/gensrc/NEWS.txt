@@ -1,2 +1,0 @@
-For a rundown of changes per gensrc release please visit
-http://www.gensrc.org/history.html
