@@ -1,0 +1,52 @@
+
+/*
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page installation Installation
+
+Download 
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.7.0/QuantLibXL-1.7.0-bin.zip/download">QuantLibXL-1.7.0-bin.zip</a>.
+
+Copy the zip file to your hard drive and uncompress it.
+
+\section qlxl_install_usage Usage
+
+To use QuantLibXL:
+\li Start Excel
+\li Load the addin.  Two XLLs are provided, one 32-bit and one 64-bit, please
+open the one that is appropriate for your version of Excel:
+\verbatim
+xll\QuantLibXL-vc120-mt-s-1_7_0.xll
+xll\QuantLibXL-vc120-x64-mt-s-1_7_0.xll
+\endverbatim
+\li Load some example workbooks.  The best ones to start with are:
+\verbatim
+StandaloneExamples\Analytics\YieldCurveBootstrapping.xls
+StandaloneExamples\Analytics\InterestRateDerivatives.xls
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation
+\li Please see also the other example workbooks in the <tt>StandaloneExamples</tt> directory.
+\li The help file is in the <tt>Docs</tt> directory.
+\li For further help, please use the mailing list: https://lists.sourceforge.net/lists/listinfo/quantlib-users
+
+*/
+

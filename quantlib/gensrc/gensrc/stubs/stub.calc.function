@@ -1,0 +1,22 @@
+%(header)s
+    try {
+%(cppConversions)s%(libraryConversions)s%(referenceConversions)s%(enumConversions)s%(functionBody)s
+%(functionValueObject)s
+%(convertReturnType)s
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: %(functionName)s: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
