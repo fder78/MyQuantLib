@@ -322,6 +322,9 @@
     <Filter Include="methods\finitedifferences\utilities">
       <UniqueIdentifier>{be723df5-2e58-41de-8071-8d2e2f62410a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ir_derivatives">
+      <UniqueIdentifier>{17afbc17-a283-46ce-a95a-ac3ea48c970b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -3997,6 +4000,27 @@
     <ClInclude Include="ql\models\shortrate\onefactormodels\markovfunctional.hpp">
       <Filter>models\shortrate\onefactormodels</Filter>
     </ClInclude>
+    <ClInclude Include="ir_derivatives\g2_calibration.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_derivatives\generalized_hullwhite.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_derivatives\hull_white_calibration.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_derivatives\pricing_cms_spread_ra.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_derivatives\cms_spread_ra_coupon.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_derivatives\fdg2_cms_spread_ra_engine.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_derivatives\fdmcmsspreadswapinnervalue.hpp">
+      <Filter>ir_derivatives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6439,6 +6463,27 @@
     </ClCompile>
     <ClCompile Include="ql\models\shortrate\onefactormodels\markovfunctional.cpp">
       <Filter>models\shortrate\onefactormodels</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\generalized_hullwhite.cpp">
+      <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\hull_white_calibration.cpp">
+      <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\pricing_cms_spread_ra.cpp">
+      <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\cms_spread_ra_coupon.cpp">
+      <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\fdg2_cms_spread_ra_engine.cpp">
+      <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\fdmcmsspreadswapinnervalue.cpp">
+      <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_derivatives\g2_calibration.cpp">
+      <Filter>ir_derivatives</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

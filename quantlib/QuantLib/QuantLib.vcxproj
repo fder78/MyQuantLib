@@ -489,6 +489,13 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ir_derivatives\cms_spread_ra_coupon.hpp" />
+    <ClInclude Include="ir_derivatives\fdg2_cms_spread_ra_engine.hpp" />
+    <ClInclude Include="ir_derivatives\fdmcmsspreadswapinnervalue.hpp" />
+    <ClInclude Include="ir_derivatives\g2_calibration.hpp" />
+    <ClInclude Include="ir_derivatives\generalized_hullwhite.hpp" />
+    <ClInclude Include="ir_derivatives\hull_white_calibration.hpp" />
+    <ClInclude Include="ir_derivatives\pricing_cms_spread_ra.hpp" />
     <ClInclude Include="ql\math\polynomialmathfunction.hpp" />
     <ClInclude Include="ql\math\pascaltriangle.hpp" />
     <ClInclude Include="ql\rebatedexercise.hpp" />
@@ -1739,6 +1746,13 @@
     <ClInclude Include="ql\volatilitymodel.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ir_derivatives\cms_spread_ra_coupon.cpp" />
+    <ClCompile Include="ir_derivatives\fdg2_cms_spread_ra_engine.cpp" />
+    <ClCompile Include="ir_derivatives\fdmcmsspreadswapinnervalue.cpp" />
+    <ClCompile Include="ir_derivatives\g2_calibration.cpp" />
+    <ClCompile Include="ir_derivatives\generalized_hullwhite.cpp" />
+    <ClCompile Include="ir_derivatives\hull_white_calibration.cpp" />
+    <ClCompile Include="ir_derivatives\pricing_cms_spread_ra.cpp" />
     <ClCompile Include="ql\math\polynomialmathfunction.cpp" />
     <ClCompile Include="ql\math\pascaltriangle.cpp" />
     <ClCompile Include="ql\rebatedexercise.cpp" />
