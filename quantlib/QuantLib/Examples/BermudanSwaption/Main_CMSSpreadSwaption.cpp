@@ -119,9 +119,12 @@ int main(int, char* []) {
 		DayCounter fixedLegDayCounter = Thirty360(Thirty360::European);
 		Frequency floatingLegFrequency = Semiannual;
 		VanillaSwap::Type type = VanillaSwap::Payer;
-		boost::shared_ptr<SwapIndex> si1(new UsdLiborSwapIsdaFixPm(Period(10, Years), rhTermStructure));
-		boost::shared_ptr<SwapIndex> si2(new UsdLiborSwapIsdaFixPm(Period(2, Years), rhTermStructure));
-		boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(new SwapSpreadIndex("CMS10-2", si1, si2));
+		std::vector<Size> tenorsInYears;
+		tenorsInYears.push_back(10);
+		tenorsInYears.push_back(2);
+		//boost::shared_ptr<SwapIndex> si1(new UsdLiborSwapIsdaFixPm(Period(10, Years), rhTermStructure));
+		//boost::shared_ptr<SwapIndex> si2(new UsdLiborSwapIsdaFixPm(Period(2, Years), rhTermStructure));
+		//boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(new SwapSpreadIndex("CMS10-2", si1, si2));
 		Date startDate = calendar.advance(settlementDate, 1, Years, floatingLegConvention);
 		Date maturity = calendar.advance(startDate, 5, Years, floatingLegConvention);
 		Schedule fixedSchedule(startDate, maturity, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Forward, false);
@@ -133,6 +136,7 @@ int main(int, char* []) {
 			fixedSchedule,					//	Schedule schedule,
 			fixedLegDayCounter,				//	DayCounter dayCounter,
 			fixedLegConvention,				//	BusinessDayConvention bdc,
+			tenorsInYears,					//  CMS spread tenors,
 			std::vector<Real>(1, 0.0),		//	std::vector<Real> lowerBound,
 			std::vector<Real>(1, 0.05),		//	std::vector<Real> upperBound,
 			fixedSchedule[1],				//	Date firstCallDate,
@@ -141,7 +145,7 @@ int main(int, char* []) {
 			param,							//	const G2Parameters& obs1G2Params,
 			0.0, 0.0,						//	Real obs1FXVol, Real obs1FXCorr,
 			rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
-			50, 20,							//	Size tGrid, Size rGrid,
+			50, 40,							//	Size tGrid, Size rGrid,
 			0.0,							//	Real alpha,
 			0.0,							//	Real pastFixing,
 			floatSchedule);					//	Schedule floatingSchedule);

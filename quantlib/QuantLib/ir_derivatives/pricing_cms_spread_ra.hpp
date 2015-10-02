@@ -12,6 +12,7 @@ namespace QuantLib {
 		Schedule schedule,
 		DayCounter dayCounter,
 		BusinessDayConvention bdc,
+		std::vector<Size> tenorsInYears,
 		std::vector<Real> lowerBound,
 		std::vector<Real> upperBound,
 		Date firstCallDate,

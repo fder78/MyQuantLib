@@ -64,41 +64,42 @@ namespace QuantLib {
     template <class ModelType> inline
     Real FdmCmsSpreadSwapInnerValue<ModelType>::innerValue(const FdmLinearOpIterator& iter, Time t) {
 
-        const Date& iterExerciseDate = exerciseDates_.find(t)->second;
+   //     const Date& iterExerciseDate = exerciseDates_.find(t)->second;
 
-        const Array disRate(getState(disModel_, t, iter));
-        const Array fwdRate(getState(fwdModel_, t, iter));
+   //     const Array disRate(getState(disModel_, t, iter));
+   //     const Array fwdRate(getState(fwdModel_, t, iter));
 
-        if (disTs_.empty() || iterExerciseDate != disTs_->referenceDate()) {
-            const Handle<YieldTermStructure> discount = disModel_->termStructure();
-            disTs_.linkTo(boost::shared_ptr<YieldTermStructure>(
-                new FdmAffineModelTermStructure(disRate, discount->calendar(), discount->dayCounter(), iterExerciseDate, discount->referenceDate(), disModel_)));
+   //     if (disTs_.empty() || iterExerciseDate != disTs_->referenceDate()) {
+   //         const Handle<YieldTermStructure> discount = disModel_->termStructure();
+   //         disTs_.linkTo(boost::shared_ptr<YieldTermStructure>(
+   //             new FdmAffineModelTermStructure(disRate, discount->calendar(), discount->dayCounter(), iterExerciseDate, discount->referenceDate(), disModel_)));
 
-            const Handle<YieldTermStructure> fwd = fwdModel_->termStructure();
-			fwdTs_.linkTo(boost::shared_ptr<YieldTermStructure>(
-				new FdmAffineModelTermStructure(fwdRate, fwd->calendar(), fwd->dayCounter(), iterExerciseDate, fwd->referenceDate(), fwdModel_)));
-        }
-        else {
-            boost::dynamic_pointer_cast<FdmAffineModelTermStructure>(disTs_.currentLink())->setVariable(disRate);
-            boost::dynamic_pointer_cast<FdmAffineModelTermStructure>(fwdTs_.currentLink())->setVariable(fwdRate);
-        }
+   //         const Handle<YieldTermStructure> fwd = fwdModel_->termStructure();
+			//fwdTs_.linkTo(boost::shared_ptr<YieldTermStructure>(
+			//	new FdmAffineModelTermStructure(fwdRate, fwd->calendar(), fwd->dayCounter(), iterExerciseDate, fwd->referenceDate(), fwdModel_)));
+   //     }
+   //     else {
+   //         boost::dynamic_pointer_cast<FdmAffineModelTermStructure>(disTs_.currentLink())->setVariable(disRate);
+   //         boost::dynamic_pointer_cast<FdmAffineModelTermStructure>(fwdTs_.currentLink())->setVariable(fwdRate);
+   //     }
 
-        Real npv = 0.0;
-        for (Size j = 0; j < 2; j++) {
-            for (Leg::const_iterator i = swap_->leg(j).begin(); i != swap_->leg(j).end(); ++i) {
-				Date as = boost::dynamic_pointer_cast<Coupon>(*i)->accrualStartDate();
-				Real temp = 0.0;
-				if (as >= iterExerciseDate)
-					temp = (*i)->amount() * disTs_->discount((*i)->date());
-				npv += temp;
-            }
-            if (j == 0)
-				npv *= -1.0;
-        }
-        if (swap_->type() == VanillaSwap::Receiver)
-            npv *= -1.0;
+   //     Real npv = 0.0;
+   //     for (Size j = 0; j < 2; j++) {
+   //         for (Leg::const_iterator i = swap_->leg(j).begin(); i != swap_->leg(j).end(); ++i) {
+			//	Date as = boost::dynamic_pointer_cast<Coupon>(*i)->accrualStartDate();
+			//	Real temp = 0.0;
+			//	if (as >= iterExerciseDate)
+			//		temp = (*i)->amount() * disTs_->discount((*i)->date());
+			//	npv += temp;
+   //         }
+   //         if (j == 0)
+			//	npv *= -1.0;
+   //     }
+   //     if (swap_->type() == VanillaSwap::Receiver)
+   //         npv *= -1.0;
 
-        return std::max(0.0, npv);
+   //     return std::max(0.0, npv);
+		return 0.0;
     }
 
     template <class ModelType> inline

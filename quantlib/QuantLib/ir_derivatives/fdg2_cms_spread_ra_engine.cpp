@@ -25,11 +25,10 @@ namespace QuantLib {
 
     FdG2CmsSpreadRAEngine::FdG2CmsSpreadRAEngine(
         const boost::shared_ptr<G2>& model,
-		const boost::shared_ptr<SwaptionVolatilityStructure>& swaptionVol,
         Size tGrid, Size xGrid, Size yGrid,
         Size dampingSteps, Real invEps,
         const FdmSchemeDesc& schemeDesc)
-		: GenericModelEngine<G2, FloatFloatSwaption::arguments, FloatFloatSwaption::results>(model), swaptionVol_(swaptionVol),
+		: GenericModelEngine<G2, FloatFloatSwaption::arguments, FloatFloatSwaption::results>(model), 
       tGrid_(tGrid),
       xGrid_(xGrid),
       yGrid_(yGrid),
@@ -87,18 +86,32 @@ namespace QuantLib {
             new G2(fwdTs, model_->a(), model_->sigma(), model_->b(), model_->eta(), model_->rho()));
 
 		//set coupon pricer///////////////////////////////////////TEST
-		boost::shared_ptr<CmsCouponPricer> cmsPricer(new LinearTsrPricer(Handle<SwaptionVolatilityStructure>(swaptionVol_), Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.0)))));
-		boost::shared_ptr<FloatingRateCouponPricer> pricer(new LognormalCmsSpreadPricer(cmsPricer, Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.0)))));
-		setCouponPricer(arguments_.swap->leg1(), pricer);
+		//boost::shared_ptr<CmsCouponPricer> cmsPricer(new LinearTsrPricer(Handle<SwaptionVolatilityStructure>(swaptionVol_), Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.0)))));
+		//boost::shared_ptr<FloatingRateCouponPricer> pricer(new LognormalCmsSpreadPricer(cmsPricer, Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.0)))));
+		//setCouponPricer(arguments_.swap->leg1(), pricer);
 
         const boost::shared_ptr<FdmInnerValueCalculator> calculator(
              new FdmCmsSpreadSwapInnerValue<G2>(model_.currentLink(), fwdModel, arguments_.swap, t2d, mesher, 0));
 
         // 4. Step conditions
-        const boost::shared_ptr<FdmStepConditionComposite> conditions =
+		const boost::shared_ptr<FdmStepConditionComposite> c1 =
+			FdmStepConditionComposite::vanillaComposite(
+				DividendSchedule(), arguments_.exercise,
+				mesher, calculator, referenceDate, dc);
+        const boost::shared_ptr<FdmStepConditionComposite> c2 =
              FdmStepConditionComposite::vanillaComposite(
                  DividendSchedule(), arguments_.exercise,
                  mesher, calculator, referenceDate, dc);
+
+		std::list<std::vector<Time> > stoppingTimes;
+		stoppingTimes.push_back(c2->stoppingTimes());
+		stoppingTimes.push_back(c1->stoppingTimes());
+		FdmStepConditionComposite::Conditions cs;
+		cs.push_back(c2);
+		cs.push_back(c1);
+		const boost::shared_ptr<FdmStepConditionComposite> conditions(new FdmStepConditionComposite(stoppingTimes, cs));
+
+
 
         // 5. Boundary conditions
         const FdmBoundaryConditionSet boundaries;
