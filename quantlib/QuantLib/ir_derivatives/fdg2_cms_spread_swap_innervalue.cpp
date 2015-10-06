@@ -1,5 +1,5 @@
 
-#include "fdmcmsspreadswapinnervalue.hpp"
+#include "fdg2_cms_spread_swap_innervalue.hpp"
 
 #include <ql/models/shortrate/twofactormodels/g2.hpp>
 #include <ql/models/shortrate/onefactormodels/hullwhite.hpp>

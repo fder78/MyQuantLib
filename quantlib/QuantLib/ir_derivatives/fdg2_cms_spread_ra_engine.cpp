@@ -1,6 +1,9 @@
 
 #include "fdg2_cms_spread_ra_engine.hpp"
-#include "fdmcmsspreadswapinnervalue.hpp"
+#include "fdg2_cms_spread_swap_innervalue.hpp"
+#include "fdg2_cms_spread_ra_stepcondition.h"
+
+#include "exercise_call_innervalue.hpp"
 #include <ql/experimental/coupons/swapspreadindex.hpp>
 #include <ql/experimental/coupons/cmsspreadcoupon.hpp>
 #include <ql/experimental/coupons/lognormalcmsspreadpricer.hpp>
@@ -45,8 +48,7 @@ namespace QuantLib {
         // 2. Mesher
         const DayCounter dc = ts->dayCounter();
         const Date referenceDate = ts->referenceDate();
-        const Time maturity = dc.yearFraction(referenceDate,
-                                              arguments_.exercise->lastDate());
+		const Time maturity = dc.yearFraction(referenceDate, arguments_.leg1PayDates.back());
 
         const boost::shared_ptr<OrnsteinUhlenbeckProcess> process1(
             new OrnsteinUhlenbeckProcess(model_->a(), model_->sigma()));
@@ -64,14 +66,37 @@ namespace QuantLib {
             new FdmMesherComposite(xMesher, yMesher));
 
         // 3. Inner Value Calculator
-        const std::vector<Date>& exerciseDates = arguments_.exercise->dates();
-        std::map<Time, Date> t2d;
+		// 4. Step conditions
+		
+		//call stepcondition
+		const boost::shared_ptr<FdmInnerValueCalculator> callCalculator(
+			new FdmExerciseCallInnerValue(0.0));
+		const boost::shared_ptr<FdmStepConditionComposite> c2 =
+			FdmStepConditionComposite::vanillaComposite(DividendSchedule(), arguments_.exercise, mesher, callCalculator, referenceDate, dc);
 
-        for (Size i=0; i < exerciseDates.size(); ++i) {
-            const Time t = dc.yearFraction(referenceDate, exerciseDates[i]);
-            QL_REQUIRE(t >= 0, "exercise dates must not contain past date");
-            t2d[t] = exerciseDates[i];
-        }
+		//accrual stepcondition		
+		std::vector<Time> payTimes;
+		for (Size i = 0; i < arguments_.leg1PayDates.size(); ++i) {
+			payTimes.push_back(dc.yearFraction(referenceDate, arguments_.leg1PayDates[i]));
+		}
+		std::vector<Time> accrualTimes;
+		std::map<Time, Time> timeInterval;
+		std::map<Time, std::pair<Size, Time> > cfIndex;
+
+		dc.yearFraction(referenceDate, arguments_.leg1PayDates.back());
+		for (Size i = 0; i < payTimes.size(); ++i) {
+			if (payTimes[i] > 0.0) {
+				Time t = (i == 0) ? 0.0 : (payTimes[i - 1] <= 0.0) ? 0.0 : payTimes[i - 1];
+				Size n = unsigned int(tGrid_ * (payTimes[i] - t));
+				Real dt = (payTimes[i] - t) / n;
+				for (Size k = 0; k < n; ++k) {
+					accrualTimes.push_back(t + k*dt);
+					timeInterval[accrualTimes.back()] = dt;
+					std::pair<Size, Time> idxPair(i, payTimes[i]);
+					cfIndex[accrualTimes.back()] = idxPair;
+				}
+			}
+		}
 
         const Handle<YieldTermStructure> disTs = model_->termStructure();
 		boost::shared_ptr<SwapSpreadIndex> swapIndex = boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.swap->index1());
@@ -85,41 +110,31 @@ namespace QuantLib {
         const boost::shared_ptr<G2> fwdModel(
             new G2(fwdTs, model_->a(), model_->sigma(), model_->b(), model_->eta(), model_->rho()));
 
-		//set coupon pricer///////////////////////////////////////TEST
-		//boost::shared_ptr<CmsCouponPricer> cmsPricer(new LinearTsrPricer(Handle<SwaptionVolatilityStructure>(swaptionVol_), Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.0)))));
-		//boost::shared_ptr<FloatingRateCouponPricer> pricer(new LognormalCmsSpreadPricer(cmsPricer, Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.0)))));
-		//setCouponPricer(arguments_.swap->leg1(), pricer);
-
         const boost::shared_ptr<FdmInnerValueCalculator> calculator(
-             new FdmCmsSpreadSwapInnerValue<G2>(model_.currentLink(), fwdModel, arguments_.swap, t2d, mesher, 0));
-
-        // 4. Step conditions
-		const boost::shared_ptr<FdmStepConditionComposite> c1 =
-			FdmStepConditionComposite::vanillaComposite(
-				DividendSchedule(), arguments_.exercise,
-				mesher, calculator, referenceDate, dc);
-        const boost::shared_ptr<FdmStepConditionComposite> c2 =
-             FdmStepConditionComposite::vanillaComposite(
-                 DividendSchedule(), arguments_.exercise,
-                 mesher, calculator, referenceDate, dc);
-
+             new FdmCmsSpreadSwapInnerValue<G2>(model_.currentLink(), fwdModel, arguments_.swap, accrualTimes, timeInterval, cfIndex, mesher, 0));
+        			
+		boost::shared_ptr<FdmRAStepCondition> stepcondition(new FdmRAStepCondition(accrualTimes, mesher, calculator));
+		
+		//StepCondition Composite
+		const std::list<std::vector<Time> > dateslist(1, stepcondition->accrualTimes());
+		const std::list<boost::shared_ptr<StepCondition<Array> > > condlist(1, stepcondition);
+		const boost::shared_ptr<FdmStepConditionComposite> c1(new FdmStepConditionComposite(dateslist, condlist));		
+		
 		std::list<std::vector<Time> > stoppingTimes;
-		stoppingTimes.push_back(c2->stoppingTimes());
 		stoppingTimes.push_back(c1->stoppingTimes());
+		stoppingTimes.push_back(c2->stoppingTimes());
 		FdmStepConditionComposite::Conditions cs;
-		cs.push_back(c2);
 		cs.push_back(c1);
+		cs.push_back(c2);
 		const boost::shared_ptr<FdmStepConditionComposite> conditions(new FdmStepConditionComposite(stoppingTimes, cs));
-
-
-
+		
         // 5. Boundary conditions
         const FdmBoundaryConditionSet boundaries;
 
         // 6. Solver
         FdmSolverDesc solverDesc = { mesher, boundaries, conditions,
-                                     calculator, maturity,
-                                     tGrid_, dampingSteps_ };
+			callCalculator, maturity,
+			1, dampingSteps_ };
 
         const boost::scoped_ptr<FdmG2Solver> solver(
             new FdmG2Solver(model_, solverDesc, schemeDesc_));

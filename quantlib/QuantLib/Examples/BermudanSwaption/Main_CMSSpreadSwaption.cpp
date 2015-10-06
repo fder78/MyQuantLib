@@ -76,14 +76,14 @@ int main(int, char* []) {
         boost::timer timer;
         std::cout << std::endl;
 
-        Date todaysDate(15, February, 2002);
+        Date todaysDate = Date::todaysDate();
         Calendar calendar = TARGET();
-        Date settlementDate(19, February, 2002);
+        Date settlementDate(todaysDate - 3*Months);
         Settings::instance().evaluationDate() = todaysDate;
 
         // flat yield term structure impling 1x5 swap at 5%
         boost::shared_ptr<Quote> flatRate(new SimpleQuote(0.04875825));
-        Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<FlatForward>(new FlatForward(settlementDate, Handle<Quote>(flatRate), Actual365Fixed())));
+        Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<FlatForward>(new FlatForward(todaysDate, Handle<Quote>(flatRate), Actual365Fixed())));
         boost::shared_ptr<IborIndex> indexSixMonths(new Euribor6M(rhTermStructure));
 
 		//parameters calibration
@@ -122,13 +122,10 @@ int main(int, char* []) {
 		std::vector<Size> tenorsInYears;
 		tenorsInYears.push_back(10);
 		tenorsInYears.push_back(2);
-		//boost::shared_ptr<SwapIndex> si1(new UsdLiborSwapIsdaFixPm(Period(10, Years), rhTermStructure));
-		//boost::shared_ptr<SwapIndex> si2(new UsdLiborSwapIsdaFixPm(Period(2, Years), rhTermStructure));
-		//boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(new SwapSpreadIndex("CMS10-2", si1, si2));
+
 		Date startDate = calendar.advance(settlementDate, 1, Years, floatingLegConvention);
 		Date maturity = calendar.advance(startDate, 5, Years, floatingLegConvention);
-		Schedule fixedSchedule(startDate, maturity, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Forward, false);
-		Schedule floatSchedule(startDate, maturity, Period(floatingLegFrequency), calendar, floatingLegConvention, floatingLegConvention, DateGeneration::Forward, false);
+		Schedule fixedSchedule(startDate, maturity, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);
 
 		std::vector<Real> rst = cms_spread_rangeaccrual_fdm(todaysDate, 10000,
 			std::vector<Rate>(1, 0.05),		//std::vector<Rate> couponRate,
@@ -137,8 +134,8 @@ int main(int, char* []) {
 			fixedLegDayCounter,				//	DayCounter dayCounter,
 			fixedLegConvention,				//	BusinessDayConvention bdc,
 			tenorsInYears,					//  CMS spread tenors,
-			std::vector<Real>(1, 0.0),		//	std::vector<Real> lowerBound,
-			std::vector<Real>(1, 0.05),		//	std::vector<Real> upperBound,
+			std::vector<Real>(1, -0.005),		//	std::vector<Real> lowerBound,
+			std::vector<Real>(1, 0.005),		//	std::vector<Real> upperBound,
 			fixedSchedule[1],				//	Date firstCallDate,
 			0.0,							//	Real pastAccrual,
 			rhTermStructure.currentLink(),	//	boost::shared_ptr<YieldTermStructure> obs1Curve,
@@ -147,8 +144,8 @@ int main(int, char* []) {
 			rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
 			50, 40,							//	Size tGrid, Size rGrid,
 			0.0,							//	Real alpha,
-			0.0,							//	Real pastFixing,
-			floatSchedule);					//	Schedule floatingSchedule);
+			0.0								//	Real pastFixing,
+			);
 		std::cout << "price = " << rst[0] << std::endl;
 
 		/***********************************************************************/

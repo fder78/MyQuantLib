@@ -23,8 +23,7 @@ namespace QuantLib {
 		Handle<YieldTermStructure>& discTS,
 		Size tGrid, Size rGrid,
 		Real alpha,
-		Real pastFixing,
-		Schedule floatingSchedule);
+		Real pastFixing);
 
 
 
