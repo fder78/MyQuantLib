@@ -1,0 +1,623 @@
+
+/*  
+ Copyright (C) 2007 Cristina Duminuco
+ Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006 Francois du Vignaud
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_smilesection Smile Section Structures
+\section overview Overview
+functions to construct and use SmileSection objects.
+\section functionlist Function List
+\ref qlFlatSmileSection ()\n
+\ref qlInterpolatedSmileSection ()\n
+\ref qlSabrInterpolatedSmileSection ()\n
+\ref qlSabrInterpolatedSmileSection1 ()\n
+\ref qlSabrInterpolatedSmileSectionAlpha ()\n
+\ref qlSabrInterpolatedSmileSectionBeta ()\n
+\ref qlSabrInterpolatedSmileSectionEndCriteria ()\n
+\ref qlSabrInterpolatedSmileSectionError ()\n
+\ref qlSabrInterpolatedSmileSectionMaxError ()\n
+\ref qlSabrInterpolatedSmileSectionNu ()\n
+\ref qlSabrInterpolatedSmileSectionRho ()\n
+\ref qlSabrSmileSection ()\n
+\ref qlSmileSectionAtmLevel ()\n
+\ref qlSmileSectionDayCounter ()\n
+\ref qlSmileSectionExerciseDate ()\n
+\ref qlSmileSectionFromSabrVolSurface ()\n
+\ref qlSmileSectionVariance ()\n
+\ref qlSmileSectionVolatility ()\n
+
+\section documentation Function Documentation
+\anchor qlFlatSmileSection \b qlFlatSmileSection
+\code
+
+string returnValue
+
+qlFlatSmileSection(
+        string ObjectId
+        long OptionDate
+        double Volatility
+        string DayCounter
+        long RefDate
+        double AtmValue
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FlatSmileSection and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OptionDate smile's expiry as date.
+\param Volatility volatilities.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param RefDate ref date.
+\param AtmValue Current value of the underlying.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlInterpolatedSmileSection \b qlInterpolatedSmileSection
+\code
+
+string returnValue
+
+qlInterpolatedSmileSection(
+        string ObjectId
+        long OptionDate
+        vector<double> Strikes
+        vector<string> StdDevs
+        string AtmLevel
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class InterpolatedSmileSection and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OptionDate smile's expiry as date.
+\param Strikes strikes.
+\param StdDevs standard deviations (i.e. volatilities times square root of time to option expiry).
+\param AtmLevel Current value of the underlying.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSabrInterpolatedSmileSection \b qlSabrInterpolatedSmileSection
+\code
+
+string returnValue
+
+qlSabrInterpolatedSmileSection(
+        string ObjectId
+        long OptionDate
+        double ForwardRate
+        vector<double> Strike
+        bool FloatingStrike
+        double AtmVolatility
+        vector<double> VolatilitySpreads
+        double Alpha
+        double Beta
+        double Nu
+        double Rho
+        bool AlphaIsFixed
+        bool BetaIsFixed
+        bool NuIsFixed
+        bool RhoIsFixed
+        bool VegaWeighted
+        string EndCriteria
+        string Method
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SabrInterpolatedSmileSection and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OptionDate smile's expiry as Date.
+\param ForwardRate Atm forward rate.
+\param Strike strikes.
+\param FloatingStrike Strikes are floating or fixed.
+\param AtmVolatility atm volatility.
+\param VolatilitySpreads volatilities spread at option expiries.
+\param Alpha alpha (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Beta beta (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Nu nu (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Rho rho (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param AlphaIsFixed TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param BetaIsFixed TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param NuIsFixed TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param RhoIsFixed TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param VegaWeighted TRUE if the interpolation is weighted using options Vega. Default value = false.
+\param EndCriteria EndCriteria object ID. Default value = .
+\param Method OptimizationMethod object ID. Default value = .
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSabrInterpolatedSmileSection1 \b qlSabrInterpolatedSmileSection1
+\code
+
+string returnValue
+
+qlSabrInterpolatedSmileSection1(
+        string ObjectId
+        long OptionDate
+        string ForwardRate
+        vector<double> Strike
+        bool FloatingStrike
+        string AtmVolatility
+        vector<string> VolatilitySpreads
+        double Alpha
+        double Beta
+        double Nu
+        double Rho
+        bool AlphaIsFixed
+        bool BetaIsFixed
+        bool NuIsFixed
+        bool RhoIsFixed
+        bool VegaWeighted
+        string EndCriteria
+        string Method
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SabrInterpolatedSmileSection and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OptionDate smile's expiry as Date.
+\param ForwardRate Atm forward rate quote.
+\param Strike strikes.
+\param FloatingStrike Strikes are floating or fixed.
+\param AtmVolatility atm volatility quote.
+\param VolatilitySpreads volatilities spread quotes at option expiries.
+\param Alpha alpha (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Beta beta (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Nu nu (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Rho rho (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param AlphaIsFixed TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param BetaIsFixed TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param NuIsFixed TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param RhoIsFixed TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param VegaWeighted TRUE if the interpolation is weighted using options Vega. Default value = false.
+\param EndCriteria EndCriteria object ID. Default value = .
+\param Method OptimizationMethod object ID. Default value = .
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSabrInterpolatedSmileSectionAlpha \b qlSabrInterpolatedSmileSectionAlpha
+\code
+
+double returnValue
+
+qlSabrInterpolatedSmileSectionAlpha(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the alpha of the SABR fit for the given SabrInterpolatedSmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrInterpolatedSmileSectionBeta \b qlSabrInterpolatedSmileSectionBeta
+\code
+
+double returnValue
+
+qlSabrInterpolatedSmileSectionBeta(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the beta of the SABR fit.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrInterpolatedSmileSectionEndCriteria \b qlSabrInterpolatedSmileSectionEndCriteria
+\code
+
+string returnValue
+
+qlSabrInterpolatedSmileSectionEndCriteria(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the optimization end criteria of the SABR fit for the given SabrInterpolatedSmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrInterpolatedSmileSectionError \b qlSabrInterpolatedSmileSectionError
+\code
+
+double returnValue
+
+qlSabrInterpolatedSmileSectionError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the error of the SABR fit for the given SabrInterpolatedSmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrInterpolatedSmileSectionMaxError \b qlSabrInterpolatedSmileSectionMaxError
+\code
+
+double returnValue
+
+qlSabrInterpolatedSmileSectionMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the max error of the SABR fit for the given SabrInterpolatedSmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrInterpolatedSmileSectionNu \b qlSabrInterpolatedSmileSectionNu
+\code
+
+double returnValue
+
+qlSabrInterpolatedSmileSectionNu(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the nu of the SABR fit for the given SabrInterpolatedSmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrInterpolatedSmileSectionRho \b qlSabrInterpolatedSmileSectionRho
+\code
+
+double returnValue
+
+qlSabrInterpolatedSmileSectionRho(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the rho of the SABR fit for the given SabrInterpolatedSmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrInterpolatedSmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrSmileSection \b qlSabrSmileSection
+\code
+
+string returnValue
+
+qlSabrSmileSection(
+        string ObjectId
+        double OptionTime
+        vector<double> Strikes
+        vector<string> StdDevs
+        string Forward
+        double Alpha
+        double Beta
+        double Nu
+        double Rho
+        bool AlphaIsFixed
+        bool BetaIsFixed
+        bool NuIsFixed
+        bool RhoIsFixed
+        bool VegaWeighted
+        string EndCriteria
+        string Method
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SabrSmileSection and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OptionTime smile's expiry as time.
+\param Strikes strikes.
+\param StdDevs standard deviations (i.e. volatilities times square root of time to option expiry).
+\param Forward atm rate.
+\param Alpha alpha (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Beta beta (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Nu nu (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Rho rho (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param AlphaIsFixed TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param BetaIsFixed TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param NuIsFixed TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param RhoIsFixed TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param VegaWeighted TRUE if the interpolation is weighted using options Vega. Default value = false.
+\param EndCriteria EndCriteria object ID. Default value = .
+\param Method Optimization Method. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSmileSectionAtmLevel \b qlSmileSectionAtmLevel
+\code
+
+double returnValue
+
+qlSmileSectionAtmLevel(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the current value of the SmileSection underlying.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSmileSectionDayCounter \b qlSmileSectionDayCounter
+\code
+
+string returnValue
+
+qlSmileSectionDayCounter(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the DayCounter of the SmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSmileSectionExerciseDate \b qlSmileSectionExerciseDate
+\code
+
+long returnValue
+
+qlSmileSectionExerciseDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the exercise date of the SmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SmileSection object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSmileSectionFromSabrVolSurface \b qlSmileSectionFromSabrVolSurface
+\code
+
+string returnValue
+
+qlSmileSectionFromSabrVolSurface(
+        string ObjectId
+        string SabrVolSurface
+        double OptionTime
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SmileSectionFromSabrVolSurface and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param SabrVolSurface SabrVolSurface object ID.
+\param OptionTime smile's expiry as date.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSmileSectionVariance \b qlSmileSectionVariance
+\code
+
+double returnValue
+
+qlSmileSectionVariance(
+        string ObjectId
+        double Strike
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance at a given strike from the SmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SmileSection object
+\param Strike strike. Default value = QuantLib::Null<QuantLib::Real>().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSmileSectionVolatility \b qlSmileSectionVolatility
+\code
+
+double returnValue
+
+qlSmileSectionVolatility(
+        string ObjectId
+        double Strike
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the volatility at a given strike from the SmileSection object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SmileSection object
+\param Strike strike. Default value = QuantLib::Null<QuantLib::Real>().
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

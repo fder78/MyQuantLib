@@ -1,0 +1,331 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_products Products
+\section overview Overview
+functions to construct and use Market Models Products objects.
+\section functionlist Function List
+\ref qlMarketModelMultiProductComposite ()\n
+\ref qlMarketModelMultiProductCompositeAdd ()\n
+\ref qlMarketModelMultiProductCompositeFinalize ()\n
+\ref qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep ()\n
+\ref qlMarketModelMultiProductNumberOfProducts ()\n
+\ref qlMarketModelMultiProductPossibleCashFlowTimes ()\n
+\ref qlMarketModelMultiProductSuggestedNumeraires ()\n
+\ref qlMarketModelMultiStepRatchet ()\n
+\ref qlMarketModelOneStepForwards ()\n
+\ref qlMarketModelOneStepOptionlets ()\n
+
+\section documentation Function Documentation
+\anchor qlMarketModelMultiProductComposite \b qlMarketModelMultiProductComposite
+\code
+
+string returnValue
+
+qlMarketModelMultiProductComposite(
+        string ObjectId
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MultiProductComposite and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMarketModelMultiProductCompositeAdd \b qlMarketModelMultiProductCompositeAdd
+\code
+
+void returnValue
+
+qlMarketModelMultiProductCompositeAdd(
+        string ObjectId
+        string Product
+        any Trigger)
+
+\endcode
+\par Description:
+
+Add new product to MarketModelComposite object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MultiProductComposite object
+\param Product ID of product object.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelMultiProductCompositeFinalize \b qlMarketModelMultiProductCompositeFinalize
+\code
+
+void returnValue
+
+qlMarketModelMultiProductCompositeFinalize(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+finalize the MarketModelComposite object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MultiProductComposite object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep \b qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep
+\code
+
+long returnValue
+
+qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Max number of cashflows per product per step for the MarketModelMultiProduct object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelMultiProduct object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelMultiProductNumberOfProducts \b qlMarketModelMultiProductNumberOfProducts
+\code
+
+long returnValue
+
+qlMarketModelMultiProductNumberOfProducts(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+number of products in the MarketModelMultiProduct object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelMultiProduct object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelMultiProductPossibleCashFlowTimes \b qlMarketModelMultiProductPossibleCashFlowTimes
+\code
+
+vector<double> returnValue
+
+qlMarketModelMultiProductPossibleCashFlowTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+possible cash flow times for the MarketModelMultiProduct object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelMultiProduct object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelMultiProductSuggestedNumeraires \b qlMarketModelMultiProductSuggestedNumeraires
+\code
+
+vector<long> returnValue
+
+qlMarketModelMultiProductSuggestedNumeraires(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+suggested Numeraires for the MarketModelMultiProduct object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelMultiProduct object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelMultiStepRatchet \b qlMarketModelMultiStepRatchet
+\code
+
+string returnValue
+
+qlMarketModelMultiStepRatchet(
+        string ObjectId
+        vector<double> RateTimes
+        vector<double> Accruals
+        vector<double> PaymentTimes
+        double GearingOfFloor
+        double GearingOfFixing
+        double SpreadOfFloor
+        double SpreadOfFixing
+        double InitialFloor
+        bool Payer
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MultiStepRatchet and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Accruals accrual factors between rate fixing times.
+\param PaymentTimes payment times of the product.
+\param GearingOfFloor gearing of floor.
+\param GearingOfFixing gearing of fixing.
+\param SpreadOfFloor spread of floor.
+\param SpreadOfFixing spread of fixing.
+\param InitialFloor initial floor.
+\param Payer payer if true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMarketModelOneStepForwards \b qlMarketModelOneStepForwards
+\code
+
+string returnValue
+
+qlMarketModelOneStepForwards(
+        string ObjectId
+        vector<double> RateTimes
+        vector<double> Accruals
+        vector<double> PaymentTimes
+        vector<double> Strikes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OneStepForwards and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Accruals accrual factors.
+\param PaymentTimes payment times of the product.
+\param Strikes forward strikes.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMarketModelOneStepOptionlets \b qlMarketModelOneStepOptionlets
+\code
+
+string returnValue
+
+qlMarketModelOneStepOptionlets(
+        string ObjectId
+        vector<double> RateTimes
+        vector<double> Accruals
+        vector<double> PaymentTimes
+        vector<string> Payoffs
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OneStepOptionlets and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Accruals accrual factors.
+\param PaymentTimes payment times of the product.
+\param Payoffs striked type payoff object IDs.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

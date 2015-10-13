@@ -1,0 +1,234 @@
+
+/*  
+ Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_randomsequencegenerator Random Sequence Generator
+\section overview Overview
+functions to construct and use random sequences generators.
+\section functionlist Function List
+\ref qlFaureRsg ()\n
+\ref qlHaltonRsg ()\n
+\ref qlMersenneTwisterRsg ()\n
+\ref qlRand ()\n
+\ref qlRandomize ()\n
+\ref qlSobolRsg ()\n
+\ref qlVariates ()\n
+
+\section documentation Function Documentation
+\anchor qlFaureRsg \b qlFaureRsg
+\code
+
+string returnValue
+
+qlFaureRsg(
+        string ObjectId
+        long Dimension
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FaureRsg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension dimension.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlHaltonRsg \b qlHaltonRsg
+\code
+
+string returnValue
+
+qlHaltonRsg(
+        string ObjectId
+        long Dimension
+        long Seed
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class HaltonRsg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension dimension.
+\param Seed seed.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMersenneTwisterRsg \b qlMersenneTwisterRsg
+\code
+
+string returnValue
+
+qlMersenneTwisterRsg(
+        string ObjectId
+        long Dimension
+        long Seed
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MersenneTwisterRsg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension dimension.
+\param Seed seed.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRand \b qlRand
+\code
+
+double returnValue
+
+qlRand(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns a random number between 0 and 1.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRandomize \b qlRandomize
+\code
+
+void returnValue
+
+qlRandomize(
+        long Seed
+        any Trigger)
+
+\endcode
+\par Description:
+
+initialize with the given seed the random number generator used by qlRand().
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param Seed the seed used to initialize the random number generator.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSobolRsg \b qlSobolRsg
+\code
+
+string returnValue
+
+qlSobolRsg(
+        string ObjectId
+        long Dimension
+        long Seed
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SobolRsg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension dimension.
+\param Seed seed.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVariates \b qlVariates
+\code
+
+vector<vector<double> > returnValue
+
+qlVariates(
+        string ObjectId
+        long Samples
+        any Trigger)
+
+\endcode
+\par Description:
+
+generate variates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLibAddin::RandomSequenceGenerator object
+\param Samples number of samples.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

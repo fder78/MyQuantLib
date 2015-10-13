@@ -21,6 +21,7 @@ namespace QuantLib {
             const boost::shared_ptr<ModelType>& disModel,
             const boost::shared_ptr<ModelType>& fwdModel,
             const boost::shared_ptr<FloatFloatSwap>& swap,
+			const std::vector<Time> & floatingTimes,
 			const std::vector<Time> & accrualTimes,
 			const std::map<Time, Time> & timeInterval,
 			const std::map<Time, std::pair<Size,Time> > & cfIndex,
@@ -41,6 +42,7 @@ namespace QuantLib {
 
         RelinkableHandle<YieldTermStructure> disTs_, fwdTs_;
         const boost::shared_ptr<ModelType> disModel_, fwdModel_;
+		const std::vector<Time> floatingTimes_;
 		const std::vector<Time> accrualTimes_;
 		const std::map<Time, Time> timeInterval_;
 		const std::map<Time, std::pair<Size, Time> > cfIndex_;
@@ -54,15 +56,16 @@ namespace QuantLib {
     template <class ModelType> inline
     FdmCmsSpreadSwapInnerValue<ModelType>::FdmCmsSpreadSwapInnerValue(
         const boost::shared_ptr<ModelType>& disModel,
-        const boost::shared_ptr<ModelType>& fwdModel,
+        const boost::shared_ptr<ModelType>& fwdModel,		
         const boost::shared_ptr<FloatFloatSwap>& swap,
+		const std::vector<Time> & floatingTimes,
 		const std::vector<Time> & accrualTimes,
 		const std::map<Time, Time> & timeInterval,
 		const std::map<Time, std::pair<Size, Time> > & cfIndex,
         const boost::shared_ptr<FdmMesher>& mesher,
         Size direction)
     : disModel_(disModel),
-		fwdModel_(fwdModel),
+		fwdModel_(fwdModel), floatingTimes_(floatingTimes),
 		index_(boost::dynamic_pointer_cast<SwapSpreadIndex>(swap->index1())),
 		swap_(swap), accrualTimes_(accrualTimes), timeInterval_(timeInterval), cfIndex_(cfIndex), 
 		mesher_(mesher), tenor_(std::vector<Size>(2)), length_(std::vector<Size>(2)),
@@ -95,9 +98,7 @@ namespace QuantLib {
         const Array disRate(getState(disModel_, t, iter));
         const Array fwdRate(getState(fwdModel_, t, iter));
 		
-		Rate sp = fairSpread(t, fwdRate);
-
-				
+		Rate sp = fairSpread(t, fwdRate);				
 		Leg leg1 = swap_->leg1();
 		Size idx = (cfIndex_.find(t)->second).first;
 		Real coupon = swap_->spread1()[idx];
@@ -107,7 +108,20 @@ namespace QuantLib {
 
 		Real payTime = (cfIndex_.find(t)->second).second;
 		Real df = discount(t, payTime, disRate);
-		return flag * coupon * df * timeInterval_.find(t)->second;
+		Real leg1cf =  flag * coupon * df * timeInterval_.find(t)->second;
+
+		Real leg2cf = 0.0;
+		Size fidx = std::find(floatingTimes_.begin(), floatingTimes_.end(), t) - floatingTimes_.begin();
+		if (fidx != floatingTimes_.end()-floatingTimes_.begin()) {
+			Real df = discount(t, floatingTimes_[fidx+1], disRate);
+			Real L = (1 / df - 1) / (floatingTimes_[fidx + 1] - t);
+			leg2cf = (L + swap_->spread2()[idx]) * (floatingTimes_[fidx + 1] - t) * df;
+		}
+
+		if (swap_->type() == VanillaSwap::Payer)
+			return (-1.0)*(leg1cf - leg2cf);
+		else
+			return leg1cf - leg2cf;
     }
 
     template <class ModelType> inline

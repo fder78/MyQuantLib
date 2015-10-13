@@ -1,0 +1,923 @@
+
+/*  
+ Copyright (C) 2010 Roland Lichters
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_credit QuantLib Credit
+\section overview Overview
+QuantLib Credit
+\section functionlist Function List
+\ref qlBaseCorrelationTermStructure ()\n
+\ref qlBaseCorrelationValue ()\n
+\ref qlBlackCdsOptionEngine ()\n
+\ref qlCDSOption ()\n
+\ref qlCdsCouponLegNPV ()\n
+\ref qlCdsDefaultLegNPV ()\n
+\ref qlCdsFairSpread ()\n
+\ref qlCdsFairUpfront ()\n
+\ref qlCdsOptionImpliedVol ()\n
+\ref qlCreditDefaultSwap ()\n
+\ref qlDefaultEvent ()\n
+\ref qlHRDates ()\n
+\ref qlHRates ()\n
+\ref qlHazardRateCurve ()\n
+\ref qlIntegralNtdEngine ()\n
+\ref qlIssuer ()\n
+\ref qlMidPointCDOEngine ()\n
+\ref qlMidPointCdsEngine ()\n
+\ref qlNthToDefault ()\n
+\ref qlPiecewiseFlatForwardCurve ()\n
+\ref qlPiecewiseHazardRateCurve ()\n
+\ref qlRiskyFixedBond ()\n
+\ref qlSpreadCdsHelper ()\n
+\ref qlSyntheticCDO ()\n
+\ref qlUpfrontCdsHelper ()\n
+
+\section documentation Function Documentation
+\anchor qlBaseCorrelationTermStructure \b qlBaseCorrelationTermStructure
+\code
+
+string returnValue
+
+qlBaseCorrelationTermStructure(
+        string ObjectId
+        string InterpolatorType
+        long SettlementDays
+        string Calendar
+        string Convention
+        vector<string> Tenors
+        vector<double> LossLevel
+        vector<vector<string> > Correlations
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BaseCorrelationTermStructure and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param InterpolatorType The bidimensional interpolation policy over the correlation surface.
+\param SettlementDays Numebr of settlement days.
+\param Calendar Calendar.
+\param Convention Time convention.
+\param Tenors Surface tenors
+\param LossLevel Surface loss levels as a fraction of the underlying portfolio.
+\param Correlations Correlation quotes.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlBaseCorrelationValue \b qlBaseCorrelationValue
+\code
+
+double returnValue
+
+qlBaseCorrelationValue(
+        string ObjectId
+        long Date
+        double LossLevel
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the interpolated base correlation value.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::BaseCorrelationTermStructure object
+\param Date Interpolation date.
+\param LossLevel Interpolation loss level.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackCdsOptionEngine \b qlBlackCdsOptionEngine
+\code
+
+string returnValue
+
+qlBlackCdsOptionEngine(
+        string ObjectId
+        string DefaultCurve
+        double RecoveryRate
+        string YieldCurve
+        string BlackVol
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BlackCdsOptionEngine and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param DefaultCurve default term structure object ID.
+\param RecoveryRate constant recovery rate
+\param YieldCurve discounting yield term structure object ID.
+\param BlackVol Black Volatility.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCDSOption \b qlCDSOption
+\code
+
+string returnValue
+
+qlCDSOption(
+        string ObjectId
+        string UnderlyingCDS
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CdsOption and return its id
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param UnderlyingCDS The CDS underlying the option.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCdsCouponLegNPV \b qlCdsCouponLegNPV
+\code
+
+double returnValue
+
+qlCdsCouponLegNPV(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the CL NPV.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CreditDefaultSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCdsDefaultLegNPV \b qlCdsDefaultLegNPV
+\code
+
+double returnValue
+
+qlCdsDefaultLegNPV(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the DL NPV.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CreditDefaultSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCdsFairSpread \b qlCdsFairSpread
+\code
+
+double returnValue
+
+qlCdsFairSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the running spread that, given the quoted recovery rate, will make the running-only CDS have an NPV of 0.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CreditDefaultSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCdsFairUpfront \b qlCdsFairUpfront
+\code
+
+double returnValue
+
+qlCdsFairUpfront(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the upfront spread that, given the running spread and the quoted recovery rate, will make the instrument have an NPV of 0.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CreditDefaultSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCdsOptionImpliedVol \b qlCdsOptionImpliedVol
+\code
+
+double returnValue
+
+qlCdsOptionImpliedVol(
+        string ObjectId
+        double Price
+        string YieldCurve
+        string DefaultCurve
+        double RecoveryRate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Implied black CDS option volatility.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CdsOption object
+\param Price Market price.
+\param YieldCurve discounting yield term structure object ID.
+\param DefaultCurve default term structure object ID.
+\param RecoveryRate constant recovery rate
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditDefaultSwap \b qlCreditDefaultSwap
+\code
+
+string returnValue
+
+qlCreditDefaultSwap(
+        string ObjectId
+        string BuyerSeller
+        double Notional
+        double Upfront
+        double Spread
+        string PremiumSchedule
+        string PaymentConvention
+        string DayCounter
+        bool SettlesAccrual
+        bool PayAtDefault
+        long ProtectionStart
+        long UpfrontDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CreditDefaultSwap and return its id
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param BuyerSeller BUYER for bought, SELLER for sold protection. Default value = Buyer.
+\param Notional Nominal amount
+\param Upfront upfront in fractional units
+\param Spread running spread in fractional units
+\param PremiumSchedule premium leg Schedule object ID.
+\param PaymentConvention Payment dates' business day convention. Default value = Following.
+\param DayCounter premium leg day counter (e.g. Actual/360).
+\param SettlesAccrual TRUE ensures settlement of accural. Default value = true.
+\param PayAtDefault TRUE ensures payment at default time Default value = true.
+\param ProtectionStart protection start date. Default value = QuantLib::Date().
+\param UpfrontDate upfront date. Default value = QuantLib::Date().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDefaultEvent \b qlDefaultEvent
+\code
+
+string returnValue
+
+qlDefaultEvent(
+        string ObjectId
+        string EventType
+        long EventDate
+        string Currency
+        string Seniority
+        long SettlementDate
+        double SettledRecovery
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DefaultEventSet and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param EventType The type of default event. Default value = NONE.
+\param EventDate Event date. Default value = QuantLib::Date().
+\param Currency Curency of the reference bond affected. Default value = Currency.
+\param Seniority Seniority of the bond affected. Default value = NoSeniority.
+\param SettlementDate Event settlement date. Default value = QuantLib::Date().
+\param SettledRecovery Event settlement recovery rate. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlHRDates \b qlHRDates
+\code
+
+vector<long> returnValue
+
+qlHRDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Dates on which the hazard rate interpolation is performed.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseHazardRateCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHRates \b qlHRates
+\code
+
+vector<double> returnValue
+
+qlHRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Dates on which the hazard rate interpolation is performed.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseHazardRateCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHazardRateCurve \b qlHazardRateCurve
+\code
+
+string returnValue
+
+qlHazardRateCurve(
+        string ObjectId
+        vector<long> CurveDates
+        vector<double> CurveRates
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Creates a backward flat interpolated hazard rate curve.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurveDates dates of the curve. First date corresponds to a survival probability of one.
+\param CurveRates hazard rates for the above dates.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIntegralNtdEngine \b qlIntegralNtdEngine
+\code
+
+string returnValue
+
+qlIntegralNtdEngine(
+        string ObjectId
+        string IntegrationStep
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class IntegralNtdEngine and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param IntegrationStep Integration step period.
+\param YieldCurve discounting yield term structure object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIssuer \b qlIssuer
+\code
+
+string returnValue
+
+qlIssuer(
+        string ObjectId
+        string DefaultCurves
+        string DefaultEvents
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Issuer and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param DefaultCurves Default probability curve. By now it is associated to SeniorSec, EUR and NorthAmericaCorpDefaultKey Default value = .
+\param DefaultEvents Credit events affecting this issuer.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMidPointCDOEngine \b qlMidPointCDOEngine
+\code
+
+string returnValue
+
+qlMidPointCDOEngine(
+        string ObjectId
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MidPointCDOEngine and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param YieldCurve discounting yield term structure object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMidPointCdsEngine \b qlMidPointCdsEngine
+\code
+
+string returnValue
+
+qlMidPointCdsEngine(
+        string ObjectId
+        string DefaultCurve
+        double RecoveryRate
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MidPointCdsEngine and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param DefaultCurve default term structure object ID.
+\param RecoveryRate constant recovery rate
+\param YieldCurve discounting yield term structure object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlNthToDefault \b qlNthToDefault
+\code
+
+string returnValue
+
+qlNthToDefault(
+        string ObjectId
+        string Basket
+        long Order
+        string BuyerSeller
+        string PremiumSchedule
+        double Upfront
+        double Spread
+        string DayCounter
+        double Notional
+        bool SettlesAccrual
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class NthToDefault and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Basket Underlying tranched portfolio.
+\param Order Contract default order.
+\param BuyerSeller BUYER for bought, SELLER for sold protection. Default value = Buyer.
+\param PremiumSchedule premium leg Schedule object ID.
+\param Upfront upfront in fractional units
+\param Spread running spread in fractional units
+\param DayCounter premium leg day counter (e.g. Actual/360).
+\param Notional Nominal amount
+\param SettlesAccrual Accrual settled at default.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPiecewiseFlatForwardCurve \b qlPiecewiseFlatForwardCurve
+\code
+
+string returnValue
+
+qlPiecewiseFlatForwardCurve(
+        string ObjectId
+        long ReferenceDate
+        vector<string> RateHelpers
+        string DayCounter
+        double Accuracy
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class PiecewiseFlatForwardCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param ReferenceDate term structure reference date. Default value = QuantLib::Date().
+\param RateHelpers vector of rate-helpers.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Accuracy Bootstrapping accuracy. Default value = 1.0e-12.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPiecewiseHazardRateCurve \b qlPiecewiseHazardRateCurve
+\code
+
+string returnValue
+
+qlPiecewiseHazardRateCurve(
+        string ObjectId
+        vector<string> Helpers
+        string DayCounter
+        string Calendar
+        string Interpolation
+        double Accuracy
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class PiecewiseHazardRateCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Helpers vector of default probability helpers.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Calendar holiday calendar (e.g. TARGET).
+\param Interpolation The interpolator for hazard rates.
+\param Accuracy Bootstrapping accuracy. Default value = 1.0e-12.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRiskyFixedBond \b qlRiskyFixedBond
+\code
+
+string returnValue
+
+qlRiskyFixedBond(
+        string ObjectId
+        string Bondname
+        string Currency
+        double Recovery
+        string DefaultCurve
+        string Schedule
+        double Rate
+        string DayCounter
+        string PaymentConvention
+        double Notional
+        string DiscountingCurve
+        long PricingDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RiskyFixedBond and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Bondname Bonds id.
+\param Currency Curency of the reference bond affected.
+\param Recovery Recovery Rate.
+\param DefaultCurve default term structure object ID.
+\param Schedule Schedule.
+\param Rate Rate.
+\param DayCounter premium leg day counter (e.g. Actual/360).
+\param PaymentConvention Payment dates' business day convention. Default value = Following.
+\param Notional Notional.
+\param DiscountingCurve discounting YieldTermStructure object ID.
+\param PricingDate desired npv date.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSpreadCdsHelper \b qlSpreadCdsHelper
+\code
+
+string returnValue
+
+qlSpreadCdsHelper(
+        string ObjectId
+        string RunningSpread
+        string Tenor
+        long SettlementDays
+        string Calendar
+        string Frequency
+        string PaymentConvention
+        string GenRule
+        string DayCounter
+        double RecoveryRate
+        string DiscountingCurve
+        bool SettleAccrual
+        bool PayAtDefault
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SpreadCdsHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RunningSpread quote.
+\param Tenor CDS length (e.g. 5Y for five years).
+\param SettlementDays settlement days Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET).
+\param Frequency payment frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).
+\param PaymentConvention payment leg convention (e.g. Unadjusted).
+\param GenRule Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero).
+\param DayCounter day counter (e.g. Actual/360).
+\param RecoveryRate recovery rate
+\param DiscountingCurve discounting YieldTermStructure object ID.
+\param SettleAccrual TRUE ensures settlement of accural. Default value = true.
+\param PayAtDefault TRUE ensures payment at default time Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSyntheticCDO \b qlSyntheticCDO
+\code
+
+string returnValue
+
+qlSyntheticCDO(
+        string ObjectId
+        string Basket
+        string BuyerSeller
+        string PremiumSchedule
+        double Upfront
+        double Spread
+        string DayCounter
+        string PaymentConvention
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SyntheticCDO and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Basket Underlying tranched portfolio.
+\param BuyerSeller BUYER for bought, SELLER for sold protection. Default value = Buyer.
+\param PremiumSchedule premium leg Schedule object ID.
+\param Upfront upfront in fractional units
+\param Spread running spread in fractional units
+\param DayCounter premium leg day counter (e.g. Actual/360).
+\param PaymentConvention Payment dates' business day convention. Default value = Following.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlUpfrontCdsHelper \b qlUpfrontCdsHelper
+\code
+
+string returnValue
+
+qlUpfrontCdsHelper(
+        string ObjectId
+        string UpfrontSpread
+        double RunningSpread
+        string Tenor
+        long SettlementDays
+        string Calendar
+        string Frequency
+        string PaymentConvention
+        string GenRule
+        string DayCounter
+        double RecRate
+        string DiscCurve
+        long UpfSettlDays
+        bool SettlAccr
+        bool PayAtDefault
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class UpfrontCdsHelper and return its id
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param UpfrontSpread upfront spread quote.
+\param RunningSpread running spread.
+\param Tenor CDS length (e.g. 5Y for five years).
+\param SettlementDays settlement days Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET).
+\param Frequency payment frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).
+\param PaymentConvention payment leg convention (e.g. Unadjusted).
+\param GenRule Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero).
+\param DayCounter day counter (e.g. Actual/360).
+\param RecRate recovery rate
+\param DiscCurve discounting YieldTermStructure object ID.
+\param UpfSettlDays upfront settlement days
+\param SettlAccr TRUE ensures settlement of accural. Default value = true.
+\param PayAtDefault TRUE ensures payment at default time Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

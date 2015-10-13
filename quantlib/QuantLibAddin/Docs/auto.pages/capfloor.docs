@@ -1,0 +1,322 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008, 2011, 2014 Ferdinando Ametrano
+ Copyright (C) 2005 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_capfloor Caps/Floors
+\section overview Overview
+functions to construct and use CapFloor objects.
+\section functionlist Function List
+\ref qlCapFloor ()\n
+\ref qlCapFloorAtmRate ()\n
+\ref qlCapFloorCapRates ()\n
+\ref qlCapFloorFloorRates ()\n
+\ref qlCapFloorImpliedVolatility ()\n
+\ref qlCapFloorLegAnalysis ()\n
+\ref qlCapFloorMaturityDate ()\n
+\ref qlCapFloorStartDate ()\n
+\ref qlCapFloorType ()\n
+\ref qlMakeCapFloor ()\n
+
+\section documentation Function Documentation
+\anchor qlCapFloor \b qlCapFloor
+\code
+
+string returnValue
+
+qlCapFloor(
+        string ObjectId
+        string OptionType
+        string LegID
+        vector<double> Strikes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CapFloor and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param OptionType option type (cap or floor).
+\param LegID coupon vector.
+\param Strikes strikes.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCapFloorAtmRate \b qlCapFloorAtmRate
+\code
+
+double returnValue
+
+qlCapFloorAtmRate(
+        string ObjectId
+        string YieldCurve
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the at-the-money rate for the given CapFloor object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param YieldCurve discounting YieldTermStructure object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorCapRates \b qlCapFloorCapRates
+\code
+
+vector<double> returnValue
+
+qlCapFloorCapRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the cap rates for the given CapFloor object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorFloorRates \b qlCapFloorFloorRates
+\code
+
+vector<double> returnValue
+
+qlCapFloorFloorRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the floor rates for the given CapFloor object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorImpliedVolatility \b qlCapFloorImpliedVolatility
+\code
+
+double returnValue
+
+qlCapFloorImpliedVolatility(
+        string ObjectId
+        double Price
+        string YieldCurve
+        double Guess
+        double Accuracy
+        long MaxIter
+        double MinVol
+        double MaxVol
+        double Displacement
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the volatility implied by the given price for the given CapFloor object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param Price Price used to infer the implied volatility.
+\param YieldCurve discounting YieldTermStructure object ID.
+\param Guess Volatility guess. Default value = 0.10.
+\param Accuracy solver accuracy. Default value = 1.0e-6.
+\param MaxIter solver max iterations. Default value = 100.
+\param MinVol Minimum volatility, no lower solution. Default value = 1.0e-7.
+\param MaxVol Maximum volatility, no higher solution. Default value = 4.0.
+\param Displacement displacement in a displaced diffusion model. Default value = 0.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorLegAnalysis \b qlCapFloorLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlCapFloorLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the cash flow analysis for the given CapFloor object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CapFloor object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorMaturityDate \b qlCapFloorMaturityDate
+\code
+
+long returnValue
+
+qlCapFloorMaturityDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maturity (i.e. last payment) date for the given CapFloor object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorStartDate \b qlCapFloorStartDate
+\code
+
+long returnValue
+
+qlCapFloorStartDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the start (i.e. first accrual) date for the given CapFloor object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorType \b qlCapFloorType
+\code
+
+string returnValue
+
+qlCapFloorType(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the type (e.g. Cap, Floor) for the given CapFloor object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloor object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMakeCapFloor \b qlMakeCapFloor
+\code
+
+string returnValue
+
+qlMakeCapFloor(
+        string ObjectId
+        string OptionType
+        string Length
+        string IborIndex
+        double Strike
+        string ForwardStart
+        string PricingEngineID
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CapFloor and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param OptionType option type (Cap or Floor).
+\param Length as period (e.g. 10Y).
+\param IborIndex floating IborIndex object ID.
+\param Strike strike. Default value = QuantLib::Null<QuantLib::Rate>().
+\param ForwardStart as period (if zero days the first caplet is removed).
+\param PricingEngineID CapFloor PricingEngine object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

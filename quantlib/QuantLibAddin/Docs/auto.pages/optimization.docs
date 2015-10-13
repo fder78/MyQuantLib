@@ -1,0 +1,389 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_optimization Optimization
+\section overview Overview
+functions to construct and use Optimization objects.
+\section functionlist Function List
+\ref qlArmijoLineSearch ()\n
+\ref qlConjugateGradient ()\n
+\ref qlEndCriteria ()\n
+\ref qlEndCriteriaFunctionEpsilon ()\n
+\ref qlEndCriteriaGradientNormEpsilon ()\n
+\ref qlEndCriteriaMaxIterations ()\n
+\ref qlEndCriteriaMaxStationaryStateIterations ()\n
+\ref qlLevenbergMarquardt ()\n
+\ref qlSecondsToString ()\n
+\ref qlSimplex ()\n
+\ref qlSphereCylinderOptimizerClosest ()\n
+\ref qlSteepestDescent ()\n
+
+\section documentation Function Documentation
+\anchor qlArmijoLineSearch \b qlArmijoLineSearch
+\code
+
+string returnValue
+
+qlArmijoLineSearch(
+        string ObjectId
+        double Epsilon
+        double Alpha
+        double Beta
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ArmijoLineSearch and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Epsilon epsilon. Default value = 1e-8.
+\param Alpha alpha. Default value = 0.05.
+\param Beta beta. Default value = 0.65.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlConjugateGradient \b qlConjugateGradient
+\code
+
+string returnValue
+
+qlConjugateGradient(
+        string ObjectId
+        string LineSearch
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ConjugateGradient and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param LineSearch LineSearch object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEndCriteria \b qlEndCriteria
+\code
+
+string returnValue
+
+qlEndCriteria(
+        string ObjectId
+        long MaxIterations
+        long MaxStationaryStateIterations
+        double RootEpsilon
+        double FunctionEpsilon
+        double GradientNormEpsilon
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EndCriteria and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param MaxIterations max number of iterations.
+\param MaxStationaryStateIterations max number of iterations in a stationary state.
+\param RootEpsilon tolerance on the root value.
+\param FunctionEpsilon tolerance on the function value.
+\param GradientNormEpsilon tolerance on the function gradient norm value.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEndCriteriaFunctionEpsilon \b qlEndCriteriaFunctionEpsilon
+\code
+
+double returnValue
+
+qlEndCriteriaFunctionEpsilon(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the function epsilon for the given EndCriteria object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::EndCriteria object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEndCriteriaGradientNormEpsilon \b qlEndCriteriaGradientNormEpsilon
+\code
+
+double returnValue
+
+qlEndCriteriaGradientNormEpsilon(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the gradient norm epsilon for the given EndCriteria object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::EndCriteria object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEndCriteriaMaxIterations \b qlEndCriteriaMaxIterations
+\code
+
+long returnValue
+
+qlEndCriteriaMaxIterations(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of max interation for the given EndCriteria object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::EndCriteria object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEndCriteriaMaxStationaryStateIterations \b qlEndCriteriaMaxStationaryStateIterations
+\code
+
+long returnValue
+
+qlEndCriteriaMaxStationaryStateIterations(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of max interation in a stationary state for the given EndCriteria object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::EndCriteria object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLevenbergMarquardt \b qlLevenbergMarquardt
+\code
+
+string returnValue
+
+qlLevenbergMarquardt(
+        string ObjectId
+        double Epsfcn
+        double Xtol
+        double Gtol
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LevenbergMarquardt and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Epsfcn epsfcn. Default value = 1.0e-8.
+\param Xtol xtol. Default value = 1.0e-8.
+\param Gtol gtol. Default value = 1.0e-8.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSecondsToString \b qlSecondsToString
+\code
+
+string returnValue
+
+qlSecondsToString(
+        double Seconds
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns a hh:mm:ss string from the number of seconds provided as input.
+
+\par Supported Platforms:
+
+Excel
+
+\param Seconds number of seconds.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSimplex \b qlSimplex
+\code
+
+string returnValue
+
+qlSimplex(
+        string ObjectId
+        double Lambda
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Simplex and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Lambda lambda (typical scale length of the problem).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSphereCylinderOptimizerClosest \b qlSphereCylinderOptimizerClosest
+\code
+
+vector<double> returnValue
+
+qlSphereCylinderOptimizerClosest(
+        double R
+        double S
+        double Alpha
+        double Z1
+        double Z2
+        double Z3
+        long MaxIter
+        double Tol
+        any Trigger)
+
+\endcode
+\par Description:
+
+Sphere Cylinder Optimizer Closest.
+
+\par Supported Platforms:
+
+Excel
+
+\param R r.
+\param S s.
+\param Alpha alpha.
+\param Z1 z1.
+\param Z2 z2.
+\param Z3 z3.
+\param MaxIter maxIter.
+\param Tol tolerance.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSteepestDescent \b qlSteepestDescent
+\code
+
+string returnValue
+
+qlSteepestDescent(
+        string ObjectId
+        string LineSearch
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SteepestDescent and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param LineSearch LineSearch object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

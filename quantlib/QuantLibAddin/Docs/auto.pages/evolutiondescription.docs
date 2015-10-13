@@ -1,0 +1,399 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_evolutiondescription Evolution Description
+\section overview Overview
+functions to construct and use evolution description related objects.
+\section functionlist Function List
+\ref qlEvolutionDescription ()\n
+\ref qlEvolutionDescriptionEvolutionTimes ()\n
+\ref qlEvolutionDescriptionFirstAliveRate ()\n
+\ref qlEvolutionDescriptionFromProduct ()\n
+\ref qlEvolutionDescriptionNumberOfRates ()\n
+\ref qlEvolutionDescriptionNumberOfSteps ()\n
+\ref qlEvolutionDescriptionRateTaus ()\n
+\ref qlEvolutionDescriptionRateTimes ()\n
+\ref qlIsInMoneyMarketMeasure ()\n
+\ref qlIsInMoneyMarketPlusMeasure ()\n
+\ref qlIsInTerminalMeasure ()\n
+\ref qlMoneyMarketMeasure ()\n
+\ref qlMoneyMarketPlusMeasure ()\n
+\ref qlTerminalMeasure ()\n
+
+\section documentation Function Documentation
+\anchor qlEvolutionDescription \b qlEvolutionDescription
+\code
+
+string returnValue
+
+qlEvolutionDescription(
+        string ObjectId
+        vector<double> RateTimes
+        vector<double> EvolutionTimes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EvolutionDescription and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param EvolutionTimes evolution times in the simulation.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEvolutionDescriptionEvolutionTimes \b qlEvolutionDescriptionEvolutionTimes
+\code
+
+vector<double> returnValue
+
+qlEvolutionDescriptionEvolutionTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+evolution times for the EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::EvolutionDescription object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEvolutionDescriptionFirstAliveRate \b qlEvolutionDescriptionFirstAliveRate
+\code
+
+vector<long> returnValue
+
+qlEvolutionDescriptionFirstAliveRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+first alive rate at each evolution time for the EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::EvolutionDescription object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEvolutionDescriptionFromProduct \b qlEvolutionDescriptionFromProduct
+\code
+
+string returnValue
+
+qlEvolutionDescriptionFromProduct(
+        string ObjectId
+        string Product
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EvolutionDescription and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Product ID of product object.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEvolutionDescriptionNumberOfRates \b qlEvolutionDescriptionNumberOfRates
+\code
+
+long returnValue
+
+qlEvolutionDescriptionNumberOfRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+number of rates for the EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::EvolutionDescription object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEvolutionDescriptionNumberOfSteps \b qlEvolutionDescriptionNumberOfSteps
+\code
+
+long returnValue
+
+qlEvolutionDescriptionNumberOfSteps(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+number of steps for the EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::EvolutionDescription object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEvolutionDescriptionRateTaus \b qlEvolutionDescriptionRateTaus
+\code
+
+vector<double> returnValue
+
+qlEvolutionDescriptionRateTaus(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+rate taus for the EvolutionDescription object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::EvolutionDescription object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEvolutionDescriptionRateTimes \b qlEvolutionDescriptionRateTimes
+\code
+
+vector<double> returnValue
+
+qlEvolutionDescriptionRateTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+rates fixing times for the EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::EvolutionDescription object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIsInMoneyMarketMeasure \b qlIsInMoneyMarketMeasure
+\code
+
+bool returnValue
+
+qlIsInMoneyMarketMeasure(
+        string EvolutionDescription
+        vector<long> Numeraires
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the numeraire vector is money market measure for the given EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param EvolutionDescription ID of EvolutionDescription object.
+\param Numeraires vector of numeraires.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIsInMoneyMarketPlusMeasure \b qlIsInMoneyMarketPlusMeasure
+\code
+
+bool returnValue
+
+qlIsInMoneyMarketPlusMeasure(
+        string EvolutionDescription
+        vector<long> Numeraires
+        long Offset
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the numeraire vector is money market measure plus for the given EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param EvolutionDescription ID of EvolutionDescription object.
+\param Numeraires vector of numeraires.
+\param Offset offset applied to the MoneyMarket measure. Default value = 1.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIsInTerminalMeasure \b qlIsInTerminalMeasure
+\code
+
+bool returnValue
+
+qlIsInTerminalMeasure(
+        string EvolutionDescription
+        vector<long> Numeraires
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the numeraire vector is Terminal measure for the given EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param EvolutionDescription ID of EvolutionDescription object.
+\param Numeraires vector of numeraires.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMoneyMarketMeasure \b qlMoneyMarketMeasure
+\code
+
+vector<long> returnValue
+
+qlMoneyMarketMeasure(
+        string EvolutionDescription
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the discretely compounded money market measure for the given EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param EvolutionDescription ID of EvolutionDescription object.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMoneyMarketPlusMeasure \b qlMoneyMarketPlusMeasure
+\code
+
+vector<long> returnValue
+
+qlMoneyMarketPlusMeasure(
+        string EvolutionDescription
+        long Offset
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the discretely compounded money market measure for the given EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param EvolutionDescription ID of EvolutionDescription object.
+\param Offset offset applied to the MoneyMarket measure. Default value = 1.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTerminalMeasure \b qlTerminalMeasure
+\code
+
+vector<long> returnValue
+
+qlTerminalMeasure(
+        string EvolutionDescription
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the terminal measure for the given EvolutionDescription object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param EvolutionDescription ID of EvolutionDescription object.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

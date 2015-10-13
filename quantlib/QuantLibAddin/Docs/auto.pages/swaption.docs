@@ -1,0 +1,195 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008, 2014 Ferdinando Ametrano
+ Copyright (C) 2006 Cristina Duminuco
+ Copyright (C) 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_swaption Swaption
+\section overview Overview
+functions to construct and use Swaption objects.
+\section functionlist Function List
+\ref qlMakeSwaption ()\n
+\ref qlSwaption ()\n
+\ref qlSwaptionImpliedVolatility ()\n
+\ref qlSwaptionSettlementType ()\n
+\ref qlSwaptionType ()\n
+
+\section documentation Function Documentation
+\anchor qlMakeSwaption \b qlMakeSwaption
+\code
+
+string returnValue
+
+qlMakeSwaption(
+        string ObjectId
+        string SwapIndex
+        string OptionTenor
+        double Strike
+        string PricingEngineID
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Swaption and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param SwapIndex SwapIndex object ID.
+\param OptionTenor option tenor as Period (e.g. '5Y').
+\param Strike strike. Default value = QuantLib::Null<QuantLib::Rate>().
+\param PricingEngineID Swaption PricingEngine object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwaption \b qlSwaption
+\code
+
+string returnValue
+
+qlSwaption(
+        string ObjectId
+        string VanillaSwap
+        string Exercise
+        string SettlementType
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Swaption and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param VanillaSwap underlying (vanilla) swap object ID.
+\param Exercise Exercise object ID.
+\param SettlementType settlement type (PhysicalSettlement, CashSettlement).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwaptionImpliedVolatility \b qlSwaptionImpliedVolatility
+\code
+
+double returnValue
+
+qlSwaptionImpliedVolatility(
+        string ObjectId
+        double Price
+        string YieldCurve
+        double Guess
+        double Accuracy
+        long MaxIter
+        double MinVol
+        double MaxVol
+        double Displacement
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the volatility implied by the given price for the given Swaption object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swaption object
+\param Price Price used to infer the implied volatility.
+\param YieldCurve discounting YieldTermStructure object ID.
+\param Guess Volatility guess. Default value = 0.10.
+\param Accuracy solver accuracy. Default value = 1.0e-6.
+\param MaxIter solver max iterations. Default value = 100.
+\param MinVol Minimum volatility, no lower solution. Default value = 1.0e-7.
+\param MaxVol Maximum volatility, no higher solution. Default value = 4.0.
+\param Displacement displacement in a displaced diffusion model. Default value = 0.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionSettlementType \b qlSwaptionSettlementType
+\code
+
+string returnValue
+
+qlSwaptionSettlementType(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the settlement type (Cash or Delivery) for the given Swaption object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swaption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionType \b qlSwaptionType
+\code
+
+string returnValue
+
+qlSwaptionType(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the type (Payer or Receiver) for the given Swaption object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swaption object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

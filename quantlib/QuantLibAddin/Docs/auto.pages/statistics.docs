@@ -1,0 +1,1176 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006 Cristina Duminuco
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_statistics Statistics
+\section overview Overview
+functions to construct and use Statistics objects.
+\section functionlist Function List
+\ref qlGaussianAverageShortfall ()\n
+\ref qlGaussianDownsideDeviation ()\n
+\ref qlGaussianDownsideVariance ()\n
+\ref qlGaussianExpectedShortfall ()\n
+\ref qlGaussianPercentile ()\n
+\ref qlGaussianPotentialUpside ()\n
+\ref qlGaussianRegret ()\n
+\ref qlGaussianShortfall ()\n
+\ref qlGaussianTopPercentile ()\n
+\ref qlGaussianValueAtRisk ()\n
+\ref qlIncrementalStatistics ()\n
+\ref qlStatistics ()\n
+\ref qlStatisticsAverageShortfall ()\n
+\ref qlStatisticsDownsideDeviation ()\n
+\ref qlStatisticsDownsideVariance ()\n
+\ref qlStatisticsErrorEstimate ()\n
+\ref qlStatisticsExpectedShortfall ()\n
+\ref qlStatisticsGaussianAverageShortfall ()\n
+\ref qlStatisticsGaussianDownsideDeviation ()\n
+\ref qlStatisticsGaussianDownsideVariance ()\n
+\ref qlStatisticsGaussianExpectedShortfall ()\n
+\ref qlStatisticsGaussianPercentile ()\n
+\ref qlStatisticsGaussianPotentialUpside ()\n
+\ref qlStatisticsGaussianRegret ()\n
+\ref qlStatisticsGaussianShortfall ()\n
+\ref qlStatisticsGaussianTopPercentile ()\n
+\ref qlStatisticsGaussianValueAtRisk ()\n
+\ref qlStatisticsKurtosis ()\n
+\ref qlStatisticsMax ()\n
+\ref qlStatisticsMean ()\n
+\ref qlStatisticsMin ()\n
+\ref qlStatisticsPercentile ()\n
+\ref qlStatisticsPotentialUpside ()\n
+\ref qlStatisticsRegret ()\n
+\ref qlStatisticsSamples ()\n
+\ref qlStatisticsSemiDeviation ()\n
+\ref qlStatisticsSemiVariance ()\n
+\ref qlStatisticsShortfall ()\n
+\ref qlStatisticsSkewness ()\n
+\ref qlStatisticsStandardDeviation ()\n
+\ref qlStatisticsTopPercentile ()\n
+\ref qlStatisticsValueAtRisk ()\n
+\ref qlStatisticsVariance ()\n
+\ref qlStatisticsWeightSum ()\n
+
+\section documentation Function Documentation
+\anchor qlGaussianAverageShortfall \b qlGaussianAverageShortfall
+\code
+
+double returnValue
+
+qlGaussianAverageShortfall(
+        double Target
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the averaged shortfallness.
+
+\par Supported Platforms:
+
+Excel
+
+\param Target the target.
+\param Mean The mean of the gaussian distribution. Default value = 0.0.
+\param StdDev The standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianDownsideDeviation \b qlGaussianDownsideDeviation
+\code
+
+double returnValue
+
+qlGaussianDownsideDeviation(
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the square root of the downside variance.
+
+\par Supported Platforms:
+
+Excel
+
+\param Mean mean of the gaussian distribution. Default value = 0.0.
+\param StdDev standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianDownsideVariance \b qlGaussianDownsideVariance
+\code
+
+double returnValue
+
+qlGaussianDownsideVariance(
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below zero.
+
+\par Supported Platforms:
+
+Excel
+
+\param Mean the mean of the gaussian distribution. Default value = 0.0.
+\param StdDev standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianExpectedShortfall \b qlGaussianExpectedShortfall
+\code
+
+double returnValue
+
+qlGaussianExpectedShortfall(
+        double Target
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the expected loss in case that the loss exceeded a VaR threshold.
+
+\par Supported Platforms:
+
+Excel
+
+\param Target the percentile.
+\param Mean The mean of the gaussian distribution. Default value = 0.0.
+\param StdDev The standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianPercentile \b qlGaussianPercentile
+\code
+
+double returnValue
+
+qlGaussianPercentile(
+        double X
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th percentile.
+
+\par Supported Platforms:
+
+Excel
+
+\param X the percentile.
+\param Mean mean of the gaussian distribution. Default value = 0.0.
+\param StdDev standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianPotentialUpside \b qlGaussianPotentialUpside
+\code
+
+double returnValue
+
+qlGaussianPotentialUpside(
+        double Target
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reciprocal of VAR at a given percentile.
+
+\par Supported Platforms:
+
+Excel
+
+\param Target the percentile.
+\param Mean The mean of the gaussian distribution. Default value = 0.0.
+\param StdDev The standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianRegret \b qlGaussianRegret
+\code
+
+double returnValue
+
+qlGaussianRegret(
+        double Target
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below target.
+
+\par Supported Platforms:
+
+Excel
+
+\param Target the target.
+\param Mean mean of the gaussian distribution. Default value = 0.0.
+\param StdDev standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianShortfall \b qlGaussianShortfall
+\code
+
+double returnValue
+
+qlGaussianShortfall(
+        double Target
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the probability of missing the given target.
+
+\par Supported Platforms:
+
+Excel
+
+\param Target the target.
+\param Mean The mean of the gaussian distribution. Default value = 0.0.
+\param StdDev The standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianTopPercentile \b qlGaussianTopPercentile
+\code
+
+double returnValue
+
+qlGaussianTopPercentile(
+        double X
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th top percentile.
+
+\par Supported Platforms:
+
+Excel
+
+\param X the percentile.
+\param Mean The mean of the gaussian distribution. Default value = 0.0.
+\param StdDev The standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGaussianValueAtRisk \b qlGaussianValueAtRisk
+\code
+
+double returnValue
+
+qlGaussianValueAtRisk(
+        double Target
+        double Mean
+        double StdDev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the value-at-risk at a given percentile.
+
+\par Supported Platforms:
+
+Excel
+
+\param Target the percentile.
+\param Mean The mean of the gaussian distribution. Default value = 0.0.
+\param StdDev The standard deviation of the gaussian distribution. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIncrementalStatistics \b qlIncrementalStatistics
+\code
+
+string returnValue
+
+qlIncrementalStatistics(
+        string ObjectId
+        vector<double> Values
+        vector<double> Weights
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Statistics and risk measures tool.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Values Sampled values. If omitted, an empty statistics is created. Default value = std::vector<QuantLib::Real>().
+\param Weights Weights. If omitted, all sampled values have the same weight. Default value = std::vector<QuantLib::Real>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStatistics \b qlStatistics
+\code
+
+string returnValue
+
+qlStatistics(
+        string ObjectId
+        vector<double> Values
+        vector<double> Weights
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Statistics and risk measures tool.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Values Sampled values. If omitted, an empty statistics is created. Default value = std::vector<QuantLib::Real>().
+\param Weights Weights. If omitted, all sampled values have the same weight. Default value = std::vector<QuantLib::Real>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStatisticsAverageShortfall \b qlStatisticsAverageShortfall
+\code
+
+double returnValue
+
+qlStatisticsAverageShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the averaged shortfallness for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsDownsideDeviation \b qlStatisticsDownsideDeviation
+\code
+
+double returnValue
+
+qlStatisticsDownsideDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the square root of the downside variance for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsDownsideVariance \b qlStatisticsDownsideVariance
+\code
+
+double returnValue
+
+qlStatisticsDownsideVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below zero for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsErrorEstimate \b qlStatisticsErrorEstimate
+\code
+
+double returnValue
+
+qlStatisticsErrorEstimate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the error estimate on the mean value for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsExpectedShortfall \b qlStatisticsExpectedShortfall
+\code
+
+double returnValue
+
+qlStatisticsExpectedShortfall(
+        string ObjectId
+        double Centile
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the expected loss in case that the loss exceeded a VaR threshold for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Centile the centile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianAverageShortfall \b qlStatisticsGaussianAverageShortfall
+\code
+
+double returnValue
+
+qlStatisticsGaussianAverageShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the averaged shortfallness for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianDownsideDeviation \b qlStatisticsGaussianDownsideDeviation
+\code
+
+double returnValue
+
+qlStatisticsGaussianDownsideDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the square root of the downside variance for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianDownsideVariance \b qlStatisticsGaussianDownsideVariance
+\code
+
+double returnValue
+
+qlStatisticsGaussianDownsideVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below zero for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianExpectedShortfall \b qlStatisticsGaussianExpectedShortfall
+\code
+
+double returnValue
+
+qlStatisticsGaussianExpectedShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the expected loss in case that the loss exceeded a VaR threshold for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianPercentile \b qlStatisticsGaussianPercentile
+\code
+
+double returnValue
+
+qlStatisticsGaussianPercentile(
+        string ObjectId
+        double X
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param X Must be in the range (0,1].
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianPotentialUpside \b qlStatisticsGaussianPotentialUpside
+\code
+
+double returnValue
+
+qlStatisticsGaussianPotentialUpside(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reciprocal of VAR at a given percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianRegret \b qlStatisticsGaussianRegret
+\code
+
+double returnValue
+
+qlStatisticsGaussianRegret(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below the target for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianShortfall \b qlStatisticsGaussianShortfall
+\code
+
+double returnValue
+
+qlStatisticsGaussianShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the probability of missing the given target for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianTopPercentile \b qlStatisticsGaussianTopPercentile
+\code
+
+double returnValue
+
+qlStatisticsGaussianTopPercentile(
+        string ObjectId
+        double X
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th top percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param X Must be in the range (0,1].
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsGaussianValueAtRisk \b qlStatisticsGaussianValueAtRisk
+\code
+
+double returnValue
+
+qlStatisticsGaussianValueAtRisk(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the value-at-risk at a given percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsKurtosis \b qlStatisticsKurtosis
+\code
+
+double returnValue
+
+qlStatisticsKurtosis(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the excess kurtosis for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsMax \b qlStatisticsMax
+\code
+
+double returnValue
+
+qlStatisticsMax(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maximum sample value for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsMean \b qlStatisticsMean
+\code
+
+double returnValue
+
+qlStatisticsMean(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the mean for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsMin \b qlStatisticsMin
+\code
+
+double returnValue
+
+qlStatisticsMin(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the minimum sample value for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsPercentile \b qlStatisticsPercentile
+\code
+
+double returnValue
+
+qlStatisticsPercentile(
+        string ObjectId
+        double X
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param X Must be in the range (0,1].
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsPotentialUpside \b qlStatisticsPotentialUpside
+\code
+
+double returnValue
+
+qlStatisticsPotentialUpside(
+        string ObjectId
+        double Centile
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reciprocal of VAR at a given percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Centile the centile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsRegret \b qlStatisticsRegret
+\code
+
+double returnValue
+
+qlStatisticsRegret(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below target for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsSamples \b qlStatisticsSamples
+\code
+
+long returnValue
+
+qlStatisticsSamples(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of samples collected for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsSemiDeviation \b qlStatisticsSemiDeviation
+\code
+
+double returnValue
+
+qlStatisticsSemiDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the square root of the semivariance for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsSemiVariance \b qlStatisticsSemiVariance
+\code
+
+double returnValue
+
+qlStatisticsSemiVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below the mean for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsShortfall \b qlStatisticsShortfall
+\code
+
+double returnValue
+
+qlStatisticsShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the probability of missing the given target for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsSkewness \b qlStatisticsSkewness
+\code
+
+double returnValue
+
+qlStatisticsSkewness(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the skewness for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsStandardDeviation \b qlStatisticsStandardDeviation
+\code
+
+double returnValue
+
+qlStatisticsStandardDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the the standard deviation for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsTopPercentile \b qlStatisticsTopPercentile
+\code
+
+double returnValue
+
+qlStatisticsTopPercentile(
+        string ObjectId
+        double X
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th top percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param X Must be in the range (0,1].
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsValueAtRisk \b qlStatisticsValueAtRisk
+\code
+
+double returnValue
+
+qlStatisticsValueAtRisk(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the value-at-risk at a given percentile for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsVariance \b qlStatisticsVariance
+\code
+
+double returnValue
+
+qlStatisticsVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStatisticsWeightSum \b qlStatisticsWeightSum
+\code
+
+double returnValue
+
+qlStatisticsWeightSum(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the sum of data weights for the given Statistics object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Statistics object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

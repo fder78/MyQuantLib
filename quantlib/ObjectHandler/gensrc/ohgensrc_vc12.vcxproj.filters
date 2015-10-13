@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="addins">
@@ -84,12 +84,6 @@
     <None Include="code\codedict.py">
       <Filter>code</Filter>
     </None>
-    <None Include="config\categories.xml">
-      <Filter>config</Filter>
-    </None>
-    <None Include="config\config.xml">
-      <Filter>config</Filter>
-    </None>
     <None Include="stubs\stub.copyright">
       <Filter>stubs</Filter>
     </None>
@@ -99,6 +93,16 @@
     <None Include="stubs\stub.excel.includes">
       <Filter>stubs</Filter>
     </None>
-    <None Include="Makefile.vc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Makefile.vc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="config\config.xml">
+      <Filter>config</Filter>
+    </Xml>
+    <Xml Include="config\categories.xml">
+      <Filter>config</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

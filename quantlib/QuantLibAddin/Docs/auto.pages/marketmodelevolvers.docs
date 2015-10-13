@@ -1,0 +1,237 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_marketmodelevolvers Market Model Evolvers
+\section overview Overview
+functions to construct and use Market Model Evolvers objects.
+\section functionlist Function List
+\ref qlForwardRateIpc ()\n
+\ref qlForwardRateNormalPc ()\n
+\ref qlForwardRatePc ()\n
+\ref qlMarketModelEvolverAdvanceStep ()\n
+\ref qlMarketModelEvolverCurrentStep ()\n
+\ref qlMarketModelEvolverNumeraires ()\n
+\ref qlMarketModelEvolverStartNewPath ()\n
+
+\section documentation Function Documentation
+\anchor qlForwardRateIpc \b qlForwardRateIpc
+\code
+
+string returnValue
+
+qlForwardRateIpc(
+        string ObjectId
+        string MarketModel
+        string BrownianGeneratorFactory
+        vector<long> Numeraires
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LogNormalFwdRateIpc and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param MarketModel MarketModel object ID.
+\param BrownianGeneratorFactory Brownian generator factory.
+\param Numeraires numeraire vector.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardRateNormalPc \b qlForwardRateNormalPc
+\code
+
+string returnValue
+
+qlForwardRateNormalPc(
+        string ObjectId
+        string MarketModel
+        string BrownianGeneratorFactory
+        vector<long> Numeraires
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class NormalFwdRatePc and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param MarketModel MarketModel object ID.
+\param BrownianGeneratorFactory Brownian generator factory.
+\param Numeraires numeraire vector.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardRatePc \b qlForwardRatePc
+\code
+
+string returnValue
+
+qlForwardRatePc(
+        string ObjectId
+        string MarketModel
+        string BrownianGeneratorFactory
+        vector<long> Numeraires
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LogNormalFwdRatePc and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param MarketModel MarketModel object ID.
+\param BrownianGeneratorFactory Brownian generator factory.
+\param Numeraires numeraire vector.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMarketModelEvolverAdvanceStep \b qlMarketModelEvolverAdvanceStep
+\code
+
+double returnValue
+
+qlMarketModelEvolverAdvanceStep(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+advance a single step in the current path for the MarketModelEvolver object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelEvolver object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelEvolverCurrentStep \b qlMarketModelEvolverCurrentStep
+\code
+
+long returnValue
+
+qlMarketModelEvolverCurrentStep(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the current step index in the current path for the MarketModelEvolver object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelEvolver object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelEvolverNumeraires \b qlMarketModelEvolverNumeraires
+\code
+
+vector<long> returnValue
+
+qlMarketModelEvolverNumeraires(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the current step index in the current path for the MarketModelEvolver object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelEvolver object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelEvolverStartNewPath \b qlMarketModelEvolverStartNewPath
+\code
+
+double returnValue
+
+qlMarketModelEvolverStartNewPath(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+start a new path for the MarketModelEvolver object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModelEvolver object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

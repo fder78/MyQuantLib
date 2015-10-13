@@ -1,0 +1,335 @@
+
+/*  
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_rangeaccrual Range Accrual
+\section overview Overview
+functions to construct and use Range Accrual objects.
+\section functionlist Function List
+\ref qlRangeAccrualFloatersCoupon ()\n
+\ref qlRangeAccrualFloatersCouponEndDate ()\n
+\ref qlRangeAccrualFloatersCouponFromLeg ()\n
+\ref qlRangeAccrualFloatersCouponObservationDates ()\n
+\ref qlRangeAccrualFloatersCouponObservationsNo ()\n
+\ref qlRangeAccrualFloatersCouponSetPricer ()\n
+\ref qlRangeAccrualFloatersCouponStarDate ()\n
+\ref qlRangeAccrualFloatersPrice ()\n
+\ref qlRangeAccrualPricerByBgm ()\n
+\ref qlSimpleFloaterPrice ()\n
+
+\section documentation Function Documentation
+\anchor qlRangeAccrualFloatersCoupon \b qlRangeAccrualFloatersCoupon
+\code
+
+string returnValue
+
+qlRangeAccrualFloatersCoupon(
+        string ObjectId
+        double Nominal
+        long PaymentDate
+        string IborIndex
+        long StartDate
+        long EndDate
+        long FixingDays
+        string DayCountID
+        double Gearings
+        double Spreads
+        long RefPeriodStart
+        long RefPeriodEnd
+        string ObserSchedID
+        double LowerTrigger
+        double UpperTrigger
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RangeAccrualFloatersCoupon and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Nominal coupon nominal.
+\param PaymentDate payment Date.
+\param IborIndex underlying ibor index.
+\param StartDate start Date.
+\param EndDate end Date.
+\param FixingDays fixingDays.
+\param DayCountID day counter.
+\param Gearings gearings.
+\param Spreads spreads.
+\param RefPeriodStart refPeriodStart.
+\param RefPeriodEnd refPeriodEnd.
+\param ObserSchedID observations schedule.
+\param LowerTrigger lowerTrigger.
+\param UpperTrigger upperTrigger.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRangeAccrualFloatersCouponEndDate \b qlRangeAccrualFloatersCouponEndDate
+\code
+
+long returnValue
+
+qlRangeAccrualFloatersCouponEndDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the accrual end Date.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRangeAccrualFloatersCouponFromLeg \b qlRangeAccrualFloatersCouponFromLeg
+\code
+
+string returnValue
+
+qlRangeAccrualFloatersCouponFromLeg(
+        string ObjectId
+        string RangeAccrualLeg
+        long Position
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RangeAccrualFloatersCoupon and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RangeAccrualLeg range accrual leg object ID.
+\param Position position.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRangeAccrualFloatersCouponObservationDates \b qlRangeAccrualFloatersCouponObservationDates
+\code
+
+vector<long> returnValue
+
+qlRangeAccrualFloatersCouponObservationDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the observation Dates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRangeAccrualFloatersCouponObservationsNo \b qlRangeAccrualFloatersCouponObservationsNo
+\code
+
+long returnValue
+
+qlRangeAccrualFloatersCouponObservationsNo(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the observations number.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRangeAccrualFloatersCouponSetPricer \b qlRangeAccrualFloatersCouponSetPricer
+\code
+
+void returnValue
+
+qlRangeAccrualFloatersCouponSetPricer(
+        string ObjectId
+        string RangeAccrualPricer
+        any Trigger)
+
+\endcode
+\par Description:
+
+Set the coupon pricer at the given coupon object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param RangeAccrualPricer RangeAccrual coupon pricer object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRangeAccrualFloatersCouponStarDate \b qlRangeAccrualFloatersCouponStarDate
+\code
+
+long returnValue
+
+qlRangeAccrualFloatersCouponStarDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the accrual start Date.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRangeAccrualFloatersPrice \b qlRangeAccrualFloatersPrice
+\code
+
+double returnValue
+
+qlRangeAccrualFloatersPrice(
+        string ObjectId
+        string YieldCurve
+        any Trigger)
+
+\endcode
+\par Description:
+
+return the price of Range Accrual Floater Coupon.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param YieldCurve yield curve.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRangeAccrualPricerByBgm \b qlRangeAccrualPricerByBgm
+\code
+
+string returnValue
+
+qlRangeAccrualPricerByBgm(
+        string ObjectId
+        double Correlation
+        string SmileOnStartDateID
+        string SmileOnEndDateID
+        bool WithSmile
+        bool ByCallSpread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RangeAccrualPricerByBgm and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Correlation correlation.
+\param SmileOnStartDateID ID of the smile on start date object.
+\param SmileOnEndDateID ID of the smile on end date object.
+\param WithSmile with Smile?.
+\param ByCallSpread replicated by Call spread?.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSimpleFloaterPrice \b qlSimpleFloaterPrice
+\code
+
+double returnValue
+
+qlSimpleFloaterPrice(
+        string ObjectId
+        string YieldCurve
+        any Trigger)
+
+\endcode
+\par Description:
+
+return the price of Simple Floater Coupon.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RangeAccrualFloatersCoupon object
+\param YieldCurve yield curve.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

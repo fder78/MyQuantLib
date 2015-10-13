@@ -1,0 +1,769 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_abcd Abcd
+\section overview Overview
+functions to construct and use Abcd objects.
+\section functionlist Function List
+\ref qlAbcdCalibration ()\n
+\ref qlAbcdCalibrationA ()\n
+\ref qlAbcdCalibrationB ()\n
+\ref qlAbcdCalibrationC ()\n
+\ref qlAbcdCalibrationCompute ()\n
+\ref qlAbcdCalibrationD ()\n
+\ref qlAbcdCalibrationEndCriteria ()\n
+\ref qlAbcdCalibrationError ()\n
+\ref qlAbcdCalibrationK ()\n
+\ref qlAbcdCalibrationMaxError ()\n
+\ref qlAbcdDFunction ()\n
+\ref qlAbcdFunction ()\n
+\ref qlAbcdFunctionA ()\n
+\ref qlAbcdFunctionB ()\n
+\ref qlAbcdFunctionC ()\n
+\ref qlAbcdFunctionCovariance ()\n
+\ref qlAbcdFunctionD ()\n
+\ref qlAbcdFunctionInstantaneousCovariance ()\n
+\ref qlAbcdFunctionInstantaneousValue ()\n
+\ref qlAbcdFunctionInstantaneousVariance ()\n
+\ref qlAbcdFunctionInstantaneousVolatility ()\n
+\ref qlAbcdFunctionLongTermVolatility ()\n
+\ref qlAbcdFunctionMaximumLocation ()\n
+\ref qlAbcdFunctionMaximumVolatility ()\n
+\ref qlAbcdFunctionShortTermVolatility ()\n
+\ref qlAbcdFunctionVariance ()\n
+\ref qlAbcdFunctionVolatility ()\n
+
+\section documentation Function Documentation
+\anchor qlAbcdCalibration \b qlAbcdCalibration
+\code
+
+string returnValue
+
+qlAbcdCalibration(
+        string ObjectId
+        vector<double> Times
+        vector<double> BlackVols
+        double A
+        double B
+        double C
+        double D
+        bool AIsFixed
+        bool BIsFixed
+        bool CIsFixed
+        bool DIsFixed
+        bool VegaWeighted
+        string EndCriteria
+        string Method
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AbcdCalibration and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Times times.
+\param BlackVols Black Volatilities.
+\param A the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = -0.06.
+\param B the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.17.
+\param C the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.54.
+\param D the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.17.
+\param AIsFixed TRUE if the a coefficient must be kept fixed in later calibrations. Default value = false.
+\param BIsFixed TRUE if the a coefficient must be kept fixed in later calibrations. Default value = false.
+\param CIsFixed TRUE if the a coefficient must be kept fixed in later calibrations. Default value = false.
+\param DIsFixed TRUE if the a coefficient must be kept fixed in later calibrations. Default value = false.
+\param VegaWeighted TRUE if the interpolation is weighted using options Vega. Default value = false.
+\param EndCriteria EndCriteria object ID. Default value = .
+\param Method OptimizationMethod object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAbcdCalibrationA \b qlAbcdCalibrationA
+\code
+
+double returnValue
+
+qlAbcdCalibrationA(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationB \b qlAbcdCalibrationB
+\code
+
+double returnValue
+
+qlAbcdCalibrationB(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationC \b qlAbcdCalibrationC
+\code
+
+double returnValue
+
+qlAbcdCalibrationC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationCompute \b qlAbcdCalibrationCompute
+\code
+
+void returnValue
+
+qlAbcdCalibrationCompute(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+compute calibration.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationD \b qlAbcdCalibrationD
+\code
+
+double returnValue
+
+qlAbcdCalibrationD(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationEndCriteria \b qlAbcdCalibrationEndCriteria
+\code
+
+string returnValue
+
+qlAbcdCalibrationEndCriteria(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Calibrates the a, b, c, d parameters of the vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationError \b qlAbcdCalibrationError
+\code
+
+double returnValue
+
+qlAbcdCalibrationError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the root mean squared error between the abdc implied Black vols and a given Black vol vector.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationK \b qlAbcdCalibrationK
+\code
+
+vector<double> returnValue
+
+qlAbcdCalibrationK(
+        string ObjectId
+        vector<double> Times
+        vector<double> BlackVols
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the 'k' adjustment factors needed to match Black vols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Times times.
+\param BlackVols Black Volatilities.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdCalibrationMaxError \b qlAbcdCalibrationMaxError
+\code
+
+double returnValue
+
+qlAbcdCalibrationMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returs the max error between the abdc implied Black vols and a given Black vol vector.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdDFunction \b qlAbcdDFunction
+\code
+
+double returnValue
+
+qlAbcdDFunction(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunction \b qlAbcdFunction
+\code
+
+string returnValue
+
+qlAbcdFunction(
+        string ObjectId
+        double A
+        double B
+        double C
+        double D
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AbcdFunction and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param A the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = -0.06.
+\param B the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.17.
+\param C the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.54.
+\param D the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.17.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAbcdFunctionA \b qlAbcdFunctionA
+\code
+
+double returnValue
+
+qlAbcdFunctionA(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionB \b qlAbcdFunctionB
+\code
+
+double returnValue
+
+qlAbcdFunctionB(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the b coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionC \b qlAbcdFunctionC
+\code
+
+double returnValue
+
+qlAbcdFunctionC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the c coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionCovariance \b qlAbcdFunctionCovariance
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionCovariance(
+        string ObjectId
+        double TMin
+        vector<double> TMax
+        double T
+        double S
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns covariance(s) in [tMin,tMax] between T and S rate fixing times.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param TMin lower bound of the covariance integral.
+\param TMax upper bound(s) of the covariance integral(s).
+\param T fixing calendar time of first rate.
+\param S fixing calendar time of second rate.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionD \b qlAbcdFunctionD
+\code
+
+double returnValue
+
+qlAbcdFunctionD(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the d coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionInstantaneousCovariance \b qlAbcdFunctionInstantaneousCovariance
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionInstantaneousCovariance(
+        string ObjectId
+        vector<double> U
+        double T
+        double S
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns covariance at calendar time u between T and S rates fixing times.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param U calendar time(s).
+\param T fixing time of first rate.
+\param S fixing time of second rate.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionInstantaneousValue \b qlAbcdFunctionInstantaneousValue
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionInstantaneousValue(
+        string ObjectId
+        vector<double> U
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param U residual time(s) to maturity.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionInstantaneousVariance \b qlAbcdFunctionInstantaneousVariance
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionInstantaneousVariance(
+        string ObjectId
+        vector<double> U
+        double T
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns variance at calendar time(s) u of T-fixing rate.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param U calendar time(s).
+\param T fixing time of the rate.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionInstantaneousVolatility \b qlAbcdFunctionInstantaneousVolatility
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionInstantaneousVolatility(
+        string ObjectId
+        vector<double> U
+        double T
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility/ies at calendar time(s) u of T-fixing rate.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param U calendar time(s).
+\param T fixing calendar time of the rate.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionLongTermVolatility \b qlAbcdFunctionLongTermVolatility
+\code
+
+double returnValue
+
+qlAbcdFunctionLongTermVolatility(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the long term volatility implied by Abcd volatility.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionMaximumLocation \b qlAbcdFunctionMaximumLocation
+\code
+
+double returnValue
+
+qlAbcdFunctionMaximumLocation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns, if b is positive, the location of the Abcd volatility maximum.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionMaximumVolatility \b qlAbcdFunctionMaximumVolatility
+\code
+
+double returnValue
+
+qlAbcdFunctionMaximumVolatility(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns, if b is positive, the maximum of the Abcd volatility.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionShortTermVolatility \b qlAbcdFunctionShortTermVolatility
+\code
+
+double returnValue
+
+qlAbcdFunctionShortTermVolatility(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the short term volatility implied by Abcd volatility.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionVariance \b qlAbcdFunctionVariance
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionVariance(
+        string ObjectId
+        double TMin
+        vector<double> TMax
+        double T
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns variance(s) in [tMin,tMax] of T rate fixing time.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param TMin lower bound of the covariance integral.
+\param TMax upper bound of the covariance integral.
+\param T fixing calendar time of the rate.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdFunctionVolatility \b qlAbcdFunctionVolatility
+\code
+
+vector<double> returnValue
+
+qlAbcdFunctionVolatility(
+        string ObjectId
+        double TMin
+        vector<double> TMax
+        double T
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility/ies in [tMin,tMax] of T rate fixing time.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdFunction object
+\param TMin lower bound of the covariance integral.
+\param TMax upper bound(s) of the covariance integral(s).
+\param T fixing calendar time of the rate.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

@@ -1,0 +1,119 @@
+
+/*  
+ Copyright (C) 2006 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_daycounter Daycounter
+\section overview Overview
+Daycounter related functions.
+\section functionlist Function List
+\ref qlDayCounterDayCount ()\n
+\ref qlDayCounterName ()\n
+\ref qlDayCounterYearFraction ()\n
+
+\section documentation Function Documentation
+\anchor qlDayCounterDayCount \b qlDayCounterDayCount
+\code
+
+vector<long> returnValue
+
+qlDayCounterDayCount(
+        string daycounter
+        long StartDate
+        vector<long> EndDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+calculate the number of days in a period according to a given day count convention.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param daycounter ID of Enumeration of class QuantLib::DayCounter
+\param StartDate start date.
+\param EndDate end date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDayCounterName \b qlDayCounterName
+\code
+
+string returnValue
+
+qlDayCounterName(
+        string daycounter
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the name of the given DayCounter.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param daycounter ID of Enumeration of class QuantLib::DayCounter
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDayCounterYearFraction \b qlDayCounterYearFraction
+\code
+
+vector<double> returnValue
+
+qlDayCounterYearFraction(
+        string daycounter
+        long StartDate
+        vector<long> EndDate
+        long RefPeriodStart
+        long RefPeriodEnd
+        any Trigger)
+
+\endcode
+\par Description:
+
+calculate a year fraction.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param daycounter ID of Enumeration of class QuantLib::DayCounter
+\param StartDate start date.
+\param EndDate end date.
+\param RefPeriodStart start date for reference period. Default value = QuantLib::Date().
+\param RefPeriodEnd end date for reference period. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

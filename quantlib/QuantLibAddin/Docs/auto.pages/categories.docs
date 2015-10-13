@@ -1,0 +1,105 @@
+
+/*  
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.categories
+
+/*! \page categories Categories
+
+Below is a list of links to documentation of %QuantLibAddin functions
+by category:
+
+\ref func_abcd\n
+\ref func_accountingengines\n
+\ref func_alphaform\n
+\ref func_assetswap\n
+\ref func_btp\n
+\ref func_bonds\n
+\ref func_browniangenerators\n
+\ref func_calendar\n
+\ref func_capletvolstructure\n
+\ref func_capfloor\n
+\ref func_cmsmarket\n
+\ref func_cmsmarketcalibration\n
+\ref func_correlation\n
+\ref func_couponvectors\n
+\ref func_ctsmmcapletcalibration\n
+\ref func_curvestate\n
+\ref func_date\n
+\ref func_daycounter\n
+\ref func_defaulttermstructures\n
+\ref func_driftcalculators\n
+\ref func_enumerations\n
+\ref func_evolutiondescription\n
+\ref func_exercise\n
+\ref func_forwardrateagreement\n
+\ref func_garbagecollection\n
+\ref func_group\n
+\ref func_handles\n
+\ref func_index\n
+\ref func_instruments\n
+\ref func_interpolation\n
+\ref func_leg\n
+\ref func_logging\n
+\ref func_marketmodelevolvers\n
+\ref func_volatility\n
+\ref func_marketmodels\n
+\ref func_mathf\n
+\ref func_ohutils\n
+\ref func_objects\n
+\ref func_optimization\n
+\ref func_options\n
+\ref func_overnightindexedswap\n
+\ref func_payoffs\n
+\ref func_piecewiseyieldcurve\n
+\ref func_prices\n
+\ref func_pricingengines\n
+\ref func_processes\n
+\ref func_products\n
+\ref func_credit\n
+\ref func_defaultbasket\n
+\ref func_basketlossmodels\n
+\ref func_latentmodels\n
+\ref func_quotes\n
+\ref func_randomsequencegenerator\n
+\ref func_range\n
+\ref func_rangeaccrual\n
+\ref func_ratehelpers\n
+\ref func_schedule\n
+\ref func_sequencestatistics\n
+\ref func_serialization\n
+\ref func_settings\n
+\ref func_shortratemodels\n
+\ref func_smilesection\n
+\ref func_statistics\n
+\ref func_swap\n
+\ref func_swaption\n
+\ref func_swaptionvolstructure\n
+\ref func_timeseries\n
+\ref func_utilities\n
+\ref func_valueobjects\n
+\ref func_vanillaswap\n
+\ref func_volatilities\n
+\ref func_termstructures\n
+
+
+*/
+

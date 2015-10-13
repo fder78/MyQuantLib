@@ -28,6 +28,8 @@ namespace QuantLib {
 
     FdG2CmsSpreadRAEngine::FdG2CmsSpreadRAEngine(
         const boost::shared_ptr<G2>& model,
+		const Real pastAccrual,
+		const Real pastFixing,
         Size tGrid, Size xGrid, Size yGrid,
         Size dampingSteps, Real invEps,
         const FdmSchemeDesc& schemeDesc)
@@ -37,8 +39,8 @@ namespace QuantLib {
       yGrid_(yGrid),
       dampingSteps_(dampingSteps),
       invEps_(invEps),
-      schemeDesc_(schemeDesc) {
-    }
+      schemeDesc_(schemeDesc),
+	  pastAccrual_(pastAccrual), pastFixing_(pastFixing) {}
 
     void FdG2CmsSpreadRAEngine::calculate() const {
 
@@ -76,13 +78,16 @@ namespace QuantLib {
 
 		//accrual stepcondition		
 		std::vector<Time> payTimes;
+		std::vector<Time> floatingTimes;
 		for (Size i = 0; i < arguments_.leg1PayDates.size(); ++i) {
 			payTimes.push_back(dc.yearFraction(referenceDate, arguments_.leg1PayDates[i]));
 		}
+		for (Size i = 0; i < arguments_.leg2PayDates.size(); ++i) {
+			floatingTimes.push_back(dc.yearFraction(referenceDate, arguments_.leg2PayDates[i]));
+		}
 		std::vector<Time> accrualTimes;
-		std::map<Time, Time> timeInterval;
+		std::map<Time, Time> timeInterval;		
 		std::map<Time, std::pair<Size, Time> > cfIndex;
-
 		dc.yearFraction(referenceDate, arguments_.leg1PayDates.back());
 		for (Size i = 0; i < payTimes.size(); ++i) {
 			if (payTimes[i] > 0.0) {
@@ -111,7 +116,7 @@ namespace QuantLib {
             new G2(fwdTs, model_->a(), model_->sigma(), model_->b(), model_->eta(), model_->rho()));
 
         const boost::shared_ptr<FdmInnerValueCalculator> calculator(
-             new FdmCmsSpreadSwapInnerValue<G2>(model_.currentLink(), fwdModel, arguments_.swap, accrualTimes, timeInterval, cfIndex, mesher, 0));
+             new FdmCmsSpreadSwapInnerValue<G2>(model_.currentLink(), fwdModel, arguments_.swap, floatingTimes, accrualTimes, timeInterval, cfIndex, mesher, 0));
         			
 		boost::shared_ptr<FdmRAStepCondition> stepcondition(new FdmRAStepCondition(accrualTimes, mesher, calculator));
 		
@@ -140,5 +145,26 @@ namespace QuantLib {
             new FdmG2Solver(model_, solverDesc, schemeDesc_));
 
         results_.value = solver->valueAt(0.0, 0.0);
+		
+		// ±â´©ÀûÄíÆù
+		std::vector<Real> df(2,0);
+		std::vector<Time> tau(2,0);
+		std::vector<Leg> leg(1, arguments_.swap->leg1());
+		leg.push_back(arguments_.swap->leg2());
+
+		for (Size k = 0; k < 2; ++k) {
+			for (Size i = 0; i < leg[k].size(); ++i) {
+				if (!leg[k][i]->hasOccurred(referenceDate)) {
+					df[k] = disTs->discount(leg[k][i]->date());
+					tau[k] = boost::dynamic_pointer_cast<Coupon>(leg[k][i])->accrualPeriod();
+					break;
+				}
+			}
+		}
+		Real initialAdjust = pastAccrual_ * tau[0] * df[0]
+			- (pastFixing_ + arguments_.swap->spread2()[0]) * tau[1] * df[1];
+		
+		results_.value += initialAdjust * ((arguments_.swap->type() == VanillaSwap::Payer) ? -1 : +1);
+		results_.value *= arguments_.nominal1[0];
     }
 }

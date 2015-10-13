@@ -1,0 +1,592 @@
+
+/*  
+ Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2005, 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_options Options
+\section overview Overview
+functions to construct and use Option objects.
+\section functionlist Function List
+\ref qlBarrierOption ()\n
+\ref qlCaAsianOption ()\n
+\ref qlDaAsianOption ()\n
+\ref qlDelta ()\n
+\ref qlDeltaForward ()\n
+\ref qlDividendRho ()\n
+\ref qlDividendVanillaOption ()\n
+\ref qlElasticity ()\n
+\ref qlEuropeanOption ()\n
+\ref qlForwardVanillaOption ()\n
+\ref qlGamma ()\n
+\ref qlItmCashProbability ()\n
+\ref qlQuantoForwardVanillaOption ()\n
+\ref qlQuantoVanillaOption ()\n
+\ref qlRho ()\n
+\ref qlTheta ()\n
+\ref qlThetaPerDay ()\n
+\ref qlVanillaOption ()\n
+\ref qlVega ()\n
+
+\section documentation Function Documentation
+\anchor qlBarrierOption \b qlBarrierOption
+\code
+
+string returnValue
+
+qlBarrierOption(
+        string ObjectId
+        string BarrierType
+        double Barrier
+        double Rebate
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BarrierOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param BarrierType barrier type.
+\param Barrier barrier.
+\param Rebate rebate.
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCaAsianOption \b qlCaAsianOption
+\code
+
+string returnValue
+
+qlCaAsianOption(
+        string ObjectId
+        string AverageType
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ContinuousAveragingAsianOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param AverageType average type.
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDaAsianOption \b qlDaAsianOption
+\code
+
+string returnValue
+
+qlDaAsianOption(
+        string ObjectId
+        string AverageType
+        double RunningAccumulator
+        long PastFixings
+        vector<long> FixingDates
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DiscreteAveragingAsianOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param AverageType average type.
+\param RunningAccumulator running accumulator.
+\param PastFixings past fixings.
+\param FixingDates fixing dates.
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDelta \b qlDelta
+\code
+
+double returnValue
+
+qlDelta(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+delta of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDeltaForward \b qlDeltaForward
+\code
+
+double returnValue
+
+qlDeltaForward(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+delta forward of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDividendRho \b qlDividendRho
+\code
+
+double returnValue
+
+qlDividendRho(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+dividend rho of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDividendVanillaOption \b qlDividendVanillaOption
+\code
+
+string returnValue
+
+qlDividendVanillaOption(
+        string ObjectId
+        string Payoff
+        string Exercise
+        vector<long> DividendDates
+        vector<double> Dividends
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DividendVanillaOption and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param DividendDates vector of dividend dates.
+\param Dividends vector of dividends.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlElasticity \b qlElasticity
+\code
+
+double returnValue
+
+qlElasticity(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+elasticity of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlEuropeanOption \b qlEuropeanOption
+\code
+
+string returnValue
+
+qlEuropeanOption(
+        string ObjectId
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EuropeanOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardVanillaOption \b qlForwardVanillaOption
+\code
+
+string returnValue
+
+qlForwardVanillaOption(
+        string ObjectId
+        double Moneyness
+        long ResetDate
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ForwardVanillaOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Moneyness moneyness.
+\param ResetDate reset date.
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGamma \b qlGamma
+\code
+
+double returnValue
+
+qlGamma(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+gamma of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlItmCashProbability \b qlItmCashProbability
+\code
+
+double returnValue
+
+qlItmCashProbability(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+itm cash probability of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlQuantoForwardVanillaOption \b qlQuantoForwardVanillaOption
+\code
+
+string returnValue
+
+qlQuantoForwardVanillaOption(
+        string ObjectId
+        double Moneyness
+        long ResetDate
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class QuantoForwardVanillaOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Moneyness moneyness.
+\param ResetDate reset date.
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlQuantoVanillaOption \b qlQuantoVanillaOption
+\code
+
+string returnValue
+
+qlQuantoVanillaOption(
+        string ObjectId
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class QuantoVanillaOption and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRho \b qlRho
+\code
+
+double returnValue
+
+qlRho(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+rho of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTheta \b qlTheta
+\code
+
+double returnValue
+
+qlTheta(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+theta of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlThetaPerDay \b qlThetaPerDay
+\code
+
+double returnValue
+
+qlThetaPerDay(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+theta per day of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaOption \b qlVanillaOption
+\code
+
+string returnValue
+
+qlVanillaOption(
+        string ObjectId
+        string Payoff
+        string Exercise
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class VanillaOption and return its id
+
+\par Supported Platforms:
+
+C++, C, Calc, Excel, Guile
+
+\param ObjectId id of object to be created
+\param Payoff StrikedTypePayoff object ID.
+\param Exercise Exercise object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVega \b qlVega
+\code
+
+double returnValue
+
+qlVega(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+vega of an option.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OneAssetOption object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

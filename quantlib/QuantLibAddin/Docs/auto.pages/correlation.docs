@@ -1,0 +1,546 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2007 Katiuscia Manzoni
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_correlation Correlation
+\section overview Overview
+functions to construct and use Correlation objects.
+\section functionlist Function List
+\ref qlCotSwapFromFwdCorrelation ()\n
+\ref qlExponentialCorrelations ()\n
+\ref qlExponentialForwardCorrelation ()\n
+\ref qlHistoricalForwardRatesAnalysis ()\n
+\ref qlHistoricalForwardRatesAnalysisFailedDates ()\n
+\ref qlHistoricalForwardRatesAnalysisFailedDatesErrorMessage ()\n
+\ref qlHistoricalForwardRatesAnalysisFixingPeriods ()\n
+\ref qlHistoricalForwardRatesAnalysisSkippedDates ()\n
+\ref qlHistoricalForwardRatesAnalysisSkippedDatesErrorMessage ()\n
+\ref qlHistoricalRatesAnalysis ()\n
+\ref qlHistoricalRatesAnalysisSkippedDates ()\n
+\ref qlHistoricalRatesAnalysisSkippedDatesErrorMessage ()\n
+\ref qlMarketModelLmLinearExponentialCorrelationModel ()\n
+\ref qlPiecewiseConstantCorrelationCorrelation ()\n
+\ref qlPiecewiseConstantCorrelationNumberOfRates ()\n
+\ref qlPiecewiseConstantCorrelationTimes ()\n
+\ref qlTimeHomogeneousForwardCorrelation ()\n
+
+\section documentation Function Documentation
+\anchor qlCotSwapFromFwdCorrelation \b qlCotSwapFromFwdCorrelation
+\code
+
+string returnValue
+
+qlCotSwapFromFwdCorrelation(
+        string ObjectId
+        string FwdCorr
+        string CurveState
+        double Displacement
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CotSwapFromFwdCorrelation and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FwdCorr Forward rates correlation (i.e. PiecewiseConstantCorrelation object ID).
+\param CurveState curveState.
+\param Displacement displacement. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlExponentialCorrelations \b qlExponentialCorrelations
+\code
+
+vector<vector<double> > returnValue
+
+qlExponentialCorrelations(
+        vector<double> RateTimes
+        double LongTermCorr
+        double Beta
+        double Gamma
+        double Time
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the correlation matrix (time dependent long term + beta + gamma exponential functional form).
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param RateTimes rate fixing times.
+\param LongTermCorr Long term correlation . Default value = 0.0.
+\param Beta exponential decay factor. Default value = 0.24.
+\param Gamma exponent for time to go. Default value = 0.333.
+\param Time time t .
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlExponentialForwardCorrelation \b qlExponentialForwardCorrelation
+\code
+
+string returnValue
+
+qlExponentialForwardCorrelation(
+        string ObjectId
+        vector<double> RateTimes
+        double LongTermCorr
+        double Beta
+        double Gamma
+        vector<double> Times
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ExponentialForwardCorrelation and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate times.
+\param LongTermCorr Long term correlation .
+\param Beta exponential decay factor.
+\param Gamma exponent for time to go.
+\param Times times.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlHistoricalForwardRatesAnalysis \b qlHistoricalForwardRatesAnalysis
+\code
+
+string returnValue
+
+qlHistoricalForwardRatesAnalysis(
+        string ObjectId
+        string SequenceStats
+        long StartDate
+        long EndDate
+        string Step
+        string IborIndex
+        string InitialGap
+        string Horizon
+        vector<string> IborIndexes
+        vector<string> SwapIndexes
+        string DayCounter
+        string TraitsID
+        string InterpolatorID
+        double BootstrapAccuracy
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class HistoricalForwardRatesAnalysis and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SequenceStats Sequence Statistics object ID.
+\param StartDate beginning of the time series.
+\param EndDate end of the time series.
+\param Step time series' time step.
+\param IborIndex floating rate index.
+\param InitialGap initialGap.
+\param Horizon bootstrap horizon.
+\param IborIndexes Ibor indexes.
+\param SwapIndexes Swap indexes.
+\param DayCounter yield curve DayCounter ID. Default value = Actual/365 (Fixed).
+\param TraitsID Discount, ZeroRate, or ForwardRate. Default value = Discount.
+\param InterpolatorID Linear, LogLinear, or CubicSpline. Default value = CubicSpline.
+\param BootstrapAccuracy boostrap accuracy. Default value = 1.0e-12.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlHistoricalForwardRatesAnalysisFailedDates \b qlHistoricalForwardRatesAnalysisFailedDates
+\code
+
+vector<long> returnValue
+
+qlHistoricalForwardRatesAnalysisFailedDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns vector of dates for which forward rates could not be calculated.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalForwardRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHistoricalForwardRatesAnalysisFailedDatesErrorMessage \b qlHistoricalForwardRatesAnalysisFailedDatesErrorMessage
+\code
+
+vector<string> returnValue
+
+qlHistoricalForwardRatesAnalysisFailedDatesErrorMessage(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns vector of error messages for dates on which forward rates could not be calculated.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalForwardRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHistoricalForwardRatesAnalysisFixingPeriods \b qlHistoricalForwardRatesAnalysisFixingPeriods
+\code
+
+vector<string> returnValue
+
+qlHistoricalForwardRatesAnalysisFixingPeriods(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the forward rates time grid.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalForwardRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHistoricalForwardRatesAnalysisSkippedDates \b qlHistoricalForwardRatesAnalysisSkippedDates
+\code
+
+vector<long> returnValue
+
+qlHistoricalForwardRatesAnalysisSkippedDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns vector of historic dates for which some fixing is missing.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalForwardRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHistoricalForwardRatesAnalysisSkippedDatesErrorMessage \b qlHistoricalForwardRatesAnalysisSkippedDatesErrorMessage
+\code
+
+vector<string> returnValue
+
+qlHistoricalForwardRatesAnalysisSkippedDatesErrorMessage(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns vector of error messages for historic dates with missing fixing.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalForwardRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHistoricalRatesAnalysis \b qlHistoricalRatesAnalysis
+\code
+
+string returnValue
+
+qlHistoricalRatesAnalysis(
+        string ObjectId
+        string SequenceStats
+        long StartDate
+        long EndDate
+        string Step
+        vector<string> InterestRateIndexes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class HistoricalRatesAnalysis and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SequenceStats Sequence Statistics object ID.
+\param StartDate beginning of the time series.
+\param EndDate end of the time series.
+\param Step time series' time step.
+\param InterestRateIndexes interest rate indexes object IDs.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlHistoricalRatesAnalysisSkippedDates \b qlHistoricalRatesAnalysisSkippedDates
+\code
+
+vector<long> returnValue
+
+qlHistoricalRatesAnalysisSkippedDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns vector of historic dates for which some fixing is missing.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHistoricalRatesAnalysisSkippedDatesErrorMessage \b qlHistoricalRatesAnalysisSkippedDatesErrorMessage
+\code
+
+vector<string> returnValue
+
+qlHistoricalRatesAnalysisSkippedDatesErrorMessage(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns vector of error messages for historic dates with missing fixing.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::HistoricalRatesAnalysis object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelLmLinearExponentialCorrelationModel \b qlMarketModelLmLinearExponentialCorrelationModel
+\code
+
+string returnValue
+
+qlMarketModelLmLinearExponentialCorrelationModel(
+        string ObjectId
+        long Size
+        double Rho
+        double Beta
+        long Factors
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LmLinearExponentialCorrelationModel and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Size size.
+\param Rho rho.
+\param Beta beta.
+\param Factors factors. Default value = QuantLib::Null<QuantLib::Size>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPiecewiseConstantCorrelationCorrelation \b qlPiecewiseConstantCorrelationCorrelation
+\code
+
+vector<vector<double> > returnValue
+
+qlPiecewiseConstantCorrelationCorrelation(
+        string ObjectId
+        long TimeIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the pseudo-root of the equivalent covariance swap rates matrix.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantCorrelation object
+\param TimeIndex time index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantCorrelationNumberOfRates \b qlPiecewiseConstantCorrelationNumberOfRates
+\code
+
+long returnValue
+
+qlPiecewiseConstantCorrelationNumberOfRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Piecewise Constant Correlation Number of Rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantCorrelation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantCorrelationTimes \b qlPiecewiseConstantCorrelationTimes
+\code
+
+vector<double> returnValue
+
+qlPiecewiseConstantCorrelationTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Piecewise Constant Correlation Times.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantCorrelation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeHomogeneousForwardCorrelation \b qlTimeHomogeneousForwardCorrelation
+\code
+
+string returnValue
+
+qlTimeHomogeneousForwardCorrelation(
+        string ObjectId
+        vector<vector<double> > FwdCorrMatrix
+        vector<double> RateTimes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TimeHomogeneousForwardCorrelation and return its id
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param FwdCorrMatrix forward correlation matrix.
+\param RateTimes rate times.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

@@ -1,0 +1,419 @@
+
+/*  
+ Copyright (C) 2014 Jose Aparicio
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_defaultbasket QuantLib Credit Basket
+\section overview Overview
+QuantLib Credit Basket
+\section functionlist Function List
+\ref qlCrediBasketAttachLive ()\n
+\ref qlCrediBasketDetachLive ()\n
+\ref qlCreditBasket ()\n
+\ref qlCreditBasketDefaulCorrel ()\n
+\ref qlCreditBasketESF ()\n
+\ref qlCreditBasketLiveNotional ()\n
+\ref qlCreditBasketLoss ()\n
+\ref qlCreditBasketNthEventP ()\n
+\ref qlCreditBasketPercentile ()\n
+\ref qlCreditBasketProbLoss ()\n
+\ref qlCreditBasketSetLossModel ()\n
+\ref qlCreditBasketSize ()\n
+\ref qlCreditBasketSplitLoss ()\n
+\ref qlExpectedTrancheLoss ()\n
+
+\section documentation Function Documentation
+\anchor qlCrediBasketAttachLive \b qlCrediBasketAttachLive
+\code
+
+double returnValue
+
+qlCrediBasketAttachLive(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Remaining attach amount.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCrediBasketDetachLive \b qlCrediBasketDetachLive
+\code
+
+double returnValue
+
+qlCrediBasketDetachLive(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Remaining detach amount.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasket \b qlCreditBasket
+\code
+
+string returnValue
+
+qlCreditBasket(
+        string ObjectId
+        vector<string> IssuerNames
+        vector<string> Issuers
+        vector<double> Notionals
+        long ReferenceDate
+        double AttachmentRatio
+        double DettachmentRatio
+        bool Amortizing
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Basket and return its id
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param IssuerNames Array containing the issuer names in the basket.
+\param Issuers Array of Issuers.
+\param Notionals Notional by which each name enters the basket.
+\param ReferenceDate Basket inception date. Default value = QuantLib::Date().
+\param AttachmentRatio Attachment ratio for losses affecting the basket.
+\param DettachmentRatio Dettachment ratio for losses affecting the basket.
+\param Amortizing Whether is Quarterly amortizing.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCreditBasketDefaulCorrel \b qlCreditBasketDefaulCorrel
+\code
+
+double returnValue
+
+qlCreditBasketDefaulCorrel(
+        string ObjectId
+        long DateCorrel
+        long IndexIssuer1
+        long IndexIssuer2
+        any Trigger)
+
+\endcode
+\par Description:
+
+Default correlation between two basket issuers.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DateCorrel Computes the correlation on this date. Default value = QuantLib::Date().
+\param IndexIssuer1 First name.
+\param IndexIssuer2 Second name.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketESF \b qlCreditBasketESF
+\code
+
+double returnValue
+
+qlCreditBasketESF(
+        string ObjectId
+        long DateForLoss
+        double PercentileValue
+        any Trigger)
+
+\endcode
+\par Description:
+
+Basket loss expected shortfall amount (tranched).
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DateForLoss Computes the loss percentile on this date. Default value = QuantLib::Date().
+\param PercentileValue Percentile requested.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketLiveNotional \b qlCreditBasketLiveNotional
+\code
+
+double returnValue
+
+qlCreditBasketLiveNotional(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Non defaulted portfolio outstanding notional.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketLoss \b qlCreditBasketLoss
+\code
+
+double returnValue
+
+qlCreditBasketLoss(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Losses from default events.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketNthEventP \b qlCreditBasketNthEventP
+\code
+
+vector<double> returnValue
+
+qlCreditBasketNthEventP(
+        string ObjectId
+        long EventOrder
+        long DateForLoss
+        any Trigger)
+
+\endcode
+\par Description:
+
+Probability of each basket name to default in the given order.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param EventOrder The order of default for which the probability is returned.
+\param DateForLoss Computes the probabilities on this date. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketPercentile \b qlCreditBasketPercentile
+\code
+
+double returnValue
+
+qlCreditBasketPercentile(
+        string ObjectId
+        long DateForLoss
+        double PercentileValue
+        any Trigger)
+
+\endcode
+\par Description:
+
+Basket loss percentile amount (tranched).
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DateForLoss Computes the loss percentile on this date. Default value = QuantLib::Date().
+\param PercentileValue Percentile requested.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketProbLoss \b qlCreditBasketProbLoss
+\code
+
+double returnValue
+
+qlCreditBasketProbLoss(
+        string ObjectId
+        long DateForLoss
+        double LossFractionValue
+        any Trigger)
+
+\endcode
+\par Description:
+
+Probability of basket losses to be over a value at a given date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DateForLoss Computes the probabilities on this date. Default value = QuantLib::Date().
+\param LossFractionValue Value of losses as a fraction of initial tanche amount.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketSetLossModel \b qlCreditBasketSetLossModel
+\code
+
+void returnValue
+
+qlCreditBasketSetLossModel(
+        string ObjectId
+        string DefaultLossModel
+        any Trigger)
+
+\endcode
+\par Description:
+
+Assigns a Default Loss Model to a given basket. Subsequent basket computations will use that model.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DefaultLossModel Loss Model.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketSize \b qlCreditBasketSize
+\code
+
+long returnValue
+
+qlCreditBasketSize(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Number of counterparties at inception.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCreditBasketSplitLoss \b qlCreditBasketSplitLoss
+\code
+
+vector<double> returnValue
+
+qlCreditBasketSplitLoss(
+        string ObjectId
+        long DateForLoss
+        double LossValue
+        any Trigger)
+
+\endcode
+\par Description:
+
+Splits a loss amount by counterparty contribution.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DateForLoss Computes the probabilities on this date. Default value = QuantLib::Date().
+\param LossValue Value of losses in absolute amount.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlExpectedTrancheLoss \b qlExpectedTrancheLoss
+\code
+
+double returnValue
+
+qlExpectedTrancheLoss(
+        string ObjectId
+        long DateForLoss
+        any Trigger)
+
+\endcode
+\par Description:
+
+Basket expected tranche according to the basket loss model.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Basket object
+\param DateForLoss Computes the expected loss on this date. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

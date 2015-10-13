@@ -1,0 +1,488 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2011, 2015 Ferdinando Ametrano
+ Copyright (C) 2005 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_schedule Schedules
+\section overview Overview
+functions to construct and use Schedule objects.
+\section functionlist Function List
+\ref qlSchedule ()\n
+\ref qlScheduleBDC ()\n
+\ref qlScheduleCalendar ()\n
+\ref qlScheduleDates ()\n
+\ref qlScheduleEmpty ()\n
+\ref qlScheduleEndDate ()\n
+\ref qlScheduleEndOfMonth ()\n
+\ref qlScheduleFromDateVector ()\n
+\ref qlScheduleIsRegular ()\n
+\ref qlScheduleNextDate ()\n
+\ref qlSchedulePreviousDate ()\n
+\ref qlScheduleRule ()\n
+\ref qlScheduleSize ()\n
+\ref qlScheduleStartDate ()\n
+\ref qlScheduleTenor ()\n
+\ref qlScheduleTerminationDateBDC ()\n
+\ref qlScheduleTruncated ()\n
+
+\section documentation Function Documentation
+\anchor qlSchedule \b qlSchedule
+\code
+
+string returnValue
+
+qlSchedule(
+        string ObjectId
+        long EffectiveDate
+        long TerminationDate
+        string Tenor
+        string Calendar
+        string Convention
+        string TermDateConv
+        string GenRule
+        bool EndOfMonth
+        long FirstDate
+        long NextToLastDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Schedule and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param EffectiveDate effective date. Default value = QuantLib::Date().
+\param TerminationDate termination date.
+\param Tenor tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).
+\param Calendar holiday calendar (e.g. TARGET). Default value = NullCalendar.
+\param Convention accrual dates business day convention. Default value = Unadjusted.
+\param TermDateConv termination date business day convention. Default value = Unadjusted.
+\param GenRule Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero). Default value = Backward.
+\param EndOfMonth end of month convention. Ignored for Tenor below 1M. Default value = false.
+\param FirstDate stub date, if there is an irregular starting period. Default value = QuantLib::Date().
+\param NextToLastDate stub date, if there an irregular final period. Default value = QuantLib::Date().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlScheduleBDC \b qlScheduleBDC
+\code
+
+string returnValue
+
+qlScheduleBDC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the business day convention used to calculate the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleCalendar \b qlScheduleCalendar
+\code
+
+string returnValue
+
+qlScheduleCalendar(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the Calendar used to calculate the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleDates \b qlScheduleDates
+\code
+
+vector<long> returnValue
+
+qlScheduleDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the dates for the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleEmpty \b qlScheduleEmpty
+\code
+
+bool returnValue
+
+qlScheduleEmpty(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if the given Schedule object is empty.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleEndDate \b qlScheduleEndDate
+\code
+
+long returnValue
+
+qlScheduleEndDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the end date of the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleEndOfMonth \b qlScheduleEndOfMonth
+\code
+
+bool returnValue
+
+qlScheduleEndOfMonth(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if end-of-month convention has been used to calculate the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleFromDateVector \b qlScheduleFromDateVector
+\code
+
+string returnValue
+
+qlScheduleFromDateVector(
+        string ObjectId
+        vector<long> EffectiveDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Schedule and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param EffectiveDate date vector. Default value = QuantLib::Date().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlScheduleIsRegular \b qlScheduleIsRegular
+\code
+
+bool returnValue
+
+qlScheduleIsRegular(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if the selected period in the given Schedule object is regular.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Index one based period index. Default value = 1.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleNextDate \b qlScheduleNextDate
+\code
+
+long returnValue
+
+qlScheduleNextDate(
+        string ObjectId
+        long RefDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the lowest date in the given Schedule object following the input reference date.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param RefDate reference date. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSchedulePreviousDate \b qlSchedulePreviousDate
+\code
+
+long returnValue
+
+qlSchedulePreviousDate(
+        string ObjectId
+        long RefDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the highest date in the given Schedule object preceding the input reference date.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param RefDate reference date. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleRule \b qlScheduleRule
+\code
+
+string returnValue
+
+qlScheduleRule(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the DateGeneration::Rule of the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleSize \b qlScheduleSize
+\code
+
+long returnValue
+
+qlScheduleSize(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the number of dates in the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleStartDate \b qlScheduleStartDate
+\code
+
+long returnValue
+
+qlScheduleStartDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the start date of the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleTenor \b qlScheduleTenor
+\code
+
+string returnValue
+
+qlScheduleTenor(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the tenor used to calculate the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleTerminationDateBDC \b qlScheduleTerminationDateBDC
+\code
+
+string returnValue
+
+qlScheduleTerminationDateBDC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the business day convention used to calculate the termination date of the given Schedule object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Schedule object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlScheduleTruncated \b qlScheduleTruncated
+\code
+
+string returnValue
+
+qlScheduleTruncated(
+        string ObjectId
+        string OriginalSchedule
+        long TruncationDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Schedule and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param OriginalSchedule original schedule object ID.
+\param TruncationDate truncation date.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

@@ -1,0 +1,457 @@
+
+/*  
+ Copyright (C) 2006 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_mathf Math
+\section overview Overview
+Math utility functions.
+\section functionlist Function List
+\ref qlCholeskyDecomposition ()\n
+\ref qlCovarianceDecomposition ()\n
+\ref qlCovarianceDecompositionCorrelationMatrix ()\n
+\ref qlCovarianceDecompositionStandardDeviations ()\n
+\ref qlCovarianceDecompositionVariances ()\n
+\ref qlGetCovariance ()\n
+\ref qlNormDist ()\n
+\ref qlNormInv ()\n
+\ref qlNormSDist ()\n
+\ref qlNormSInv ()\n
+\ref qlPrimeNumber ()\n
+\ref qlPseudoSqrt ()\n
+\ref qlRankReducedSqrt ()\n
+\ref qlSymmetricSchurDecomposition ()\n
+\ref qlSymmetricSchurDecompositionEigenvalues ()\n
+\ref qlSymmetricSchurDecompositionEigenvectors ()\n
+
+\section documentation Function Documentation
+\anchor qlCholeskyDecomposition \b qlCholeskyDecomposition
+\code
+
+vector<vector<double> > returnValue
+
+qlCholeskyDecomposition(
+        vector<vector<double> > Matrix
+        bool Flexible
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Cholesky decomposition of a real symmetric matrix.
+
+\par Supported Platforms:
+
+Excel
+
+\param Matrix symmetric matrix (hopefully positive semi-definite at least).
+\param Flexible If TRUE it returns a result also for positive semi-definite matrix. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCovarianceDecomposition \b qlCovarianceDecomposition
+\code
+
+string returnValue
+
+qlCovarianceDecomposition(
+        string ObjectId
+        vector<vector<double> > SymmetricMatrix
+        double Tolerance
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CovarianceDecomposition and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param SymmetricMatrix Symmetrix covariance matrix to be decomposed.
+\param Tolerance numerical tolerance for non symmetric matrix. Default value = 1.0e12.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCovarianceDecompositionCorrelationMatrix \b qlCovarianceDecompositionCorrelationMatrix
+\code
+
+vector<vector<double> > returnValue
+
+qlCovarianceDecompositionCorrelationMatrix(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the correlation matrix for the given CovarianceDecomposition object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CovarianceDecomposition object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCovarianceDecompositionStandardDeviations \b qlCovarianceDecompositionStandardDeviations
+\code
+
+vector<double> returnValue
+
+qlCovarianceDecompositionStandardDeviations(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the standard deviation (i.e. volatility times square root of time) vector for the given CovarianceDecomposition object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CovarianceDecomposition object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCovarianceDecompositionVariances \b qlCovarianceDecompositionVariances
+\code
+
+vector<double> returnValue
+
+qlCovarianceDecompositionVariances(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance vector for the given CovarianceDecomposition object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CovarianceDecomposition object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlGetCovariance \b qlGetCovariance
+\code
+
+vector<vector<double> > returnValue
+
+qlGetCovariance(
+        vector<double> Vols
+        vector<vector<double> > Matrix
+        double Tolerance
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the covariance matrix generated using the correlation matrix and the standard deviation (i.e. volatility times square root of time) array.
+
+\par Supported Platforms:
+
+Excel
+
+\param Vols volatility vector.
+\param Matrix symmetric matrix (hopefully positive semi-definite at least).
+\param Tolerance numerical tolerance for non symmetric matrix. Default value = 1.0e12.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlNormDist \b qlNormDist
+\code
+
+double returnValue
+
+qlNormDist(
+        double X
+        double Mean
+        double Standard_dev
+        bool Cumulative
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the normal cumulative distribution for the specified mean and standard deviation.
+
+\par Supported Platforms:
+
+Excel
+
+\param X is the value for which you want the distribution.
+\param Mean is the arithmetic mean of the distribution. Default value = 0.0.
+\param Standard_dev is the standard deviation of the distribution, a positive number. Default value = 1.0.
+\param Cumulative is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE. Default value = TRUE.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlNormInv \b qlNormInv
+\code
+
+double returnValue
+
+qlNormInv(
+        double Probability
+        double Mean
+        double Standard_dev
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.
+
+\par Supported Platforms:
+
+Excel
+
+\param Probability is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive.
+\param Mean is the arithmetic mean of the distribution. Default value = 0.0.
+\param Standard_dev is the standard deviation of the distribution, a positive number. Default value = 1.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlNormSDist \b qlNormSDist
+\code
+
+double returnValue
+
+qlNormSDist(
+        double Z
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the standard normal cumulative distribution (has a mean of zero and standard deviation of one).
+
+\par Supported Platforms:
+
+Excel
+
+\param Z is the value for which you want the distribution.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlNormSInv \b qlNormSInv
+\code
+
+double returnValue
+
+qlNormSInv(
+        double Probability
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the inverse of the standard normal cumulative distribution (has a mean of zero and standard deviation of one).
+
+\par Supported Platforms:
+
+Excel
+
+\param Probability is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPrimeNumber \b qlPrimeNumber
+\code
+
+long returnValue
+
+qlPrimeNumber(
+        long N
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the N-th prime number.
+
+\par Supported Platforms:
+
+Excel
+
+\param N index of the prime number (e.g N=2 returns 3).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPseudoSqrt \b qlPseudoSqrt
+\code
+
+vector<vector<double> > returnValue
+
+qlPseudoSqrt(
+        vector<vector<double> > Matrix
+        string SalvagingAlgorithm
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the pseudo square root of a real symmetric matrix.
+
+\par Supported Platforms:
+
+Excel
+
+\param Matrix symmetric matrix (hopefully positive semi-definite at least).
+\param SalvagingAlgorithm Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRankReducedSqrt \b qlRankReducedSqrt
+\code
+
+vector<vector<double> > returnValue
+
+qlRankReducedSqrt(
+        vector<vector<double> > Matrix
+        long MaxRank
+        double ComponentPercentage
+        string SalvagingAlgorithm
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the rank reduced pseudo square root of a real symmetric matrix.
+
+\par Supported Platforms:
+
+Excel
+
+\param Matrix symmetric matrix (hopefully positive semi-definite at least).
+\param MaxRank number of principal components retained, i.e. max rank for the result matrix.
+\param ComponentPercentage principal components retained as percentage of eigenvalues' sum.
+\param SalvagingAlgorithm Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSymmetricSchurDecomposition \b qlSymmetricSchurDecomposition
+\code
+
+string returnValue
+
+qlSymmetricSchurDecomposition(
+        string ObjectId
+        vector<vector<double> > SymmetricMatrix
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SymmetricSchurDecomposition and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param SymmetricMatrix Symmetrix matrix to be decomposed.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSymmetricSchurDecompositionEigenvalues \b qlSymmetricSchurDecompositionEigenvalues
+\code
+
+vector<double> returnValue
+
+qlSymmetricSchurDecompositionEigenvalues(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the eigenvalues for the given SymmetricSchurDecomposition object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SymmetricSchurDecomposition object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSymmetricSchurDecompositionEigenvectors \b qlSymmetricSchurDecompositionEigenvectors
+\code
+
+vector<vector<double> > returnValue
+
+qlSymmetricSchurDecompositionEigenvectors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the eigenvectors  for the given SymmetricSchurDecomposition object. Eigenvectors are returned columnwise.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SymmetricSchurDecomposition object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

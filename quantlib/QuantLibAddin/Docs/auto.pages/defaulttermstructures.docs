@@ -1,0 +1,157 @@
+
+/*  
+ Copyright (C) 2009 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_defaulttermstructures Default Probability Term Structures
+\section overview Overview
+functions to construct and use DefaultProbabilityTermStructure objects.
+\section functionlist Function List
+\ref qlDefaultTSDefaultProbability ()\n
+\ref qlFlatHazardRate ()\n
+\ref qlProbabilityToHR ()\n
+\ref qlRelinkableHandleDefaultProbabilityTermStructure ()\n
+
+\section documentation Function Documentation
+\anchor qlDefaultTSDefaultProbability \b qlDefaultTSDefaultProbability
+\code
+
+vector<double> returnValue
+
+qlDefaultTSDefaultProbability(
+        string ObjectId
+        vector<long> Dates
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the probability of default between the reference date and the given date from the given DefaultProbabilityTermStructure object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::DefaultProbabilityTermStructure object
+\param Dates vector of dates.
+\param AllowExtrapolation TRUE allows extrapolation. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFlatHazardRate \b qlFlatHazardRate
+\code
+
+string returnValue
+
+qlFlatHazardRate(
+        string ObjectId
+        long NDays
+        string Calendar
+        string Rate
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FlatHazardRate and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param NDays number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET) to advance from global EvaluationDate. Default value = NullCalendar.
+\param Rate the curve level.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlProbabilityToHR \b qlProbabilityToHR
+\code
+
+double returnValue
+
+qlProbabilityToHR(
+        double Probability
+        long Date
+        string DayCounter
+        any Trigger)
+
+\endcode
+\par Description:
+
+Turns a given probability into a flat hazard rate.
+
+\par Supported Platforms:
+
+Excel
+
+\param Probability Probability.
+\param Date Date of the probability given.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRelinkableHandleDefaultProbabilityTermStructure \b qlRelinkableHandleDefaultProbabilityTermStructure
+\code
+
+string returnValue
+
+qlRelinkableHandleDefaultProbabilityTermStructure(
+        string ObjectId
+        string CurrentLink
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RelinkableHandleImpl<QuantLibAddin::DefaultProbabilityTermStructure, QuantLib::DefaultProbabilityTermStructure> and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurrentLink DefaultProbabilityTermStructure object ID. If omitted, nothing is linked by the RelinkableHandle. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

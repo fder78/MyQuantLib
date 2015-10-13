@@ -1,0 +1,481 @@
+
+/*  
+ Copyright (C) 2014 Jose Aparicio
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_basketlossmodels QuantLib Credit Basket Loss Models
+\section overview Overview
+QuantLib Credit Basket Loss Models
+\section functionlist Function List
+\ref qlBaseCorrelationLossModel ()\n
+\ref qlGBinomialLossmodel ()\n
+\ref qlGMCLossModel ()\n
+\ref qlGRandomRRMCLossModel ()\n
+\ref qlGRecursiveLossmodel ()\n
+\ref qlGSaddlePointLossmodel ()\n
+\ref qlGaussianLHPLossmodel ()\n
+\ref qlIHGaussPoolLossModel ()\n
+\ref qlIHStudentPoolLossModel ()\n
+\ref qlTBinomialLossmodel ()\n
+\ref qlTMCLossModel ()\n
+\ref qlTRandomRRMCLossModel ()\n
+\ref qlTSaddlePointLossmodel ()\n
+
+\section documentation Function Documentation
+\anchor qlBaseCorrelationLossModel \b qlBaseCorrelationLossModel
+\code
+
+string returnValue
+
+qlBaseCorrelationLossModel(
+        string ObjectId
+        string BaseModel
+        string BaseCorrelationSurface
+        vector<double> Recoveries
+        vector<double> InitiTraits
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BaseCorrelationLossModel and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param BaseModel The base algorithm on which the EL is to be computed at different correlations.
+\param BaseCorrelationSurface Base correlation surface.
+\param Recoveries Quoted recoveries for each name in the model.
+\param InitiTraits Copula initialization traits are defined in terms of this vector.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGBinomialLossmodel \b qlGBinomialLossmodel
+\code
+
+string returnValue
+
+qlGBinomialLossmodel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class GaussianBinomialLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGMCLossModel \b qlGMCLossModel
+\code
+
+string returnValue
+
+qlGMCLossModel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        long NumSimulations
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class GaussianRandomDefaultLM and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param NumSimulations MC simulations.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGRandomRRMCLossModel \b qlGRandomRRMCLossModel
+\code
+
+string returnValue
+
+qlGRandomRRMCLossModel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        double ModelA
+        long NumSimulations
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class GaussianRandomLossLM and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param ModelA Recovery deviation parameter.
+\param NumSimulations MC simulations.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGRecursiveLossmodel \b qlGRecursiveLossmodel
+\code
+
+string returnValue
+
+qlGRecursiveLossmodel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RecursiveGaussLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGSaddlePointLossmodel \b qlGSaddlePointLossmodel
+\code
+
+string returnValue
+
+qlGSaddlePointLossmodel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SaddlePointLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlGaussianLHPLossmodel \b qlGaussianLHPLossmodel
+\code
+
+string returnValue
+
+qlGaussianLHPLossmodel(
+        string ObjectId
+        double Correlation
+        vector<double> RecoveyRates
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class GaussianLHPLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Correlation Gaussian model single correlation.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIHGaussPoolLossModel \b qlIHGaussPoolLossModel
+\code
+
+string returnValue
+
+qlIHGaussPoolLossModel(
+        string ObjectId
+        double Correlation
+        vector<double> RecoveyRates
+        long NumBuckets
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class IHGaussPoolLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Correlation Model single correlation.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param NumBuckets Number of distribution loss buckets.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIHStudentPoolLossModel \b qlIHStudentPoolLossModel
+\code
+
+string returnValue
+
+qlIHStudentPoolLossModel(
+        string ObjectId
+        double Correlation
+        vector<double> RecoveyRates
+        vector<double> Ttraits
+        long NumBuckets
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class IHStudentPoolLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Correlation Model single correlation.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Ttraits T orders on each factor.
+\param NumBuckets Number of distribution loss buckets.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTBinomialLossmodel \b qlTBinomialLossmodel
+\code
+
+string returnValue
+
+qlTBinomialLossmodel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        vector<double> Ttraits
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TBinomialLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Ttraits T orders on each factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTMCLossModel \b qlTMCLossModel
+\code
+
+string returnValue
+
+qlTMCLossModel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        vector<double> Ttraits
+        long NumSimulations
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TRandomDefaultLM and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Ttraits T orders on each factor.
+\param NumSimulations MC simulations.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTRandomRRMCLossModel \b qlTRandomRRMCLossModel
+\code
+
+string returnValue
+
+qlTRandomRRMCLossModel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        vector<double> Ttraits
+        double ModelA
+        long NumSimulations
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TRandomLossLM and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Ttraits T orders on each factor.
+\param ModelA Recovery deviation parameter.
+\param NumSimulations MC simulations.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTSaddlePointLossmodel \b qlTSaddlePointLossmodel
+\code
+
+string returnValue
+
+qlTSaddlePointLossmodel(
+        string ObjectId
+        vector<vector<double> > Factors
+        vector<double> RecoveyRates
+        vector<double> Ttraits
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TSaddlePointLossModel and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Factors Systemic model factors.
+\param RecoveyRates Recovery rates of each live name in the portfolio.
+\param Ttraits T orders on each factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

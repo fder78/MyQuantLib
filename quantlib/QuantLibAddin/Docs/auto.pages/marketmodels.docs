@@ -1,0 +1,785 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_marketmodels MarketModels
+\section overview Overview
+functions to construct and use Market Models related objects.
+\section functionlist Function List
+\ref qlAbcdVol ()\n
+\ref qlAnnuity ()\n
+\ref qlCmSwapForwardJacobian ()\n
+\ref qlCmSwapZedMatrix ()\n
+\ref qlCoinitialSwapForwardJacobian ()\n
+\ref qlCoinitialSwapZedMatrix ()\n
+\ref qlCotSwapToFwdAdapter ()\n
+\ref qlCoterminalSwapForwardJacobian ()\n
+\ref qlCoterminalSwapZedMatrix ()\n
+\ref qlFlatVol ()\n
+\ref qlFlatVolFactory ()\n
+\ref qlFwdPeriodAdapter ()\n
+\ref qlFwdToCotSwapAdapter ()\n
+\ref qlMarketModelCovariance ()\n
+\ref qlMarketModelDisplacements ()\n
+\ref qlMarketModelInitialRates ()\n
+\ref qlMarketModelNumberOfFactors ()\n
+\ref qlMarketModelNumberOfRates ()\n
+\ref qlMarketModelNumberOfSteps ()\n
+\ref qlMarketModelPseudoRoot ()\n
+\ref qlMarketModelTimeDependentVolatility ()\n
+\ref qlMarketModelTotalCovariance ()\n
+\ref qlPseudoRootFacade ()\n
+\ref qlRateInstVolDifferences ()\n
+\ref qlRateVolDifferences ()\n
+\ref qlSwapDerivative ()\n
+
+\section documentation Function Documentation
+\anchor qlAbcdVol \b qlAbcdVol
+\code
+
+string returnValue
+
+qlAbcdVol(
+        string ObjectId
+        double A
+        double B
+        double C
+        double D
+        vector<double> Ks
+        string Correlations
+        string EvolutionDescription
+        long Factors
+        vector<double> InitialRates
+        vector<double> Displacements
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AbcdVol and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param A the a coefficient in the abcd vol parametrization.
+\param B the b coefficient in the abcd vol parametrization.
+\param C the c coefficient in the abcd vol parametrization.
+\param D the d coefficient in the abcd vol parametrization.
+\param Ks K_i adjustment factors in the abcd vol parametrization.
+\param Correlations PiecewiseConstantCorrelation object ID.
+\param EvolutionDescription EvolutionDescription object.
+\param Factors number of factors to be retained in the simulation.
+\param InitialRates initial rates.
+\param Displacements displacements.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAnnuity \b qlAnnuity
+\code
+
+double returnValue
+
+qlAnnuity(
+        string CurveState
+        long StartIndex
+        long EndIndex
+        long NumeraireIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns annuity of arbitrary swap-rate.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param StartIndex start index.
+\param EndIndex end index.
+\param NumeraireIndex numeraire index. Default value = 0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmSwapForwardJacobian \b qlCmSwapForwardJacobian
+\code
+
+vector<vector<double> > returnValue
+
+qlCmSwapForwardJacobian(
+        string CurveState
+        long SpanningForwards
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the jacobian between constant maturity swap rates and forward rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param SpanningForwards number of forwards underlying the CMS.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmSwapZedMatrix \b qlCmSwapZedMatrix
+\code
+
+vector<vector<double> > returnValue
+
+qlCmSwapZedMatrix(
+        string CurveState
+        long SpanningForwards
+        double Displacement
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Z matrix to switch base from forward to constant maturity swap rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param SpanningForwards number of forwards underlying the CMS.
+\param Displacement displacement. Default value = 0.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCoinitialSwapForwardJacobian \b qlCoinitialSwapForwardJacobian
+\code
+
+vector<vector<double> > returnValue
+
+qlCoinitialSwapForwardJacobian(
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the jacobian between coinitial swap rates and forward rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCoinitialSwapZedMatrix \b qlCoinitialSwapZedMatrix
+\code
+
+vector<vector<double> > returnValue
+
+qlCoinitialSwapZedMatrix(
+        string CurveState
+        double Displacement
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Z matrix to switch base from forward to coinitial swap rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param Displacement displacement. Default value = 0.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCotSwapToFwdAdapter \b qlCotSwapToFwdAdapter
+\code
+
+string returnValue
+
+qlCotSwapToFwdAdapter(
+        string ObjectId
+        string CoterminalModel
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CotSwapToFwdAdapter and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CoterminalModel CoTerminal Swap Market Model ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCoterminalSwapForwardJacobian \b qlCoterminalSwapForwardJacobian
+\code
+
+vector<vector<double> > returnValue
+
+qlCoterminalSwapForwardJacobian(
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the jacobian between coterminal swap rates and forward rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCoterminalSwapZedMatrix \b qlCoterminalSwapZedMatrix
+\code
+
+vector<vector<double> > returnValue
+
+qlCoterminalSwapZedMatrix(
+        string CurveState
+        double Displacement
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Z matrix to switch base from forward to coterminal swap rates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param Displacement displacement. Default value = 0.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFlatVol \b qlFlatVol
+\code
+
+string returnValue
+
+qlFlatVol(
+        string ObjectId
+        vector<double> Volatilities
+        string Correlations
+        string EvolutionDescription
+        long Factors
+        vector<double> InitialRates
+        vector<double> Displacements
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FlatVol and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Volatilities volatilities.
+\param Correlations PiecewiseConstantCorrelation object ID.
+\param EvolutionDescription EvolutionDescription object.
+\param Factors number of factors to be retained in the simulation.
+\param InitialRates initial rates.
+\param Displacements displacements.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFlatVolFactory \b qlFlatVolFactory
+\code
+
+string returnValue
+
+qlFlatVolFactory(
+        string ObjectId
+        double LongTermCorr
+        double Beta
+        vector<double> Times
+        vector<double> Volatilities
+        string YieldCurve
+        double Displacement
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FlatVolFactory and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param LongTermCorr Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj)).
+\param Beta beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj)).
+\param Times times.
+\param Volatilities volatilities.
+\param YieldCurve discounting yield term structure object ID.
+\param Displacement displacement. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFwdPeriodAdapter \b qlFwdPeriodAdapter
+\code
+
+string returnValue
+
+qlFwdPeriodAdapter(
+        string ObjectId
+        string LargeModel
+        long Period
+        long Offset
+        vector<double> Displacements
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FwdPeriodAdapter and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param LargeModel large MarketModel ID.
+\param Period target period (e.g. 2 if going from semiannual LMM to annual LMM).
+\param Offset rate index offset, in order to pin down swaption coterminal to the last rate time.
+\param Displacements displacements.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFwdToCotSwapAdapter \b qlFwdToCotSwapAdapter
+\code
+
+string returnValue
+
+qlFwdToCotSwapAdapter(
+        string ObjectId
+        string ForwardModel
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FwdToCotSwapAdapter and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param ForwardModel Forward Rate Market Model ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMarketModelCovariance \b qlMarketModelCovariance
+\code
+
+vector<vector<double> > returnValue
+
+qlMarketModelCovariance(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the covariance matrix for the i-th step.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Index evolution step index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelDisplacements \b qlMarketModelDisplacements
+\code
+
+vector<double> returnValue
+
+qlMarketModelDisplacements(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+rates' displacemets for the MarketModel object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelInitialRates \b qlMarketModelInitialRates
+\code
+
+vector<double> returnValue
+
+qlMarketModelInitialRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+initial rates for the MarketModel object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelNumberOfFactors \b qlMarketModelNumberOfFactors
+\code
+
+long returnValue
+
+qlMarketModelNumberOfFactors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+number of factors for the MarketModel object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelNumberOfRates \b qlMarketModelNumberOfRates
+\code
+
+long returnValue
+
+qlMarketModelNumberOfRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+number of rates for the MarketModel object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelNumberOfSteps \b qlMarketModelNumberOfSteps
+\code
+
+long returnValue
+
+qlMarketModelNumberOfSteps(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+number of steps for the MarketModel object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelPseudoRoot \b qlMarketModelPseudoRoot
+\code
+
+vector<vector<double> > returnValue
+
+qlMarketModelPseudoRoot(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the pseudo root for the i-th step.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Index evolution step index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelTimeDependentVolatility \b qlMarketModelTimeDependentVolatility
+\code
+
+vector<double> returnValue
+
+qlMarketModelTimeDependentVolatility(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the time dependent vol for rate i.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Index rate index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketModelTotalCovariance \b qlMarketModelTotalCovariance
+\code
+
+vector<vector<double> > returnValue
+
+qlMarketModelTotalCovariance(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the covariance matrix from start up to the i-th step.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::MarketModel object
+\param Index evolution step index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPseudoRootFacade \b qlPseudoRootFacade
+\code
+
+string returnValue
+
+qlPseudoRootFacade(
+        string ObjectId
+        string Calibrator
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class PseudoRootFacade and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Calibrator CTSMMCapletCalibration ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRateInstVolDifferences \b qlRateInstVolDifferences
+\code
+
+vector<double> returnValue
+
+qlRateInstVolDifferences(
+        string MarketModel1
+        string MarketModel2
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Compute the differences between volatilities at each evolution step.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param MarketModel1 First Market Model.
+\param MarketModel2 Second Market Model.
+\param Index Forward Rate index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateVolDifferences \b qlRateVolDifferences
+\code
+
+vector<double> returnValue
+
+qlRateVolDifferences(
+        string MarketModel1
+        string MarketModel2
+        any Trigger)
+
+\endcode
+\par Description:
+
+Compute the differences between all implied forwards volatilities.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param MarketModel1 First Market Model.
+\param MarketModel2 Second Market Model.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapDerivative \b qlSwapDerivative
+\code
+
+double returnValue
+
+qlSwapDerivative(
+        string CurveState
+        long StartIndex
+        long EndIndex
+        long FwdRateIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns derivative of swap-rate to underlying forward rate.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param CurveState CurveState object ID.
+\param StartIndex start index.
+\param EndIndex end index.
+\param FwdRateIndex forward rate index. Default value = 0.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

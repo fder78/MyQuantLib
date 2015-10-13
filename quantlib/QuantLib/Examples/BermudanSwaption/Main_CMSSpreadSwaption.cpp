@@ -76,78 +76,85 @@ int main(int, char* []) {
         boost::timer timer;
         std::cout << std::endl;
 
-        Date todaysDate = Date::todaysDate();
-        Calendar calendar = TARGET();
-        Date settlementDate(todaysDate - 3*Months);
-        Settings::instance().evaluationDate() = todaysDate;
+		for (Size iter = 0; iter < 120; ++iter) {
 
-        // flat yield term structure impling 1x5 swap at 5%
-        boost::shared_ptr<Quote> flatRate(new SimpleQuote(0.04875825));
-        Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<FlatForward>(new FlatForward(todaysDate, Handle<Quote>(flatRate), Actual365Fixed())));
-        boost::shared_ptr<IborIndex> indexSixMonths(new Euribor6M(rhTermStructure));
+			Date todaysDate = Date::todaysDate() + iter*Months;
+			Calendar calendar = SouthKorea();
+			Date settlementDate(7,Oct,2015);
+			Settings::instance().evaluationDate() = todaysDate;
 
-		//parameters calibration
-		SwaptionVolData swaptionVolData;
-		for (Size i = 0; i < numRows; i++) {
-			Size j = numCols - i - 1; // 1x5, 2x4, 3x3, 4x2, 5x1
-			Size k = i*numCols + j;
-			swaptionVolData.vols.push_back(swaptionVols[k]);
-			swaptionVolData.lengths.push_back(Period(swapLenghts[j], Years));
-			swaptionVolData.maturities.push_back(Period(swaptionMaturities[i], Years));
-		}
-		swaptionVolData.fixedFreq = indexSixMonths->tenor().frequency();
-		swaptionVolData.fixedDC = indexSixMonths->dayCounter();
-		swaptionVolData.floatingDC = indexSixMonths->dayCounter();
-		swaptionVolData.index = indexSixMonths;
+			// flat yield term structure impling 1x5 swap at 5%
+			//boost::shared_ptr<Quote> flatRate(new SimpleQuote(0.04875825));
+			//Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<FlatForward>(new FlatForward(todaysDate, Handle<Quote>(flatRate), Actual365Fixed())));
 
-		G2Parameters param = calibration_g2(todaysDate, swaptionVolData);
-		std::cout << "calibrated to:\n"
-			<< "a     = " << param.a << ", "
-			<< "sigma = " << param.sigma << "\n"
-			<< "b     = " << param.b << ", "
-			<< "eta   = " << param.eta << "\n"
-			<< "rho   = " << param.rho << std::endl << std::endl; 
+			std::vector<Date> dates(1, todaysDate);		dates.push_back(todaysDate + 30 * Years);
+			std::vector<Rate> rates(1, 0.045);			rates.push_back(0.08);
+			Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<YieldTermStructure>(new InterpolatedZeroCurve<Linear>(dates, rates, Actual365Fixed())));
+			boost::shared_ptr<IborIndex> indexSixMonths(new Euribor6M(rhTermStructure));
+
+			//parameters calibration
+			SwaptionVolData swaptionVolData;
+			for (Size i = 0; i < numRows; i++) {
+				Size j = numCols - i - 1; // 1x5, 2x4, 3x3, 4x2, 5x1
+				Size k = i*numCols + j;
+				swaptionVolData.vols.push_back(swaptionVols[k]);
+				swaptionVolData.lengths.push_back(Period(swapLenghts[j], Years));
+				swaptionVolData.maturities.push_back(Period(swaptionMaturities[i], Years));
+			}
+			swaptionVolData.fixedFreq = indexSixMonths->tenor().frequency();
+			swaptionVolData.fixedDC = indexSixMonths->dayCounter();
+			swaptionVolData.floatingDC = indexSixMonths->dayCounter();
+			swaptionVolData.index = indexSixMonths;
+
+			// defining the models
+			boost::shared_ptr<G2> modelG2(new G2(rhTermStructure));
+
+
+			G2Parameters param = calibration_g2(todaysDate, swaptionVolData);
+			//std::cout << "calibration parameters:\n"
+			//	<< "a     = " << param.a << ", "
+			//	<< "sigma = " << param.sigma << "\n"
+			//	<< "b     = " << param.b << ", "
+			//	<< "eta   = " << param.eta << "\n"
+			//	<< "rho   = " << param.rho << std::endl << std::endl;
 		
 
-		// defining the models
-        boost::shared_ptr<G2> modelG2(new G2(rhTermStructure));
 
-		// Define the swaps
-		Frequency fixedLegFrequency = Annual;
-		BusinessDayConvention fixedLegConvention = Unadjusted;
-		BusinessDayConvention floatingLegConvention = ModifiedFollowing;
-		DayCounter fixedLegDayCounter = Thirty360(Thirty360::European);
-		Frequency floatingLegFrequency = Semiannual;
-		VanillaSwap::Type type = VanillaSwap::Payer;
-		std::vector<Size> tenorsInYears;
-		tenorsInYears.push_back(10);
-		tenorsInYears.push_back(2);
+			// Define the swaps
+			Frequency fixedLegFrequency = Quarterly;
+			BusinessDayConvention fixedLegConvention = Unadjusted;
+			BusinessDayConvention floatingLegConvention = ModifiedFollowing;
+			DayCounter fixedLegDayCounter = Thirty360(Thirty360::European);
+			Frequency floatingLegFrequency = Semiannual;
+			VanillaSwap::Type type = VanillaSwap::Payer;
+			std::vector<Size> tenorsInYears;
+			tenorsInYears.push_back(10);
+			tenorsInYears.push_back(2);
 
-		Date startDate = calendar.advance(settlementDate, 1, Years, floatingLegConvention);
-		Date maturity = calendar.advance(startDate, 5, Years, floatingLegConvention);
-		Schedule fixedSchedule(startDate, maturity, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);
+			Date maturity = calendar.advance(settlementDate, 15, Years, floatingLegConvention);
+			Schedule fixedSchedule(settlementDate, maturity, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);
 
-		std::vector<Real> rst = cms_spread_rangeaccrual_fdm(todaysDate, 10000,
-			std::vector<Rate>(1, 0.05),		//std::vector<Rate> couponRate,
-			std::vector<Rate>(1, 0.0),		//std::vector<Real> gearing,
-			fixedSchedule,					//	Schedule schedule,
-			fixedLegDayCounter,				//	DayCounter dayCounter,
-			fixedLegConvention,				//	BusinessDayConvention bdc,
-			tenorsInYears,					//  CMS spread tenors,
-			std::vector<Real>(1, -0.005),		//	std::vector<Real> lowerBound,
-			std::vector<Real>(1, 0.005),		//	std::vector<Real> upperBound,
-			fixedSchedule[1],				//	Date firstCallDate,
-			0.0,							//	Real pastAccrual,
-			rhTermStructure.currentLink(),	//	boost::shared_ptr<YieldTermStructure> obs1Curve,
-			param,							//	const G2Parameters& obs1G2Params,
-			0.0, 0.0,						//	Real obs1FXVol, Real obs1FXCorr,
-			rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
-			50, 40,							//	Size tGrid, Size rGrid,
-			0.0,							//	Real alpha,
-			0.0								//	Real pastFixing,
-			);
-		std::cout << "price = " << rst[0] << std::endl;
-
+			std::vector<Real> rst = cms_spread_rangeaccrual_fdm(todaysDate, 10000,
+				std::vector<Rate>(1, 0.08),		//std::vector<Rate> couponRate,
+				std::vector<Rate>(1, 0.0),		//std::vector<Real> gearing,
+				fixedSchedule,					//	Schedule schedule,
+				fixedLegDayCounter,				//	DayCounter dayCounter,
+				fixedLegConvention,				//	BusinessDayConvention bdc,
+				tenorsInYears,					//  CMS spread tenors,
+				std::vector<Real>(1, 0.0),		//	std::vector<Real> lowerBound,
+				std::vector<Real>(1, 0.03),		//	std::vector<Real> upperBound,
+				fixedSchedule[4],				//	Date firstCallDate,
+				0.0,							//	Real pastAccrual,
+				rhTermStructure.currentLink(),	//	boost::shared_ptr<YieldTermStructure> obs1Curve,
+				param,							//	const G2Parameters& obs1G2Params,
+				0.0, 0.0,						//	Real obs1FXVol, Real obs1FXCorr,
+				rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
+				25, 50,							//	Size tGrid, Size rGrid,
+				0.001,							//	Real alpha,
+				0.05								//	Real pastFixing,
+				);
+			std::cout << todaysDate << "," << rst[0] << std::endl;
+		}
 		/***********************************************************************/
 		double seconds = timer.elapsed();
 		Integer hours = int(seconds / 3600);

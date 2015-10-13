@@ -1,0 +1,399 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_driftcalculators Driftcalculators
+\section overview Overview
+functions to construct and use Driftcalculators objects.
+\section functionlist Function List
+\ref qlCMSMMDriftCalculator ()\n
+\ref qlCMSMMDriftCalculatorCompute ()\n
+\ref qlLMMDriftCalculator ()\n
+\ref qlLMMDriftCalculatorCompute ()\n
+\ref qlLMMDriftCalculatorComputePlain ()\n
+\ref qlLMMDriftCalculatorComputeReduced ()\n
+\ref qlLMMNormalDriftCalculator ()\n
+\ref qlLMMNormalDriftCalculatorCompute ()\n
+\ref qlLMMNormalDriftCalculatorComputePlain ()\n
+\ref qlLMMNormalDriftCalculatorComputeReduced ()\n
+\ref qlSMMDriftCalculator ()\n
+\ref qlSMMDriftCalculatorCompute ()\n
+
+\section documentation Function Documentation
+\anchor qlCMSMMDriftCalculator \b qlCMSMMDriftCalculator
+\code
+
+string returnValue
+
+qlCMSMMDriftCalculator(
+        string ObjectId
+        vector<vector<double> > Pseudo_square_root
+        vector<double> Displacements
+        vector<double> Taus
+        long Numeraire
+        long Alive
+        long SpanningFwds
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CMSMMDriftCalculator and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Pseudo_square_root Pseudo square root of the covariance matrix.
+\param Displacements displacements.
+\param Taus taus.
+\param Numeraire numeraire.
+\param Alive index of the first rates still alive.
+\param SpanningFwds number of forwards to be spanned.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCMSMMDriftCalculatorCompute \b qlCMSMMDriftCalculatorCompute
+\code
+
+vector<double> returnValue
+
+qlCMSMMDriftCalculatorCompute(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Full factor drift computation using the CMSMMDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CMSMMDriftCalculator object
+\param CurveState CMSwapCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMDriftCalculator \b qlLMMDriftCalculator
+\code
+
+string returnValue
+
+qlLMMDriftCalculator(
+        string ObjectId
+        vector<vector<double> > Pseudo_square_root
+        vector<double> Displacements
+        vector<double> Taus
+        long Numeraire
+        long Alive
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LMMDriftCalculator and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Pseudo_square_root Pseudo square root of the covariance matrix.
+\param Displacements displacements.
+\param Taus taus.
+\param Numeraire numeraire.
+\param Alive index of the first rates still alive.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLMMDriftCalculatorCompute \b qlLMMDriftCalculatorCompute
+\code
+
+vector<double> returnValue
+
+qlLMMDriftCalculatorCompute(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::LMMDriftCalculator object
+\param CurveState LMMCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMDriftCalculatorComputePlain \b qlLMMDriftCalculatorComputePlain
+\code
+
+vector<double> returnValue
+
+qlLMMDriftCalculatorComputePlain(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Full factor drift computation using the LMMDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::LMMDriftCalculator object
+\param CurveState LMMCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMDriftCalculatorComputeReduced \b qlLMMDriftCalculatorComputeReduced
+\code
+
+vector<double> returnValue
+
+qlLMMDriftCalculatorComputeReduced(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::LMMDriftCalculator object
+\param CurveState LMMCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMNormalDriftCalculator \b qlLMMNormalDriftCalculator
+\code
+
+string returnValue
+
+qlLMMNormalDriftCalculator(
+        string ObjectId
+        vector<vector<double> > Pseudo_square_root
+        vector<double> Taus
+        long Numeraire
+        long Alive
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LMMNormalDriftCalculator and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Pseudo_square_root Pseudo square root of the covariance matrix.
+\param Taus taus.
+\param Numeraire numeraire.
+\param Alive index of the first rates still alive.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLMMNormalDriftCalculatorCompute \b qlLMMNormalDriftCalculatorCompute
+\code
+
+vector<double> returnValue
+
+qlLMMNormalDriftCalculatorCompute(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::LMMNormalDriftCalculator object
+\param CurveState LMMCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMNormalDriftCalculatorComputePlain \b qlLMMNormalDriftCalculatorComputePlain
+\code
+
+vector<double> returnValue
+
+qlLMMNormalDriftCalculatorComputePlain(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Full factor drift computation using the LMMNormalDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::LMMNormalDriftCalculator object
+\param CurveState LMMCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMNormalDriftCalculatorComputeReduced \b qlLMMNormalDriftCalculatorComputeReduced
+\code
+
+vector<double> returnValue
+
+qlLMMNormalDriftCalculatorComputeReduced(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::LMMNormalDriftCalculator object
+\param CurveState LMMCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSMMDriftCalculator \b qlSMMDriftCalculator
+\code
+
+string returnValue
+
+qlSMMDriftCalculator(
+        string ObjectId
+        vector<vector<double> > Pseudo_square_root
+        vector<double> Displacements
+        vector<double> Taus
+        long Numeraire
+        long Alive
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SMMDriftCalculator and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Pseudo_square_root Pseudo square root of the covariance matrix.
+\param Displacements displacements.
+\param Taus taus.
+\param Numeraire numeraire.
+\param Alive index of the first rates still alive.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSMMDriftCalculatorCompute \b qlSMMDriftCalculatorCompute
+\code
+
+vector<double> returnValue
+
+qlSMMDriftCalculatorCompute(
+        string ObjectId
+        string CurveState
+        any Trigger)
+
+\endcode
+\par Description:
+
+Full factor drift computation using the SMMDriftCalculator object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SMMDriftCalculator object
+\param CurveState CoterminalSwapCurveState object ID.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

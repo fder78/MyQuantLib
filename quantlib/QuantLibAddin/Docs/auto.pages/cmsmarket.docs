@@ -1,0 +1,100 @@
+
+/*  
+ Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2006 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_cmsmarket Cms Market
+\section overview Overview
+functions to construct and use CmsMarket objects.
+\section functionlist Function List
+\ref qlBrowseCmsMarket ()\n
+\ref qlCmsMarket ()\n
+
+\section documentation Function Documentation
+\anchor qlBrowseCmsMarket \b qlBrowseCmsMarket
+\code
+
+vector<vector<any> > returnValue
+
+qlBrowseCmsMarket(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+return the market and implied spreads matrix.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CmsMarket object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmsMarket \b qlCmsMarket
+\code
+
+string returnValue
+
+qlCmsMarket(
+        string ObjectId
+        vector<string> SwapLengths
+        vector<string> SwapIndexes
+        string IborIndex
+        vector<vector<string> > BidAskSpreads
+        vector<string> CmsCouponPricers
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CmsMarket and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SwapLengths vector of swap lengths.
+\param SwapIndexes vector of SwapIndex object IDs.
+\param IborIndex IborIndex object ID.
+\param BidAskSpreads matrix of bid/ask cms quotes (spread over ibor leg).
+\param CmsCouponPricers vector of HaganPricer object IDs.
+\param YieldCurve discounting YieldTermStructure object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

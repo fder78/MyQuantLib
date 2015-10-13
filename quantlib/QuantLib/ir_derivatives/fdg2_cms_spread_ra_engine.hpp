@@ -13,6 +13,8 @@ namespace QuantLib {
       public:
         FdG2CmsSpreadRAEngine(
             const boost::shared_ptr<G2>& model,
+			const Real pastAccrual,
+			const Real pastFixing,
             Size tGrid = 100, Size xGrid = 50, Size yGrid = 50,
             Size dampingSteps = 0, Real invEps = 1e-5,
             const FdmSchemeDesc& schemeDesc = FdmSchemeDesc::Hundsdorfer());
@@ -21,6 +23,7 @@ namespace QuantLib {
 
       private:
 		  const Size tGrid_, xGrid_, yGrid_, dampingSteps_;
+		  const Real pastAccrual_, pastFixing_;
 		  const Real invEps_;
 		  const FdmSchemeDesc schemeDesc_;
     };

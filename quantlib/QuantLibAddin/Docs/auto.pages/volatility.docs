@@ -1,0 +1,293 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_volatility Market Model Volatility
+\section overview Overview
+functions to construct and use Market Model Volatility objects.
+\section functionlist Function List
+\ref qlMarketModelLmExtLinearExponentialVolModel ()\n
+\ref qlPiecewiseConstantAbcdVariance ()\n
+\ref qlPiecewiseConstantVarianceRateTimes ()\n
+\ref qlPiecewiseConstantVarianceTotalVariance ()\n
+\ref qlPiecewiseConstantVarianceTotalVolatility ()\n
+\ref qlPiecewiseConstantVarianceVariance ()\n
+\ref qlPiecewiseConstantVarianceVariances ()\n
+\ref qlPiecewiseConstantVarianceVolatilities ()\n
+\ref qlPiecewiseConstantVarianceVolatility ()\n
+
+\section documentation Function Documentation
+\anchor qlMarketModelLmExtLinearExponentialVolModel \b qlMarketModelLmExtLinearExponentialVolModel
+\code
+
+string returnValue
+
+qlMarketModelLmExtLinearExponentialVolModel(
+        string ObjectId
+        vector<double> FixingTimes
+        double A
+        double B
+        double C
+        double D
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LmExtLinearExponentialVolModel and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FixingTimes rate fixing times.
+\param A a parameter.
+\param B b parameter.
+\param C c parameter.
+\param D d parameter.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPiecewiseConstantAbcdVariance \b qlPiecewiseConstantAbcdVariance
+\code
+
+string returnValue
+
+qlPiecewiseConstantAbcdVariance(
+        string ObjectId
+        double A
+        double B
+        double C
+        double D
+        long ResetIndex
+        vector<double> RateTimes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class PiecewiseConstantAbcdVariance and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param A coefficient in abcd vol parametrization. Used as guess if the object is later calibrated. Default value = -0.06.
+\param B coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.17.
+\param C coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.54.
+\param D coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. Default value = 0.17.
+\param ResetIndex Index that defines the reset time of rate.
+\param RateTimes rate fixing times.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPiecewiseConstantVarianceRateTimes \b qlPiecewiseConstantVarianceRateTimes
+\code
+
+vector<double> returnValue
+
+qlPiecewiseConstantVarianceRateTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the rate time of the PiecewiseConstantVariance object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantVarianceTotalVariance \b qlPiecewiseConstantVarianceTotalVariance
+\code
+
+double returnValue
+
+qlPiecewiseConstantVarianceTotalVariance(
+        string ObjectId
+        long TimeIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the total variance at a given time index of the PiecewiseConstantVariance object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param TimeIndex time index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantVarianceTotalVolatility \b qlPiecewiseConstantVarianceTotalVolatility
+\code
+
+double returnValue
+
+qlPiecewiseConstantVarianceTotalVolatility(
+        string ObjectId
+        long TimeIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the total variance at a given time index of the PiecewiseConstantVariance object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param TimeIndex time index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantVarianceVariance \b qlPiecewiseConstantVarianceVariance
+\code
+
+double returnValue
+
+qlPiecewiseConstantVarianceVariance(
+        string ObjectId
+        long TimeIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the piecewise constant variance at a given time index.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param TimeIndex time index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantVarianceVariances \b qlPiecewiseConstantVarianceVariances
+\code
+
+vector<double> returnValue
+
+qlPiecewiseConstantVarianceVariances(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the piecewise constant variances.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantVarianceVolatilities \b qlPiecewiseConstantVarianceVolatilities
+\code
+
+vector<double> returnValue
+
+qlPiecewiseConstantVarianceVolatilities(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the piecewise constant volatilities.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseConstantVarianceVolatility \b qlPiecewiseConstantVarianceVolatility
+\code
+
+double returnValue
+
+qlPiecewiseConstantVarianceVolatility(
+        string ObjectId
+        long TimeIndex
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the piecewise constant volatility at a given time index.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::PiecewiseConstantVariance object
+\param TimeIndex time index.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

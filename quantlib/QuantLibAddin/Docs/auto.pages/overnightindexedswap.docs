@@ -1,0 +1,505 @@
+
+/*  
+ Copyright (C) 2009, 2011, 2015 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_overnightindexedswap Overnight Indexed Swap
+\section overview Overview
+functions to construct and use OvernightIndexedSwap objects.
+\section functionlist Function List
+\ref qlMakeDatedOIS ()\n
+\ref qlMakeOIS ()\n
+\ref qlOvernightIndexedSwap ()\n
+\ref qlOvernightIndexedSwapFairRate ()\n
+\ref qlOvernightIndexedSwapFairSpread ()\n
+\ref qlOvernightIndexedSwapFixedDayCount ()\n
+\ref qlOvernightIndexedSwapFixedLegAnalysis ()\n
+\ref qlOvernightIndexedSwapFixedLegBPS ()\n
+\ref qlOvernightIndexedSwapFixedLegNPV ()\n
+\ref qlOvernightIndexedSwapFixedRate ()\n
+\ref qlOvernightIndexedSwapFromOISRateHelper ()\n
+\ref qlOvernightIndexedSwapNominal ()\n
+\ref qlOvernightIndexedSwapOvernightLegAnalysis ()\n
+\ref qlOvernightIndexedSwapOvernightLegBPS ()\n
+\ref qlOvernightIndexedSwapOvernightLegNPV ()\n
+\ref qlOvernightIndexedSwapSpread ()\n
+\ref qlOvernightIndexedSwapType ()\n
+
+\section documentation Function Documentation
+\anchor qlMakeDatedOIS \b qlMakeDatedOIS
+\code
+
+string returnValue
+
+qlMakeDatedOIS(
+        string ObjectId
+        long StartDate
+        long EndDate
+        string OvernightIndex
+        double FixedRate
+        string FixDayCounter
+        double Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OvernightIndexedSwap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param StartDate ois start date. If missing first ECB date is used. Default value = QuantLib::Date().
+\param EndDate ois end date. If missing first ECB date after start date is used. Default value = QuantLib::Date().
+\param OvernightIndex OvernightIndex object ID.
+\param FixedRate the fixed leg rate. If missing atm rate is used. Default value = QuantLib::Null<QuantLib::Rate>().
+\param FixDayCounter fixed leg day counter. Default value = Actual/360.
+\param Spread the spread in the overnight leg rate. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMakeOIS \b qlMakeOIS
+\code
+
+string returnValue
+
+qlMakeOIS(
+        string ObjectId
+        long SettlDays
+        string SwapTenor
+        string OvernightIndex
+        double FixedRate
+        string ForwardStart
+        string FixDayCounter
+        double Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OvernightIndexedSwap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SettlDays Number of days to spot date. Default value = 2.
+\param SwapTenor swap tenor period (e.g. 5Y).
+\param OvernightIndex OvernightIndex object ID.
+\param FixedRate the fixed leg rate. If missing atm rate is used. Default value = QuantLib::Null<QuantLib::Rate>().
+\param ForwardStart forward start period (from spot date).
+\param FixDayCounter fixed leg day counter. Default value = Actual/360.
+\param Spread the spread in the overnight leg rate. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOvernightIndexedSwap \b qlOvernightIndexedSwap
+\code
+
+string returnValue
+
+qlOvernightIndexedSwap(
+        string ObjectId
+        string PayerReceiver
+        vector<double> Nominal
+        string Schedule
+        double FixedRate
+        string FixDayCounter
+        string OvernightIndex
+        double Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OvernightIndexedSwap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param PayerReceiver PAYER to pay the fixed rate, RECEIVER to receive it. Default value = Payer.
+\param Nominal Notional Amount. Default value = 100.
+\param Schedule Schedule object ID.
+\param FixedRate the fixed leg rate. Default value = 0.0.
+\param FixDayCounter fixed leg day counter (e.g. Actual/360).
+\param OvernightIndex overnight leg OvernightIndex object ID.
+\param Spread overnight leg spread. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOvernightIndexedSwapFairRate \b qlOvernightIndexedSwapFairRate
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapFairRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fair fixed leg rate which would zero the swap NPV for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFairSpread \b qlOvernightIndexedSwapFairSpread
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapFairSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fair spread over the overnight rate which would zero the swap NPV for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFixedDayCount \b qlOvernightIndexedSwapFixedDayCount
+\code
+
+string returnValue
+
+qlOvernightIndexedSwapFixedDayCount(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fixed rate day count convention for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFixedLegAnalysis \b qlOvernightIndexedSwapFixedLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlOvernightIndexedSwapFixedLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fixed rate leg cash flow analysis of the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::OvernightIndexedSwap object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFixedLegBPS \b qlOvernightIndexedSwapFixedLegBPS
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapFixedLegBPS(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the BPS of the fixed rate leg for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFixedLegNPV \b qlOvernightIndexedSwapFixedLegNPV
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapFixedLegNPV(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the NPV of the fixed rate leg for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFixedRate \b qlOvernightIndexedSwapFixedRate
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapFixedRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fixed rate for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapFromOISRateHelper \b qlOvernightIndexedSwapFromOISRateHelper
+\code
+
+string returnValue
+
+qlOvernightIndexedSwapFromOISRateHelper(
+        string ObjectId
+        string OISRateHelper
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OvernightIndexedSwap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OISRateHelper OISRateHelper object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOvernightIndexedSwapNominal \b qlOvernightIndexedSwapNominal
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapNominal(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the swap nominal for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapOvernightLegAnalysis \b qlOvernightIndexedSwapOvernightLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlOvernightIndexedSwapOvernightLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the overnight rate leg cash flow analysis.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::OvernightIndexedSwap object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapOvernightLegBPS \b qlOvernightIndexedSwapOvernightLegBPS
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapOvernightLegBPS(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the BPS of the overnight rate leg for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapOvernightLegNPV \b qlOvernightIndexedSwapOvernightLegNPV
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapOvernightLegNPV(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the NPV of the overnight rate leg for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapSpread \b qlOvernightIndexedSwapSpread
+\code
+
+double returnValue
+
+qlOvernightIndexedSwapSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the spread over overnight rate for the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOvernightIndexedSwapType \b qlOvernightIndexedSwapType
+\code
+
+string returnValue
+
+qlOvernightIndexedSwapType(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the swap type (Payer or Receiver) of the given OvernightIndexedSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OvernightIndexedSwap object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

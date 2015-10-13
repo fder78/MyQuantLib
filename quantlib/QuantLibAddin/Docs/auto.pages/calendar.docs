@@ -1,0 +1,337 @@
+
+/*  
+ Copyright (C) 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_calendar Calendar
+\section overview Overview
+Calendar related functions.
+\section functionlist Function List
+\ref qlCalendarAddHoliday ()\n
+\ref qlCalendarAdjust ()\n
+\ref qlCalendarAdvance ()\n
+\ref qlCalendarBusinessDaysBetween ()\n
+\ref qlCalendarEndOfMonth ()\n
+\ref qlCalendarHolidayList ()\n
+\ref qlCalendarIsBusinessDay ()\n
+\ref qlCalendarIsEndOfMonth ()\n
+\ref qlCalendarIsHoliday ()\n
+\ref qlCalendarName ()\n
+\ref qlCalendarRemoveHoliday ()\n
+
+\section documentation Function Documentation
+\anchor qlCalendarAddHoliday \b qlCalendarAddHoliday
+\code
+
+void returnValue
+
+qlCalendarAddHoliday(
+        string calendar
+        long Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+adds an holiday to the given calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarAdjust \b qlCalendarAdjust
+\code
+
+vector<long> returnValue
+
+qlCalendarAdjust(
+        string calendar
+        vector<long> Date
+        string BusinessDayConvention
+        any Trigger)
+
+\endcode
+\par Description:
+
+Adjusts a non-business day to the appropriate near business day according to a given calendar with respect to the given convention.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date to be adjusted.
+\param BusinessDayConvention rolling convention. Default value = Following.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarAdvance \b qlCalendarAdvance
+\code
+
+vector<long> returnValue
+
+qlCalendarAdvance(
+        string calendar
+        long StartDate
+        vector<string> Period
+        string BusinessDayConvention
+        bool EndOfMonth
+        any Trigger)
+
+\endcode
+\par Description:
+
+advances a date according to a given calendar.
+
+\par Supported Platforms:
+
+Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param StartDate start date to be advanced.
+\param Period period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).
+\param BusinessDayConvention rolling convention. Default value = Following.
+\param EndOfMonth flag to enforce end of month convention. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarBusinessDaysBetween \b qlCalendarBusinessDaysBetween
+\code
+
+vector<long> returnValue
+
+qlCalendarBusinessDaysBetween(
+        string calendar
+        vector<long> FirstDate
+        long LastDate
+        bool IncludeFirst
+        bool IncludeLast
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of business days between two dates.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param FirstDate first date of the period.
+\param LastDate last date of the period.
+\param IncludeFirst include the first date when counting business days. Default value = false.
+\param IncludeLast include the last date when counting business days. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarEndOfMonth \b qlCalendarEndOfMonth
+\code
+
+vector<long> returnValue
+
+qlCalendarEndOfMonth(
+        string calendar
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the last business day in the given calendar of the month to which the given date belongs.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarHolidayList \b qlCalendarHolidayList
+\code
+
+vector<long> returnValue
+
+qlCalendarHolidayList(
+        string Calendar
+        long FromDate
+        long ToDate
+        bool IncludeWeekEnds
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the holidays in a period between two dates according to a given holiday calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param Calendar Calendar to use for holiday determination.
+\param FromDate first date of the period.
+\param ToDate last date of the period.
+\param IncludeWeekEnds include week-end as holidays. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarIsBusinessDay \b qlCalendarIsBusinessDay
+\code
+
+vector<bool> returnValue
+
+qlCalendarIsBusinessDay(
+        string calendar
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the date is a business day for the given calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarIsEndOfMonth \b qlCalendarIsEndOfMonth
+\code
+
+vector<bool> returnValue
+
+qlCalendarIsEndOfMonth(
+        string calendar
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if the date is last business day for the month in the given calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarIsHoliday \b qlCalendarIsHoliday
+\code
+
+vector<bool> returnValue
+
+qlCalendarIsHoliday(
+        string calendar
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if the date is a holiday for the given calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarName \b qlCalendarName
+\code
+
+string returnValue
+
+qlCalendarName(
+        string calendar
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the name of the given calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCalendarRemoveHoliday \b qlCalendarRemoveHoliday
+\code
+
+void returnValue
+
+qlCalendarRemoveHoliday(
+        string calendar
+        long Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+removes an holiday from the given calendar.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param calendar ID of Enumeration of class QuantLib::Calendar
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

@@ -1,0 +1,502 @@
+
+/*  
+ 
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_curvestate CurveState
+\section overview Overview
+functions to construct and use CurveState objects.
+\section functionlist Function List
+\ref qlCMSwapCurveState ()\n
+\ref qlCMSwapCurveStateSetOnCMSwapRates ()\n
+\ref qlConstantMaturitySwapAnnuitiesFromDiscountRatios ()\n
+\ref qlConstantMaturitySwapRatesFromDiscountRatios ()\n
+\ref qlCoterminalSwapAnnuitiesFromDiscountRatios ()\n
+\ref qlCoterminalSwapCurveState ()\n
+\ref qlCoterminalSwapCurveStateSetOnCoterminalSwapRates ()\n
+\ref qlCoterminalSwapRatesFromDiscountRatios ()\n
+\ref qlCurveStateCMSwapRates ()\n
+\ref qlCurveStateCoterminalSwapRates ()\n
+\ref qlCurveStateForwardRates ()\n
+\ref qlCurveStateRateTaus ()\n
+\ref qlCurveStateRateTimes ()\n
+\ref qlForwardsFromDiscountRatios ()\n
+\ref qlLMMCurveState ()\n
+\ref qlLMMCurveStateSetOnDiscountRatios ()\n
+\ref qlLMMCurveStateSetOnForwardRates ()\n
+
+\section documentation Function Documentation
+\anchor qlCMSwapCurveState \b qlCMSwapCurveState
+\code
+
+string returnValue
+
+qlCMSwapCurveState(
+        string ObjectId
+        vector<double> RateTimes
+        long SpanningForwards
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CMSwapCurveState and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param SpanningForwards number of forwards underlying the CMS.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCMSwapCurveStateSetOnCMSwapRates \b qlCMSwapCurveStateSetOnCMSwapRates
+\code
+
+void returnValue
+
+qlCMSwapCurveStateSetOnCMSwapRates(
+        string ObjectId
+        vector<double> CMSwapRates
+        any Trigger)
+
+\endcode
+\par Description:
+
+set the CurveState object on given vector of coterminal swaps.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CMSwapCurveState object
+\param CMSwapRates Coterminal swap rates.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlConstantMaturitySwapAnnuitiesFromDiscountRatios \b qlConstantMaturitySwapAnnuitiesFromDiscountRatios
+\code
+
+vector<double> returnValue
+
+qlConstantMaturitySwapAnnuitiesFromDiscountRatios(
+        long SpanningForwards
+        long FirstValidIndex
+        vector<double> DiscountRatios
+        vector<double> Taus
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns constant maturity swap annuities from discount ratios.
+
+\par Supported Platforms:
+
+Excel
+
+\param SpanningForwards number of forward rates spanned by the constant maturity swap.
+\param FirstValidIndex marks the first non expired discount bond.
+\param DiscountRatios vector of discount bond ratios.
+\param Taus rate time intervals.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlConstantMaturitySwapRatesFromDiscountRatios \b qlConstantMaturitySwapRatesFromDiscountRatios
+\code
+
+vector<double> returnValue
+
+qlConstantMaturitySwapRatesFromDiscountRatios(
+        long SpanningForwards
+        long FirstValidIndex
+        vector<double> DiscountRatios
+        vector<double> Taus
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns constant maturity swap rates from discount ratios.
+
+\par Supported Platforms:
+
+Excel
+
+\param SpanningForwards number of forward rates spanned by the constant maturity swap.
+\param FirstValidIndex marks the first non expired discount bond.
+\param DiscountRatios vector of discount bond ratios.
+\param Taus rate time intervals.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCoterminalSwapAnnuitiesFromDiscountRatios \b qlCoterminalSwapAnnuitiesFromDiscountRatios
+\code
+
+vector<double> returnValue
+
+qlCoterminalSwapAnnuitiesFromDiscountRatios(
+        long FirstValidIndex
+        vector<double> DiscountRatios
+        vector<double> Taus
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the coterminal swap annuities implied from discount bond ratios.
+
+\par Supported Platforms:
+
+Excel
+
+\param FirstValidIndex marks the first non expired discount bond.
+\param DiscountRatios vector of discount bond ratios.
+\param Taus rate time intervals.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCoterminalSwapCurveState \b qlCoterminalSwapCurveState
+\code
+
+string returnValue
+
+qlCoterminalSwapCurveState(
+        string ObjectId
+        vector<double> RateTimes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CoterminalSwapCurveState and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCoterminalSwapCurveStateSetOnCoterminalSwapRates \b qlCoterminalSwapCurveStateSetOnCoterminalSwapRates
+\code
+
+void returnValue
+
+qlCoterminalSwapCurveStateSetOnCoterminalSwapRates(
+        string ObjectId
+        vector<double> CoterminalSwaps
+        any Trigger)
+
+\endcode
+\par Description:
+
+set the CurveState object on given vector of coterminal swaps.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CoterminalSwapCurveState object
+\param CoterminalSwaps Coterminal swap rates.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCoterminalSwapRatesFromDiscountRatios \b qlCoterminalSwapRatesFromDiscountRatios
+\code
+
+vector<double> returnValue
+
+qlCoterminalSwapRatesFromDiscountRatios(
+        long FirstValidIndex
+        vector<double> DiscountRatios
+        vector<double> Taus
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the coterminal swap rates implied from discount bond ratios.
+
+\par Supported Platforms:
+
+Excel
+
+\param FirstValidIndex marks the first non expired discount bond.
+\param DiscountRatios vector of discount bond ratios.
+\param Taus rate time intervals.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCurveStateCMSwapRates \b qlCurveStateCMSwapRates
+\code
+
+vector<double> returnValue
+
+qlCurveStateCMSwapRates(
+        string ObjectId
+        long SpanningForwards
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the current swap rates of the CurveState object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CurveState object
+\param SpanningForwards number of forwards underlying the CMS.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCurveStateCoterminalSwapRates \b qlCurveStateCoterminalSwapRates
+\code
+
+vector<double> returnValue
+
+qlCurveStateCoterminalSwapRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the current swap rates of the CurveState object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CurveState object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCurveStateForwardRates \b qlCurveStateForwardRates
+\code
+
+vector<double> returnValue
+
+qlCurveStateForwardRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the current forward rates of the CurveState object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CurveState object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCurveStateRateTaus \b qlCurveStateRateTaus
+\code
+
+vector<double> returnValue
+
+qlCurveStateRateTaus(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+return the rate taus of the CurveState object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CurveState object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCurveStateRateTimes \b qlCurveStateRateTimes
+\code
+
+vector<double> returnValue
+
+qlCurveStateRateTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+return the rate times of the CurveState object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CurveState object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlForwardsFromDiscountRatios \b qlForwardsFromDiscountRatios
+\code
+
+vector<double> returnValue
+
+qlForwardsFromDiscountRatios(
+        long FirstValidIndex
+        vector<double> DiscountRatios
+        vector<double> Taus
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the forward rates implied from discount bond ratios.
+
+\par Supported Platforms:
+
+Excel
+
+\param FirstValidIndex marks the first non expired discount bond.
+\param DiscountRatios vector of discount bond ratios.
+\param Taus rate time intervals.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMCurveState \b qlLMMCurveState
+\code
+
+string returnValue
+
+qlLMMCurveState(
+        string ObjectId
+        vector<double> RateTimes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LMMCurveState and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLMMCurveStateSetOnDiscountRatios \b qlLMMCurveStateSetOnDiscountRatios
+\code
+
+void returnValue
+
+qlLMMCurveStateSetOnDiscountRatios(
+        string ObjectId
+        vector<double> DiscountRatios
+        any Trigger)
+
+\endcode
+\par Description:
+
+set the CurveState object on given vector of discount ratios.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::LMMCurveState object
+\param DiscountRatios discount ratios.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLMMCurveStateSetOnForwardRates \b qlLMMCurveStateSetOnForwardRates
+\code
+
+void returnValue
+
+qlLMMCurveStateSetOnForwardRates(
+        string ObjectId
+        vector<double> Rates
+        any Trigger)
+
+\endcode
+\par Description:
+
+set the CurveState object on given vector of forward rates.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::LMMCurveState object
+\param Rates forward rates.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

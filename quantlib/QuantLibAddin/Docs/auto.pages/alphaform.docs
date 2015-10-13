@@ -1,0 +1,151 @@
+
+/*  
+ Copyright (C) 2007 Marco Bianchetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_alphaform AlphaForm
+\section overview Overview
+functions to construct and use AlphaForm objects.
+\section functionlist Function List
+\ref qlAlphaFormInverseLinear ()\n
+\ref qlAlphaFormLinearHyperbolic ()\n
+\ref qlAlphaFormOperator ()\n
+\ref qlAlphaFormSetAlpha ()\n
+
+\section documentation Function Documentation
+\anchor qlAlphaFormInverseLinear \b qlAlphaFormInverseLinear
+\code
+
+string returnValue
+
+qlAlphaFormInverseLinear(
+        string ObjectId
+        vector<double> RateTimes
+        double Alpha
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AlphaFormInverseLinear and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Alpha alpha coefficient.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAlphaFormLinearHyperbolic \b qlAlphaFormLinearHyperbolic
+\code
+
+string returnValue
+
+qlAlphaFormLinearHyperbolic(
+        string ObjectId
+        vector<double> RateTimes
+        double Alpha
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AlphaFormLinearHyperbolic and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param RateTimes rate fixing times.
+\param Alpha alpha coefficient.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAlphaFormOperator \b qlAlphaFormOperator
+\code
+
+double returnValue
+
+qlAlphaFormOperator(
+        string ObjectId
+        long Time
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the Alpha Form value at time i.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AlphaForm object
+\param Time integer corresponding to i-th time.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAlphaFormSetAlpha \b qlAlphaFormSetAlpha
+\code
+
+void returnValue
+
+qlAlphaFormSetAlpha(
+        string ObjectId
+        double Alpha
+        any Trigger)
+
+\endcode
+\par Description:
+
+set the Alpha parameter value to Alpha Form.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AlphaForm object
+\param Alpha Alpha parameter value for Alpha Form.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

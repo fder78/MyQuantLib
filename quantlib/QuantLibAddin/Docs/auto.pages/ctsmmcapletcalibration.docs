@@ -1,0 +1,553 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2006, 2007 Marco Bianchetti
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_ctsmmcapletcalibration Ctsmmcapletcalibration
+\section overview Overview
+functions to construct and use ctsmmcapletcalibration objects.
+\section functionlist Function List
+\ref qlCTSMMCapletAlphaFormCalibration ()\n
+\ref qlCTSMMCapletAlphaFormCalibrationAlpha ()\n
+\ref qlCTSMMCapletCalibrationCalibrate ()\n
+\ref qlCTSMMCapletCalibrationCapletMaxError ()\n
+\ref qlCTSMMCapletCalibrationCapletRmsError ()\n
+\ref qlCTSMMCapletCalibrationDeformationSize ()\n
+\ref qlCTSMMCapletCalibrationFailures ()\n
+\ref qlCTSMMCapletCalibrationMarketCapletVols ()\n
+\ref qlCTSMMCapletCalibrationMarketSwaptionVols ()\n
+\ref qlCTSMMCapletCalibrationModelCapletVols ()\n
+\ref qlCTSMMCapletCalibrationModelSwaptionVols ()\n
+\ref qlCTSMMCapletCalibrationSwapPseudoRoot ()\n
+\ref qlCTSMMCapletCalibrationSwaptionMaxError ()\n
+\ref qlCTSMMCapletCalibrationSwaptionRmsError ()\n
+\ref qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols ()\n
+\ref qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols ()\n
+\ref qlCTSMMCapletMaxHomogeneityCalibration ()\n
+\ref qlCTSMMCapletOriginalCalibration ()\n
+
+\section documentation Function Documentation
+\anchor qlCTSMMCapletAlphaFormCalibration \b qlCTSMMCapletAlphaFormCalibration
+\code
+
+string returnValue
+
+qlCTSMMCapletAlphaFormCalibration(
+        string ObjectId
+        string Evolution
+        string Correlations
+        vector<string> SwapPiecewiseConstantVariances
+        vector<double> CapletVols
+        string CurveState
+        double Displacement
+        vector<double> AlphaInitial
+        vector<double> AlphaMax
+        vector<double> AlphaMin
+        bool MaximizeHomogeneity
+        string AlphaForm
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CTSMMCapletAlphaFormCalibration and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Evolution Evolution Description.
+\param Correlations PiecewiseConstantCorrelation object ID.
+\param SwapPiecewiseConstantVariances PiecewiseConstantVariance IDs.
+\param CapletVols caplet volatilities.
+\param CurveState CurveState object ID.
+\param Displacement displacement. Default value = 0.0.
+\param AlphaInitial alphaInitial.
+\param AlphaMax alphaMax. Default value = 1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0.
+\param AlphaMin alphaMin. Default value = -1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0.
+\param MaximizeHomogeneity TRUE for maximizing homogeneity. Default value = true.
+\param AlphaForm alpha form ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCTSMMCapletAlphaFormCalibrationAlpha \b qlCTSMMCapletAlphaFormCalibrationAlpha
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletAlphaFormCalibrationAlpha(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+alpha.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletAlphaFormCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationCalibrate \b qlCTSMMCapletCalibrationCalibrate
+\code
+
+bool returnValue
+
+qlCTSMMCapletCalibrationCalibrate(
+        string ObjectId
+        long NumberOfFactors
+        long MaxIter
+        double Tol
+        long InnerMaxIter
+        double InnerTol
+        any Trigger)
+
+\endcode
+\par Description:
+
+calibrate.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param NumberOfFactors number of factors.
+\param MaxIter maximum number of iterations. Default value = 2.
+\param Tol caplet vol tolerance. Default value = 0.0001.
+\param InnerMaxIter innerMaxIter. Default value = 100.
+\param InnerTol caplet vol tolerance. Default value = 1e-8.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationCapletMaxError \b qlCTSMMCapletCalibrationCapletMaxError
+\code
+
+double returnValue
+
+qlCTSMMCapletCalibrationCapletMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+capletMaxError.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationCapletRmsError \b qlCTSMMCapletCalibrationCapletRmsError
+\code
+
+double returnValue
+
+qlCTSMMCapletCalibrationCapletRmsError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+capletRmsError.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationDeformationSize \b qlCTSMMCapletCalibrationDeformationSize
+\code
+
+double returnValue
+
+qlCTSMMCapletCalibrationDeformationSize(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+deformationSize.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationFailures \b qlCTSMMCapletCalibrationFailures
+\code
+
+long returnValue
+
+qlCTSMMCapletCalibrationFailures(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+failures.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationMarketCapletVols \b qlCTSMMCapletCalibrationMarketCapletVols
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletCalibrationMarketCapletVols(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+market caplet volalitilies.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationMarketSwaptionVols \b qlCTSMMCapletCalibrationMarketSwaptionVols
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletCalibrationMarketSwaptionVols(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+market swaption volalitilies.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationModelCapletVols \b qlCTSMMCapletCalibrationModelCapletVols
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletCalibrationModelCapletVols(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+model caplet volalitilies.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationModelSwaptionVols \b qlCTSMMCapletCalibrationModelSwaptionVols
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletCalibrationModelSwaptionVols(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+model swaption volalitilies.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationSwapPseudoRoot \b qlCTSMMCapletCalibrationSwapPseudoRoot
+\code
+
+vector<vector<double> > returnValue
+
+qlCTSMMCapletCalibrationSwapPseudoRoot(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+swapPseudoRoot.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Index index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationSwaptionMaxError \b qlCTSMMCapletCalibrationSwaptionMaxError
+\code
+
+double returnValue
+
+qlCTSMMCapletCalibrationSwaptionMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+swaptionMaxError.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationSwaptionRmsError \b qlCTSMMCapletCalibrationSwaptionRmsError
+\code
+
+double returnValue
+
+qlCTSMMCapletCalibrationSwaptionRmsError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+swaptionRmsError.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols \b qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+timeDependentCalibratedSwaptionVols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Index index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols \b qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols
+\code
+
+vector<double> returnValue
+
+qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+timeDependentUnCalibratedSwaptionVols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CTSMMCapletCalibration object
+\param Index index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCTSMMCapletMaxHomogeneityCalibration \b qlCTSMMCapletMaxHomogeneityCalibration
+\code
+
+string returnValue
+
+qlCTSMMCapletMaxHomogeneityCalibration(
+        string ObjectId
+        string Evolution
+        string Correlations
+        vector<string> SwapPiecewiseConstantVariances
+        vector<double> CapletVols
+        string CurveState
+        double Displacement
+        double Caplet0Swaption1Priority
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CTSMMCapletMaxHomogeneityCalibration and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Evolution Evolution Description.
+\param Correlations PiecewiseConstantCorrelation object ID.
+\param SwapPiecewiseConstantVariances PiecewiseConstantVariance IDs.
+\param CapletVols caplet volatilities.
+\param CurveState CurveState object ID.
+\param Displacement displacement. Default value = 0.0.
+\param Caplet0Swaption1Priority caplet0Swaption1Priority. Default value = 1.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCTSMMCapletOriginalCalibration \b qlCTSMMCapletOriginalCalibration
+\code
+
+string returnValue
+
+qlCTSMMCapletOriginalCalibration(
+        string ObjectId
+        string Evolution
+        string Correlations
+        vector<string> SwapPiecewiseConstantVariances
+        vector<double> CapletVols
+        string CurveState
+        double Displacement
+        vector<double> Alphas
+        bool LowestRoot
+        bool UseFullApprox
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CTSMMCapletOriginalCalibration and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Evolution Evolution Description.
+\param Correlations PiecewiseConstantCorrelation object ID.
+\param SwapPiecewiseConstantVariances PiecewiseConstantVariance IDs.
+\param CapletVols caplet volatilities.
+\param CurveState CurveState object ID.
+\param Displacement displacement. Default value = 0.0.
+\param Alphas alphas.
+\param LowestRoot TRUE for lowest root, FALSE for the root nearest to 1.0. Default value = true.
+\param UseFullApprox TRUE for using Full Approximation.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

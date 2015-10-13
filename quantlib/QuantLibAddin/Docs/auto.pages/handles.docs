@@ -1,0 +1,109 @@
+
+/*  
+ Copyright (C) 2006, 2007 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_handles Handles
+\section overview Overview
+handles.
+\section functionlist Function List
+\ref qlHandleCurrentLink ()\n
+\ref qlHandleEmpty ()\n
+\ref qlRelinkableHandleLinkTo ()\n
+
+\section documentation Function Documentation
+\anchor qlHandleCurrentLink \b qlHandleCurrentLink
+\code
+
+string returnValue
+
+qlHandleCurrentLink(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+ID of object to which this handle is linked - empty string if none.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLibAddin::Handle object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlHandleEmpty \b qlHandleEmpty
+\code
+
+bool returnValue
+
+qlHandleEmpty(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+True if handle is empty, False if not.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLibAddin::Handle object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRelinkableHandleLinkTo \b qlRelinkableHandleLinkTo
+\code
+
+void returnValue
+
+qlRelinkableHandleLinkTo(
+        string ObjectId
+        string CurrentLink
+        any Trigger)
+
+\endcode
+\par Description:
+
+Relink the RelinkableHandle to the given object.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLibAddin::RelinkableHandle object
+\param CurrentLink ID of Object to which the RelinkableHandle should be relinked, or empty string for null object. Default value = .
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

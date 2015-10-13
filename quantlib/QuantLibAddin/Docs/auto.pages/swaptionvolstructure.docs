@@ -1,0 +1,854 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006 Silvia Frasson
+ Copyright (C) 2006 Mario Pucci
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_swaptionvolstructure Swaption Volatility Term Structures
+\section overview Overview
+functions to construct and use SwaptionVolatilityStructure objects.
+\section functionlist Function List
+\ref qlConstantSwaptionVolatility ()\n
+\ref qlDenseSabrParameters ()\n
+\ref qlMarketVolCube ()\n
+\ref qlRelinkableHandleSwaptionVolatilityStructure ()\n
+\ref qlSmileSectionByCube ()\n
+\ref qlSmileSectionByCube2 ()\n
+\ref qlSparseSabrParameters ()\n
+\ref qlSpreadedSwaptionVolatility ()\n
+\ref qlSwaptionVTSBlackVariance ()\n
+\ref qlSwaptionVTSBlackVariance2 ()\n
+\ref qlSwaptionVTSBusinessDayConvention ()\n
+\ref qlSwaptionVTSMatrix ()\n
+\ref qlSwaptionVTSMatrixLocate ()\n
+\ref qlSwaptionVTSMatrixOptionDates ()\n
+\ref qlSwaptionVTSMatrixOptionTenors ()\n
+\ref qlSwaptionVTSMatrixSwapTenors ()\n
+\ref qlSwaptionVTSMaxSwapTenor ()\n
+\ref qlSwaptionVTSOptionDateFromTenor ()\n
+\ref qlSwaptionVTSSwapLength ()\n
+\ref qlSwaptionVTSSwapLength2 ()\n
+\ref qlSwaptionVTSVolatility ()\n
+\ref qlSwaptionVTSVolatility2 ()\n
+\ref qlSwaptionVTSatmStrike ()\n
+\ref qlSwaptionVTSatmStrike2 ()\n
+\ref qlSwaptionVolCube1 ()\n
+\ref qlSwaptionVolCube2 ()\n
+\ref qlVolCubeAtmCalibrated ()\n
+
+\section documentation Function Documentation
+\anchor qlConstantSwaptionVolatility \b qlConstantSwaptionVolatility
+\code
+
+string returnValue
+
+qlConstantSwaptionVolatility(
+        string ObjectId
+        long NDays
+        string Calendar
+        string BusinessDayConvention
+        string Volatility
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ConstantSwaptionVolatility and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param NDays number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0. Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries.
+\param BusinessDayConvention Business day convention used for calculating the exercise dates from the expiries.
+\param Volatility cap/floor constant volatility Quote.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDenseSabrParameters \b qlDenseSabrParameters
+\code
+
+vector<vector<any> > returnValue
+
+qlDenseSabrParameters(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns results of Sabr calibration for the given SwaptionVolCube1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SwaptionVolCube1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMarketVolCube \b qlMarketVolCube
+\code
+
+vector<vector<any> > returnValue
+
+qlMarketVolCube(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the market volatility cube for the given SwaptionVolCube1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SwaptionVolCube1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRelinkableHandleSwaptionVolatilityStructure \b qlRelinkableHandleSwaptionVolatilityStructure
+\code
+
+string returnValue
+
+qlRelinkableHandleSwaptionVolatilityStructure(
+        string ObjectId
+        string CurrentLink
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RelinkableHandleImpl<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure> and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param CurrentLink SwaptionVolatilityStructure object ID. If omitted, nothing is linked by the RelinkableHandle. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSmileSectionByCube \b qlSmileSectionByCube
+\code
+
+string returnValue
+
+qlSmileSectionByCube(
+        string ObjectId
+        string VolCube
+        long OptionDate
+        string SwapTenor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SmileSectionByCube and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param VolCube Swaption volatility cube object ID.
+\param OptionDate smile's expiry as date.
+\param SwapTenor smile's underlying swap length.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSmileSectionByCube2 \b qlSmileSectionByCube2
+\code
+
+string returnValue
+
+qlSmileSectionByCube2(
+        string ObjectId
+        string VolCube
+        string OptionDate
+        string SwapTenor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SmileSectionByCube and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param VolCube Swaption volatility cube object ID.
+\param OptionDate smile's expiry as period.
+\param SwapTenor smile's underlying swap length.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSparseSabrParameters \b qlSparseSabrParameters
+\code
+
+vector<vector<any> > returnValue
+
+qlSparseSabrParameters(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns results of Sabr calibration for the given SwaptionVolCube1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SwaptionVolCube1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSpreadedSwaptionVolatility \b qlSpreadedSwaptionVolatility
+\code
+
+string returnValue
+
+qlSpreadedSwaptionVolatility(
+        string ObjectId
+        string BaseVolStructure
+        string Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SpreadedSwaptionVolatility and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param BaseVolStructure Base SwaptionVolatilityStructure object ID.
+\param Spread spread.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwaptionVTSBlackVariance \b qlSwaptionVTSBlackVariance
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSBlackVariance(
+        string ObjectId
+        vector<long> OptionDate
+        string SwapTenor
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns variance from the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param OptionDate swaption expiry date.
+\param SwapTenor underlying swap tenor.
+\param Strike swaption strike vector.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSBlackVariance2 \b qlSwaptionVTSBlackVariance2
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSBlackVariance2(
+        string ObjectId
+        vector<string> OptionTenor
+        string SwapTenor
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns variance from the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param OptionTenor swaption option tenor.
+\param SwapTenor underlying swap tenor.
+\param Strike swaption strike vector.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSBusinessDayConvention \b qlSwaptionVTSBusinessDayConvention
+\code
+
+string returnValue
+
+qlSwaptionVTSBusinessDayConvention(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the business day convention used for option date calculation by the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSMatrix \b qlSwaptionVTSMatrix
+\code
+
+string returnValue
+
+qlSwaptionVTSMatrix(
+        string ObjectId
+        string Calendar
+        string BusinessDayConvention
+        vector<string> OptionTenors
+        vector<string> SwapTenors
+        vector<vector<string> > Volatilities
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SwaptionVolatilityMatrix and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Calendar holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries.
+\param BusinessDayConvention Business day convention used for calculating the exercise dates from the expiries.
+\param OptionTenors swaption expiries as periods.
+\param SwapTenors underlying swap lengths.
+\param Volatilities vol quotes.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwaptionVTSMatrixLocate \b qlSwaptionVTSMatrixLocate
+\code
+
+vector<long> returnValue
+
+qlSwaptionVTSMatrixLocate(
+        string ObjectId
+        long OptionDate
+        string SwapTenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the lower indexes of surrounding volatility matrix corners for the given SwaptionVolatilityMatrix object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SwaptionVolatilityMatrix object
+\param OptionDate swaption expiry date.
+\param SwapTenor Underlying swap length as period (e.g. 5Y).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSMatrixOptionDates \b qlSwaptionVTSMatrixOptionDates
+\code
+
+vector<long> returnValue
+
+qlSwaptionVTSMatrixOptionDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the vector of swaption exercise dates for the given SwaptionVolatilityDiscrete object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityDiscrete object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSMatrixOptionTenors \b qlSwaptionVTSMatrixOptionTenors
+\code
+
+vector<string> returnValue
+
+qlSwaptionVTSMatrixOptionTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the vector of swaption exercise tenors for the given SwaptionVolatilityDiscrete object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityDiscrete object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSMatrixSwapTenors \b qlSwaptionVTSMatrixSwapTenors
+\code
+
+vector<string> returnValue
+
+qlSwaptionVTSMatrixSwapTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the vector of underlying swap tenors for the given SwaptionVolatilityDiscrete object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityDiscrete object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSMaxSwapTenor \b qlSwaptionVTSMaxSwapTenor
+\code
+
+string returnValue
+
+qlSwaptionVTSMaxSwapTenor(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the max swap tenor (i.e. length) for which the given SwaptionVolatilityStructure object can return vols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSOptionDateFromTenor \b qlSwaptionVTSOptionDateFromTenor
+\code
+
+vector<long> returnValue
+
+qlSwaptionVTSOptionDateFromTenor(
+        string ObjectId
+        vector<string> OptionTenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option date corresponding to a given option tenor, taking calendar and business day convention into account, for the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param OptionTenor swaption option tenor.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSSwapLength \b qlSwaptionVTSSwapLength
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSSwapLength(
+        string ObjectId
+        vector<string> SwapTenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the swap length corresponding to a given swap tenor for the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param SwapTenor swap tenor.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSSwapLength2 \b qlSwaptionVTSSwapLength2
+\code
+
+double returnValue
+
+qlSwaptionVTSSwapLength2(
+        string ObjectId
+        long SwapStart
+        long SwapEnd
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the swap length corresponding to a given swap start/end dates for the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param SwapStart swap start date.
+\param SwapEnd swap end date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSVolatility \b qlSwaptionVTSVolatility
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSVolatility(
+        string ObjectId
+        long OptionDate
+        string SwapTenor
+        vector<double> Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility from the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param OptionDate swaption expiry date.
+\param SwapTenor Underlying swap length as period (e.g. 5Y).
+\param Strike swaption strike.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSVolatility2 \b qlSwaptionVTSVolatility2
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSVolatility2(
+        string ObjectId
+        string OptionTenor
+        string SwapTenor
+        vector<double> Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility from the given SwaptionVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityStructure object
+\param OptionTenor swaption option tenor.
+\param SwapTenor Underlying swap length as period (e.g. 5Y).
+\param Strike swaption strike.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSatmStrike \b qlSwaptionVTSatmStrike
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSatmStrike(
+        string ObjectId
+        vector<long> OptionDate
+        string SwapTenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the at-the-money swaption strike, for a given exercise date and underlying swap length, for the given SwaptionVolatilityCube object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityCube object
+\param OptionDate swaption expiry date.
+\param SwapTenor Underlying swap length as period (e.g. 5Y).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVTSatmStrike2 \b qlSwaptionVTSatmStrike2
+\code
+
+vector<double> returnValue
+
+qlSwaptionVTSatmStrike2(
+        string ObjectId
+        vector<string> OptionTenor
+        string SwapTenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the at-the-money swaption strike, for a given option tenor and underlying swap length, for the given SwaptionVolatilityCube object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwaptionVolatilityCube object
+\param OptionTenor swaption's option tenor.
+\param SwapTenor Underlying swap length as period (e.g. 5Y).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwaptionVolCube1 \b qlSwaptionVolCube1
+\code
+
+string returnValue
+
+qlSwaptionVolCube1(
+        string ObjectId
+        string AtmVolStructure
+        vector<string> OptionTenors
+        vector<string> SwapTenors
+        vector<double> StrikeSpreads
+        vector<vector<string> > SpreadVols
+        string SwapIndexBase
+        string ShortSwapIndexBase
+        bool VegaWeightedSmileFit
+        vector<vector<string> > Guess
+        vector<bool> IsFixed
+        bool IsAtmCalibrated
+        string EndCriteria
+        double MaxErrorTol
+        string OptMethod
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SwaptionVolCube1 and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param AtmVolStructure At-the-money volatility structure.
+\param OptionTenors smile cube's expiries as periods.
+\param SwapTenors smile cube's underlying swap lengths.
+\param StrikeSpreads smile cube's strike spreads over the ATM strike rate.
+\param SpreadVols matrix of spread vol quotes.
+\param SwapIndexBase Base SwapIndex object ID.
+\param ShortSwapIndexBase Short base SwapIndex object ID.
+\param VegaWeightedSmileFit if TRUE the smile fit is weighted using options' vega. Default value = true.
+\param Guess matrix of parameters guess quotes.
+\param IsFixed if TRUE parameter guess is not calibrated.
+\param IsAtmCalibrated if TRUE the cube is calibrated to atm matrix .
+\param EndCriteria EndCriteria object ID. Default value = .
+\param MaxErrorTol max error tolerance. Default value = QuantLib::Null<QuantLib::Real>().
+\param OptMethod Optmization method object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwaptionVolCube2 \b qlSwaptionVolCube2
+\code
+
+string returnValue
+
+qlSwaptionVolCube2(
+        string ObjectId
+        string AtmVolStructure
+        vector<string> OptionTenor
+        vector<string> SwapTenor
+        vector<double> StrikeSpreads
+        vector<vector<string> > SpreadVols
+        string SwapIndexBase
+        string ShortSwapIndexBase
+        bool VegaWeightedSmileFit
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SwaptionVolCube2 and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param AtmVolStructure At-the-money volatility structure.
+\param OptionTenor smile cube's expiries as periods.
+\param SwapTenor smile cube's underlying swap lengths.
+\param StrikeSpreads smile cube's strike spreads over the ATM strike rate.
+\param SpreadVols matrix of spread vol quotes.
+\param SwapIndexBase Base SwapIndex object ID.
+\param ShortSwapIndexBase Short base SwapIndex object ID.
+\param VegaWeightedSmileFit if TRUE the smile fit is weighted using options' vega. Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVolCubeAtmCalibrated \b qlVolCubeAtmCalibrated
+\code
+
+vector<vector<any> > returnValue
+
+qlVolCubeAtmCalibrated(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the volatility cube calibrated to ATM matrix for the given SwaptionVolCube1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SwaptionVolCube1 object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

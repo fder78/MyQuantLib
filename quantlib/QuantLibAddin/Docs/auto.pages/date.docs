@@ -1,0 +1,1032 @@
+
+/*  
+ Copyright (C) 2006, 2009, 2015 Ferdinando Ametrano
+ Copyright (C) 2015 Maddalena Zanzi
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_date Date
+\section overview Overview
+Date- and Period-related QuantLib functions.
+\section functionlist Function List
+\ref qlASXIsASXcode ()\n
+\ref qlASXIsASXdate ()\n
+\ref qlASXNextCode ()\n
+\ref qlASXNextCodes ()\n
+\ref qlASXNextDate ()\n
+\ref qlASXNextDates ()\n
+\ref qlASXcode ()\n
+\ref qlASXdate ()\n
+\ref qlDateEndOfMonth ()\n
+\ref qlDateIsEndOfMonth ()\n
+\ref qlDateIsLeap ()\n
+\ref qlDateMaxDate ()\n
+\ref qlDateMinDate ()\n
+\ref qlDateNextWeekday ()\n
+\ref qlDateNthWeekday ()\n
+\ref qlECBAddDate ()\n
+\ref qlECBIsECBcode ()\n
+\ref qlECBIsECBdate ()\n
+\ref qlECBKnownDates ()\n
+\ref qlECBNextCode ()\n
+\ref qlECBNextCode2 ()\n
+\ref qlECBNextDate ()\n
+\ref qlECBNextDate2 ()\n
+\ref qlECBNextDates ()\n
+\ref qlECBRemoveDate ()\n
+\ref qlECBcode ()\n
+\ref qlECBdate ()\n
+\ref qlECBdate2 ()\n
+\ref qlFrequencyFromPeriod ()\n
+\ref qlIMMIsIMMcode ()\n
+\ref qlIMMIsIMMdate ()\n
+\ref qlIMMNextCode ()\n
+\ref qlIMMNextCodes ()\n
+\ref qlIMMNextDate ()\n
+\ref qlIMMNextDates ()\n
+\ref qlIMMcode ()\n
+\ref qlIMMdate ()\n
+\ref qlPeriodEquivalent ()\n
+\ref qlPeriodFromFrequency ()\n
+\ref qlPeriodLessThan ()\n
+
+\section documentation Function Documentation
+\anchor qlASXIsASXcode \b qlASXIsASXcode
+\code
+
+vector<bool> returnValue
+
+qlASXIsASXcode(
+        vector<string> Code
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns whether or not the given code is an ASX code.
+
+\par Supported Platforms:
+
+Excel
+
+\param Code 2 letter string (e.g. M5).
+\param MainCycle FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXIsASXdate \b qlASXIsASXdate
+\code
+
+vector<bool> returnValue
+
+qlASXIsASXdate(
+        vector<long> Date
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns whether or not the given date is an ASX date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date.
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXNextCode \b qlASXNextCode
+\code
+
+string returnValue
+
+qlASXNextCode(
+        long RefDate
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code for the first contract listed in the Australian Securities Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXNextCodes \b qlASXNextCodes
+\code
+
+vector<string> returnValue
+
+qlASXNextCodes(
+        long RefDate
+        vector<bool> MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the codes for the next contracts listed in the Australian Securities Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = std::vector<bool>(40, true).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXNextDate \b qlASXNextDate
+\code
+
+long returnValue
+
+qlASXNextDate(
+        long RefDate
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the delivery date for the first contract listed in the Australian Securities Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXNextDates \b qlASXNextDates
+\code
+
+vector<long> returnValue
+
+qlASXNextDates(
+        long RefDate
+        vector<bool> MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the delivery dates for the next contracts listed in the Australian Securities Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = std::vector<bool>(40, true).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXcode \b qlASXcode
+\code
+
+vector<string> returnValue
+
+qlASXcode(
+        vector<long> ASXdate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code corresponding to a given ASX date (e.g. H5 for Friday, March 13th, 2015). It fails if the input date is not an ASX date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ASXdate ASX date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlASXdate \b qlASXdate
+\code
+
+vector<long> returnValue
+
+qlASXdate(
+        vector<string> ASXcode
+        long RefDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the ASX date corresponding to the given ASX code (e.g. Friday, March 13th, 2015 for H5)).
+
+\par Supported Platforms:
+
+Excel
+
+\param ASXcode 2 letter ASX code (e.g. M5).
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateEndOfMonth \b qlDateEndOfMonth
+\code
+
+vector<long> returnValue
+
+qlDateEndOfMonth(
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the last day of the month to which the given date belongs.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateIsEndOfMonth \b qlDateIsEndOfMonth
+\code
+
+vector<bool> returnValue
+
+qlDateIsEndOfMonth(
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if a date is the last day of its month.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateIsLeap \b qlDateIsLeap
+\code
+
+vector<bool> returnValue
+
+qlDateIsLeap(
+        vector<long> Year
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if a year is leap.
+
+\par Supported Platforms:
+
+Excel
+
+\param Year year (e.g. 2006).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateMaxDate \b qlDateMaxDate
+\code
+
+long returnValue
+
+qlDateMaxDate(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the latest date allowed in QuantLib.
+
+\par Supported Platforms:
+
+Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateMinDate \b qlDateMinDate
+\code
+
+long returnValue
+
+qlDateMinDate(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the earliest date allowed in QuantLib.
+
+\par Supported Platforms:
+
+Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateNextWeekday \b qlDateNextWeekday
+\code
+
+vector<long> returnValue
+
+qlDateNextWeekday(
+        vector<long> Date
+        string Weekday
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the next given weekday following or equal to the given date (e.g., the Friday following Tuesday, January 15th, 2002 was January 18th, 2002).
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date.
+\param Weekday Weekday (e.g. Wednesday, or Wed).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDateNthWeekday \b qlDateNthWeekday
+\code
+
+long returnValue
+
+qlDateNthWeekday(
+        long Nth
+        string Weekday
+        string Month
+        long Year
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the n-th given weekday in the given month and year (e.g., the 4th Thursday of March, 1998 was March 26th, 1998).
+
+\par Supported Platforms:
+
+Excel
+
+\param Nth ordinal number (greater than zero, less than 6).
+\param Weekday Weekday (e.g. Wednesday, or Wed).
+\param Month Month (e.g. January, or Jan, or '1').
+\param Year year (e.g. 2007).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBAddDate \b qlECBAddDate
+\code
+
+void returnValue
+
+qlECBAddDate(
+        long Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+add an ECB date to the list of known ECB dates.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date to be added to the list of known ECB dates.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBIsECBcode \b qlECBIsECBcode
+\code
+
+vector<bool> returnValue
+
+qlECBIsECBcode(
+        vector<string> Code
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns whether or not the given code is an ECB code.
+
+\par Supported Platforms:
+
+Excel
+
+\param Code 5 letter ECB code (e.g. MAR10).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBIsECBdate \b qlECBIsECBdate
+\code
+
+vector<bool> returnValue
+
+qlECBIsECBdate(
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns whether or not the given date is an ECB maintenance period start date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBKnownDates \b qlECBKnownDates
+\code
+
+vector<long> returnValue
+
+qlECBKnownDates(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns all the known ECB maintenance period start dates.
+
+\par Supported Platforms:
+
+Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBNextCode \b qlECBNextCode
+\code
+
+string returnValue
+
+qlECBNextCode(
+        long RefDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code for the first ECB date.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBNextCode2 \b qlECBNextCode2
+\code
+
+string returnValue
+
+qlECBNextCode2(
+        string Code
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code for the next ECB date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Code 5 letter ECB code (e.g. MAR10).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBNextDate \b qlECBNextDate
+\code
+
+long returnValue
+
+qlECBNextDate(
+        long Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the next ECB maintenance period start date following the given date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBNextDate2 \b qlECBNextDate2
+\code
+
+long returnValue
+
+qlECBNextDate2(
+        string Code
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the next ECB maintenance period start date following the given date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Code 5 letter ECB code (e.g. MAR10).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBNextDates \b qlECBNextDates
+\code
+
+vector<long> returnValue
+
+qlECBNextDates(
+        long Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns all the known ECB maintenance period start dates following the given date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBRemoveDate \b qlECBRemoveDate
+\code
+
+void returnValue
+
+qlECBRemoveDate(
+        long Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+remove an ECB date from the list of known ECB dates.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date to be removed from the list of known ECB dates.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBcode \b qlECBcode
+\code
+
+string returnValue
+
+qlECBcode(
+        long ECBdate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code corresponding to a given ECB date (e.g. MAR10 for Wednesday, March xxth, 2010). It fails if the input date is not an ECB date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ECBdate ECB date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBdate \b qlECBdate
+\code
+
+long returnValue
+
+qlECBdate(
+        string ECBcode
+        long RefDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the ECB maintenance period start date for the given ECB code.
+
+\par Supported Platforms:
+
+Excel
+
+\param ECBcode 5 letter ECB code (e.g. MAR10).
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlECBdate2 \b qlECBdate2
+\code
+
+long returnValue
+
+qlECBdate2(
+        string Month
+        long Year
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the ECB maintenance period start date in the given month/year.
+
+\par Supported Platforms:
+
+Excel
+
+\param Month month (e.g. January, or Jan, or '1').
+\param Year year (e.g. 2010).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFrequencyFromPeriod \b qlFrequencyFromPeriod
+\code
+
+vector<string> returnValue
+
+qlFrequencyFromPeriod(
+        vector<string> Period
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns a Frequency from a given Period (e.g. SemiAnnual from 6M).
+
+\par Supported Platforms:
+
+Excel
+
+\param Period period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMIsIMMcode \b qlIMMIsIMMcode
+\code
+
+vector<bool> returnValue
+
+qlIMMIsIMMcode(
+        vector<string> Code
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns whether or not the given code is an IMM code.
+
+\par Supported Platforms:
+
+Excel
+
+\param Code 2 letter string (e.g. H6).
+\param MainCycle FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMIsIMMdate \b qlIMMIsIMMdate
+\code
+
+vector<bool> returnValue
+
+qlIMMIsIMMdate(
+        vector<long> Date
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns whether or not the given date is an IMM date.
+
+\par Supported Platforms:
+
+Excel
+
+\param Date date.
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMNextCode \b qlIMMNextCode
+\code
+
+string returnValue
+
+qlIMMNextCode(
+        long RefDate
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code for the first contract listed in the International Money Market section of the Chicago Mercantile Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMNextCodes \b qlIMMNextCodes
+\code
+
+vector<string> returnValue
+
+qlIMMNextCodes(
+        long RefDate
+        vector<bool> MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the codes for the next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = std::vector<bool>(40, true).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMNextDate \b qlIMMNextDate
+\code
+
+long returnValue
+
+qlIMMNextDate(
+        long RefDate
+        bool MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the delivery date for the first contract listed in the International Money Market section of the Chicago Mercantile Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMNextDates \b qlIMMNextDates
+\code
+
+vector<long> returnValue
+
+qlIMMNextDates(
+        long RefDate
+        vector<bool> MainCycle
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the delivery dates for the next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.
+
+\par Supported Platforms:
+
+Excel
+
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param MainCycle TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only. Default value = std::vector<bool>(40, true).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMcode \b qlIMMcode
+\code
+
+vector<string> returnValue
+
+qlIMMcode(
+        vector<long> IMMdate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the code corresponding to a given IMM date (e.g. H5 for Wednesday, March 18th, 2015). It fails if the input date is not an IMM date.
+
+\par Supported Platforms:
+
+Excel
+
+\param IMMdate IMM date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIMMdate \b qlIMMdate
+\code
+
+vector<long> returnValue
+
+qlIMMdate(
+        vector<string> IMMcode
+        long RefDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the IMM date corresponding to the given IMM code (e.g. Wednesday, March 18th, 2015 for H5).
+
+\par Supported Platforms:
+
+Excel
+
+\param IMMcode 2 letter IMM code (e.g. H6).
+\param RefDate date with respect to which the calculations are performed. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPeriodEquivalent \b qlPeriodEquivalent
+\code
+
+string returnValue
+
+qlPeriodEquivalent(
+        string Period
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the period equivalent to the input (e.g. 11M for 1Y-1M).
+
+\par Supported Platforms:
+
+Excel
+
+\param Period input period (e.g. 1Y-1M).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPeriodFromFrequency \b qlPeriodFromFrequency
+\code
+
+string returnValue
+
+qlPeriodFromFrequency(
+        string Frequency
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns a Period from a given Frequency (e.g. 6M from SemiAnnual).
+
+\par Supported Platforms:
+
+Excel
+
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPeriodLessThan \b qlPeriodLessThan
+\code
+
+bool returnValue
+
+qlPeriodLessThan(
+        string Period1
+        string Period2
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the first period is less than the second.
+
+\par Supported Platforms:
+
+Excel
+
+\param Period1 left hand side.
+\param Period2 right hand side.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

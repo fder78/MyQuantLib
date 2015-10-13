@@ -1,0 +1,1121 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_capletvolstructure Caplet Volatility Term Structures
+\section overview Overview
+functions to construct and use OptionletVolatilityStructure objects.
+\section functionlist Function List
+\ref qlCapFloorTermVTSVolatility ()\n
+\ref qlCapFloorTermVTSVolatility2 ()\n
+\ref qlCapFloorTermVolCurve ()\n
+\ref qlCapFloorTermVolCurveOptionDates ()\n
+\ref qlCapFloorTermVolCurveOptionTenors ()\n
+\ref qlCapFloorTermVolSurface ()\n
+\ref qlCapFloorTermVolSurfaceOptionDates ()\n
+\ref qlCapFloorTermVolSurfaceOptionTenors ()\n
+\ref qlCapFloorTermVolSurfaceStrikes ()\n
+\ref qlConstantOptionletVolatility ()\n
+\ref qlOptionletStripper1 ()\n
+\ref qlOptionletStripper1CapFloorPrices ()\n
+\ref qlOptionletStripper1CapFloorVolatilities ()\n
+\ref qlOptionletStripper1OptionletPrices ()\n
+\ref qlOptionletStripper1SwitchStrike ()\n
+\ref qlOptionletStripper2 ()\n
+\ref qlOptionletStripper2AtmCapFloorPrices ()\n
+\ref qlOptionletStripper2AtmCapFloorStrikes ()\n
+\ref qlOptionletStripper2SpreadsVol ()\n
+\ref qlOptionletStripperOptionletAccrualPeriods ()\n
+\ref qlOptionletStripperOptionletFixingTenors ()\n
+\ref qlOptionletStripperOptionletPaymentDates ()\n
+\ref qlOptionletVTSBlackVariance ()\n
+\ref qlOptionletVTSBlackVariance2 ()\n
+\ref qlOptionletVTSVolatility ()\n
+\ref qlOptionletVTSVolatility2 ()\n
+\ref qlRelinkableHandleOptionletVolatilityStructure ()\n
+\ref qlSpreadedOptionletVolatility ()\n
+\ref qlStrippedOptionlet ()\n
+\ref qlStrippedOptionletAdapter ()\n
+\ref qlStrippedOptionletBaseAtmOptionletRates ()\n
+\ref qlStrippedOptionletBaseBusinessDayConvention ()\n
+\ref qlStrippedOptionletBaseCalendar ()\n
+\ref qlStrippedOptionletBaseDayCounter ()\n
+\ref qlStrippedOptionletBaseOptionletFixingDates ()\n
+\ref qlStrippedOptionletBaseOptionletFixingTimes ()\n
+\ref qlStrippedOptionletBaseOptionletVolatilities ()\n
+\ref qlStrippedOptionletBaseSettlementDays ()\n
+\ref qlStrippedOptionletBaseStrikes ()\n
+
+\section documentation Function Documentation
+\anchor qlCapFloorTermVTSVolatility \b qlCapFloorTermVTSVolatility
+\code
+
+vector<double> returnValue
+
+qlCapFloorTermVTSVolatility(
+        string ObjectId
+        long OptionDate
+        vector<double> Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility from the given CapFloorTermVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolatilityStructure object
+\param OptionDate caplet/floorlet expiry date.
+\param Strike caplet/floorlet strike.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorTermVTSVolatility2 \b qlCapFloorTermVTSVolatility2
+\code
+
+vector<double> returnValue
+
+qlCapFloorTermVTSVolatility2(
+        string ObjectId
+        string OptionTenor
+        vector<double> Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility from the given CapFloorTermVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolatilityStructure object
+\param OptionTenor caplet/floorlet option tenor.
+\param Strike caplet/floorlet strike.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorTermVolCurve \b qlCapFloorTermVolCurve
+\code
+
+string returnValue
+
+qlCapFloorTermVolCurve(
+        string ObjectId
+        long SettlementDays
+        string Calendar
+        string BusinessDayConvention
+        vector<string> OptionTenors
+        vector<string> Volatilities
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CapFloorTermVolCurve and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SettlementDays number of settlement days.
+\param Calendar holiday calendar used for calculating the exercise dates from the expiries tenor.
+\param BusinessDayConvention Business day convention used for calculating the exercise dates from the expiries.
+\param OptionTenors option tenors.
+\param Volatilities vol quotes vector.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCapFloorTermVolCurveOptionDates \b qlCapFloorTermVolCurveOptionDates
+\code
+
+vector<long> returnValue
+
+qlCapFloorTermVolCurveOptionDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option dates from the given CapFloorTermVolCurve object. .
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorTermVolCurveOptionTenors \b qlCapFloorTermVolCurveOptionTenors
+\code
+
+vector<string> returnValue
+
+qlCapFloorTermVolCurveOptionTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option tenors from the given CapFloorTermVolCurve object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorTermVolSurface \b qlCapFloorTermVolSurface
+\code
+
+string returnValue
+
+qlCapFloorTermVolSurface(
+        string ObjectId
+        long SettlementDays
+        string Calendar
+        string BusinessDayConvention
+        vector<string> OptionTenors
+        vector<double> Strikes
+        vector<vector<string> > Volatilities
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CapFloorTermVolSurface and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SettlementDays number of settlement days.
+\param Calendar holiday calendar used for calculating the exercise dates from the expiries tenor.
+\param BusinessDayConvention Business day convention used for calculating the exercise dates from the expiries.
+\param OptionTenors option tenors.
+\param Strikes cap strikes.
+\param Volatilities vol quotes matrix.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCapFloorTermVolSurfaceOptionDates \b qlCapFloorTermVolSurfaceOptionDates
+\code
+
+vector<long> returnValue
+
+qlCapFloorTermVolSurfaceOptionDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option dates from the given CapFloorTermVolSurface object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolSurface object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorTermVolSurfaceOptionTenors \b qlCapFloorTermVolSurfaceOptionTenors
+\code
+
+vector<string> returnValue
+
+qlCapFloorTermVolSurfaceOptionTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option tenors from the given CapFloorTermVolSurface object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolSurface object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCapFloorTermVolSurfaceStrikes \b qlCapFloorTermVolSurfaceStrikes
+\code
+
+vector<double> returnValue
+
+qlCapFloorTermVolSurfaceStrikes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option strikes from the given CapFloorTermVolSurface object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CapFloorTermVolSurface object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlConstantOptionletVolatility \b qlConstantOptionletVolatility
+\code
+
+string returnValue
+
+qlConstantOptionletVolatility(
+        string ObjectId
+        long NDays
+        string Calendar
+        string BusinessDayConvention
+        string Volatility
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ConstantOptionletVolatility and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param NDays number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0. Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries.
+\param BusinessDayConvention Business day convention used for calculating the exercise dates from the expiries.
+\param Volatility cap/floor constant volatility Quote.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOptionletStripper1 \b qlOptionletStripper1
+\code
+
+string returnValue
+
+qlOptionletStripper1(
+        string ObjectId
+        string TermVolSurface
+        string IborIndex
+        double SwitchStrike
+        double Accuracy
+        long MaxIter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OptionletStripper1 and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param TermVolSurface CapFloorTermVolSurface object ID.
+\param IborIndex cap index object ID.
+\param SwitchStrike switch strike. Default value = QuantLib::Null<QuantLib::Rate>().
+\param Accuracy solver accuracy. Default value = 1.0e-6.
+\param MaxIter solver max iterations. Default value = 100.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOptionletStripper1CapFloorPrices \b qlOptionletStripper1CapFloorPrices
+\code
+
+vector<vector<double> > returnValue
+
+qlOptionletStripper1CapFloorPrices(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns option prices matrix from the given OptionletStripper1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripper1CapFloorVolatilities \b qlOptionletStripper1CapFloorVolatilities
+\code
+
+vector<vector<double> > returnValue
+
+qlOptionletStripper1CapFloorVolatilities(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns option volatilities matrix from the given OptionletStripper1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripper1OptionletPrices \b qlOptionletStripper1OptionletPrices
+\code
+
+vector<vector<double> > returnValue
+
+qlOptionletStripper1OptionletPrices(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet prices matrix from the given OptionletStripper1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripper1SwitchStrike \b qlOptionletStripper1SwitchStrike
+\code
+
+double returnValue
+
+qlOptionletStripper1SwitchStrike(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns option switch strike from the given OptionletStripper1 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper1 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripper2 \b qlOptionletStripper2
+\code
+
+string returnValue
+
+qlOptionletStripper2(
+        string ObjectId
+        string OptionletStripper1
+        string TermVolCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OptionletStripper2 and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param OptionletStripper1 OptionletStripper1 object id.
+\param TermVolCurve CapFloorTermVolCurve object id.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOptionletStripper2AtmCapFloorPrices \b qlOptionletStripper2AtmCapFloorPrices
+\code
+
+vector<double> returnValue
+
+qlOptionletStripper2AtmCapFloorPrices(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns ATM option prices from the given OptionletStripper2 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper2 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripper2AtmCapFloorStrikes \b qlOptionletStripper2AtmCapFloorStrikes
+\code
+
+vector<double> returnValue
+
+qlOptionletStripper2AtmCapFloorStrikes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns option ATM strikes from the given OptionletStripper2 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper2 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripper2SpreadsVol \b qlOptionletStripper2SpreadsVol
+\code
+
+vector<double> returnValue
+
+qlOptionletStripper2SpreadsVol(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet spread (with respect to ATM) vols from the given OptionletStripper2 object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper2 object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripperOptionletAccrualPeriods \b qlOptionletStripperOptionletAccrualPeriods
+\code
+
+vector<double> returnValue
+
+qlOptionletStripperOptionletAccrualPeriods(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet accrual periods from the given OptionletStripper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripperOptionletFixingTenors \b qlOptionletStripperOptionletFixingTenors
+\code
+
+vector<string> returnValue
+
+qlOptionletStripperOptionletFixingTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet fixing tenors from the given OptionletStripper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletStripperOptionletPaymentDates \b qlOptionletStripperOptionletPaymentDates
+\code
+
+vector<long> returnValue
+
+qlOptionletStripperOptionletPaymentDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet payment dates from the given OptionletStripper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletStripper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletVTSBlackVariance \b qlOptionletVTSBlackVariance
+\code
+
+vector<double> returnValue
+
+qlOptionletVTSBlackVariance(
+        string ObjectId
+        vector<long> OptionDate
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the black variance corresponding to a given strike for a given exercise date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletVolatilityStructure object
+\param OptionDate cap/floor expiry date.
+\param Strike cap/floor strike vector.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletVTSBlackVariance2 \b qlOptionletVTSBlackVariance2
+\code
+
+vector<double> returnValue
+
+qlOptionletVTSBlackVariance2(
+        string ObjectId
+        vector<string> OptionTenor
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the black variance corresponding to a given strike for a given exercise date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletVolatilityStructure object
+\param OptionTenor cap/floor expiry date.
+\param Strike cap/floor strike vector.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletVTSVolatility \b qlOptionletVTSVolatility
+\code
+
+vector<double> returnValue
+
+qlOptionletVTSVolatility(
+        string ObjectId
+        long OptionDate
+        vector<double> Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility from the given OptionletVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletVolatilityStructure object
+\param OptionDate caplet/floorlet expiry date.
+\param Strike caplet/floorlet strike.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOptionletVTSVolatility2 \b qlOptionletVTSVolatility2
+\code
+
+vector<double> returnValue
+
+qlOptionletVTSVolatility2(
+        string ObjectId
+        string OptionTenor
+        vector<double> Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns volatility from the given OptionletVolatilityStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::OptionletVolatilityStructure object
+\param OptionTenor caplet/floorlet option tenor.
+\param Strike caplet/floorlet strike.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRelinkableHandleOptionletVolatilityStructure \b qlRelinkableHandleOptionletVolatilityStructure
+\code
+
+string returnValue
+
+qlRelinkableHandleOptionletVolatilityStructure(
+        string ObjectId
+        string CurrentLink
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RelinkableHandleImpl<QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure> and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurrentLink OptionletVolatilityStructure object ID. If omitted, nothing is linked by the RelinkableHandle. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSpreadedOptionletVolatility \b qlSpreadedOptionletVolatility
+\code
+
+string returnValue
+
+qlSpreadedOptionletVolatility(
+        string ObjectId
+        string BaseVolStructure
+        string Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SpreadedOptionletVolatility and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param BaseVolStructure Base OptionletVolatilityStructure object ID.
+\param Spread spread.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStrippedOptionlet \b qlStrippedOptionlet
+\code
+
+string returnValue
+
+qlStrippedOptionlet(
+        string ObjectId
+        long SettlementDays
+        string Calendar
+        string BusinessDayConvention
+        string IborIndex
+        vector<long> OptionletDates
+        vector<double> Strikes
+        vector<vector<string> > Volatilities
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class StrippedOptionlet and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SettlementDays number of settlement days. Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries.
+\param BusinessDayConvention Business day convention used for calculating the exercise dates from the expiries.
+\param IborIndex IborIndex object ID.
+\param OptionletDates optionlet dates.
+\param Strikes strikes.
+\param Volatilities vol quotes.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStrippedOptionletAdapter \b qlStrippedOptionletAdapter
+\code
+
+string returnValue
+
+qlStrippedOptionletAdapter(
+        string ObjectId
+        string StrippedOptionletBase
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class StrippedOptionletAdapter and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param StrippedOptionletBase Stripped Optionlet object id.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStrippedOptionletBaseAtmOptionletRates \b qlStrippedOptionletBaseAtmOptionletRates
+\code
+
+vector<double> returnValue
+
+qlStrippedOptionletBaseAtmOptionletRates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns atm optionlet rates from the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseBusinessDayConvention \b qlStrippedOptionletBaseBusinessDayConvention
+\code
+
+string returnValue
+
+qlStrippedOptionletBaseBusinessDayConvention(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the business day convention used in tenor to date conversion.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseCalendar \b qlStrippedOptionletBaseCalendar
+\code
+
+string returnValue
+
+qlStrippedOptionletBaseCalendar(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the calendar used by the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseDayCounter \b qlStrippedOptionletBaseDayCounter
+\code
+
+string returnValue
+
+qlStrippedOptionletBaseDayCounter(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the DayCounter used by the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseOptionletFixingDates \b qlStrippedOptionletBaseOptionletFixingDates
+\code
+
+vector<long> returnValue
+
+qlStrippedOptionletBaseOptionletFixingDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet fixing dates from the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseOptionletFixingTimes \b qlStrippedOptionletBaseOptionletFixingTimes
+\code
+
+vector<double> returnValue
+
+qlStrippedOptionletBaseOptionletFixingTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet fixing times from the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseOptionletVolatilities \b qlStrippedOptionletBaseOptionletVolatilities
+\code
+
+vector<double> returnValue
+
+qlStrippedOptionletBaseOptionletVolatilities(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet volatilities from the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Index optionlet index.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseSettlementDays \b qlStrippedOptionletBaseSettlementDays
+\code
+
+long returnValue
+
+qlStrippedOptionletBaseSettlementDays(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of settlement days for the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlStrippedOptionletBaseStrikes \b qlStrippedOptionletBaseStrikes
+\code
+
+vector<double> returnValue
+
+qlStrippedOptionletBaseStrikes(
+        string ObjectId
+        long Index
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns optionlet strike from the given StrippedOptionletBase object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrippedOptionletBase object
+\param Index optionlet index.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

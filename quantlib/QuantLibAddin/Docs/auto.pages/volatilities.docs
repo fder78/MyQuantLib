@@ -1,0 +1,984 @@
+
+/*  
+ Copyright (C) 2007, 2010 Ferdinando Ametrano
+ Copyright (C) 2005, 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_volatilities Volatilities
+\section overview Overview
+functions to construct and use volatility objects.
+\section functionlist Function List
+\ref qlAbcdAtmVolCurve ()\n
+\ref qlAbcdAtmVolCurveA ()\n
+\ref qlAbcdAtmVolCurveB ()\n
+\ref qlAbcdAtmVolCurveC ()\n
+\ref qlAbcdAtmVolCurveD ()\n
+\ref qlAbcdAtmVolCurveK ()\n
+\ref qlAbcdAtmVolCurveKatOptionTenors ()\n
+\ref qlAbcdAtmVolCurveMaxError ()\n
+\ref qlAbcdAtmVolCurveOptionDates ()\n
+\ref qlAbcdAtmVolCurveOptionTenors ()\n
+\ref qlAbcdAtmVolCurveOptionTenorsInInterpolation ()\n
+\ref qlAbcdAtmVolCurveOptionTimes ()\n
+\ref qlAbcdAtmVolCurveRmsError ()\n
+\ref qlAtmCurve ()\n
+\ref qlBlackAtmVolCurveAtmVariance ()\n
+\ref qlBlackAtmVolCurveAtmVariance2 ()\n
+\ref qlBlackAtmVolCurveAtmVariance3 ()\n
+\ref qlBlackAtmVolCurveAtmVol ()\n
+\ref qlBlackAtmVolCurveAtmVol2 ()\n
+\ref qlBlackAtmVolCurveAtmVol3 ()\n
+\ref qlBlackConstantVol ()\n
+\ref qlBlackVarianceSurface ()\n
+\ref qlBlackVolTermStructureBlackForwardVariance ()\n
+\ref qlBlackVolTermStructureBlackForwardVol ()\n
+\ref qlBlackVolTermStructureBlackVariance ()\n
+\ref qlBlackVolTermStructureBlackVol ()\n
+\ref qlSabrVolSurface ()\n
+\ref qlSabrVolatility ()\n
+\ref qlVolatilitySpreads ()\n
+\ref qlVolatilitySpreads2 ()\n
+\ref qlVolatilityTermStructureBusinessDayConvention ()\n
+\ref qlVolatilityTermStructureMaxStrike ()\n
+\ref qlVolatilityTermStructureMinStrike ()\n
+\ref qlVolatilityTermStructureOptionDateFromTenor ()\n
+
+\section documentation Function Documentation
+\anchor qlAbcdAtmVolCurve \b qlAbcdAtmVolCurve
+\code
+
+string returnValue
+
+qlAbcdAtmVolCurve(
+        string ObjectId
+        long SettlementDays
+        string Calendar
+        vector<string> OptionTenors
+        vector<string> VolatilitiesQuotes
+        vector<bool> InclusionInInterpolation
+        string Convention
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AbcdAtmVolCurve and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param SettlementDays settlement days.
+\param Calendar holiday calendar (e.g. TARGET).
+\param OptionTenors options tenors.
+\param VolatilitiesQuotes volatilities quotes.
+\param InclusionInInterpolation inclusion flags. If omitted, all volatilities are interpolated.
+\param Convention business day convention (e.g. Following).
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAbcdAtmVolCurveA \b qlAbcdAtmVolCurveA
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveA(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveB \b qlAbcdAtmVolCurveB
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveB(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the b coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveC \b qlAbcdAtmVolCurveC
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the c coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveD \b qlAbcdAtmVolCurveD
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveD(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the d coefficient in the abcd vol parametrization.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveK \b qlAbcdAtmVolCurveK
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveK(
+        string ObjectId
+        double Time
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the k adjustments factors needed to match the input Black vols at a given time.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Time time.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveKatOptionTenors \b qlAbcdAtmVolCurveKatOptionTenors
+\code
+
+vector<double> returnValue
+
+qlAbcdAtmVolCurveKatOptionTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the k adjustments factors needed to match the input Black vols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveMaxError \b qlAbcdAtmVolCurveMaxError
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the max error between the abcd implied Black vols and the given Black vols vector.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveOptionDates \b qlAbcdAtmVolCurveOptionDates
+\code
+
+vector<long> returnValue
+
+qlAbcdAtmVolCurveOptionDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the options dates of the atm volatility curve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveOptionTenors \b qlAbcdAtmVolCurveOptionTenors
+\code
+
+vector<string> returnValue
+
+qlAbcdAtmVolCurveOptionTenors(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the options tenors of the atm volatility curve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveOptionTenorsInInterpolation \b qlAbcdAtmVolCurveOptionTenorsInInterpolation
+\code
+
+vector<string> returnValue
+
+qlAbcdAtmVolCurveOptionTenorsInInterpolation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the options tenors used in the fitting of the atm volatility curve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveOptionTimes \b qlAbcdAtmVolCurveOptionTimes
+\code
+
+vector<double> returnValue
+
+qlAbcdAtmVolCurveOptionTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the options times to maturity of the atm volatility curve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdAtmVolCurveRmsError \b qlAbcdAtmVolCurveRmsError
+\code
+
+double returnValue
+
+qlAbcdAtmVolCurveRmsError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the root mean squared error between the abcd implied Black vols and the given Black vols vector.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::AbcdAtmVolCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAtmCurve \b qlAtmCurve
+\code
+
+string returnValue
+
+qlAtmCurve(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Atm volatility curve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SabrVolSurface object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackAtmVolCurveAtmVariance \b qlBlackAtmVolCurveAtmVariance
+\code
+
+double returnValue
+
+qlBlackAtmVolCurveAtmVariance(
+        string ObjectId
+        long OptionDate
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot at-the-money (no-smile) variance at a given option date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackAtmVolCurve object
+\param OptionDate The date at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackAtmVolCurveAtmVariance2 \b qlBlackAtmVolCurveAtmVariance2
+\code
+
+double returnValue
+
+qlBlackAtmVolCurveAtmVariance2(
+        string ObjectId
+        string OptionTenor
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot at-the-money (no-smile) variance at a given option tenor.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackAtmVolCurve object
+\param OptionTenor The tenor at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackAtmVolCurveAtmVariance3 \b qlBlackAtmVolCurveAtmVariance3
+\code
+
+double returnValue
+
+qlBlackAtmVolCurveAtmVariance3(
+        string ObjectId
+        double OptionTime
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot at-the-money (no-smile) variance at a given option time.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackAtmVolCurve object
+\param OptionTime The time at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackAtmVolCurveAtmVol \b qlBlackAtmVolCurveAtmVol
+\code
+
+double returnValue
+
+qlBlackAtmVolCurveAtmVol(
+        string ObjectId
+        long OptionDate
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot at-the-money (no-smile) volatility at a given option date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackAtmVolCurve object
+\param OptionDate The date at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackAtmVolCurveAtmVol2 \b qlBlackAtmVolCurveAtmVol2
+\code
+
+double returnValue
+
+qlBlackAtmVolCurveAtmVol2(
+        string ObjectId
+        string OptionTenor
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot at-the-money (no-smile) volatility at a given option tenor.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackAtmVolCurve object
+\param OptionTenor The time at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackAtmVolCurveAtmVol3 \b qlBlackAtmVolCurveAtmVol3
+\code
+
+double returnValue
+
+qlBlackAtmVolCurveAtmVol3(
+        string ObjectId
+        double OptionTime
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot at-the-money (no-smile) volatility at a given option time.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackAtmVolCurve object
+\param OptionTime The time at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackConstantVol \b qlBlackConstantVol
+\code
+
+string returnValue
+
+qlBlackConstantVol(
+        string ObjectId
+        long SettlementDate
+        string Calendar
+        double Volatility
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BlackConstantVol and return its id
+
+\par Supported Platforms:
+
+C++, C, Calc, Excel, Guile
+
+\param ObjectId id of object to be created
+\param SettlementDate settlement date.
+\param Calendar holiday calendar (e.g. TARGET).
+\param Volatility volatility.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlBlackVarianceSurface \b qlBlackVarianceSurface
+\code
+
+string returnValue
+
+qlBlackVarianceSurface(
+        string ObjectId
+        long SettlementDate
+        string Calendar
+        vector<long> Dates
+        vector<double> Strikes
+        vector<vector<double> > Volatilities
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BlackVarianceSurface and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param SettlementDate settlement date.
+\param Calendar holiday calendar (e.g. TARGET).
+\param Dates dates.
+\param Strikes strikes.
+\param Volatilities volatilities.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlBlackVolTermStructureBlackForwardVariance \b qlBlackVolTermStructureBlackForwardVariance
+\code
+
+double returnValue
+
+qlBlackVolTermStructureBlackForwardVariance(
+        string ObjectId
+        long ForwardDate
+        long OptionDate
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the black forward (at-the-money) variance at a given option date and strike.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackVolTermStructure object
+\param ForwardDate The forward date at which the volatility is evaluated.
+\param OptionDate The date at which the variance is evaluated.
+\param Strike The strike at which the variance is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackVolTermStructureBlackForwardVol \b qlBlackVolTermStructureBlackForwardVol
+\code
+
+double returnValue
+
+qlBlackVolTermStructureBlackForwardVol(
+        string ObjectId
+        long ForwardDate
+        long OptionDate
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the black forward (at-the-money) volatility at a given option date and strike.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackVolTermStructure object
+\param ForwardDate The forward date at which the volatility is evaluated.
+\param OptionDate The option date at which the volatility is evaluated.
+\param Strike The strike at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackVolTermStructureBlackVariance \b qlBlackVolTermStructureBlackVariance
+\code
+
+double returnValue
+
+qlBlackVolTermStructureBlackVariance(
+        string ObjectId
+        long OptionDate
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the black spot variance at a given option date and strike.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackVolTermStructure object
+\param OptionDate The date at which the variance is evaluated.
+\param Strike The strike at which the variance is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBlackVolTermStructureBlackVol \b qlBlackVolTermStructureBlackVol
+\code
+
+double returnValue
+
+qlBlackVolTermStructureBlackVol(
+        string ObjectId
+        long OptionDate
+        double Strike
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the black spot volatility at a given option date and strike.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::BlackVolTermStructure object
+\param OptionDate The date at which the volatility is evaluated.
+\param Strike The strike at which the volatility is evaluated.
+\param AllowExtrapolation Extrapolation Flag (TRUE allows extrapolation). Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSabrVolSurface \b qlSabrVolSurface
+\code
+
+string returnValue
+
+qlSabrVolSurface(
+        string ObjectId
+        string InterestRateIndex
+        string BlackAtmVolCurve
+        vector<string> OptionTenors
+        vector<double> AtmRateSpreads
+        vector<vector<string> > VolatilitiesQuotes
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SabrVolSurface and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param InterestRateIndex interest rate index object ID.
+\param BlackAtmVolCurve the atm volatility curve.
+\param OptionTenors options tenors.
+\param AtmRateSpreads spreads.
+\param VolatilitiesQuotes volatilities quotes.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSabrVolatility \b qlSabrVolatility
+\code
+
+double returnValue
+
+qlSabrVolatility(
+        double Strike
+        double Forward
+        double ExpTime
+        double Alpha
+        double Beta
+        double Nu
+        double Rho
+        any Trigger)
+
+\endcode
+\par Description:
+
+Sabr formula for smile volatility.
+
+\par Supported Platforms:
+
+Excel
+
+\param Strike option strike.
+\param Forward underlying forward value.
+\param ExpTime expiry time (in years).
+\param Alpha alpha.
+\param Beta beta.
+\param Nu nu.
+\param Rho rho.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVolatilitySpreads \b qlVolatilitySpreads
+\code
+
+vector<double> returnValue
+
+qlVolatilitySpreads(
+        string ObjectId
+        long OptionDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the volatilities spread at a given date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrVolSurface object
+\param OptionDate The date at which the volatility is evaluated.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVolatilitySpreads2 \b qlVolatilitySpreads2
+\code
+
+vector<double> returnValue
+
+qlVolatilitySpreads2(
+        string ObjectId
+        string OptionTenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the volatilities spread at a given date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SabrVolSurface object
+\param OptionTenor The tenor at which the volatility is evaluated.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVolatilityTermStructureBusinessDayConvention \b qlVolatilityTermStructureBusinessDayConvention
+\code
+
+string returnValue
+
+qlVolatilityTermStructureBusinessDayConvention(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the business day convention used in tenor to date conversion.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VolatilityTermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVolatilityTermStructureMaxStrike \b qlVolatilityTermStructureMaxStrike
+\code
+
+double returnValue
+
+qlVolatilityTermStructureMaxStrike(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maximum strike for which the given VolatilityTermStructure can return vols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VolatilityTermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVolatilityTermStructureMinStrike \b qlVolatilityTermStructureMinStrike
+\code
+
+double returnValue
+
+qlVolatilityTermStructureMinStrike(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the minimum strike for which the given VolatilityTermStructure can return vols.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VolatilityTermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVolatilityTermStructureOptionDateFromTenor \b qlVolatilityTermStructureOptionDateFromTenor
+\code
+
+long returnValue
+
+qlVolatilityTermStructureOptionDateFromTenor(
+        string ObjectId
+        string Tenor
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the option date corrisponding to a given option tenor.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VolatilityTermStructure object
+\param Tenor option tenor.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

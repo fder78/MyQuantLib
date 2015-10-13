@@ -1,0 +1,1472 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2009, 2010, 2011 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ Copyright (C) 2005 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_leg Leg
+\section overview Overview
+functions to construct and use Leg objects.
+\section functionlist Function List
+\ref qlInterestRate ()\n
+\ref qlInterestRateCompoundFactor ()\n
+\ref qlInterestRateCompounding ()\n
+\ref qlInterestRateDayCounter ()\n
+\ref qlInterestRateDiscountFactor ()\n
+\ref qlInterestRateEquivalentRate ()\n
+\ref qlInterestRateFrequency ()\n
+\ref qlInterestRateImpliedRate ()\n
+\ref qlInterestRateRate ()\n
+\ref qlLeg ()\n
+\ref qlLegAccrualDays ()\n
+\ref qlLegAccrualEndDate ()\n
+\ref qlLegAccrualPeriod ()\n
+\ref qlLegAccrualStartDate ()\n
+\ref qlLegAccruedAmount ()\n
+\ref qlLegAccruedDays ()\n
+\ref qlLegAccruedPeriod ()\n
+\ref qlLegAtmRate ()\n
+\ref qlLegBPS ()\n
+\ref qlLegBPSFromYield ()\n
+\ref qlLegBasisPointValue ()\n
+\ref qlLegConvexity ()\n
+\ref qlLegDuration ()\n
+\ref qlLegFlowAnalysis ()\n
+\ref qlLegFromCapFloor ()\n
+\ref qlLegFromSwap ()\n
+\ref qlLegIsExpired ()\n
+\ref qlLegMaturityDate ()\n
+\ref qlLegNPV ()\n
+\ref qlLegNPVFromYield ()\n
+\ref qlLegNPVFromZSpread ()\n
+\ref qlLegNextCashFlowAmount ()\n
+\ref qlLegNextCashFlowDate ()\n
+\ref qlLegNextCouponRate ()\n
+\ref qlLegNominal ()\n
+\ref qlLegPreviousCashFlowAmount ()\n
+\ref qlLegPreviousCashFlowDate ()\n
+\ref qlLegPreviousCouponRate ()\n
+\ref qlLegReferencePeriodEnd ()\n
+\ref qlLegReferencePeriodStart ()\n
+\ref qlLegSetCouponPricers ()\n
+\ref qlLegStartDate ()\n
+\ref qlLegYield ()\n
+\ref qlLegYieldValueBasisPoint ()\n
+\ref qlLegZSpread ()\n
+\ref qlMultiPhaseLeg ()\n
+
+\section documentation Function Documentation
+\anchor qlInterestRate \b qlInterestRate
+\code
+
+string returnValue
+
+qlInterestRate(
+        string ObjectId
+        double Rate
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class InterestRate and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate rate.
+\param DayCounter Irr DayCounter ID.
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlInterestRateCompoundFactor \b qlInterestRateCompoundFactor
+\code
+
+double returnValue
+
+qlInterestRateCompoundFactor(
+        string ObjectId
+        long StartDate
+        long EndDate
+        long RefPeriodStart
+        long RefPeriodEnd
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the compound factor between two dates based on the given InterestRate object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param StartDate compounding period start.
+\param EndDate compounding period end.
+\param RefPeriodStart reference period start date needed by some daycounter. Default value = QuantLib::Date().
+\param RefPeriodEnd reference period end date needed by some daycounter. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateCompounding \b qlInterestRateCompounding
+\code
+
+string returnValue
+
+qlInterestRateCompounding(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Compounding in the given InterestRate object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateDayCounter \b qlInterestRateDayCounter
+\code
+
+string returnValue
+
+qlInterestRateDayCounter(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the DayCounter in the given InterestRate object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateDiscountFactor \b qlInterestRateDiscountFactor
+\code
+
+double returnValue
+
+qlInterestRateDiscountFactor(
+        string ObjectId
+        long StartDate
+        long EndDate
+        long RefPeriodStart
+        long RefPeriodEnd
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the discount factor between two dates based on the given InterestRate object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param StartDate compounding period start.
+\param EndDate compounding period end.
+\param RefPeriodStart reference period start date needed by some daycounter. Default value = QuantLib::Date().
+\param RefPeriodEnd reference period end date needed by some daycounter. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateEquivalentRate \b qlInterestRateEquivalentRate
+\code
+
+double returnValue
+
+qlInterestRateEquivalentRate(
+        string ObjectId
+        string DayCounter
+        string Compounding
+        string Frequency
+        long StartDate
+        long EndDate
+        long RefPeriodStart
+        long RefPeriodEnd
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the equivalent rate for a compounding period between two dates based on the given InterestRate object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param DayCounter rate DayCounter ID.
+\param Compounding interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param StartDate compounding period start.
+\param EndDate compounding period end.
+\param RefPeriodStart reference period start date needed by some daycounter. Default value = QuantLib::Date().
+\param RefPeriodEnd reference period end date needed by some daycounter. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateFrequency \b qlInterestRateFrequency
+\code
+
+string returnValue
+
+qlInterestRateFrequency(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Frequency in the given InterestRate object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateImpliedRate \b qlInterestRateImpliedRate
+\code
+
+double returnValue
+
+qlInterestRateImpliedRate(
+        double Compound
+        string DayCounter
+        string Compounding
+        string Frequency
+        long StartDate
+        long EndDate
+        long RefPeriodStart
+        long RefPeriodEnd
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the implied rate between two dates based on the given a compound factor.
+
+\par Supported Platforms:
+
+Excel
+
+\param Compound compound factor used to calculate the implicit rate.
+\param DayCounter rate DayCounter ID.
+\param Compounding interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param StartDate compounding period start.
+\param EndDate compounding period end.
+\param RefPeriodStart reference period start date needed by some daycounter. Default value = QuantLib::Date().
+\param RefPeriodEnd reference period end date needed by some daycounter. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateRate \b qlInterestRateRate
+\code
+
+double returnValue
+
+qlInterestRateRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the rate in the given InterestRate object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::InterestRate object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLeg \b qlLeg
+\code
+
+string returnValue
+
+qlLeg(
+        string ObjectId
+        vector<double> Amounts
+        vector<long> Dates
+        bool ToBeSorted
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Leg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Amounts list of cash to be received/paid.
+\param Dates payment dates corresponding to amounts.
+\param ToBeSorted TRUE if the CashFlows must be sorted by ascending dates. Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLegAccrualDays \b qlLegAccrualDays
+\code
+
+long returnValue
+
+qlLegAccrualDays(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the total number of accrual days for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAccrualEndDate \b qlLegAccrualEndDate
+\code
+
+long returnValue
+
+qlLegAccrualEndDate(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the accrual end date for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAccrualPeriod \b qlLegAccrualPeriod
+\code
+
+double returnValue
+
+qlLegAccrualPeriod(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the total accrual period for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAccrualStartDate \b qlLegAccrualStartDate
+\code
+
+long returnValue
+
+qlLegAccrualStartDate(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the accrual start date for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAccruedAmount \b qlLegAccruedAmount
+\code
+
+double returnValue
+
+qlLegAccruedAmount(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the accrued amount for the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAccruedDays \b qlLegAccruedDays
+\code
+
+long returnValue
+
+qlLegAccruedDays(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the accrued days for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAccruedPeriod \b qlLegAccruedPeriod
+\code
+
+double returnValue
+
+qlLegAccruedPeriod(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the accrued period for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegAtmRate \b qlLegAtmRate
+\code
+
+double returnValue
+
+qlLegAtmRate(
+        string ObjectId
+        string DiscountCurve
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        double NPV
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the at-the-money rate for the given Leg object, i.e. the fixed rate for which an equivalent vector of fixed-rate cash flows would have the same NPV.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param DiscountCurve discounting YieldTermStructure object ID.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param NPV target net present value. If missing the NPV is calculated using the provided discount curve Default value = QuantLib::Null<QuantLib::Real>().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegBPS \b qlLegBPS
+\code
+
+double returnValue
+
+qlLegBPS(
+        string ObjectId
+        string DiscountCurve
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the basis point sensitivity for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param DiscountCurve discounting YieldTermStructure object ID.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegBPSFromYield \b qlLegBPSFromYield
+\code
+
+double returnValue
+
+qlLegBPSFromYield(
+        string ObjectId
+        double Yield
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the basis point sensitivity for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Yield Yield (a.k.a. IRR).
+\param DayCounter Yield DayCounter ID. Default value = Actual/Actual (ISDA).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegBasisPointValue \b qlLegBasisPointValue
+\code
+
+double returnValue
+
+qlLegBasisPointValue(
+        string ObjectId
+        double Yield
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the basisPointValue for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Yield Yield (a.k.a. IRR).
+\param DayCounter Yield DayCounter ID. Default value = Actual/Actual (ISDA).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegConvexity \b qlLegConvexity
+\code
+
+double returnValue
+
+qlLegConvexity(
+        string ObjectId
+        double Yield
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Cash-flow convexity for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Yield Yield (a.k.a. IRR).
+\param DayCounter Yield DayCounter ID. Default value = Actual/Actual (ISDA).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegDuration \b qlLegDuration
+\code
+
+double returnValue
+
+qlLegDuration(
+        string ObjectId
+        double Yield
+        string DayCounter
+        string Compounding
+        string Frequency
+        string DurationType
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Cash-flow duration for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Yield Yield (a.k.a. IRR).
+\param DayCounter Yield DayCounter ID. Default value = Actual/Actual (ISDA).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param DurationType Duration type (Simple, Macaulay, or Modified). Default value = Modified.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegFlowAnalysis \b qlLegFlowAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlLegFlowAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the flow analysis for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::Leg object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegFromCapFloor \b qlLegFromCapFloor
+\code
+
+string returnValue
+
+qlLegFromCapFloor(
+        string ObjectId
+        string CapFloor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Leg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CapFloor CapFloor object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLegFromSwap \b qlLegFromSwap
+\code
+
+string returnValue
+
+qlLegFromSwap(
+        string ObjectId
+        string Swap
+        long LegNumber
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Leg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Swap Swap object ID.
+\param LegNumber Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLegIsExpired \b qlLegIsExpired
+\code
+
+bool returnValue
+
+qlLegIsExpired(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE is the Leg is expired
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegMaturityDate \b qlLegMaturityDate
+\code
+
+long returnValue
+
+qlLegMaturityDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maturity (i.e. last payment) date for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNPV \b qlLegNPV
+\code
+
+double returnValue
+
+qlLegNPV(
+        string ObjectId
+        string DiscountCurve
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the net present value for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param DiscountCurve discounting YieldTermStructure object ID.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNPVFromYield \b qlLegNPVFromYield
+\code
+
+double returnValue
+
+qlLegNPVFromYield(
+        string ObjectId
+        double Yield
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the net present value for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Yield Yield (a.k.a. IRR).
+\param DayCounter Yield DayCounter ID. Default value = Actual/Actual (ISDA).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNPVFromZSpread \b qlLegNPVFromZSpread
+\code
+
+double returnValue
+
+qlLegNPVFromZSpread(
+        string ObjectId
+        string DiscountCurve
+        double ZSpread
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the net present value for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param DiscountCurve discounting YieldTermStructure object ID.
+\param ZSpread Z-spread.
+\param DayCounter Not Used: DiscountCurve's DayCounter used instead. Default value = Actual/365 (Fixed).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNextCashFlowAmount \b qlLegNextCashFlowAmount
+\code
+
+double returnValue
+
+qlLegNextCashFlowAmount(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the next cash flow amount.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNextCashFlowDate \b qlLegNextCashFlowDate
+\code
+
+long returnValue
+
+qlLegNextCashFlowDate(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the next cash flow date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNextCouponRate \b qlLegNextCouponRate
+\code
+
+double returnValue
+
+qlLegNextCouponRate(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the next coupon rate. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the current date is used the coupon is the already-fixed not-yet-paid one.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegNominal \b qlLegNominal
+\code
+
+double returnValue
+
+qlLegNominal(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the nominal for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegPreviousCashFlowAmount \b qlLegPreviousCashFlowAmount
+\code
+
+double returnValue
+
+qlLegPreviousCashFlowAmount(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the previous cash flow amount.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegPreviousCashFlowDate \b qlLegPreviousCashFlowDate
+\code
+
+long returnValue
+
+qlLegPreviousCashFlowDate(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the previous cash flow date.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegPreviousCouponRate \b qlLegPreviousCouponRate
+\code
+
+double returnValue
+
+qlLegPreviousCouponRate(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the previous coupon rate. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the current date is used the coupon is the last paid one.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegReferencePeriodEnd \b qlLegReferencePeriodEnd
+\code
+
+long returnValue
+
+qlLegReferencePeriodEnd(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reference period end date for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegReferencePeriodStart \b qlLegReferencePeriodStart
+\code
+
+long returnValue
+
+qlLegReferencePeriodStart(
+        string ObjectId
+        bool IncludeSettlDate
+        long SettlementDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reference period start date for the current coupon of the given Leg.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegSetCouponPricers \b qlLegSetCouponPricers
+\code
+
+void returnValue
+
+qlLegSetCouponPricers(
+        string ObjectId
+        vector<string> FloatingRateCouponPricer
+        any Trigger)
+
+\endcode
+\par Description:
+
+Set the coupon pricer at the given Leg object.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLibAddin::Leg object
+\param FloatingRateCouponPricer FloatingRate coupon pricer object ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegStartDate \b qlLegStartDate
+\code
+
+long returnValue
+
+qlLegStartDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the start (i.e. first accrual) date for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegYield \b qlLegYield
+\code
+
+double returnValue
+
+qlLegYield(
+        string ObjectId
+        double NPV
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        double Accuracy
+        long MaxIterations
+        double Guess
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the Internal rate of return for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param NPV Net present (dirty) value.
+\param DayCounter Irr DayCounter ID.
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Continuous.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Accuracy tolerance. Default value = 1.0e-10.
+\param MaxIterations max number of iterations. Default value = 100.
+\param Guess guess. Default value = 0.05.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegYieldValueBasisPoint \b qlLegYieldValueBasisPoint
+\code
+
+double returnValue
+
+qlLegYieldValueBasisPoint(
+        string ObjectId
+        double Yield
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the yieldValueBasisPoint for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param Yield Yield (a.k.a. IRR).
+\param DayCounter Yield DayCounter ID. Default value = Actual/Actual (ISDA).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Compounded.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing the current EvaluationDate is used. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLegZSpread \b qlLegZSpread
+\code
+
+double returnValue
+
+qlLegZSpread(
+        string ObjectId
+        double NPV
+        string DiscountCurve
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool IncludeSettlDate
+        long SettlementDate
+        long NpvDate
+        double Accuracy
+        long MaxIterations
+        double Guess
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the z-spread for the given Leg object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Leg object
+\param NPV Net present (dirty) value.
+\param DiscountCurve discounting YieldTermStructure object ID.
+\param DayCounter Not Used: DiscountCurve's DayCounter used instead. Default value = Actual/365 (Fixed).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Continuous.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param IncludeSettlDate TRUE if cashflows paid at the settlement date must be taken into account. Default value = true.
+\param SettlementDate cashflows before this date are not taken into account. If missing it defaults to the current evaluation date. Default value = QuantLib::Date().
+\param NpvDate all cashflows are discounted to this date. If missing it is assumed equal to the settlement date Default value = QuantLib::Date().
+\param Accuracy tolerance. Default value = 1.0e-10.
+\param MaxIterations max number of iterations. Default value = 100.
+\param Guess guess. Default value = 0.0.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMultiPhaseLeg \b qlMultiPhaseLeg
+\code
+
+string returnValue
+
+qlMultiPhaseLeg(
+        string ObjectId
+        vector<string> LegIDs
+        bool ToBeSorted
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MultiPhaseLeg and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param LegIDs leg object IDs, one for each phase.
+\param ToBeSorted TRUE if the CashFlows must be sorted by ascending dates. Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

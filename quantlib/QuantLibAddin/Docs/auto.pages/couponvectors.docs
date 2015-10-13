@@ -1,0 +1,598 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
+ Copyright (C) 2005 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_couponvectors Coupon Vectors
+\section overview Overview
+functions to construct and use Leg objects.
+\section functionlist Function List
+\ref qlCmsCouponPricer ()\n
+\ref qlCmsLeg ()\n
+\ref qlCmsZeroLeg ()\n
+\ref qlConundrumPricerByNumericalIntegration ()\n
+\ref qlConundrumPricerByNumericalIntegrationUpperLimit ()\n
+\ref qlDigitalCmsLeg ()\n
+\ref qlDigitalIborLeg ()\n
+\ref qlDigitalReplication ()\n
+\ref qlFixedRateLeg ()\n
+\ref qlFixedRateLeg2 ()\n
+\ref qlIborCouponPricer ()\n
+\ref qlIborLeg ()\n
+\ref qlRangeAccrualLeg ()\n
+
+\section documentation Function Documentation
+\anchor qlCmsCouponPricer \b qlCmsCouponPricer
+\code
+
+string returnValue
+
+qlCmsCouponPricer(
+        string ObjectId
+        string Volatility
+        string CmsCouponPricerType
+        string YieldCurveModel
+        string MeanReversion
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CmsCouponPricer and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Volatility Swaption Volatility Structure object ID.
+\param CmsCouponPricerType Cms Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula).
+\param YieldCurveModel model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts).
+\param MeanReversion mean reversion quote.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCmsLeg \b qlCmsLeg
+\code
+
+string returnValue
+
+qlCmsLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<long> FixingDays
+        bool IsInArrears
+        string DayCounter
+        vector<double> Floors
+        vector<double> Gearings
+        string SwapIndex
+        vector<double> Spreads
+        vector<double> Caps
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CmsLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals Nominal amount vector.
+\param ScheduleID Schedule object ID.
+\param FixingDays fixing days (e.g. 2). Default value = std::vector<QuantLib::Natural>().
+\param IsInArrears TRUE if the fixing is in arrears. Default value = false.
+\param DayCounter Payment DayCounter ID.
+\param Floors floor strikes. Default value = std::vector<QuantLib::Rate>().
+\param Gearings floating rate gearings. Default value = 1.0.
+\param SwapIndex underlying SwapIndex object ID.
+\param Spreads floating rate spreads. Default value = 0.0.
+\param Caps cap strikes. Default value = std::vector<QuantLib::Rate>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCmsZeroLeg \b qlCmsZeroLeg
+\code
+
+string returnValue
+
+qlCmsZeroLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<long> FixingDays
+        bool IsInArrears
+        string DayCounter
+        vector<double> Floors
+        vector<double> Gearings
+        string SwapIndex
+        vector<double> Spreads
+        vector<double> Caps
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CmsZeroLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals Nominal amount vector.
+\param ScheduleID Schedule object ID.
+\param FixingDays fixing days (e.g. 2). Default value = std::vector<QuantLib::Natural>().
+\param IsInArrears TRUE if the fixing is in arrears. Default value = false.
+\param DayCounter Payment DayCounter ID.
+\param Floors floor strikes. Default value = std::vector<QuantLib::Rate>().
+\param Gearings floating rate gearings. Default value = 1.0.
+\param SwapIndex underlying SwapIndex object ID.
+\param Spreads floating rate spreads. Default value = 0.0.
+\param Caps cap strikes. Default value = std::vector<QuantLib::Rate>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlConundrumPricerByNumericalIntegration \b qlConundrumPricerByNumericalIntegration
+\code
+
+string returnValue
+
+qlConundrumPricerByNumericalIntegration(
+        string ObjectId
+        string SwaptionVol
+        string YieldCurveModel
+        string MeanReversion
+        double LowerLimit
+        double UpperLimit
+        double Precision
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class NumericHaganPricer and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param SwaptionVol Volatility Cube by Sabr.
+\param YieldCurveModel model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts).
+\param MeanReversion mean reversion.
+\param LowerLimit lower limit. Default value = 0.0.
+\param UpperLimit upper limit. Default value = 1.0.
+\param Precision precision. Default value = 1.0e-6.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlConundrumPricerByNumericalIntegrationUpperLimit \b qlConundrumPricerByNumericalIntegrationUpperLimit
+\code
+
+double returnValue
+
+qlConundrumPricerByNumericalIntegrationUpperLimit(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the upper limit of the integral.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::NumericHaganPricer object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlDigitalCmsLeg \b qlDigitalCmsLeg
+\code
+
+string returnValue
+
+qlDigitalCmsLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<long> FixingDays
+        bool IsInArrears
+        string DayCounter
+        vector<double> Gearings
+        string SwapIndex
+        vector<double> Spreads
+        vector<double> CallStrikes
+        string CallSpecs
+        vector<double> CallPayoff
+        vector<double> PutStrikes
+        string PutSpecs
+        vector<double> PutPayoff
+        string Replication
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DigitalCmsLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals nominal amount vector.
+\param ScheduleID schedule object ID.
+\param FixingDays fixing days. Default value = std::vector<QuantLib::Natural>().
+\param IsInArrears TRUE if the fixing is in arrears. Default value = false.
+\param DayCounter Payment DayCounter ID.
+\param Gearings floating rate gearings. Default value = 1.0.
+\param SwapIndex swap rate index.
+\param Spreads floating rate spreads. Default value = 0.0.
+\param CallStrikes option strikes. If omitted, no call is assumed. Default value = std::vector<QuantLib::Rate>().
+\param CallSpecs call position (Short, Long) and ATM inclusion.
+\param CallPayoff payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed. Default value = std::vector<QuantLib::Rate>().
+\param PutStrikes option strikes. If omitted, no put is assumed. Default value = std::vector<QuantLib::Rate>().
+\param PutSpecs put position (Short, Long) and ATM inclusion.
+\param PutPayoff payoff if the put ends ITM. If omitted, asset-or-nothing option is assumed. Default value = std::vector<QuantLib::Rate>().
+\param Replication replication object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDigitalIborLeg \b qlDigitalIborLeg
+\code
+
+string returnValue
+
+qlDigitalIborLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<long> FixingDays
+        bool IsInArrears
+        string DayCounter
+        vector<double> Gearings
+        string IborIndex
+        vector<double> Spreads
+        vector<double> CallStrikes
+        string CallSpecs
+        vector<double> CallPayoff
+        vector<double> PutStrikes
+        string PutSpecs
+        vector<double> PutPayoff
+        string Replication
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DigitalIborLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals nominal amount vector.
+\param ScheduleID schedule object ID.
+\param FixingDays fixing days. Default value = std::vector<QuantLib::Natural>().
+\param IsInArrears TRUE if the fixing is in arrears. Default value = false.
+\param DayCounter Payment DayCounter ID.
+\param Gearings floating rate gearings. Default value = 1.0.
+\param IborIndex floating rate index.
+\param Spreads floating rate spreads. Default value = 0.0.
+\param CallStrikes option strikes. If omitted, no call is assumed. Default value = std::vector<QuantLib::Rate>().
+\param CallSpecs call position (Short, Long) and ATM inclusion.
+\param CallPayoff payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed. Default value = std::vector<QuantLib::Rate>().
+\param PutStrikes option strikes. If omitted, no put is assumed. Default value = std::vector<QuantLib::Rate>().
+\param PutSpecs put position (Short, Long) and ATM inclusion.
+\param PutPayoff payoff if the put ends ITM. If omitted, asset-or-nothing option is assumed. Default value = std::vector<QuantLib::Rate>().
+\param Replication replication object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDigitalReplication \b qlDigitalReplication
+\code
+
+string returnValue
+
+qlDigitalReplication(
+        string ObjectId
+        string Replication
+        double Gap
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DigitalReplication and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Replication Replication type (Sub, Central or Super).
+\param Gap spread in strikes used in call/put replication. Default value = 0.0001.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFixedRateLeg \b qlFixedRateLeg
+\code
+
+string returnValue
+
+qlFixedRateLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<double> Coupons
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FixedRateLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals Nominal amount vector.
+\param ScheduleID Schedule object ID.
+\param Coupons coupon fixed rates.
+\param DayCounter Payment DayCounter ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFixedRateLeg2 \b qlFixedRateLeg2
+\code
+
+string returnValue
+
+qlFixedRateLeg2(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<string> Coupons
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FixedRateLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals Nominal amount vector.
+\param ScheduleID Schedule object ID.
+\param Coupons coupon InterestRate IDs.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIborCouponPricer \b qlIborCouponPricer
+\code
+
+string returnValue
+
+qlIborCouponPricer(
+        string ObjectId
+        string Volatility
+        string IborCouponPricerType
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class IborCouponPricer and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Volatility Caplet Volatility Structure object ID.
+\param IborCouponPricerType Ibor Coupon Pricer Type (e.g IborByBlack, ..).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIborLeg \b qlIborLeg
+\code
+
+string returnValue
+
+qlIborLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<long> FixingDays
+        bool IsInArrears
+        string DayCounter
+        vector<double> Floors
+        vector<double> Gearings
+        string IborIndex
+        vector<double> Spreads
+        vector<double> Caps
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class IborLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals Nominal amount vector.
+\param ScheduleID Schedule object ID.
+\param FixingDays fixing days (e.g. 2). Default value = std::vector<QuantLib::Natural>().
+\param IsInArrears TRUE if the fixing is in arrears. Default value = false.
+\param DayCounter Payment DayCounter ID.
+\param Floors floor strikes. Default value = std::vector<QuantLib::Rate>().
+\param Gearings floating rate gearings. Default value = 1.0.
+\param IborIndex floating rate index.
+\param Spreads floating rate spreads. Default value = 0.0.
+\param Caps cap strikes. Default value = std::vector<QuantLib::Rate>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRangeAccrualLeg \b qlRangeAccrualLeg
+\code
+
+string returnValue
+
+qlRangeAccrualLeg(
+        string ObjectId
+        string PaymentBDC
+        vector<double> Nominals
+        string ScheduleID
+        vector<long> FixingDays
+        string DayCounter
+        vector<double> LowerStrikes
+        vector<double> Gearings
+        string IborIndex
+        vector<double> Spreads
+        vector<double> UpperStrikes
+        string ObservationsTenor
+        string ObservationsBDC
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RangeAccrualLeg and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Nominals Nominal amount vector.
+\param ScheduleID Schedule object ID.
+\param FixingDays fixing days (e.g. 2). Default value = std::vector<QuantLib::Natural>().
+\param DayCounter Payment DayCounter ID.
+\param LowerStrikes lower strikes. Default value = std::vector<QuantLib::Rate>().
+\param Gearings floating rate gearings. Default value = 1.0.
+\param IborIndex underlying IborIndex object ID.
+\param Spreads floating rate spreads. Default value = 0.0.
+\param UpperStrikes upper strikes. Default value = std::vector<QuantLib::Rate>().
+\param ObservationsTenor observations tenor period.
+\param ObservationsBDC observations business day convention. Default value = Modified Following.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

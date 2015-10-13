@@ -1,0 +1,127 @@
+
+/*  
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_utilities Utilities
+\section overview Overview
+diagnostic and utility functions.
+\section functionlist Function List
+\ref qlAddinVersion ()\n
+\ref qlFunctionCount ()\n
+\ref qlVersion ()\n
+\ref qlxlVersion ()\n
+
+\section documentation Function Documentation
+\anchor qlAddinVersion \b qlAddinVersion
+\code
+
+string returnValue
+
+qlAddinVersion(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the version number of QuantLibAddin (a.k.a QuantLibObject).
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFunctionCount \b qlFunctionCount
+\code
+
+long returnValue
+
+qlFunctionCount(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the number of functions in this Addin.
+
+\par Supported Platforms:
+
+Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVersion \b qlVersion
+\code
+
+string returnValue
+
+qlVersion(
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the version number of QuantLib.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlxlVersion \b qlxlVersion
+\code
+
+string returnValue
+
+qlxlVersion(
+        bool Verbose
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the version number of QuantLibXL.
+
+\par Supported Platforms:
+
+Excel
+
+\param Verbose TRUE to get the verbose version string. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

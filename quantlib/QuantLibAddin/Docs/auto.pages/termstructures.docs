@@ -1,0 +1,718 @@
+
+/*  
+ Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_termstructures Yield Term Structures
+\section overview Overview
+functions to construct and use YieldTermStructure objects.
+\section functionlist Function List
+\ref qlDiscountCurve ()\n
+\ref qlFlatForward ()\n
+\ref qlForwardCurve ()\n
+\ref qlForwardSpreadedTermStructure ()\n
+\ref qlImpliedTermStructure ()\n
+\ref qlInterpolatedYieldCurve ()\n
+\ref qlInterpolatedYieldCurveData ()\n
+\ref qlInterpolatedYieldCurveDates ()\n
+\ref qlInterpolatedYieldCurveJumpDates ()\n
+\ref qlInterpolatedYieldCurveJumpTimes ()\n
+\ref qlInterpolatedYieldCurveTimes ()\n
+\ref qlRelinkableHandleYieldTermStructure ()\n
+\ref qlTermStructureCalendar ()\n
+\ref qlTermStructureDayCounter ()\n
+\ref qlTermStructureMaxDate ()\n
+\ref qlTermStructureReferenceDate ()\n
+\ref qlTermStructureSettlementDays ()\n
+\ref qlTermStructureTimeFromReference ()\n
+\ref qlYieldTSDiscount ()\n
+\ref qlYieldTSForwardRate ()\n
+\ref qlYieldTSForwardRate2 ()\n
+\ref qlYieldTSZeroRate ()\n
+\ref qlZeroCurve ()\n
+
+\section documentation Function Documentation
+\anchor qlDiscountCurve \b qlDiscountCurve
+\code
+
+string returnValue
+
+qlDiscountCurve(
+        string ObjectId
+        vector<long> CurveDates
+        vector<double> CurveDiscounts
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DiscountCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurveDates dates of the curve.
+\param CurveDiscounts discount factors for the above dates.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFlatForward \b qlFlatForward
+\code
+
+string returnValue
+
+qlFlatForward(
+        string ObjectId
+        long NDays
+        string Calendar
+        string Rate
+        string DayCounter
+        string Compounding
+        string Frequency
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FlatForward and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param NDays number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET) to advance from global EvaluationDate. Default value = NullCalendar.
+\param Rate the curve level.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Continuous.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardCurve \b qlForwardCurve
+\code
+
+string returnValue
+
+qlForwardCurve(
+        string ObjectId
+        vector<long> CurveDates
+        vector<double> ForwardYields
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ForwardCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurveDates dates of the curve.
+\param ForwardYields forwards rates for the above dates.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardSpreadedTermStructure \b qlForwardSpreadedTermStructure
+\code
+
+string returnValue
+
+qlForwardSpreadedTermStructure(
+        string ObjectId
+        string BaseYieldCurve
+        string Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ForwardSpreadedTermStructure and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param BaseYieldCurve Base YieldTermStructure object ID.
+\param Spread spread.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlImpliedTermStructure \b qlImpliedTermStructure
+\code
+
+string returnValue
+
+qlImpliedTermStructure(
+        string ObjectId
+        string BaseYieldCurve
+        long ReferenceDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ImpliedTermStructure and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param BaseYieldCurve Base YieldTermStructure object ID.
+\param ReferenceDate the reference date the base YieldTermStructure should be shifted to.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlInterpolatedYieldCurve \b qlInterpolatedYieldCurve
+\code
+
+string returnValue
+
+qlInterpolatedYieldCurve(
+        string ObjectId
+        vector<long> Dates
+        vector<double> Data
+        string Calendar
+        string DayCounter
+        vector<string> Jumps
+        vector<long> JumpDates
+        string TraitsID
+        string InterpolatorID
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class InterpolatedYieldCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dates vector of dates, the first one being the one at which discount factor = 1.0
+\param Data data vector. Each element should be of the type selected by TraitsID
+\param Calendar holiday calendar (e.g. TARGET) to advance from global EvaluationDate.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Jumps Jump quotes vector.
+\param JumpDates Jump dates vector.
+\param TraitsID Discount, ZeroYield, or ForwardRate. Default value = Discount.
+\param InterpolatorID BackwardFlat, ForwardFlat, Linear, LogLinear, LogParabolic, KrugerLogCubic, etc. Default value = MonotonicLogCubicNaturalSpline.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlInterpolatedYieldCurveData \b qlInterpolatedYieldCurveData
+\code
+
+vector<double> returnValue
+
+qlInterpolatedYieldCurveData(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve Data for the given InterpolatedYieldCurve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::InterpolatedYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolatedYieldCurveDates \b qlInterpolatedYieldCurveDates
+\code
+
+vector<long> returnValue
+
+qlInterpolatedYieldCurveDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of Dates for the given InterpolatedYieldCurve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::InterpolatedYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolatedYieldCurveJumpDates \b qlInterpolatedYieldCurveJumpDates
+\code
+
+vector<long> returnValue
+
+qlInterpolatedYieldCurveJumpDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of jump dates for the given InterpolatedYieldCurve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::InterpolatedYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolatedYieldCurveJumpTimes \b qlInterpolatedYieldCurveJumpTimes
+\code
+
+vector<double> returnValue
+
+qlInterpolatedYieldCurveJumpTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of jump times for the given InterpolatedYieldCurve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::InterpolatedYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolatedYieldCurveTimes \b qlInterpolatedYieldCurveTimes
+\code
+
+vector<double> returnValue
+
+qlInterpolatedYieldCurveTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of Times for the given InterpolatedYieldCurve.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::InterpolatedYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRelinkableHandleYieldTermStructure \b qlRelinkableHandleYieldTermStructure
+\code
+
+string returnValue
+
+qlRelinkableHandleYieldTermStructure(
+        string ObjectId
+        string CurrentLink
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RelinkableHandleImpl<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure> and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurrentLink YieldTermStructure object ID. If omitted, nothing is linked by the RelinkableHandle. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTermStructureCalendar \b qlTermStructureCalendar
+\code
+
+string returnValue
+
+qlTermStructureCalendar(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the calendar used by the given TermStructure object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::TermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTermStructureDayCounter \b qlTermStructureDayCounter
+\code
+
+string returnValue
+
+qlTermStructureDayCounter(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the DayCounter used by the given TermStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTermStructureMaxDate \b qlTermStructureMaxDate
+\code
+
+long returnValue
+
+qlTermStructureMaxDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the max date for the given TermStructure object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLib::TermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTermStructureReferenceDate \b qlTermStructureReferenceDate
+\code
+
+long returnValue
+
+qlTermStructureReferenceDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reference date for the given TermStructure object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLib::TermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTermStructureSettlementDays \b qlTermStructureSettlementDays
+\code
+
+long returnValue
+
+qlTermStructureSettlementDays(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of settlement days for the given TermStructure object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLib::TermStructure object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTermStructureTimeFromReference \b qlTermStructureTimeFromReference
+\code
+
+vector<double> returnValue
+
+qlTermStructureTimeFromReference(
+        string ObjectId
+        vector<long> Date
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the time from the reference date for the given TermStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TermStructure object
+\param Date vector of dates.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlYieldTSDiscount \b qlYieldTSDiscount
+\code
+
+vector<double> returnValue
+
+qlYieldTSDiscount(
+        string ObjectId
+        vector<long> DfDates
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns a discount factor from the given YieldTermStructure object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::YieldTermStructure object
+\param DfDates vector of dates.
+\param AllowExtrapolation TRUE allows extrapolation. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlYieldTSForwardRate \b qlYieldTSForwardRate
+\code
+
+vector<string> returnValue
+
+qlYieldTSForwardRate(
+        string ObjectId
+        long D1
+        vector<long> D2
+        string ResultDayCounter
+        string Compounding
+        string Frequency
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the forward interest rate from the given YieldTermStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::YieldTermStructure object
+\param D1 first date.
+\param D2 second date.
+\param ResultDayCounter result DayCounter.
+\param Compounding Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Simple.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param AllowExtrapolation TRUE allows extrapolation. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlYieldTSForwardRate2 \b qlYieldTSForwardRate2
+\code
+
+vector<string> returnValue
+
+qlYieldTSForwardRate2(
+        string ObjectId
+        vector<long> Date
+        string Period
+        string ResultDayCounter
+        string Compounding
+        string Frequency
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the forward interest rate from the given YieldTermStructure object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::YieldTermStructure object
+\param Date first date.
+\param Period Period (e.g. '7D', '3M', '1Y', etc).
+\param ResultDayCounter result DayCounter.
+\param Compounding Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Simple.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param AllowExtrapolation TRUE allows extrapolation. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlYieldTSZeroRate \b qlYieldTSZeroRate
+\code
+
+vector<string> returnValue
+
+qlYieldTSZeroRate(
+        string ObjectId
+        vector<long> Dates
+        string ResultDayCounter
+        string Compounding
+        string Frequency
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the zero interest rate from the given YieldTermStructure object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::YieldTermStructure object
+\param Dates date.
+\param ResultDayCounter resultDayCounter.
+\param Compounding Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}). Default value = Continuous.
+\param Frequency frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). Default value = Annual.
+\param AllowExtrapolation TRUE allows extrapolation. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlZeroCurve \b qlZeroCurve
+\code
+
+string returnValue
+
+qlZeroCurve(
+        string ObjectId
+        vector<long> CurveDates
+        vector<double> CurveYields
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ZeroCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurveDates dates of the curve.
+\param CurveYields zero rates for the above dates.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

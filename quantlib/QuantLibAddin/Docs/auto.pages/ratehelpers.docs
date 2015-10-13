@@ -1,0 +1,1085 @@
+
+/*  
+ Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008, 2009, 2015 Ferdinando Ametrano
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2015 Maddalena Zanzi
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_ratehelpers RateHelper
+\section overview Overview
+functions to construct and use RateHelper objects.
+\section functionlist Function List
+\ref qlBondHelper ()\n
+\ref qlDatedOISRateHelper ()\n
+\ref qlDepositRateHelper ()\n
+\ref qlDepositRateHelper2 ()\n
+\ref qlFixedRateBondHelper ()\n
+\ref qlFraRateHelper ()\n
+\ref qlFraRateHelper2 ()\n
+\ref qlFuturesRateHelper ()\n
+\ref qlFuturesRateHelper2 ()\n
+\ref qlFuturesRateHelper3 ()\n
+\ref qlFuturesRateHelperConvexityAdjustment ()\n
+\ref qlFxSwapRateHelper ()\n
+\ref qlFxSwapRateHelperBDC ()\n
+\ref qlFxSwapRateHelperCalendar ()\n
+\ref qlFxSwapRateHelperEOM ()\n
+\ref qlFxSwapRateHelperFixingDays ()\n
+\ref qlFxSwapRateHelperIsBaseCurrencyCollateralCurrency ()\n
+\ref qlFxSwapRateHelperSpotValue ()\n
+\ref qlFxSwapRateHelperTenor ()\n
+\ref qlOISRateHelper ()\n
+\ref qlRateHelperEarliestDate ()\n
+\ref qlRateHelperImpliedQuote ()\n
+\ref qlRateHelperLatestDate ()\n
+\ref qlRateHelperQuoteError ()\n
+\ref qlRateHelperQuoteIsValid ()\n
+\ref qlRateHelperQuoteName ()\n
+\ref qlRateHelperQuoteValue ()\n
+\ref qlRateHelperRate ()\n
+\ref qlRateHelperSelection ()\n
+\ref qlSwapRateHelper ()\n
+\ref qlSwapRateHelper2 ()\n
+\ref qlSwapRateHelperForwardStart ()\n
+\ref qlSwapRateHelperSpread ()\n
+
+\section documentation Function Documentation
+\anchor qlBondHelper \b qlBondHelper
+\code
+
+string returnValue
+
+qlBondHelper(
+        string ObjectId
+        string Price
+        string Bond
+        bool UseCleanPrice
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BondHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Price price.
+\param Bond Bond object ID.
+\param UseCleanPrice Type of price specified (TRUE clean price, FALSE for dirty price). Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDatedOISRateHelper \b qlDatedOISRateHelper
+\code
+
+string returnValue
+
+qlDatedOISRateHelper(
+        string ObjectId
+        long StartDate
+        long EndDate
+        string FixedRate
+        string ONIndex
+        string DiscountingCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DatedOISRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param StartDate swap start date.
+\param EndDate swap end date.
+\param FixedRate quote.
+\param ONIndex floating leg OvernightIndex object ID.
+\param DiscountingCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDepositRateHelper \b qlDepositRateHelper
+\code
+
+string returnValue
+
+qlDepositRateHelper(
+        string ObjectId
+        string Rate
+        string IborIndex
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DepositRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate deposit quote.
+\param IborIndex IborIndex object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlDepositRateHelper2 \b qlDepositRateHelper2
+\code
+
+string returnValue
+
+qlDepositRateHelper2(
+        string ObjectId
+        string Rate
+        string Tenor
+        long FixingDays
+        string Calendar
+        string Convention
+        bool EndOfMonth
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DepositRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate deposit quote.
+\param Tenor deposit length (e.g. 3M for three months).
+\param FixingDays fixing days (e.g. 2).
+\param Calendar holiday calendar (e.g. TARGET).
+\param Convention business day convention (e.g. Modified Following).
+\param EndOfMonth End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).
+\param DayCounter DayCounter ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFixedRateBondHelper \b qlFixedRateBondHelper
+\code
+
+string returnValue
+
+qlFixedRateBondHelper(
+        string ObjectId
+        string Price
+        long SettlementDays
+        double FaceAmount
+        string ScheduleID
+        vector<double> Coupons
+        string DayCounter
+        string PaymentBDC
+        double Redemption
+        long IssueDate
+        string PaymentCalendar
+        string ExCouponPeriod
+        string ExCouponCalendar
+        string ExCouponBDC
+        bool ExCouponEndOfMonth
+        bool UseCleanPrice
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FixedRateBondHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Price Price - either clean or dirty.
+\param SettlementDays settlement days.
+\param FaceAmount Face nominal amount. Default value = 100.0.
+\param ScheduleID Schedule object ID.
+\param Coupons coupon fixed rates.
+\param DayCounter Payment DayCounter ID.
+\param PaymentBDC payment business day convention. Default value = Following.
+\param Redemption redemption value. Default value = 100.0.
+\param IssueDate issue date: the bond can't be traded until then. Default value = QuantLib::Date().
+\param PaymentCalendar holiday calendar (e.g. TARGET).
+\param ExCouponPeriod Ex-coupon period.
+\param ExCouponCalendar Ex-coupon calendar (e.g. TARGET).
+\param ExCouponBDC Ex-coupon business day convention (e.g. Modified Following).
+\param ExCouponEndOfMonth Ex-coupon end of month rule (TRUE for end of month to end of month termination date, FALSE otherwise).
+\param UseCleanPrice Type of price specified (TRUE clean price, FALSE for dirty price). Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFraRateHelper \b qlFraRateHelper
+\code
+
+string returnValue
+
+qlFraRateHelper(
+        string ObjectId
+        string Rate
+        string PeriodToStart
+        string IborIndex
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FraRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate quote.
+\param PeriodToStart Period to start date.
+\param IborIndex IborIndex object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFraRateHelper2 \b qlFraRateHelper2
+\code
+
+string returnValue
+
+qlFraRateHelper2(
+        string ObjectId
+        string Rate
+        string PeriodToStart
+        long LengthInMonths
+        long FixingDays
+        string Calendar
+        string Convention
+        bool EndOfMonth
+        string DayCounter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FraRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate quote.
+\param PeriodToStart Period to start date.
+\param LengthInMonths months to end.
+\param FixingDays fixing days (e.g. 2).
+\param Calendar holiday calendar (e.g. TARGET).
+\param Convention business day convention (e.g. Modified Following).
+\param EndOfMonth End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).
+\param DayCounter DayCounter ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFuturesRateHelper \b qlFuturesRateHelper
+\code
+
+string returnValue
+
+qlFuturesRateHelper(
+        string ObjectId
+        string Price
+        string FuturesType
+        long FuturesDate
+        string IborIndex
+        string ConvexityAdjQuote
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FuturesRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Price price quote.
+\param FuturesType Futures type. Default value = IMM.
+\param FuturesDate Futures date (IborIndex start date).
+\param IborIndex IborIndex object ID. Default value = Euribor3M.
+\param ConvexityAdjQuote convexity adjustment quote (i.e. Forward rate = Futures rate - convexity adjustment).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFuturesRateHelper2 \b qlFuturesRateHelper2
+\code
+
+string returnValue
+
+qlFuturesRateHelper2(
+        string ObjectId
+        string Price
+        string FuturesType
+        long FuturesDate
+        long LengthInMonths
+        string Calendar
+        string Convention
+        bool EndOfMonth
+        string DayCounter
+        string ConvexityAdjQuote
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FuturesRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Price price quote.
+\param FuturesType Futures type. Default value = IMM.
+\param FuturesDate Futures date (IborIndex start date).
+\param LengthInMonths future contract length in months. Default value = 3.
+\param Calendar holiday calendar (e.g. TARGET).
+\param Convention business day convention (e.g. Modified Following). Default value = Modified Following.
+\param EndOfMonth End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise). Default value = true.
+\param DayCounter DayCounter ID. Default value = Actual/360.
+\param ConvexityAdjQuote convexity adjustment quote (i.e. Forward rate = Futures rate - convexity adjustment).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFuturesRateHelper3 \b qlFuturesRateHelper3
+\code
+
+string returnValue
+
+qlFuturesRateHelper3(
+        string ObjectId
+        string Price
+        string FuturesType
+        long FuturesDate
+        long EndDate
+        string DayCounter
+        string ConvexityAdjQuote
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FuturesRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Price price quote.
+\param FuturesType Futures type. Default value = IMM.
+\param FuturesDate Futures date (IborIndex start date).
+\param EndDate end date. Default value = QuantLib::Date().
+\param DayCounter DayCounter ID. Default value = Actual/360.
+\param ConvexityAdjQuote convexity adjustment quote (i.e. Forward rate = Futures rate - convexity adjustment).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFuturesRateHelperConvexityAdjustment \b qlFuturesRateHelperConvexityAdjustment
+\code
+
+double returnValue
+
+qlFuturesRateHelperConvexityAdjustment(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the convexity adjustment for the given FuturesRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FuturesRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelper \b qlFxSwapRateHelper
+\code
+
+string returnValue
+
+qlFxSwapRateHelper(
+        string ObjectId
+        string FwdPoint
+        string SpotFx
+        string Tenor
+        long FixingDays
+        string Calendar
+        string Convention
+        bool EndOfMonth
+        bool IsFxBaseCurrencyCollateralCurrency
+        string CollateralCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FxSwapRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FwdPoint forward point quote.
+\param SpotFx fx spot quote.
+\param Tenor fx swap length (e.g. 3M for three months).
+\param FixingDays fixing days (e.g. 2).
+\param Calendar holiday calendar (e.g. TARGET).
+\param Convention business day convention (e.g. Modified Following).
+\param EndOfMonth End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).
+\param IsFxBaseCurrencyCollateralCurrency TRUE if the base currency of the fx currency pair is the one used as collateral, FALSE otherwise.
+\param CollateralCurve collateral YieldTermStructure object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFxSwapRateHelperBDC \b qlFxSwapRateHelperBDC
+\code
+
+string returnValue
+
+qlFxSwapRateHelperBDC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the business day convention for the given FxSwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelperCalendar \b qlFxSwapRateHelperCalendar
+\code
+
+string returnValue
+
+qlFxSwapRateHelperCalendar(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the calendar for the given FxSwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelperEOM \b qlFxSwapRateHelperEOM
+\code
+
+bool returnValue
+
+qlFxSwapRateHelperEOM(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the end of month flag for the given FxSwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelperFixingDays \b qlFxSwapRateHelperFixingDays
+\code
+
+long returnValue
+
+qlFxSwapRateHelperFixingDays(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the number of fixing days for the given FxSwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelperIsBaseCurrencyCollateralCurrency \b qlFxSwapRateHelperIsBaseCurrencyCollateralCurrency
+\code
+
+bool returnValue
+
+qlFxSwapRateHelperIsBaseCurrencyCollateralCurrency(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns TRUE if the base currency of the fx currency pair is the one used as collateral, FALSE otherwise.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelperSpotValue \b qlFxSwapRateHelperSpotValue
+\code
+
+double returnValue
+
+qlFxSwapRateHelperSpotValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fx spot quote value for the given FxSwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFxSwapRateHelperTenor \b qlFxSwapRateHelperTenor
+\code
+
+string returnValue
+
+qlFxSwapRateHelperTenor(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the tenor for the given FxSwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FxSwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlOISRateHelper \b qlOISRateHelper
+\code
+
+string returnValue
+
+qlOISRateHelper(
+        string ObjectId
+        long SettlDays
+        string Tenor
+        string FixedRate
+        string ONIndex
+        string DiscountingCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OISRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param SettlDays swap settlement days.
+\param Tenor swap length (e.g. 5Y for five years).
+\param FixedRate quote.
+\param ONIndex floating leg OvernightIndex object ID.
+\param DiscountingCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRateHelperEarliestDate \b qlRateHelperEarliestDate
+\code
+
+long returnValue
+
+qlRateHelperEarliestDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the earliest date for the given RateHelper object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperImpliedQuote \b qlRateHelperImpliedQuote
+\code
+
+double returnValue
+
+qlRateHelperImpliedQuote(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the curve implied quote of the given RateHelper object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLib::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperLatestDate \b qlRateHelperLatestDate
+\code
+
+long returnValue
+
+qlRateHelperLatestDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the latest date for the given RateHelper object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperQuoteError \b qlRateHelperQuoteError
+\code
+
+double returnValue
+
+qlRateHelperQuoteError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the error between the curve implied quote and the value of the Quote wrapped in the given RateHelper object.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLib::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperQuoteIsValid \b qlRateHelperQuoteIsValid
+\code
+
+double returnValue
+
+qlRateHelperQuoteIsValid(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the isValid boolean of the Quote wrapped in the given RateHelper object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLib::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperQuoteName \b qlRateHelperQuoteName
+\code
+
+string returnValue
+
+qlRateHelperQuoteName(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the objectID of the Quote wrapped in the given RateHelper object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLibAddin::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperQuoteValue \b qlRateHelperQuoteValue
+\code
+
+double returnValue
+
+qlRateHelperQuoteValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the value of the Quote wrapped in the given RateHelper object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLib::RateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperRate \b qlRateHelperRate
+\code
+
+double returnValue
+
+qlRateHelperRate(
+        string RateHelper
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the rate (if any) associated to a rate helper.
+
+\par Supported Platforms:
+
+Excel
+
+\param RateHelper RateHelper ID.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRateHelperSelection \b qlRateHelperSelection
+\code
+
+vector<string> returnValue
+
+qlRateHelperSelection(
+        vector<string> RateHelpers
+        vector<long> Priority
+        long NImmFutures
+        long NSerialFutures
+        long FutureRollDays
+        string DepoInclusion
+        vector<long> MinDistance
+        any Trigger)
+
+\endcode
+\par Description:
+
+selects rate helpers for bootstrapping.
+
+\par Supported Platforms:
+
+Excel
+
+\param RateHelpers vector of RateHelper IDs.
+\param Priority vector of priority integers (higher number for higher priority).
+\param NImmFutures max number of IMM (March, June, September, December) Futures to be included.
+\param NSerialFutures max number of Serial (January, February, April, May, July, August, October, November) Futures to be included.
+\param FutureRollDays discard the front Futures the given number of (positive) days before its expiry (e.g zero implies the use of the front Futures during its expiry day). Default value = 2.
+\param DepoInclusion Depo inclusion criteria. Default value = AllDepos.
+\param MinDistance minimum distance in (positive) days from near instruments. Default value = 1.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapRateHelper \b qlSwapRateHelper
+\code
+
+string returnValue
+
+qlSwapRateHelper(
+        string ObjectId
+        string Rate
+        string SwapIndex
+        string Spread
+        string ForwardStart
+        string DiscountingCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SwapRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate quote.
+\param SwapIndex SwapIndex object ID.
+\param Spread floating leg spread.
+\param ForwardStart forward start period.
+\param DiscountingCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwapRateHelper2 \b qlSwapRateHelper2
+\code
+
+string returnValue
+
+qlSwapRateHelper2(
+        string ObjectId
+        string Rate
+        long SettlDays
+        string Tenor
+        string Calendar
+        string FixedLegFrequency
+        string FixedLegConvention
+        string FixedLegDayCounter
+        string IborIndex
+        string Spread
+        string ForwardStart
+        string DiscountingCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SwapRateHelper and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Rate quote.
+\param SettlDays Number of days to spot date. Default value = 2.
+\param Tenor swap length (e.g. 5Y for five years).
+\param Calendar holiday calendar (e.g. TARGET).
+\param FixedLegFrequency fixed leg frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).
+\param FixedLegConvention fixed leg convention (e.g. Unadjusted).
+\param FixedLegDayCounter day counter (e.g. Actual/360).
+\param IborIndex floating leg IborIndex object ID.
+\param Spread floating leg spread.
+\param ForwardStart forward start period.
+\param DiscountingCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwapRateHelperForwardStart \b qlSwapRateHelperForwardStart
+\code
+
+string returnValue
+
+qlSwapRateHelperForwardStart(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the forward start period for the given SwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapRateHelperSpread \b qlSwapRateHelperSpread
+\code
+
+double returnValue
+
+qlSwapRateHelperSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the spread for the given SwapRateHelper object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwapRateHelper object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

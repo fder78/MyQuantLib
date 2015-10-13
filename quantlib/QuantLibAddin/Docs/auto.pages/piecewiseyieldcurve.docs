@@ -1,0 +1,202 @@
+
+/*  
+ Copyright (C) 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2007 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_piecewiseyieldcurve Piecewise Yield Curves
+\section overview Overview
+functions to construct and use PiecewiseYieldCurve objects.
+\section functionlist Function List
+\ref qlPiecewiseYieldCurve ()\n
+\ref qlPiecewiseYieldCurveData ()\n
+\ref qlPiecewiseYieldCurveDates ()\n
+\ref qlPiecewiseYieldCurveJumpDates ()\n
+\ref qlPiecewiseYieldCurveJumpTimes ()\n
+\ref qlPiecewiseYieldCurveTimes ()\n
+
+\section documentation Function Documentation
+\anchor qlPiecewiseYieldCurve \b qlPiecewiseYieldCurve
+\code
+
+string returnValue
+
+qlPiecewiseYieldCurve(
+        string ObjectId
+        long NDays
+        string Calendar
+        vector<string> RateHelpers
+        string DayCounter
+        vector<string> Jumps
+        vector<long> JumpDates
+        double Accuracy
+        string TraitsID
+        string InterpolatorID
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class PiecewiseYieldCurve and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param NDays number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. Default value = 0.
+\param Calendar holiday calendar (e.g. TARGET) to advance from global EvaluationDate.
+\param RateHelpers vector of rate-helpers.
+\param DayCounter DayCounter ID. Default value = Actual/365 (Fixed).
+\param Jumps Jump quotes vector.
+\param JumpDates Jump dates vector.
+\param Accuracy Bootstrapping accuracy. Default value = 1.0e-12.
+\param TraitsID Discount, ZeroRate, or ForwardRate. Default value = Discount.
+\param InterpolatorID BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic. Default value = LogLinear.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPiecewiseYieldCurveData \b qlPiecewiseYieldCurveData
+\code
+
+vector<double> returnValue
+
+qlPiecewiseYieldCurveData(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve Data for the given PiecewiseYieldCurve<Traits, Interpolator>.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseYieldCurveDates \b qlPiecewiseYieldCurveDates
+\code
+
+vector<long> returnValue
+
+qlPiecewiseYieldCurveDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of Dates for the given PiecewiseYieldCurve<Traits, Interpolator>.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseYieldCurveJumpDates \b qlPiecewiseYieldCurveJumpDates
+\code
+
+vector<long> returnValue
+
+qlPiecewiseYieldCurveJumpDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of jump dates for the given PiecewiseYieldCurve<Traits, Interpolator>.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseYieldCurveJumpTimes \b qlPiecewiseYieldCurveJumpTimes
+\code
+
+vector<double> returnValue
+
+qlPiecewiseYieldCurveJumpTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of jump times for the given PiecewiseYieldCurve<Traits, Interpolator>.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPiecewiseYieldCurveTimes \b qlPiecewiseYieldCurveTimes
+\code
+
+vector<double> returnValue
+
+qlPiecewiseYieldCurveTimes(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Retrieve list of Times for the given PiecewiseYieldCurve<Traits, Interpolator>.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::PiecewiseYieldCurve object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

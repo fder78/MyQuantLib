@@ -1,0 +1,268 @@
+
+/*  
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2007 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_timeseries TimeSeries
+\section overview Overview
+functions to construct and use TimeSeries objects.
+\section functionlist Function List
+\ref qlTimeSeries ()\n
+\ref qlTimeSeriesDates ()\n
+\ref qlTimeSeriesEmpty ()\n
+\ref qlTimeSeriesFirstDate ()\n
+\ref qlTimeSeriesFromIndex ()\n
+\ref qlTimeSeriesLastDate ()\n
+\ref qlTimeSeriesSize ()\n
+\ref qlTimeSeriesValue ()\n
+\ref qlTimeSeriesValues ()\n
+
+\section documentation Function Documentation
+\anchor qlTimeSeries \b qlTimeSeries
+\code
+
+string returnValue
+
+qlTimeSeries(
+        string ObjectId
+        vector<long> Dates
+        vector<double> Values
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TimeSeriesDef and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Dates dates.
+\param Values values.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTimeSeriesDates \b qlTimeSeriesDates
+\code
+
+vector<long> returnValue
+
+qlTimeSeriesDates(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the dates for which historical data exist.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TimeSeriesDef object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeSeriesEmpty \b qlTimeSeriesEmpty
+\code
+
+bool returnValue
+
+qlTimeSeriesEmpty(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns whether the series contains any data.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TimeSeriesDef object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeSeriesFirstDate \b qlTimeSeriesFirstDate
+\code
+
+long returnValue
+
+qlTimeSeriesFirstDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the first date for which a historical datum exists.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TimeSeriesDef object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeSeriesFromIndex \b qlTimeSeriesFromIndex
+\code
+
+string returnValue
+
+qlTimeSeriesFromIndex(
+        string ObjectId
+        string Index
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class TimeSeriesDef and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param Index Index object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlTimeSeriesLastDate \b qlTimeSeriesLastDate
+\code
+
+long returnValue
+
+qlTimeSeriesLastDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the last date for which a historical datum exists.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TimeSeriesDef object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeSeriesSize \b qlTimeSeriesSize
+\code
+
+long returnValue
+
+qlTimeSeriesSize(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the first date for which a historical datum exists.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TimeSeriesDef object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeSeriesValue \b qlTimeSeriesValue
+\code
+
+vector<double> returnValue
+
+qlTimeSeriesValue(
+        string ObjectId
+        vector<long> Dates
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns returns the data corresponding to the given dates.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::TimeSeriesDef object
+\param Dates fixing date(s).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlTimeSeriesValues \b qlTimeSeriesValues
+\code
+
+vector<double> returnValue
+
+qlTimeSeriesValues(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the historical data.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TimeSeriesDef object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

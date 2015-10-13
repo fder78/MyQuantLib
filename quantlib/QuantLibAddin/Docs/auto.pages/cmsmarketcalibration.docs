@@ -1,0 +1,247 @@
+
+/*  
+ Copyright (C) 2006 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_cmsmarketcalibration Cms Market Calibration
+\section overview Overview
+functions to construct and use CmsMarketCalibration objects.
+\section functionlist Function List
+\ref qlCmsMarketCalibration ()\n
+\ref qlCmsMarketCalibrationCompute ()\n
+\ref qlCmsMarketCalibrationDenseSabrParameters ()\n
+\ref qlCmsMarketCalibrationElapsed ()\n
+\ref qlCmsMarketCalibrationEndCriteria ()\n
+\ref qlCmsMarketCalibrationError ()\n
+\ref qlCmsMarketCalibrationSparseSabrParameters ()\n
+\ref qlSimultaneousCalibrationBrowseCmsMarket ()\n
+
+\section documentation Function Documentation
+\anchor qlCmsMarketCalibration \b qlCmsMarketCalibration
+\code
+
+string returnValue
+
+qlCmsMarketCalibration(
+        string ObjectId
+        string VolCube
+        string CmsMarket
+        vector<vector<double> > Weights
+        string CalibrationType
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CmsMarketCalibration and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param VolCube Volatility Cube by Sabr.
+\param CmsMarket CmsMarket object ID.
+\param Weights weights for cms market calibration.
+\param CalibrationType calibration type (e.g. OnSpread, OnPrice, OnForwardPrice).
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCmsMarketCalibrationCompute \b qlCmsMarketCalibrationCompute
+\code
+
+vector<double> returnValue
+
+qlCmsMarketCalibrationCompute(
+        string ObjectId
+        string EndCriteria
+        string OptimizationMethod
+        vector<double> Guess
+        bool IsMeanRevFixed
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the best beta and mean reversion.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CmsMarketCalibration object
+\param EndCriteria EndCriteria object ID. Default value = .
+\param OptimizationMethod OptimizationMethod object ID. Default value = .
+\param Guess guess.
+\param IsMeanRevFixed if TRUE mean reversion parameter is not calibrated, the guess is used.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmsMarketCalibrationDenseSabrParameters \b qlCmsMarketCalibrationDenseSabrParameters
+\code
+
+vector<vector<any> > returnValue
+
+qlCmsMarketCalibrationDenseSabrParameters(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns results of Sabr calibration.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CmsMarketCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmsMarketCalibrationElapsed \b qlCmsMarketCalibrationElapsed
+\code
+
+double returnValue
+
+qlCmsMarketCalibrationElapsed(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the elapsed time of the simultaneous calibration.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CmsMarketCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmsMarketCalibrationEndCriteria \b qlCmsMarketCalibrationEndCriteria
+\code
+
+string returnValue
+
+qlCmsMarketCalibrationEndCriteria(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the optimization end criteria of the simultaneous calibration.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CmsMarketCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmsMarketCalibrationError \b qlCmsMarketCalibrationError
+\code
+
+double returnValue
+
+qlCmsMarketCalibrationError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the error of the simultaneous calibration.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::CmsMarketCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCmsMarketCalibrationSparseSabrParameters \b qlCmsMarketCalibrationSparseSabrParameters
+\code
+
+vector<vector<any> > returnValue
+
+qlCmsMarketCalibrationSparseSabrParameters(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns results of Sabr calibration.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CmsMarketCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSimultaneousCalibrationBrowseCmsMarket \b qlSimultaneousCalibrationBrowseCmsMarket
+\code
+
+vector<vector<any> > returnValue
+
+qlSimultaneousCalibrationBrowseCmsMarket(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+return the market and implied spreads matrix.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CmsMarketCalibration object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

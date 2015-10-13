@@ -1,0 +1,533 @@
+
+/*  
+ Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2007 Marco Bianchetti
+ Copyright (C) 2006 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_payoffs Payoffs
+\section overview Overview
+functions to construct and use StrikedTypePayoff and DoubleStickyRatchetPayoff objects.
+\section functionlist Function List
+\ref qlDoubleStickyRatchetPayoff ()\n
+\ref qlPayoffDescription ()\n
+\ref qlPayoffName ()\n
+\ref qlPayoffOptionType ()\n
+\ref qlPayoffStrike ()\n
+\ref qlPayoffThirdParameter ()\n
+\ref qlPayoffValue ()\n
+\ref qlRatchetMaxPayoff ()\n
+\ref qlRatchetMinPayoff ()\n
+\ref qlRatchetPayoff ()\n
+\ref qlStickyMaxPayoff ()\n
+\ref qlStickyMinPayoff ()\n
+\ref qlStickyPayoff ()\n
+\ref qlStrikedTypePayoff ()\n
+
+\section documentation Function Documentation
+\anchor qlDoubleStickyRatchetPayoff \b qlDoubleStickyRatchetPayoff
+\code
+
+string returnValue
+
+qlDoubleStickyRatchetPayoff(
+        string ObjectId
+        double Type1
+        double Type2
+        double Gearing1
+        double Gearing2
+        double Gearing3
+        double Spread1
+        double Spread2
+        double Spread3
+        double InitialValue1
+        double InitialValue2
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class DoubleStickyRatchetPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Type1  Sticky (type1=1) or Ratchet (type1=-1) payoff .
+\param Type2  Strike type (type2=1 for Min, type2=-1 for Max, type2=0 for single sticky/ratchet) .
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Gearing3 gearing 3 (for forward rate 3).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param Spread3 spread 3 (for forward rate 3).
+\param InitialValue1 initial value for strike 1 (forward rate or coupon/accrualFactor).
+\param InitialValue2 initial value for strike 2 (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlPayoffDescription \b qlPayoffDescription
+\code
+
+string returnValue
+
+qlPayoffDescription(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the description (e.g. CashOrNothing, strike 32.2, cash payoff 2.5) for the given Payoff object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Payoff object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPayoffName \b qlPayoffName
+\code
+
+string returnValue
+
+qlPayoffName(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the type (e.g. Vanilla, CashOrNothing, etc.) for the given Payoff object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Payoff object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPayoffOptionType \b qlPayoffOptionType
+\code
+
+string returnValue
+
+qlPayoffOptionType(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the option-type (e.g. Call, Put) for the given Payoff object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::TypePayoff object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPayoffStrike \b qlPayoffStrike
+\code
+
+double returnValue
+
+qlPayoffStrike(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the strike for the given Payoff object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::StrikedTypePayoff object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPayoffThirdParameter \b qlPayoffThirdParameter
+\code
+
+double returnValue
+
+qlPayoffThirdParameter(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the third parameter of a StrikedType payoff.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::StrikedTypePayoff object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlPayoffValue \b qlPayoffValue
+\code
+
+double returnValue
+
+qlPayoffValue(
+        string ObjectId
+        double Underlying
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the payoff value given an underlying reference level for the given Payoff object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Payoff object
+\param Underlying underlying reference level.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRatchetMaxPayoff \b qlRatchetMaxPayoff
+\code
+
+string returnValue
+
+qlRatchetMaxPayoff(
+        string ObjectId
+        double Gearing1
+        double Gearing2
+        double Gearing3
+        double Spread1
+        double Spread2
+        double Spread3
+        double InitialValue1
+        double InitialValue2
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RatchetMaxPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Gearing3 gearing 3 (for forward rate 3).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param Spread3 spread 3 (for forward rate 3).
+\param InitialValue1 initial value for strike 1 (forward rate or coupon/accrualFactor).
+\param InitialValue2 initial value for strike 2 (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRatchetMinPayoff \b qlRatchetMinPayoff
+\code
+
+string returnValue
+
+qlRatchetMinPayoff(
+        string ObjectId
+        double Gearing1
+        double Gearing2
+        double Gearing3
+        double Spread1
+        double Spread2
+        double Spread3
+        double InitialValue1
+        double InitialValue2
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RatchetMinPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Gearing3 gearing 3 (for forward rate 3).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param Spread3 spread 3 (for forward rate 3).
+\param InitialValue1 initial value for strike 1 (forward rate or coupon/accrualFactor).
+\param InitialValue2 initial value for strike 2 (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlRatchetPayoff \b qlRatchetPayoff
+\code
+
+string returnValue
+
+qlRatchetPayoff(
+        string ObjectId
+        double Gearing1
+        double Gearing2
+        double Spread1
+        double Spread2
+        double InitialValue
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RatchetPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param InitialValue initial value for strike (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStickyMaxPayoff \b qlStickyMaxPayoff
+\code
+
+string returnValue
+
+qlStickyMaxPayoff(
+        string ObjectId
+        double Gearing1
+        double Gearing2
+        double Gearing3
+        double Spread1
+        double Spread2
+        double Spread3
+        double InitialValue1
+        double InitialValue2
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class StickyMaxPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Gearing3 gearing 3 (for forward rate 3).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param Spread3 spread 3 (for forward rate 3).
+\param InitialValue1 initial value for strike 1 (forward rate or coupon/accrualFactor).
+\param InitialValue2 initial value for strike 2 (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStickyMinPayoff \b qlStickyMinPayoff
+\code
+
+string returnValue
+
+qlStickyMinPayoff(
+        string ObjectId
+        double Gearing1
+        double Gearing2
+        double Gearing3
+        double Spread1
+        double Spread2
+        double Spread3
+        double InitialValue1
+        double InitialValue2
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class StickyMinPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Gearing3 gearing 3 (for forward rate 3).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param Spread3 spread 3 (for forward rate 3).
+\param InitialValue1 initial value for strike 1 (forward rate or coupon/accrualFactor).
+\param InitialValue2 initial value for strike 2 (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStickyPayoff \b qlStickyPayoff
+\code
+
+string returnValue
+
+qlStickyPayoff(
+        string ObjectId
+        double Gearing1
+        double Gearing2
+        double Spread1
+        double Spread2
+        double InitialValue
+        double AccrualFactor
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class StickyPayoff and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Gearing1 gearing 1 (for strike 1).
+\param Gearing2 gearing 2 (for strike 2).
+\param Spread1 spread 1 (for strike 1).
+\param Spread2 spread 2 (for strike 2).
+\param InitialValue initial value for strike (forward rate or coupon/accrualFactor).
+\param AccrualFactor accrual factor.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlStrikedTypePayoff \b qlStrikedTypePayoff
+\code
+
+string returnValue
+
+qlStrikedTypePayoff(
+        string ObjectId
+        string PayoffID
+        string OptionType
+        double Strike
+        double ThirdParameter
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class StrikedTypePayoff and return its id
+
+\par Supported Platforms:
+
+C++, C, Calc, Excel, Guile
+
+\param ObjectId id of object to be created
+\param PayoffID payoff ID (e.g. Vanilla, PercentageStrike, AssetOrNothing, CashOrNothing, Gap, SuperShare).
+\param OptionType option type.
+\param Strike strike.
+\param ThirdParameter the 3rd paramenter for the payoff definition of CashOrNothing (cash), Gap (determines the size of the payoff), SuperFund (second strike). Default value = QuantLib::Null<QuantLib::Real>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+
+
+*/
+
+

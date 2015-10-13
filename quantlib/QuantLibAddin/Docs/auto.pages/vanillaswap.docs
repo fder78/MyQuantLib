@@ -1,0 +1,598 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2011, 2015 Ferdinando Ametrano
+ Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_vanillaswap Vanilla Swap
+\section overview Overview
+functions to construct and use VanillaSwap objects.
+\section functionlist Function List
+\ref qlMakeIMMSwap ()\n
+\ref qlMakeVanillaSwap ()\n
+\ref qlVanillaSwap ()\n
+\ref qlVanillaSwapFairRate ()\n
+\ref qlVanillaSwapFairSpread ()\n
+\ref qlVanillaSwapFixedDayCount ()\n
+\ref qlVanillaSwapFixedLegAnalysis ()\n
+\ref qlVanillaSwapFixedLegBPS ()\n
+\ref qlVanillaSwapFixedLegNPV ()\n
+\ref qlVanillaSwapFixedRate ()\n
+\ref qlVanillaSwapFloatingDayCount ()\n
+\ref qlVanillaSwapFloatingLegAnalysis ()\n
+\ref qlVanillaSwapFloatingLegBPS ()\n
+\ref qlVanillaSwapFloatingLegNPV ()\n
+\ref qlVanillaSwapFromSwapIndex ()\n
+\ref qlVanillaSwapFromSwapRateHelper ()\n
+\ref qlVanillaSwapNominal ()\n
+\ref qlVanillaSwapPaymentConvention ()\n
+\ref qlVanillaSwapSpread ()\n
+\ref qlVanillaSwapType ()\n
+
+\section documentation Function Documentation
+\anchor qlMakeIMMSwap \b qlMakeIMMSwap
+\code
+
+string returnValue
+
+qlMakeIMMSwap(
+        string ObjectId
+        string SwapTenor
+        string IborIndex
+        double FixedRate
+        long FirstImmDate
+        string FixDayCounter
+        double Spread
+        string PricingEngineID
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class VanillaSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param SwapTenor swap tenor period (e.g. 2Y).
+\param IborIndex floating IborIndex object ID.
+\param FixedRate the fixed leg rate. If missing atm rate is used. Default value = QuantLib::Null<QuantLib::Rate>().
+\param FirstImmDate First (IMM) date. Default value = QuantLib::Date().
+\param FixDayCounter fixed leg day counter. Default value = 30/360 (Bond Basis).
+\param Spread floating leg spread. Default value = 0.0.
+\param PricingEngineID DiscountSwapEngine object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlMakeVanillaSwap \b qlMakeVanillaSwap
+\code
+
+string returnValue
+
+qlMakeVanillaSwap(
+        string ObjectId
+        long SettlDays
+        string SwapTenor
+        string IborIndex
+        double FixedRate
+        string ForwardStart
+        string FixDayCounter
+        double Spread
+        string PricingEngineID
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class VanillaSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param SettlDays Number of days to spot date. Default value = 2.
+\param SwapTenor swap tenor period (e.g. 5Y).
+\param IborIndex floating IborIndex object ID.
+\param FixedRate the fixed leg rate. If missing atm rate is used. Default value = QuantLib::Null<QuantLib::Rate>().
+\param ForwardStart forward start period (from spot date).
+\param FixDayCounter fixed leg day counter. Default value = DayCounter.
+\param Spread floating leg spread. Default value = 0.0.
+\param PricingEngineID DiscountSwapEngine object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVanillaSwap \b qlVanillaSwap
+\code
+
+string returnValue
+
+qlVanillaSwap(
+        string ObjectId
+        string PayerReceiver
+        double Nominal
+        string FixSchedule
+        double FixedRate
+        string FixDayCounter
+        string FloatingLegSchedule
+        string IborIndex
+        double Spread
+        string FloatingLegDayCounter
+        string PaymentConvention
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class VanillaSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PayerReceiver PAYER to pay the fixed rate, RECEIVER to receive it. Default value = Payer.
+\param Nominal Notional Amount. Default value = 100.
+\param FixSchedule fixed leg Schedule object ID.
+\param FixedRate the fixed leg rate. Default value = 0.0.
+\param FixDayCounter fixed leg day counter (e.g. Actual/360).
+\param FloatingLegSchedule floating leg Schedule object ID.
+\param IborIndex floating leg IborIndex object ID.
+\param Spread floating leg spread. Default value = 0.0.
+\param FloatingLegDayCounter floating day counter (e.g. Actual/360).
+\param PaymentConvention Payment dates' business day convention. Default value = Following.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVanillaSwapFairRate \b qlVanillaSwapFairRate
+\code
+
+double returnValue
+
+qlVanillaSwapFairRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fair fixed leg rate which would zero the swap NPV for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFairSpread \b qlVanillaSwapFairSpread
+\code
+
+double returnValue
+
+qlVanillaSwapFairSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fair spread over the floating rate which would zero the swap NPV for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFixedDayCount \b qlVanillaSwapFixedDayCount
+\code
+
+string returnValue
+
+qlVanillaSwapFixedDayCount(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fixed rate day count convention for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFixedLegAnalysis \b qlVanillaSwapFixedLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlVanillaSwapFixedLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fixed rate leg cash flow analysis of the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::VanillaSwap object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFixedLegBPS \b qlVanillaSwapFixedLegBPS
+\code
+
+double returnValue
+
+qlVanillaSwapFixedLegBPS(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the BPS of the fixed rate leg for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFixedLegNPV \b qlVanillaSwapFixedLegNPV
+\code
+
+double returnValue
+
+qlVanillaSwapFixedLegNPV(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the NPV of the fixed rate leg for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFixedRate \b qlVanillaSwapFixedRate
+\code
+
+double returnValue
+
+qlVanillaSwapFixedRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the fixed leg rate for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFloatingDayCount \b qlVanillaSwapFloatingDayCount
+\code
+
+string returnValue
+
+qlVanillaSwapFloatingDayCount(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the floating leg day count convention for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFloatingLegAnalysis \b qlVanillaSwapFloatingLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlVanillaSwapFloatingLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the floating rate leg cash flow analysis.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::VanillaSwap object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFloatingLegBPS \b qlVanillaSwapFloatingLegBPS
+\code
+
+double returnValue
+
+qlVanillaSwapFloatingLegBPS(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the BPS of the floating rate leg for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFloatingLegNPV \b qlVanillaSwapFloatingLegNPV
+\code
+
+double returnValue
+
+qlVanillaSwapFloatingLegNPV(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the NPV of the floating rate leg for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapFromSwapIndex \b qlVanillaSwapFromSwapIndex
+\code
+
+string returnValue
+
+qlVanillaSwapFromSwapIndex(
+        string ObjectId
+        string SwapIndex
+        long FixingDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class VanillaSwap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SwapIndex SwapIndex object ID.
+\param FixingDate fixing date.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVanillaSwapFromSwapRateHelper \b qlVanillaSwapFromSwapRateHelper
+\code
+
+string returnValue
+
+qlVanillaSwapFromSwapRateHelper(
+        string ObjectId
+        string SwapRateHelper
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class VanillaSwap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SwapRateHelper SwapRateHelper object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlVanillaSwapNominal \b qlVanillaSwapNominal
+\code
+
+double returnValue
+
+qlVanillaSwapNominal(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the swap nominal for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapPaymentConvention \b qlVanillaSwapPaymentConvention
+\code
+
+string returnValue
+
+qlVanillaSwapPaymentConvention(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the payment business day convention for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapSpread \b qlVanillaSwapSpread
+\code
+
+double returnValue
+
+qlVanillaSwapSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the spread over floating rate for the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlVanillaSwapType \b qlVanillaSwapType
+\code
+
+string returnValue
+
+qlVanillaSwapType(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the swap type (Payer or Receiver) of the given VanillaSwap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::VanillaSwap object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

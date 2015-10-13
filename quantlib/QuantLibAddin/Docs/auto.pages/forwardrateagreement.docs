@@ -1,0 +1,150 @@
+
+/*  
+ Copyright (C) 2006 Katiuscia Manzoni
+ Copyright (C) 2006 Ferdinando Ametrano
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_forwardrateagreement Forward Rate Agreement
+\section overview Overview
+Functions to construct and use ForwardRateAgreement objects.
+\section functionlist Function List
+\ref qlFRA ()\n
+\ref qlFRAforwardRate ()\n
+\ref qlFRAforwardValue ()\n
+\ref qlFRAspotValue ()\n
+
+\section documentation Function Documentation
+\anchor qlFRA \b qlFRA
+\code
+
+string returnValue
+
+qlFRA(
+        string ObjectId
+        long ValueDate
+        long MaturityDate
+        string Position
+        double Strike
+        double Notional
+        string IborIndex
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ForwardRateAgreement and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param ValueDate Value date.
+\param MaturityDate Maturity date.
+\param Position Instrument position (Long = purchase, Short = sale).
+\param Strike Strike rate.
+\param Notional Notional amount.
+\param IborIndex Underlying index object ID.
+\param YieldCurve discounting YieldTermStructure object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFRAforwardRate \b qlFRAforwardRate
+\code
+
+double returnValue
+
+qlFRAforwardRate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the relevant forward rate associated with the FRA term.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::ForwardRateAgreement object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFRAforwardValue \b qlFRAforwardValue
+\code
+
+double returnValue
+
+qlFRAforwardValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the forward value of the FRA.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::ForwardRateAgreement object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFRAspotValue \b qlFRAspotValue
+\code
+
+double returnValue
+
+qlFRAspotValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the spot value of the FRA.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::ForwardRateAgreement object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

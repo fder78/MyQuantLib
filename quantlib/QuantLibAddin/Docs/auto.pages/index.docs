@@ -1,0 +1,996 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
+ Copyright (C) 2006 Katiuscia Manzoni
+ Copyright (C) 2005, 2007 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_index Indices
+\section overview Overview
+functions to construct and use Index objects.
+\section functionlist Function List
+\ref qlBMAIndex ()\n
+\ref qlEonia ()\n
+\ref qlEuribor ()\n
+\ref qlEuribor365 ()\n
+\ref qlEuriborSwap ()\n
+\ref qlEuriborSwapIsdaFixA ()\n
+\ref qlIborIndex ()\n
+\ref qlIborIndexBusinessDayConv ()\n
+\ref qlIborIndexEndOfMonth ()\n
+\ref qlIndexAddFixings ()\n
+\ref qlIndexAddFixings2 ()\n
+\ref qlIndexClearFixings ()\n
+\ref qlIndexFixing ()\n
+\ref qlIndexFixingCalendar ()\n
+\ref qlIndexIsValidFixingDate ()\n
+\ref qlIndexName ()\n
+\ref qlInterestRateIndexCurrency ()\n
+\ref qlInterestRateIndexDayCounter ()\n
+\ref qlInterestRateIndexFamilyName ()\n
+\ref qlInterestRateIndexFixingDate ()\n
+\ref qlInterestRateIndexFixingDays ()\n
+\ref qlInterestRateIndexMaturity ()\n
+\ref qlInterestRateIndexTenor ()\n
+\ref qlInterestRateIndexValueDate ()\n
+\ref qlLibor ()\n
+\ref qlLiborSwap ()\n
+\ref qlOvernightIndex ()\n
+\ref qlProxyIbor ()\n
+\ref qlSonia ()\n
+\ref qlSwapIndex ()\n
+\ref qlSwapIndexFixedLegBDC ()\n
+\ref qlSwapIndexFixedLegTenor ()\n
+
+\section documentation Function Documentation
+\anchor qlBMAIndex \b qlBMAIndex
+\code
+
+string returnValue
+
+qlBMAIndex(
+        string ObjectId
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class BMAIndex and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEonia \b qlEonia
+\code
+
+string returnValue
+
+qlEonia(
+        string ObjectId
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Eonia and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEuribor \b qlEuribor
+\code
+
+string returnValue
+
+qlEuribor(
+        string ObjectId
+        string Tenor
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Euribor and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Tenor index tenor: SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEuribor365 \b qlEuribor365
+\code
+
+string returnValue
+
+qlEuribor365(
+        string ObjectId
+        string Tenor
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Euribor365 and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Tenor index tenor: SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEuriborSwap \b qlEuriborSwap
+\code
+
+string returnValue
+
+qlEuriborSwap(
+        string ObjectId
+        string FixingType
+        string Tenor
+        string FwdCurve
+        string DiscCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EuriborSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FixingType Swap index fixing type (e.g. IsdaFixA, IsdaFixB, IfrFix, IsdaFixAm, IsdaFixPm). Default value = Default.
+\param Tenor index tenor (e.g. 1Y for one year).
+\param FwdCurve forwarding YieldTermStructure object ID. Default value = .
+\param DiscCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEuriborSwapIsdaFixA \b qlEuriborSwapIsdaFixA
+\code
+
+string returnValue
+
+qlEuriborSwapIsdaFixA(
+        string ObjectId
+        string Tenor
+        string FwdCurve
+        string DiscCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EuriborSwapIsdaFixA and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Tenor index tenor (e.g. 1Y for one year)
+\param FwdCurve forwarding YieldTermStructure object ID. Default value = .
+\param DiscCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIborIndex \b qlIborIndex
+\code
+
+string returnValue
+
+qlIborIndex(
+        string ObjectId
+        string FamilyName
+        string Tenor
+        long FixingDays
+        string Currency
+        string Calendar
+        string BDayConvention
+        bool EndOfMonth
+        string DayCounter
+        string FwdCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class IborIndex and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FamilyName index family name.
+\param Tenor index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).
+\param FixingDays fixing days (e.g. 2).
+\param Currency Index Currency.
+\param Calendar holiday calendar (e.g. TARGET).
+\param BDayConvention business day convention (e.g. Modified Following).
+\param EndOfMonth TRUE if the index follow the 'end of month' convention.
+\param DayCounter DayCounter ID.
+\param FwdCurve forwarding YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlIborIndexBusinessDayConv \b qlIborIndexBusinessDayConv
+\code
+
+string returnValue
+
+qlIborIndexBusinessDayConv(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the business day convention (e.g. Modified Following) for the given IborIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::IborIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIborIndexEndOfMonth \b qlIborIndexEndOfMonth
+\code
+
+bool returnValue
+
+qlIborIndexEndOfMonth(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the given IborIndex object follows the 'end of month' convention.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::IborIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexAddFixings \b qlIndexAddFixings
+\code
+
+void returnValue
+
+qlIndexAddFixings(
+        string ObjectId
+        vector<long> FixingDates
+        vector<double> FixingValues
+        bool ForceOverwrite
+        any Trigger)
+
+\endcode
+\par Description:
+
+Adds fixings for the given Index object.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLibAddin::Index object
+\param FixingDates fixing dates.
+\param FixingValues fixing values.
+\param ForceOverwrite Set to TRUE to force overwriting of existing fixings, if any. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexAddFixings2 \b qlIndexAddFixings2
+\code
+
+vector<void> returnValue
+
+qlIndexAddFixings2(
+        string ObjectId
+        vector<string> TimeSeriesID
+        bool ForceOverwrite
+        any Trigger)
+
+\endcode
+\par Description:
+
+Adds fixings for the given Index object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Index object
+\param TimeSeriesID TimeSeries object ID.
+\param ForceOverwrite Set to TRUE to force overwriting of existing fixings, if any. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexClearFixings \b qlIndexClearFixings
+\code
+
+void returnValue
+
+qlIndexClearFixings(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Clear all fixings for the given Index object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Index object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexFixing \b qlIndexFixing
+\code
+
+vector<double> returnValue
+
+qlIndexFixing(
+        string ObjectId
+        vector<long> FixingDate
+        bool ForecastToday
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the fixing for the given Index object. The fixing is retrieved from the time series if available, otherways it is forecasted.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Index object
+\param FixingDate fixing date(s).
+\param ForecastToday If set to TRUE it forces the forecasting of today's fixing even if the actual fixing is already available in the time series. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexFixingCalendar \b qlIndexFixingCalendar
+\code
+
+string returnValue
+
+qlIndexFixingCalendar(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the calendar (e.g. TARGET) for the given Index object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Index object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexIsValidFixingDate \b qlIndexIsValidFixingDate
+\code
+
+vector<bool> returnValue
+
+qlIndexIsValidFixingDate(
+        string ObjectId
+        vector<long> FixingDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the fixing date is a valid one for the given Index object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Index object
+\param FixingDate fixing date(s).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlIndexName \b qlIndexName
+\code
+
+string returnValue
+
+qlIndexName(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the name for the given Index object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Index object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexCurrency \b qlInterestRateIndexCurrency
+\code
+
+string returnValue
+
+qlInterestRateIndexCurrency(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the currency (e.g. EUR) for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexDayCounter \b qlInterestRateIndexDayCounter
+\code
+
+string returnValue
+
+qlInterestRateIndexDayCounter(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the DayCounter (e.g. Actual/360) for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexFamilyName \b qlInterestRateIndexFamilyName
+\code
+
+string returnValue
+
+qlInterestRateIndexFamilyName(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the family name (e.g. EURIBOR) for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexFixingDate \b qlInterestRateIndexFixingDate
+\code
+
+vector<long> returnValue
+
+qlInterestRateIndexFixingDate(
+        string ObjectId
+        vector<long> ValueDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the fixing date for the given value date for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param ValueDate value date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexFixingDays \b qlInterestRateIndexFixingDays
+\code
+
+long returnValue
+
+qlInterestRateIndexFixingDays(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the fixing days (e.g. 2) for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexMaturity \b qlInterestRateIndexMaturity
+\code
+
+vector<long> returnValue
+
+qlInterestRateIndexMaturity(
+        string ObjectId
+        vector<long> ValueDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maturity date for the given value date for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param ValueDate value date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexTenor \b qlInterestRateIndexTenor
+\code
+
+string returnValue
+
+qlInterestRateIndexTenor(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the tenor (i.e. length, e.g. 6M, 10Y) for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterestRateIndexValueDate \b qlInterestRateIndexValueDate
+\code
+
+vector<long> returnValue
+
+qlInterestRateIndexValueDate(
+        string ObjectId
+        vector<long> FixingDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the value date for the given fixing date for the given InterestRateIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::InterestRateIndex object
+\param FixingDate fixing date.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlLibor \b qlLibor
+\code
+
+string returnValue
+
+qlLibor(
+        string ObjectId
+        string Currency
+        string Tenor
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Libor and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Currency Libor index currency.
+\param Tenor index tenor: ON (1D), SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLiborSwap \b qlLiborSwap
+\code
+
+string returnValue
+
+qlLiborSwap(
+        string ObjectId
+        string Currency
+        string FixingType
+        string Tenor
+        string FwdCurve
+        string DiscCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LiborSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Currency Libor swap index currency.
+\param FixingType Swap index fixing type (e.g. IsdaFixA, IsdaFixB, IfrFix, IsdaFixAm, IsdaFixPm). Default value = Default.
+\param Tenor index tenor (e.g. 1Y for one year).
+\param FwdCurve forwarding YieldTermStructure object ID. Default value = .
+\param DiscCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlOvernightIndex \b qlOvernightIndex
+\code
+
+string returnValue
+
+qlOvernightIndex(
+        string ObjectId
+        string FamilyName
+        long FixingDays
+        string Currency
+        string Calendar
+        string DayCounter
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class OvernightIndex and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FamilyName index family name.
+\param FixingDays fixing days (e.g. 0).
+\param Currency Index Currency.
+\param Calendar holiday calendar (e.g. TARGET).
+\param DayCounter DayCounter ID.
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlProxyIbor \b qlProxyIbor
+\code
+
+string returnValue
+
+qlProxyIbor(
+        string ObjectId
+        string FamilyName
+        string Tenor
+        long FixingDays
+        string Currency
+        string Calendar
+        string BDayConvention
+        bool EndOfMonth
+        string DayCounter
+        string Gearing
+        string IborIndex
+        string Spread
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ProxyIbor and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param FamilyName index family name.
+\param Tenor index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).
+\param FixingDays fixing days (e.g. 2).
+\param Currency Index Currency.
+\param Calendar holiday calendar (e.g. TARGET).
+\param BDayConvention business day convention (e.g. Modified Following).
+\param EndOfMonth TRUE if the index follow the 'end of month' convention.
+\param DayCounter DayCounter ID.
+\param Gearing gearing.
+\param IborIndex floating rate index.
+\param Spread floating rate spread.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSonia \b qlSonia
+\code
+
+string returnValue
+
+qlSonia(
+        string ObjectId
+        string YieldCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Sonia and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param YieldCurve forecasting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwapIndex \b qlSwapIndex
+\code
+
+string returnValue
+
+qlSwapIndex(
+        string ObjectId
+        string FamilyName
+        string Tenor
+        long FixingDays
+        string Currency
+        string Calendar
+        string FixedLegTenor
+        string FixedLegBDC
+        string FixedLegDayCounter
+        string IborIndex
+        string DiscCurve
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SwapIndex and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param FamilyName index name.
+\param Tenor index tenor (e.g. 2D for two days, 3W for three weeks, 6M for six months, 1Y for one year).
+\param FixingDays swap rate fixing days (e.g. 2).
+\param Currency Index Currency.
+\param Calendar holiday calendar (e.g. TARGET).
+\param FixedLegTenor tenor of the underlying swap's fixed leg (e.g. 6M, 1Y, 3M).
+\param FixedLegBDC business day convention of the underlying swap's fixed leg (e.g. ModifiedFollowing).
+\param FixedLegDayCounter day counter of the underlying swap's fixed leg (e.g. 30/360::BondBasis).
+\param IborIndex swap's floating ibor index object ID.
+\param DiscCurve discounting YieldTermStructure object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwapIndexFixedLegBDC \b qlSwapIndexFixedLegBDC
+\code
+
+string returnValue
+
+qlSwapIndexFixedLegBDC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the business day convention (e.g. Modified Following) for the given SwapIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwapIndex object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapIndexFixedLegTenor \b qlSwapIndexFixedLegTenor
+\code
+
+string returnValue
+
+qlSwapIndexFixedLegTenor(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the fixed leg tenor (e.g. 1Y) for the given SwapIndex object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SwapIndex object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

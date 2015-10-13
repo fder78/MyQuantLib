@@ -1,0 +1,858 @@
+
+/*  
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Cristina Duminuco
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_sequencestatistics SequenceStatistics
+\section overview Overview
+QuantLib statistics analysis of N-dimensional (sequence) data.
+\section functionlist Function List
+\ref qlSequenceStatistics ()\n
+\ref qlSequenceStatistics2 ()\n
+\ref qlSequenceStatisticsAverageShortfall ()\n
+\ref qlSequenceStatisticsCorrelation ()\n
+\ref qlSequenceStatisticsCovariance ()\n
+\ref qlSequenceStatisticsDownsideDeviation ()\n
+\ref qlSequenceStatisticsDownsideVariance ()\n
+\ref qlSequenceStatisticsErrorEstimate ()\n
+\ref qlSequenceStatisticsGaussianAverageShortfall ()\n
+\ref qlSequenceStatisticsGaussianPercentile ()\n
+\ref qlSequenceStatisticsGaussianPotentialUpside ()\n
+\ref qlSequenceStatisticsGaussianShortfall ()\n
+\ref qlSequenceStatisticsGaussianValueAtRisk ()\n
+\ref qlSequenceStatisticsInc ()\n
+\ref qlSequenceStatisticsInc2 ()\n
+\ref qlSequenceStatisticsKurtosis ()\n
+\ref qlSequenceStatisticsMax ()\n
+\ref qlSequenceStatisticsMean ()\n
+\ref qlSequenceStatisticsMin ()\n
+\ref qlSequenceStatisticsPercentile ()\n
+\ref qlSequenceStatisticsPotentialUpside ()\n
+\ref qlSequenceStatisticsRegret ()\n
+\ref qlSequenceStatisticsSamples ()\n
+\ref qlSequenceStatisticsSemiDeviation ()\n
+\ref qlSequenceStatisticsSemiVariance ()\n
+\ref qlSequenceStatisticsShortfall ()\n
+\ref qlSequenceStatisticsSize ()\n
+\ref qlSequenceStatisticsSkewness ()\n
+\ref qlSequenceStatisticsStandardDeviation ()\n
+\ref qlSequenceStatisticsValueAtRisk ()\n
+\ref qlSequenceStatisticsVariance ()\n
+\ref qlSequenceStatisticsWeightSum ()\n
+
+\section documentation Function Documentation
+\anchor qlSequenceStatistics \b qlSequenceStatistics
+\code
+
+string returnValue
+
+qlSequenceStatistics(
+        string ObjectId
+        long Dimension
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Statistics analysis of N-dimensional (sequence) data.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension sample dimensionality. Default value = 0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSequenceStatistics2 \b qlSequenceStatistics2
+\code
+
+string returnValue
+
+qlSequenceStatistics2(
+        string ObjectId
+        long Dimension
+        vector<vector<double> > Values
+        vector<double> Weights
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Statistics analysis of N-dimensional (sequence) data.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension sample dimensionality. Default value = 0.
+\param Values Sampled values. If omitted, an empty statistics is created.
+\param Weights If omitted, all sampled values have the same weight. Default value = std::vector<QuantLib::Real>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSequenceStatisticsAverageShortfall \b qlSequenceStatisticsAverageShortfall
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsAverageShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the averaged shortfallness for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsCorrelation \b qlSequenceStatisticsCorrelation
+\code
+
+vector<vector<double> > returnValue
+
+qlSequenceStatisticsCorrelation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the correlation Matrix for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsCovariance \b qlSequenceStatisticsCovariance
+\code
+
+vector<vector<double> > returnValue
+
+qlSequenceStatisticsCovariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the covariance Matrix for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsDownsideDeviation \b qlSequenceStatisticsDownsideDeviation
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsDownsideDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the square root of the downside variance for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsDownsideVariance \b qlSequenceStatisticsDownsideVariance
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsDownsideVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below zero for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsErrorEstimate \b qlSequenceStatisticsErrorEstimate
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsErrorEstimate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the error estimate on the mean value for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsGaussianAverageShortfall \b qlSequenceStatisticsGaussianAverageShortfall
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsGaussianAverageShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the averaged shortfallness for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsGaussianPercentile \b qlSequenceStatisticsGaussianPercentile
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsGaussianPercentile(
+        string ObjectId
+        double X
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th percentile for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param X Must be in the range (0,1].
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsGaussianPotentialUpside \b qlSequenceStatisticsGaussianPotentialUpside
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsGaussianPotentialUpside(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reciprocal of VAR at a given percentile for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsGaussianShortfall \b qlSequenceStatisticsGaussianShortfall
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsGaussianShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the probability of missing the given target for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsGaussianValueAtRisk \b qlSequenceStatisticsGaussianValueAtRisk
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsGaussianValueAtRisk(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the value-at-risk at a given percentile for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsInc \b qlSequenceStatisticsInc
+\code
+
+string returnValue
+
+qlSequenceStatisticsInc(
+        string ObjectId
+        long Dimension
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Statistics analysis of N-dimensional (sequence) data.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension sample dimensionality. Default value = 0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSequenceStatisticsInc2 \b qlSequenceStatisticsInc2
+\code
+
+string returnValue
+
+qlSequenceStatisticsInc2(
+        string ObjectId
+        long Dimension
+        vector<vector<double> > Values
+        vector<double> Weights
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Statistics analysis of N-dimensional (sequence) data.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of object to be created
+\param Dimension sample dimensionality. Default value = 0.
+\param Values Sampled values. If omitted, an empty statistics is created.
+\param Weights If omitted, all sampled values have the same weight. Default value = std::vector<QuantLib::Real>().
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSequenceStatisticsKurtosis \b qlSequenceStatisticsKurtosis
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsKurtosis(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the excess kurtosis for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsMax \b qlSequenceStatisticsMax
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsMax(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maximum sample value for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsMean \b qlSequenceStatisticsMean
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsMean(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the mean for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsMin \b qlSequenceStatisticsMin
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsMin(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the minimum sample value for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsPercentile \b qlSequenceStatisticsPercentile
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsPercentile(
+        string ObjectId
+        double X
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x-th percentile for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param X Must be in the range (0,1].
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsPotentialUpside \b qlSequenceStatisticsPotentialUpside
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsPotentialUpside(
+        string ObjectId
+        double Centile
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the reciprocal of VAR at a given percentile for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Centile the centile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsRegret \b qlSequenceStatisticsRegret
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsRegret(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below target for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsSamples \b qlSequenceStatisticsSamples
+\code
+
+long returnValue
+
+qlSequenceStatisticsSamples(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the number of samples collected for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsSemiDeviation \b qlSequenceStatisticsSemiDeviation
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsSemiDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the square root of the semivariance for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsSemiVariance \b qlSequenceStatisticsSemiVariance
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsSemiVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance of observations below the mean for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsShortfall \b qlSequenceStatisticsShortfall
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsShortfall(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the probability of missing the given target for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the target.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsSize \b qlSequenceStatisticsSize
+\code
+
+long returnValue
+
+qlSequenceStatisticsSize(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the size (sample dimensionality) for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsSkewness \b qlSequenceStatisticsSkewness
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsSkewness(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the skewness for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsStandardDeviation \b qlSequenceStatisticsStandardDeviation
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsStandardDeviation(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the the standard deviation for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsValueAtRisk \b qlSequenceStatisticsValueAtRisk
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsValueAtRisk(
+        string ObjectId
+        double Target
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the value-at-risk at a given percentile for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Target the percentile.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsVariance \b qlSequenceStatisticsVariance
+\code
+
+vector<double> returnValue
+
+qlSequenceStatisticsVariance(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the variance for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSequenceStatisticsWeightSum \b qlSequenceStatisticsWeightSum
+\code
+
+double returnValue
+
+qlSequenceStatisticsWeightSum(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the sum of data weights for the given SequenceStatistics object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SequenceStatistics object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

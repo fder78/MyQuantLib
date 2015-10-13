@@ -1,0 +1,239 @@
+
+/*  
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
+ Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2006 Katiuscia Manzoni
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_swap Swap
+\section overview Overview
+functions to construct and use Swap objects.
+\section functionlist Function List
+\ref qlMakeCms ()\n
+\ref qlSwap ()\n
+\ref qlSwapLegAnalysis ()\n
+\ref qlSwapLegBPS ()\n
+\ref qlSwapLegNPV ()\n
+\ref qlSwapMaturityDate ()\n
+\ref qlSwapStartDate ()\n
+
+\section documentation Function Documentation
+\anchor qlMakeCms \b qlMakeCms
+\code
+
+string returnValue
+
+qlMakeCms(
+        string ObjectId
+        string SwapTenor
+        string SwapIndex
+        string IborIndex
+        double IborSpread
+        string ForwardStart
+        string CmsCouponPricer
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Swap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param SwapTenor swap tenor period.
+\param SwapIndex SwapIndex object ID.
+\param IborIndex IborIndex object ID.
+\param IborSpread spread over the ibor leg. Default value = QuantLib::Null<QuantLib::Spread>().
+\param ForwardStart forward start period.
+\param CmsCouponPricer CmsCouponPricer object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwap \b qlSwap
+\code
+
+string returnValue
+
+qlSwap(
+        string ObjectId
+        vector<string> LegIDs
+        vector<bool> Payer
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Swap and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param LegIDs leg object IDs.
+\param Payer TRUE for payed leg.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSwapLegAnalysis \b qlSwapLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlSwapLegAnalysis(
+        string ObjectId
+        long LegNumber
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the cash flow analysis of the i-th leg for the given Swap object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::Swap object
+\param LegNumber Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapLegBPS \b qlSwapLegBPS
+\code
+
+double returnValue
+
+qlSwapLegBPS(
+        string ObjectId
+        long LegNumber
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the BPS of the i-th leg for the given Swap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swap object
+\param LegNumber Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapLegNPV \b qlSwapLegNPV
+\code
+
+double returnValue
+
+qlSwapLegNPV(
+        string ObjectId
+        long LegNumber
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the NPV of the i-th leg for the given Swap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swap object
+\param LegNumber Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapMaturityDate \b qlSwapMaturityDate
+\code
+
+long returnValue
+
+qlSwapMaturityDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maturity (i.e. last payment) date for the given Swap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSwapStartDate \b qlSwapStartDate
+\code
+
+long returnValue
+
+qlSwapStartDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the start (i.e. first accrual) date for the given Swap object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Swap object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

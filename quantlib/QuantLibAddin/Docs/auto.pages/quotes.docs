@@ -1,0 +1,708 @@
+
+/*  
+ Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006 Francois du Vignaud
+ Copyright (C) 2006 Giorgio Facchinetti
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_quotes Quotes
+\section overview Overview
+quotes objects.
+\section functionlist Function List
+\ref qlBucketAnalysis ()\n
+\ref qlBucketAnalysisDelta ()\n
+\ref qlBucketAnalysisDelta2 ()\n
+\ref qlCompositeQuote ()\n
+\ref qlEurodollarFuturesImpliedStdDevQuote ()\n
+\ref qlForwardSwapQuote ()\n
+\ref qlForwardValueQuote ()\n
+\ref qlFuturesConvAdjustmentQuote ()\n
+\ref qlFuturesConvAdjustmentQuoteFuturesValue ()\n
+\ref qlFuturesConvAdjustmentQuoteImmDate ()\n
+\ref qlFuturesConvAdjustmentQuoteMeanReversion ()\n
+\ref qlFuturesConvAdjustmentQuoteVolatility ()\n
+\ref qlImpliedStdDevQuote ()\n
+\ref qlLastFixingQuote ()\n
+\ref qlLastFixingQuoteReferenceDate ()\n
+\ref qlQuoteIsValid ()\n
+\ref qlQuoteValue ()\n
+\ref qlRelinkableHandleQuote ()\n
+\ref qlSimpleQuote ()\n
+\ref qlSimpleQuoteReset ()\n
+\ref qlSimpleQuoteSetTickValue ()\n
+\ref qlSimpleQuoteSetValue ()\n
+\ref qlSimpleQuoteTickValue ()\n
+
+\section documentation Function Documentation
+\anchor qlBucketAnalysis \b qlBucketAnalysis
+\code
+
+vector<vector<double> > returnValue
+
+qlBucketAnalysis(
+        vector<vector<string> > SimpleQuote
+        vector<string> Instruments
+        vector<double> Quantities
+        double Shift
+        string SensitivityAnalysis
+        any Trigger)
+
+\endcode
+\par Description:
+
+delta NPV bucket sensitivity analysis for a (single/vector/matrix) SimpleQuote.
+
+\par Supported Platforms:
+
+Excel
+
+\param SimpleQuote simple quotes.
+\param Instruments instruments.
+\param Quantities quantities.
+\param Shift shift. Default value = 0.0001.
+\param SensitivityAnalysis SensitivityAnalysis type. Default value = Centered.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBucketAnalysisDelta \b qlBucketAnalysisDelta
+\code
+
+vector<double> returnValue
+
+qlBucketAnalysisDelta(
+        string SimpleQuote
+        vector<string> Parameters
+        double Shift
+        string SensitivityAnalysis
+        any Trigger)
+
+\endcode
+\par Description:
+
+Parameters' bucket analysis delta for a single SimpleQuote.
+
+\par Supported Platforms:
+
+Excel
+
+\param SimpleQuote simple quote.
+\param Parameters parameters vector.
+\param Shift shift. Default value = 0.0001.
+\param SensitivityAnalysis SensitivityAnalysis type. Default value = Centered.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlBucketAnalysisDelta2 \b qlBucketAnalysisDelta2
+\code
+
+vector<vector<double> > returnValue
+
+qlBucketAnalysisDelta2(
+        vector<string> SimpleQuote
+        vector<string> Parameters
+        double Shift
+        string SensitivityAnalysis
+        any Trigger)
+
+\endcode
+\par Description:
+
+Parameters' bucket analysis delta for a SimpleQuote vector.
+
+\par Supported Platforms:
+
+Excel
+
+\param SimpleQuote simple quote.
+\param Parameters parameters vector.
+\param Shift shift. Default value = 0.0001.
+\param SensitivityAnalysis SensitivityAnalysis type. Default value = Centered.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCompositeQuote \b qlCompositeQuote
+\code
+
+string returnValue
+
+qlCompositeQuote(
+        string ObjectId
+        string Element1
+        string Element2
+        string Operator
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CompositeQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Element1 the first, i.e. x, value in the f(x,y) expression.
+\param Element2 the second, i.e. y, value in the f(x,y) expression.
+\param Operator the operator to be applied, e.g. ""+"" or ""-"".
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlEurodollarFuturesImpliedStdDevQuote \b qlEurodollarFuturesImpliedStdDevQuote
+\code
+
+string returnValue
+
+qlEurodollarFuturesImpliedStdDevQuote(
+        string ObjectId
+        string AtmForwardValue
+        string CallPrice
+        string PutPrice
+        double Strike
+        double Guess
+        double Accuracy
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class EurodollarFuturesImpliedStdDevQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param AtmForwardValue underlying asset at-the-money forward value.
+\param CallPrice call option price.
+\param PutPrice put option price.
+\param Strike option strike.
+\param Guess implied volatility guess. Default value = QuantLib::Null<QuantLib::Real>().
+\param Accuracy standard deviation accuracy. Default value = 1e-6.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardSwapQuote \b qlForwardSwapQuote
+\code
+
+string returnValue
+
+qlForwardSwapQuote(
+        string ObjectId
+        string SwapIndex
+        string Spread
+        string ForwardStart
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ForwardSwapQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param SwapIndex floating SwapIndex object ID.
+\param Spread floating leg spread.
+\param ForwardStart forward start period.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlForwardValueQuote \b qlForwardValueQuote
+\code
+
+string returnValue
+
+qlForwardValueQuote(
+        string ObjectId
+        string IborIndex
+        long FixingDate
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ForwardValueQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param IborIndex floating IborIndex object ID.
+\param FixingDate Fixing Date.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFuturesConvAdjustmentQuote \b qlFuturesConvAdjustmentQuote
+\code
+
+string returnValue
+
+qlFuturesConvAdjustmentQuote(
+        string ObjectId
+        string IborIndex
+        string ImmCode
+        string FuturesQuote
+        string Volatility
+        string MeanReversion
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class FuturesConvAdjustmentQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param IborIndex floating IborIndex object ID.
+\param ImmCode futures IMM code (e.g. H9).
+\param FuturesQuote futures quote.
+\param Volatility HullWhite volatility.
+\param MeanReversion HullWhite mean reversion.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlFuturesConvAdjustmentQuoteFuturesValue \b qlFuturesConvAdjustmentQuoteFuturesValue
+\code
+
+double returnValue
+
+qlFuturesConvAdjustmentQuoteFuturesValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the value of futures underlying.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FuturesConvAdjustmentQuote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFuturesConvAdjustmentQuoteImmDate \b qlFuturesConvAdjustmentQuoteImmDate
+\code
+
+long returnValue
+
+qlFuturesConvAdjustmentQuoteImmDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the IMM date of futures.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FuturesConvAdjustmentQuote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFuturesConvAdjustmentQuoteMeanReversion \b qlFuturesConvAdjustmentQuoteMeanReversion
+\code
+
+double returnValue
+
+qlFuturesConvAdjustmentQuoteMeanReversion(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the value of HW mean reversion.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FuturesConvAdjustmentQuote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlFuturesConvAdjustmentQuoteVolatility \b qlFuturesConvAdjustmentQuoteVolatility
+\code
+
+double returnValue
+
+qlFuturesConvAdjustmentQuoteVolatility(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the value of HW volatility.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::FuturesConvAdjustmentQuote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlImpliedStdDevQuote \b qlImpliedStdDevQuote
+\code
+
+string returnValue
+
+qlImpliedStdDevQuote(
+        string ObjectId
+        string OptionType
+        string AtmForwardValue
+        string OptionPrice
+        double Strike
+        double Guess
+        double Accuracy
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class ImpliedStdDevQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param OptionType option type (i.e. Call or Put).
+\param AtmForwardValue underlying asset at-the-money forward value.
+\param OptionPrice option price.
+\param Strike option strike.
+\param Guess implied volatility guess. Default value = QuantLib::Null<QuantLib::Real>().
+\param Accuracy iv accuracy. Default value = 1e-6.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLastFixingQuote \b qlLastFixingQuote
+\code
+
+string returnValue
+
+qlLastFixingQuote(
+        string ObjectId
+        string Index
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class LastFixingQuote and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param Index Index object ID.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlLastFixingQuoteReferenceDate \b qlLastFixingQuoteReferenceDate
+\code
+
+long returnValue
+
+qlLastFixingQuoteReferenceDate(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Return the date of the last fixing
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::LastFixingQuote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlQuoteIsValid \b qlQuoteIsValid
+\code
+
+bool returnValue
+
+qlQuoteIsValid(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the given Quote object has a valid value.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Quote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlQuoteValue \b qlQuoteValue
+\code
+
+double returnValue
+
+qlQuoteValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the current value of the given Quote object.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::Quote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlRelinkableHandleQuote \b qlRelinkableHandleQuote
+\code
+
+string returnValue
+
+qlRelinkableHandleQuote(
+        string ObjectId
+        string CurrentLink
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class RelinkableHandleImpl<QuantLibAddin::Quote, QuantLib::Quote> and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param CurrentLink Quote object ID. If omitted, nothing is linked by the RelinkableHandle. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSimpleQuote \b qlSimpleQuote
+\code
+
+string returnValue
+
+qlSimpleQuote(
+        string ObjectId
+        double Value
+        double TickValue
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SimpleQuote and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param Value quote. Default value = QuantLib::Null<QuantLib::Real>().
+\param TickValue tick value used for sensitivity analysis.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSimpleQuoteReset \b qlSimpleQuoteReset
+\code
+
+void returnValue
+
+qlSimpleQuoteReset(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+resets the given SimpleQuote object to the uninitialized state.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::SimpleQuote object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSimpleQuoteSetTickValue \b qlSimpleQuoteSetTickValue
+\code
+
+void returnValue
+
+qlSimpleQuoteSetTickValue(
+        string ObjectId
+        double Value
+        any Trigger)
+
+\endcode
+\par Description:
+
+sets the tick value of the given SimpleQuote object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SimpleQuote object
+\param Value the new tick value.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSimpleQuoteSetValue \b qlSimpleQuoteSetValue
+\code
+
+double returnValue
+
+qlSimpleQuoteSetValue(
+        string ObjectId
+        double Value
+        any Trigger)
+
+\endcode
+\par Description:
+
+sets a new value to the given SimpleQuote object and returns the difference with the previous value.
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of existing QuantLibAddin::SimpleQuote object
+\param Value the new value. Default value = QuantLib::Null<QuantLib::Real>().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSimpleQuoteTickValue \b qlSimpleQuoteTickValue
+\code
+
+double returnValue
+
+qlSimpleQuoteTickValue(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+returns the tick value of the given SimpleQuote object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SimpleQuote object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

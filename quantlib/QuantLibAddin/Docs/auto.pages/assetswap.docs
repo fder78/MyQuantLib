@@ -1,0 +1,324 @@
+
+/*  
+ Copyright (C) 2009, 2011 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, Chiara Fornarola
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_assetswap Asset Swap
+\section overview Overview
+functions to construct and use AssetSwap objects.
+\section functionlist Function List
+\ref qlAssetSwap ()\n
+\ref qlAssetSwap2 ()\n
+\ref qlAssetSwapBondLegAnalysis ()\n
+\ref qlAssetSwapFairCleanPrice ()\n
+\ref qlAssetSwapFairNonParRepayment ()\n
+\ref qlAssetSwapFairSpread ()\n
+\ref qlAssetSwapFloatingLegAnalysis ()\n
+\ref qlAssetSwapFloatingLegBPS ()\n
+\ref qlAssetSwapParSwap ()\n
+\ref qlAssetSwapPayBondCoupon ()\n
+
+\section documentation Function Documentation
+\anchor qlAssetSwap \b qlAssetSwap
+\code
+
+string returnValue
+
+qlAssetSwap(
+        string ObjectId
+        bool PayBondCoupon
+        string Bond
+        double CleanPrice
+        string IborIndex
+        double Spread
+        string FloatingLegSchedule
+        string FloatingLegDayCounter
+        bool ParAssetSwap
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AssetSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param PayBondCoupon TRUE to pay the bond's coupons and receive floating. Default value = false.
+\param Bond underlying bond object ID.
+\param CleanPrice market price of the underlying bond.
+\param IborIndex floating leg IborIndex object ID.
+\param Spread Floating leg spread. Default value = 0.0.
+\param FloatingLegSchedule floating leg schedule object ID. Default value = .
+\param FloatingLegDayCounter floating day counter (e.g. Actual/360).
+\param ParAssetSwap TRUE for par asset swap, FALSE for market asset swap. Default value = true.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAssetSwap2 \b qlAssetSwap2
+\code
+
+string returnValue
+
+qlAssetSwap2(
+        string ObjectId
+        bool ParAssetSwap
+        string Bond
+        double CleanPrice
+        double NonParRepayment
+        double Gearing
+        string IborIndex
+        double Spread
+        string FloatingLegDayCounter
+        long DealMaturity
+        bool PayBondCoupon
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AssetSwap and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param ParAssetSwap TRUE for par asset swap, FALSE for market asset swap. Default value = true.
+\param Bond underlying bond object ID.
+\param CleanPrice market price of the underlying bond.
+\param NonParRepayment non par repayment on deal maturity date.
+\param Gearing gearing. Default value = 1.0.
+\param IborIndex floating leg IborIndex object ID.
+\param Spread Floating leg spread. Default value = 0.0.
+\param FloatingLegDayCounter floating day counter (e.g. Actual/360). Default value = QuantLib::DayCounter().
+\param DealMaturity deal maturity (bond maturity if missing). Default value = QuantLib::Date().
+\param PayBondCoupon TRUE to pay the bond's coupons and receive floating. Default value = false.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAssetSwapBondLegAnalysis \b qlAssetSwapBondLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlAssetSwapBondLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+The bond leg cash flow analysis.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AssetSwap object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapFairCleanPrice \b qlAssetSwapFairCleanPrice
+\code
+
+double returnValue
+
+qlAssetSwapFairCleanPrice(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+the fair price of the bond in the asset swap.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::AssetSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapFairNonParRepayment \b qlAssetSwapFairNonParRepayment
+\code
+
+double returnValue
+
+qlAssetSwapFairNonParRepayment(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+the fair non par repayment of the bond in the asset swap.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::AssetSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapFairSpread \b qlAssetSwapFairSpread
+\code
+
+double returnValue
+
+qlAssetSwapFairSpread(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+the fair rate of the asset swap, i.e. the asset swap spread.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::AssetSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapFloatingLegAnalysis \b qlAssetSwapFloatingLegAnalysis
+\code
+
+vector<vector<any> > returnValue
+
+qlAssetSwapFloatingLegAnalysis(
+        string ObjectId
+        long AfterDate
+        any Trigger)
+
+\endcode
+\par Description:
+
+The floating leg cash flow analysis.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLibAddin::AssetSwap object
+\param AfterDate Shows only cashflows after given date Default value = QuantLib::Date().
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapFloatingLegBPS \b qlAssetSwapFloatingLegBPS
+\code
+
+double returnValue
+
+qlAssetSwapFloatingLegBPS(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+the BPS of the floating leg.
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::AssetSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapParSwap \b qlAssetSwapParSwap
+\code
+
+bool returnValue
+
+qlAssetSwapParSwap(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if par swap
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::AssetSwap object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAssetSwapPayBondCoupon \b qlAssetSwapPayBondCoupon
+\code
+
+bool returnValue
+
+qlAssetSwapPayBondCoupon(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if it is a bond coupon payer swap
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLib::AssetSwap object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

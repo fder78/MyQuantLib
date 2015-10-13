@@ -1,0 +1,1278 @@
+
+/*  
+ Copyright (C) 2006, 2007, 2008, 2010 Ferdinando Ametrano
+ Copyright (C) 2007 Eric Ehlers
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.doxygen.file
+
+/*! \page func_interpolation Interpolation
+\section overview Overview
+functions to construct and use Interpolation and Interpolation2D objects.
+\section functionlist Function List
+\ref qlAbcdInterpolation ()\n
+\ref qlAbcdInterpolationA ()\n
+\ref qlAbcdInterpolationB ()\n
+\ref qlAbcdInterpolationC ()\n
+\ref qlAbcdInterpolationD ()\n
+\ref qlAbcdInterpolationEndCriteria ()\n
+\ref qlAbcdInterpolationMaxError ()\n
+\ref qlAbcdInterpolationRmsError ()\n
+\ref qlCubicInterpolation ()\n
+\ref qlCubicInterpolationACoefficients ()\n
+\ref qlCubicInterpolationBCoefficients ()\n
+\ref qlCubicInterpolationCCoefficients ()\n
+\ref qlCubicInterpolationMonotonicityAdjustments ()\n
+\ref qlCubicInterpolationPrimitiveConstants ()\n
+\ref qlExtrapolatorEnableExtrapolation ()\n
+\ref qlInterpolation ()\n
+\ref qlInterpolation2D ()\n
+\ref qlInterpolation2DInterpolate ()\n
+\ref qlInterpolation2DIsInRange ()\n
+\ref qlInterpolation2DXmax ()\n
+\ref qlInterpolation2DXmin ()\n
+\ref qlInterpolation2DXvalues ()\n
+\ref qlInterpolation2DYmax ()\n
+\ref qlInterpolation2DYmin ()\n
+\ref qlInterpolation2DYvalues ()\n
+\ref qlInterpolation2DzData ()\n
+\ref qlInterpolationDerivative ()\n
+\ref qlInterpolationInterpolate ()\n
+\ref qlInterpolationIsInRange ()\n
+\ref qlInterpolationPrimitive ()\n
+\ref qlInterpolationSecondDerivative ()\n
+\ref qlInterpolationXmax ()\n
+\ref qlInterpolationXmin ()\n
+\ref qlMixedLinearCubicInterpolation ()\n
+\ref qlSABRInterpolation ()\n
+\ref qlSABRInterpolationAlpha ()\n
+\ref qlSABRInterpolationBeta ()\n
+\ref qlSABRInterpolationEndCriteria ()\n
+\ref qlSABRInterpolationExpiry ()\n
+\ref qlSABRInterpolationForward ()\n
+\ref qlSABRInterpolationMaxError ()\n
+\ref qlSABRInterpolationNu ()\n
+\ref qlSABRInterpolationRho ()\n
+\ref qlSABRInterpolationRmsError ()\n
+\ref qlSABRInterpolationWeights ()\n
+
+\section documentation Function Documentation
+\anchor qlAbcdInterpolation \b qlAbcdInterpolation
+\code
+
+string returnValue
+
+qlAbcdInterpolation(
+        string ObjectId
+        vector<double> XArray
+        vector<string> YArray
+        double A
+        double B
+        double C
+        double D
+        bool AIsFixed
+        bool BIsFixed
+        bool CIsFixed
+        bool DIsFixed
+        bool VegaWeighted
+        string EndCriteria
+        string OptimizationMeth
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class AbcdInterpolation and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param XArray x array.
+\param YArray y array.
+\param A The a in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess. Default value = QuantLib::Null<QuantLib::Real>().
+\param B The b in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess. Default value = QuantLib::Null<QuantLib::Real>().
+\param C The c in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess. Default value = QuantLib::Null<QuantLib::Real>().
+\param D The d in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess. Default value = QuantLib::Null<QuantLib::Real>().
+\param AIsFixed TRUE if the A value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param BIsFixed TRUE if the B value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param CIsFixed TRUE if the C value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param DIsFixed TRUE if the D value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param VegaWeighted TRUE if the interpolation is weighted using options Vega. Default value = true.
+\param EndCriteria EndCriteria object ID. Default value = .
+\param OptimizationMeth OptimizationMethod object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlAbcdInterpolationA \b qlAbcdInterpolationA
+\code
+
+double returnValue
+
+qlAbcdInterpolationA(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the a in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdInterpolationB \b qlAbcdInterpolationB
+\code
+
+double returnValue
+
+qlAbcdInterpolationB(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the b in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdInterpolationC \b qlAbcdInterpolationC
+\code
+
+double returnValue
+
+qlAbcdInterpolationC(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the c in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdInterpolationD \b qlAbcdInterpolationD
+\code
+
+double returnValue
+
+qlAbcdInterpolationD(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the d in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdInterpolationEndCriteria \b qlAbcdInterpolationEndCriteria
+\code
+
+string returnValue
+
+qlAbcdInterpolationEndCriteria(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the optimization end criteria of the fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdInterpolationMaxError \b qlAbcdInterpolationMaxError
+\code
+
+double returnValue
+
+qlAbcdInterpolationMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the max error of the fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlAbcdInterpolationRmsError \b qlAbcdInterpolationRmsError
+\code
+
+double returnValue
+
+qlAbcdInterpolationRmsError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the error of the fit for the given AbcdInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::AbcdInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCubicInterpolation \b qlCubicInterpolation
+\code
+
+string returnValue
+
+qlCubicInterpolation(
+        string ObjectId
+        vector<double> XArray
+        vector<string> YArray
+        string DerApprox
+        bool Monotonic
+        string LeftConditionType
+        double LeftConditionValue
+        string RightConditionType
+        double RightConditionValue
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class CubicInterpolation and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param XArray x array.
+\param YArray y array.
+\param DerApprox Derivative Approximation (). Default value = Kruger.
+\param Monotonic monotonicity constraint flag. Default value = true.
+\param LeftConditionType left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange). Default value = SecondDerivative.
+\param LeftConditionValue left condition value. Default value = 0.0.
+\param RightConditionType right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange). Default value = SecondDerivative.
+\param RightConditionValue right condition value. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlCubicInterpolationACoefficients \b qlCubicInterpolationACoefficients
+\code
+
+vector<double> returnValue
+
+qlCubicInterpolationACoefficients(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CubicInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCubicInterpolationBCoefficients \b qlCubicInterpolationBCoefficients
+\code
+
+vector<double> returnValue
+
+qlCubicInterpolationBCoefficients(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CubicInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCubicInterpolationCCoefficients \b qlCubicInterpolationCCoefficients
+\code
+
+vector<double> returnValue
+
+qlCubicInterpolationCCoefficients(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CubicInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCubicInterpolationMonotonicityAdjustments \b qlCubicInterpolationMonotonicityAdjustments
+\code
+
+vector<bool> returnValue
+
+qlCubicInterpolationMonotonicityAdjustments(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns a vector of bool (one per cubic) indicating if there has been a monotonicity adjustment.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CubicInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlCubicInterpolationPrimitiveConstants \b qlCubicInterpolationPrimitiveConstants
+\code
+
+vector<double> returnValue
+
+qlCubicInterpolationPrimitiveConstants(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::CubicInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlExtrapolatorEnableExtrapolation \b qlExtrapolatorEnableExtrapolation
+\code
+
+void returnValue
+
+qlExtrapolatorEnableExtrapolation(
+        string ObjectId
+        bool ExtrapolationFlag
+        any Trigger)
+
+\endcode
+\par Description:
+
+Sets the enable extrapolation flag to the given Extrapolator object.
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of existing QuantLibAddin::Extrapolator object
+\param ExtrapolationFlag global extrapolation flag. Default value = true.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation \b qlInterpolation
+\code
+
+string returnValue
+
+qlInterpolation(
+        string ObjectId
+        string InterpolationType
+        vector<double> XArray
+        vector<string> YArray
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class GenericInterp and return its id
+
+\par Supported Platforms:
+
+C++, Calc, Excel
+
+\param ObjectId id of object to be created
+\param InterpolationType interpolation type (e.g BackwardFlat, ForwardFlat, MonotonicCubicNaturalSpline, etc.) Default value = MonotonicNaturalCubicSpline.
+\param XArray x array.
+\param YArray y array.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlInterpolation2D \b qlInterpolation2D
+\code
+
+string returnValue
+
+qlInterpolation2D(
+        string ObjectId
+        string InterpolationType
+        vector<double> XArray
+        vector<double> YArray
+        vector<vector<double> > ZMatrix
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class Interpolation2D and return its id
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of object to be created
+\param InterpolationType 2D-interpolation type (e.g BiLinear, BiCubic). Default value = BiLinear.
+\param XArray x array.
+\param YArray y array.
+\param ZMatrix z-matrix values.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlInterpolation2DInterpolate \b qlInterpolation2DInterpolate
+\code
+
+vector<double> returnValue
+
+qlInterpolation2DInterpolate(
+        string ObjectId
+        vector<double> XValue
+        double YValue
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns interpolated values for the (x,y) input for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param XValue x value(s).
+\param YValue y value.
+\param AllowExtrapolation allow extrapolation flag. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DIsInRange \b qlInterpolation2DIsInRange
+\code
+
+vector<bool> returnValue
+
+qlInterpolation2DIsInRange(
+        string ObjectId
+        vector<double> XValues
+        double YValue
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the (x,y) input value is in the allowed interpolation range for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param XValues x values.
+\param YValue y value.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DXmax \b qlInterpolation2DXmax
+\code
+
+double returnValue
+
+qlInterpolation2DXmax(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maximum value of the x array for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DXmin \b qlInterpolation2DXmin
+\code
+
+double returnValue
+
+qlInterpolation2DXmin(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the minimum value of the x array for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DXvalues \b qlInterpolation2DXvalues
+\code
+
+vector<double> returnValue
+
+qlInterpolation2DXvalues(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the x array grid for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DYmax \b qlInterpolation2DYmax
+\code
+
+double returnValue
+
+qlInterpolation2DYmax(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maximum value of the y array for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DYmin \b qlInterpolation2DYmin
+\code
+
+double returnValue
+
+qlInterpolation2DYmin(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the minimum value of the y array for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DYvalues \b qlInterpolation2DYvalues
+\code
+
+vector<double> returnValue
+
+qlInterpolation2DYvalues(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the y array grid for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolation2DzData \b qlInterpolation2DzData
+\code
+
+vector<vector<double> > returnValue
+
+qlInterpolation2DzData(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the z data matrix grid for the given Interpolation2D object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation2D object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationDerivative \b qlInterpolationDerivative
+\code
+
+vector<double> returnValue
+
+qlInterpolationDerivative(
+        string ObjectId
+        vector<double> XValues
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the first derivative function values using the given Interpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::Interpolation object
+\param XValues x values.
+\param AllowExtrapolation allow extrapolation flag. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationInterpolate \b qlInterpolationInterpolate
+\code
+
+vector<double> returnValue
+
+qlInterpolationInterpolate(
+        string ObjectId
+        vector<double> XValues
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+
+        this is an example of long description.
+
+        on multiple lines.
+      
+
+\par Supported Platforms:
+
+Calc, Excel
+
+\param ObjectId id of existing QuantLibAddin::Interpolation object
+\param XValues x values.
+\param AllowExtrapolation allow extrapolation flag. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationIsInRange \b qlInterpolationIsInRange
+\code
+
+vector<bool> returnValue
+
+qlInterpolationIsInRange(
+        string ObjectId
+        vector<double> XValues
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns TRUE if the input value is in the allowed interpolation range for the given Interpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation object
+\param XValues x values.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationPrimitive \b qlInterpolationPrimitive
+\code
+
+vector<double> returnValue
+
+qlInterpolationPrimitive(
+        string ObjectId
+        vector<double> XValues
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the primitive function values using the given Interpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::Interpolation object
+\param XValues x values.
+\param AllowExtrapolation allow extrapolation flag. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationSecondDerivative \b qlInterpolationSecondDerivative
+\code
+
+vector<double> returnValue
+
+qlInterpolationSecondDerivative(
+        string ObjectId
+        vector<double> XValues
+        bool AllowExtrapolation
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the second derivative function values using the given Interpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::Interpolation object
+\param XValues x values.
+\param AllowExtrapolation allow extrapolation flag. Default value = false.
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationXmax \b qlInterpolationXmax
+\code
+
+double returnValue
+
+qlInterpolationXmax(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the maximum value of the x array for the given Interpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlInterpolationXmin \b qlInterpolationXmin
+\code
+
+double returnValue
+
+qlInterpolationXmin(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the minimum value of the x array for the given Interpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::Interpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlMixedLinearCubicInterpolation \b qlMixedLinearCubicInterpolation
+\code
+
+string returnValue
+
+qlMixedLinearCubicInterpolation(
+        string ObjectId
+        vector<double> XArray
+        vector<string> YArray
+        long SwitchIndex
+        string DerApprox
+        bool Monotonic
+        string LeftConditionType
+        double LeftConditionValue
+        string RightConditionType
+        double RightConditionValue
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class MixedLinearCubicInterpolation and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param XArray x array.
+\param YArray y array.
+\param SwitchIndex zero based knot index at which interpolation switches from linear to cubic.
+\param DerApprox Derivative Approximation (). Default value = Kruger.
+\param Monotonic monotonicity constraint flag. Default value = true.
+\param LeftConditionType left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange). Default value = SecondDerivative.
+\param LeftConditionValue left condition value. Default value = 0.0.
+\param RightConditionType right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange). Default value = SecondDerivative.
+\param RightConditionValue right condition value. Default value = 0.0.
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSABRInterpolation \b qlSABRInterpolation
+\code
+
+string returnValue
+
+qlSABRInterpolation(
+        string ObjectId
+        vector<double> XArray
+        vector<string> YArray
+        double Expiry
+        string Forward
+        double Alpha
+        double Beta
+        double Nu
+        double Rho
+        bool AlphaIsFixed
+        bool BetaIsFixed
+        bool NuIsFixed
+        bool RhoIsFixed
+        bool VegaWeighted
+        string EndCriteria
+        string OptimizationMeth
+        bool Permanent
+        any Trigger
+        bool Overwrite)
+
+\endcode
+\par Description:
+
+Construct an object of class SABRInterpolation and return its id
+
+\par Supported Platforms:
+
+C++, Excel
+
+\param ObjectId id of object to be created
+\param XArray x array.
+\param YArray y array.
+\param Expiry expiry time in years.
+\param Forward at-the-money forward rate.
+\param Alpha alpha (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Beta beta (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Nu nu (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param Rho rho (fixed value or guess). Default value = QuantLib::Null<QuantLib::Real>().
+\param AlphaIsFixed TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param BetaIsFixed TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param NuIsFixed TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param RhoIsFixed TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default value = false.
+\param VegaWeighted TRUE if the interpolation is weighted using options Vega. Default value = true.
+\param EndCriteria EndCriteria object ID. Default value = .
+\param OptimizationMeth OptimizationMethod object ID. Default value = .
+\param Permanent object permanent/nonpermanent
+\param Trigger dependency tracking trigger
+\param Overwrite overwrite flag
+
+
+
+\anchor qlSABRInterpolationAlpha \b qlSABRInterpolationAlpha
+\code
+
+double returnValue
+
+qlSABRInterpolationAlpha(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the alpha of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationBeta \b qlSABRInterpolationBeta
+\code
+
+double returnValue
+
+qlSABRInterpolationBeta(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the alpha of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationEndCriteria \b qlSABRInterpolationEndCriteria
+\code
+
+string returnValue
+
+qlSABRInterpolationEndCriteria(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the optimization end criteria of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationExpiry \b qlSABRInterpolationExpiry
+\code
+
+double returnValue
+
+qlSABRInterpolationExpiry(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the expiry time in years for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationForward \b qlSABRInterpolationForward
+\code
+
+double returnValue
+
+qlSABRInterpolationForward(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the forward  for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLib::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationMaxError \b qlSABRInterpolationMaxError
+\code
+
+double returnValue
+
+qlSABRInterpolationMaxError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the max error of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationNu \b qlSABRInterpolationNu
+\code
+
+double returnValue
+
+qlSABRInterpolationNu(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the nu of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationRho \b qlSABRInterpolationRho
+\code
+
+double returnValue
+
+qlSABRInterpolationRho(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the rho of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationRmsError \b qlSABRInterpolationRmsError
+\code
+
+double returnValue
+
+qlSABRInterpolationRmsError(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the error of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+\anchor qlSABRInterpolationWeights \b qlSABRInterpolationWeights
+\code
+
+vector<double> returnValue
+
+qlSABRInterpolationWeights(
+        string ObjectId
+        any Trigger)
+
+\endcode
+\par Description:
+
+Returns the weights of the fit for the given SABRInterpolation object.
+
+\par Supported Platforms:
+
+Excel
+
+\param ObjectId id of existing QuantLibAddin::SABRInterpolation object
+\param Trigger dependency tracking trigger
+
+
+
+
+
+*/
+
+

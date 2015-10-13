@@ -71,7 +71,7 @@ namespace QuantLib {
 		boost::shared_ptr<Exercise> bermudanExercise(new BermudanExercise(bermudanDates));
 		FloatFloatSwaption bermudanSwaption(ffSwap, bermudanExercise);
 
-		bermudanSwaption.setPricingEngine(boost::shared_ptr<PricingEngine>(new FdG2CmsSpreadRAEngine(modelG2, tGrid, rGrid, rGrid)));
+		bermudanSwaption.setPricingEngine(boost::shared_ptr<PricingEngine>(new FdG2CmsSpreadRAEngine(modelG2, pastAccrual, pastFixing, tGrid, rGrid, rGrid)));
 
 		std::vector<Real> rst;
 		rst.push_back(bermudanSwaption.NPV());
