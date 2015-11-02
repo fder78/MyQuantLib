@@ -59,11 +59,11 @@ int main(int argc, char** argv) {
         }
         
         //print the information of the command line
-        //std::cout<< "evaldate = " << lEvaldate<<"\ntradeid is " << tradeID 
-        //    << "\ntrade file is " << tradeFile << "\n";
-        //int i = 0;
-        //for(unsigned int i = 0; i < vecMaketfiles.size(); ++i)
-        //    std::cout<<"market file (" << (i+1) <<") is " << vecMaketfiles[i] << "\n";
+        std::cout<< "evaldate = " << lEvaldate<<"\ntradeid is " << tradeID 
+            << "\ntrade file is " << tradeFile << "\n";
+        int i = 0;
+        for(unsigned int i = 0; i < vecMaketfiles.size(); ++i)
+            std::cout<<"market file (" << (i+1) <<") is " << vecMaketfiles[i] << "\n";
 
         // Initialize the environment
 

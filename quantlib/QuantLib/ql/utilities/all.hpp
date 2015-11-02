@@ -10,4 +10,5 @@
 #include <ql/utilities/steppingiterator.hpp>
 #include <ql/utilities/tracing.hpp>
 #include <ql/utilities/vectors.hpp>
+#include <ql/utilities/tinyxml2.h>
 

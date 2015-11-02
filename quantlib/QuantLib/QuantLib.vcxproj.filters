@@ -4027,6 +4027,9 @@
     <ClInclude Include="ir_derivatives\fdg2_cms_spread_swap_innervalue.hpp">
       <Filter>ir_derivatives</Filter>
     </ClInclude>
+    <ClInclude Include="ql\utilities\tinyxml2.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6493,6 +6496,9 @@
     </ClCompile>
     <ClCompile Include="ir_derivatives\fdg2_cms_spread_swap_innervalue.cpp">
       <Filter>ir_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\utilities\tinyxml2.cpp">
+      <Filter>utilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

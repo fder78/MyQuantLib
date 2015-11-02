@@ -1236,6 +1236,7 @@
     <ClInclude Include="ql\utilities\null.hpp" />
     <ClInclude Include="ql\utilities\observablevalue.hpp" />
     <ClInclude Include="ql\utilities\steppingiterator.hpp" />
+    <ClInclude Include="ql\utilities\tinyxml2.h" />
     <ClInclude Include="ql\utilities\tracing.hpp" />
     <ClInclude Include="ql\utilities\vectors.hpp" />
     <ClInclude Include="ql\currencies\africa.hpp" />
@@ -2229,6 +2230,7 @@
     <ClCompile Include="ql\time\asx.cpp" />
     <ClCompile Include="ql\utilities\dataformatters.cpp" />
     <ClCompile Include="ql\utilities\dataparsers.cpp" />
+    <ClCompile Include="ql\utilities\tinyxml2.cpp" />
     <ClCompile Include="ql\utilities\tracing.cpp" />
     <ClCompile Include="ql\currencies\africa.cpp" />
     <ClCompile Include="ql\currencies\america.cpp" />
