@@ -6,11 +6,13 @@
 #include <oleauto.h>
 #include <assert.h>
 
-//#include "StringUtil.h"
+#include "StringUtil.h"
+#include "XMLValue.h"
 #include <ql/quantlib.hpp>
 #include <ir_derivatives\g2_calibration.hpp>
 #include <ir_derivatives\pricing_cms_spread_ra.hpp>
 
+#define QL_ENABLE_SESSIONS
 
 #ifdef BOOST_MSVC
 /* Uncomment the following lines to unmask floating-point
@@ -37,48 +39,6 @@ namespace QuantLib {
 #endif
 
 
-//Number of swaptions to be calibrated to...
-
-Size numRows = 5;
-Size numCols = 5;
-Integer swapLenghts[] = { 1, 2, 3, 4, 5 };
-Integer swaptionMaturities[] = { 1, 2, 3, 4, 5 };
-Volatility swaptionVols[] = {
-	0.1490, 0.1340, 0.1228, 0.1189, 0.1148,
-	0.1290, 0.1201, 0.1146, 0.1108, 0.1040,
-	0.1149, 0.1112, 0.1070, 0.1010, 0.0957,
-	0.1047, 0.1021, 0.0980, 0.0951, 0.1270,
-	0.1000, 0.0950, 0.0900, 0.1230, 0.1160 };
-
-void calibrateModel(
-	const boost::shared_ptr<ShortRateModel>& model,
-	const std::vector<boost::shared_ptr<CalibrationHelper> >& helpers) {
-
-	LevenbergMarquardt optimizationMethod(1.0e-8, 1.0e-8, 1.0e-8);
-	EndCriteria endCriteria(50000, 1000, 1e-8, 1e-8, 1e-8);
-	model->calibrate(helpers, optimizationMethod, endCriteria);
-
-	// Output the implied Black volatilities
-	for (Size i = 0; i < numRows; i++) {
-		Size j = numCols - i - 1; // 1x5, 2x4, 3x3, 4x2, 5x1
-		Size k = i*numCols + j;
-		Real npv = helpers[i]->modelValue();
-		Volatility implied = helpers[i]->impliedVolatility(npv, 1e-4,
-			1000, 0.05, 0.50);
-		Volatility diff = implied - swaptionVols[k];
-
-		std::cout << i + 1 << "x" << swapLenghts[j]
-			<< std::setprecision(5) << std::noshowpos
-			<< ": model " << std::setw(7) << io::volatility(implied)
-			<< ", market " << std::setw(7)
-			<< io::volatility(swaptionVols[k])
-			<< " (" << std::setw(7) << std::showpos
-			<< io::volatility(diff) << std::noshowpos << ")\n";
-	}
-}
-
-double test();
-
 int _tmain(int argc, _TCHAR* argv[]) {
 
 	try{
@@ -90,19 +50,151 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			XMLError e = doc.LoadFile(fileName);
 			if (e == XML_SUCCESS) {
 
-				XMLElement* element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("data_date_alias");
+				XMLElement* element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("eval_time");
+				const char* datestr = element->Attribute("value");
+				Date evaluationDate = ConvertToDateFromBloomberg(::ToWString(datestr));
+				Settings::instance().evaluationDate() = evaluationDate;
+				
+				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("data_root")->FirstChildElement("record");
+				//pastAccrual
+				double pastAccrual = 0.0;
 
+				std::wstring grid = XMLValue(element, "NumOfSimul").GetValue<std::wstring>();
+				std::vector<Size> gridnum;
+				std::vector<std::wstring> gridStr;
+				boost::algorithm::split(gridStr, grid, boost::is_any_of(L"/"), boost::algorithm::token_compress_on);
+				gridnum.push_back(boost::lexical_cast<Size>(gridStr[0]));
+				gridnum.push_back(boost::lexical_cast<Size>(gridStr[1]));
 
+				//notional
+				double notional = XMLValue(element, "Notional").GetValue<double>();
+				//swap type
+				std::wstring payrec = XMLValue(element, "PayRec").GetValue<std::wstring>();
+				VanillaSwap::Type type = VanillaSwap::Receiver;
+				if (payrec==L"Pay")
+					type = VanillaSwap::Payer;
+				//coupon rate
+				double cpnRate = XMLValue(element, "AccrualRate").GetValue<double>();
+				Calendar calendar = SouthKorea();
+				//Spread Tenors
+				std::vector<Size> tenorsInYears;
+				std::vector<std::wstring> tenorStr;
+				std::wstring tenorMat = XMLValue(element, "TenorMatrix").GetValue<std::wstring>();
+				boost::algorithm::split(tenorStr, tenorMat, boost::is_any_of(L","), boost::algorithm::token_compress_on);
+				tenorsInYears.push_back(boost::lexical_cast<Size>(tenorStr[0]));
+				tenorsInYears.push_back(boost::lexical_cast<Size>(tenorStr[1]));
+				//Range
+				double lower = XMLValue(element, "Obs1LowerLevel").GetValue<double>();
+				double upper = XMLValue(element, "Obs1UpperLevel").GetValue<double>();
 
+				//FirstCallDate
+				Date firstCallDate = XMLValue(element, "CallStartDate").GetValue<Date>();
 
+				//DayCounter
+				DayCounter fixedLegDayCounter = Actual365Fixed();
+				std::wstring dc = XMLValue(element, "DayCounterAccrual").GetValue<std::wstring>();
+				if (dc == L"Actual365Fixed") fixedLegDayCounter = Actual365Fixed();
+				else if (dc == L"Actual360") fixedLegDayCounter = Actual360();
+				else if (dc == L"ActualActual") fixedLegDayCounter = ActualActual();
+				else if (dc == L"30/360") fixedLegDayCounter = Thirty360();
+				else throw(std::exception("undefined DayCounter"));
 
+				//Schedule
+				Date effectiveDate = XMLValue(element, "EffectiveDate").GetValue<Date>();
+				Date terminationDate = XMLValue(element, "TerminationDate").GetValue<Date>();
+				
+				Frequency fixedLegFrequency;
+				std::wstring tenor = XMLValue(element, "Tenor").GetValue<std::wstring>();				
+				if (tenor == L"Annually") fixedLegFrequency = Annual;
+				else if (tenor == L"Quarterly") fixedLegFrequency = Quarterly;
+				else if (tenor == L"Semiannually") fixedLegFrequency = Semiannual;
+				else throw(std::exception("undefined frequency"));
 
+				BusinessDayConvention fixedLegConvention = Following;
+				std::wstring bdc = XMLValue(element, "BDC").GetValue<std::wstring>();
+				if (bdc == L"Following") fixedLegConvention = Following;
+				else if (bdc == L"ModifiedFollowing") fixedLegConvention = ModifiedFollowing;
+				else if (bdc == L"Preceding") fixedLegConvention = Preceding;
+				else if (bdc == L"ModifiedPreceding") fixedLegConvention = ModifiedPreceding;
+				else if (bdc == L"Unadjust") fixedLegConvention = Unadjusted;
+				else throw(std::exception("undefined BDC"));
+				Schedule fixedSchedule(effectiveDate, terminationDate, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);
 
-				//XMLText* textNode = element->ToText();
-				//std::string title = std::string(textNode->Value());
-				//std::cout << title << std::endl;
+				//floating leg
+				double alpha = XMLValue(element, "PayerPaymentSpread").GetValue<double>();
+				double pastFixing = XMLValue(element, "PayerPastFixing").GetValue<double>();
 
-				double price = test();
+				///////////////////////////////////////////////////////////////////////////////////////////////			
+				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("curve_root")->FirstChildElement("curve")->FirstChildElement("CurveData");
+				std::wstring curveDC = ::ToWString(element->Attribute("DayCounter"));
+				DayCounter curveDayCounter = Actual365Fixed();
+				if (curveDC == L"Actual/365 (Fixed)") curveDayCounter = Actual365Fixed();
+				else if (curveDC == L"Actual/360") curveDayCounter = Actual360();
+				else if (curveDC == L"Actual/Actual") curveDayCounter = ActualActual();
+				else if (curveDC == L"30/360") curveDayCounter = Thirty360();
+				else throw(std::exception("undefined DayCounter"));
+				std::vector<Date> dates;	std::vector<Rate> rates;
+				XMLElement* cdata = element->FirstChildElement("CurveDataItem");				
+				while (1) {
+					std::wstring yield = ::ToWString(cdata->Attribute("Yield"));
+					std::wstring date = ::ToWString(cdata->Attribute("Date"));
+					rates.push_back(std::stod(yield));
+					dates.push_back(ConvertToDate(date));
+					if (cdata == element->LastChildElement("CurveDataItem")) break;
+					cdata = cdata->NextSiblingElement();
+				} 
+				Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<YieldTermStructure>(new InterpolatedZeroCurve<Linear>(dates, rates, curveDayCounter)));
+				boost::shared_ptr<IborIndex> index(new Euribor3M(rhTermStructure));
+
+				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("curve_root")->FirstChildElement("curve")->FirstChildElement("SwaptionVolData");
+				//parameters calibration
+				SwaptionVolData swaptionVolData;
+				XMLElement* vdata = element->FirstChildElement("SwaptionVolDataItem");
+				while (1) {
+					std::wstring vol = ::ToWString(vdata->Attribute("Vol"));
+					std::wstring len = ::ToWString(vdata->Attribute("Length"));
+					std::wstring mat = ::ToWString(vdata->Attribute("Maturity"));
+					swaptionVolData.vols.push_back(std::stod(vol));
+					swaptionVolData.lengths.push_back(PeriodParser::parse(::ToString(len)));
+					swaptionVolData.maturities.push_back(PeriodParser::parse(::ToString(mat)));
+					if (vdata == element->LastChildElement("SwaptionVolDataItem")) break;
+					vdata = vdata->NextSiblingElement();
+				}
+				swaptionVolData.fixedFreq = index->tenor().frequency();
+				swaptionVolData.fixedDC = index->dayCounter();
+				swaptionVolData.floatingDC = index->dayCounter();
+				swaptionVolData.index = index;
+
+				// defining the models
+				boost::shared_ptr<G2> modelG2(new G2(rhTermStructure));
+				G2Parameters param = calibration_g2(evaluationDate, swaptionVolData);				
+				///////////////////////////////////////////////////////////////////////////////////////////////
+
+				
+				std::vector<Real> rst = cms_spread_rangeaccrual_fdm(
+					evaluationDate,
+					type,
+					notional,
+					std::vector<Rate>(1, cpnRate),		//std::vector<Rate> couponRate,
+					std::vector<Rate>(1, 0.0),		//std::vector<Real> gearing,
+					fixedSchedule,					//	Schedule schedule,
+					fixedLegDayCounter,				//	DayCounter dayCounter,
+					fixedLegConvention,				//	BusinessDayConvention bdc,
+					tenorsInYears,					//  CMS spread tenors,
+					std::vector<Real>(1, lower),		//	std::vector<Real> lowerBound,
+					std::vector<Real>(1, upper),		//	std::vector<Real> upperBound,
+					firstCallDate,				//	Date firstCallDate,
+					pastAccrual,							//	Real pastAccrual,
+					rhTermStructure.currentLink(),	//	boost::shared_ptr<YieldTermStructure> obs1Curve,
+					param,							//	const G2Parameters& obs1G2Params,
+					0.0, 0.0,						//	Real obs1FXVol, Real obs1FXCorr,
+					rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
+					gridnum[0], gridnum[1],							//	Size tGrid, Size rGrid,
+					alpha,							//	Real alpha,
+					pastFixing								//	Real pastFixing,
+				);
+
+				double price = rst[0];
 				std::cout.precision(20);
 				std::cout << "OK" << price << std::endl;
 			}
@@ -130,82 +222,5 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 
 
-double test(){
 
-	Date todaysDate = Date::todaysDate();
-	Calendar calendar = SouthKorea();
-	Date settlementDate(7, Oct, 2015);
-	Settings::instance().evaluationDate() = todaysDate;
-
-	// flat yield term structure impling 1x5 swap at 5%
-	//boost::shared_ptr<Quote> flatRate(new SimpleQuote(0.04875825));
-	//Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<FlatForward>(new FlatForward(todaysDate, Handle<Quote>(flatRate), Actual365Fixed())));
-
-	std::vector<Date> dates(1, todaysDate);		dates.push_back(todaysDate + 30 * Years);
-	std::vector<Rate> rates(1, 0.045);			rates.push_back(0.08);
-	Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<YieldTermStructure>(new InterpolatedZeroCurve<Linear>(dates, rates, Actual365Fixed())));
-	boost::shared_ptr<IborIndex> indexSixMonths(new Euribor6M(rhTermStructure));
-
-	//parameters calibration
-	SwaptionVolData swaptionVolData;
-	for (Size i = 0; i < numRows; i++) {
-		Size j = numCols - i - 1; // 1x5, 2x4, 3x3, 4x2, 5x1
-		Size k = i*numCols + j;
-		swaptionVolData.vols.push_back(swaptionVols[k]);
-		swaptionVolData.lengths.push_back(Period(swapLenghts[j], Years));
-		swaptionVolData.maturities.push_back(Period(swaptionMaturities[i], Years));
-	}
-	swaptionVolData.fixedFreq = indexSixMonths->tenor().frequency();
-	swaptionVolData.fixedDC = indexSixMonths->dayCounter();
-	swaptionVolData.floatingDC = indexSixMonths->dayCounter();
-	swaptionVolData.index = indexSixMonths;
-
-	// defining the models
-	boost::shared_ptr<G2> modelG2(new G2(rhTermStructure));
-
-	G2Parameters param = calibration_g2(todaysDate, swaptionVolData);
-	//std::cout << "calibration parameters:\n"
-	//	<< "a     = " << param.a << ", "
-	//	<< "sigma = " << param.sigma << "\n"
-	//	<< "b     = " << param.b << ", "
-	//	<< "eta   = " << param.eta << "\n"
-	//	<< "rho   = " << param.rho << std::endl << std::endl;
-
-	// Define the swaps
-	Frequency fixedLegFrequency = Quarterly;
-	BusinessDayConvention fixedLegConvention = Unadjusted;
-	BusinessDayConvention floatingLegConvention = ModifiedFollowing;
-	DayCounter fixedLegDayCounter = Thirty360(Thirty360::European);
-	Frequency floatingLegFrequency = Semiannual;
-	VanillaSwap::Type type = VanillaSwap::Payer;
-	std::vector<Size> tenorsInYears;
-	tenorsInYears.push_back(10);
-	tenorsInYears.push_back(2);
-
-	Date maturity = calendar.advance(settlementDate, 15, Years, floatingLegConvention);
-	Schedule fixedSchedule(settlementDate, maturity, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);
-
-	std::vector<Real> rst = cms_spread_rangeaccrual_fdm(todaysDate, 10000,
-		std::vector<Rate>(1, 0.08),		//std::vector<Rate> couponRate,
-		std::vector<Rate>(1, 0.0),		//std::vector<Real> gearing,
-		fixedSchedule,					//	Schedule schedule,
-		fixedLegDayCounter,				//	DayCounter dayCounter,
-		fixedLegConvention,				//	BusinessDayConvention bdc,
-		tenorsInYears,					//  CMS spread tenors,
-		std::vector<Real>(1, 0.0),		//	std::vector<Real> lowerBound,
-		std::vector<Real>(1, 0.03),		//	std::vector<Real> upperBound,
-		fixedSchedule[4],				//	Date firstCallDate,
-		0.0,							//	Real pastAccrual,
-		rhTermStructure.currentLink(),	//	boost::shared_ptr<YieldTermStructure> obs1Curve,
-		param,							//	const G2Parameters& obs1G2Params,
-		0.0, 0.0,						//	Real obs1FXVol, Real obs1FXCorr,
-		rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
-		25, 50,							//	Size tGrid, Size rGrid,
-		0.001,							//	Real alpha,
-		0.05								//	Real pastFixing,
-		);
-
-	return rst[0];
-
-}
 

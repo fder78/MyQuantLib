@@ -6,6 +6,7 @@
 namespace QuantLib {
 
 	std::vector<Real> cms_spread_rangeaccrual_fdm(Date evaluationDate,
+		VanillaSwap::Type type,
 		Real notional,
 		std::vector<Rate> couponRate,
 		std::vector<Real> gearing,
@@ -21,7 +22,7 @@ namespace QuantLib {
 		const G2Parameters& obs1G2Params,
 		Real obs1FXVol, Real obs1FXCorr,
 		Handle<YieldTermStructure>& discTS,
-		Size tGrid, Size rGrid,
+		Size rGrid, Size tGrid,
 		Real alpha,
 		Real pastFixing);
 

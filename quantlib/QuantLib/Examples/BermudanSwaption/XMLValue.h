@@ -1,20 +1,22 @@
 #pragma once
 
-#include "../EquityDerivatives_DLL/EquityDerivatives_DLL/StringUtil.h"
+#include "StringUtil.h"
+
+using namespace tinyxml2;
 
 // By Hyun Chul
 class XMLValue
 {
 public:
-	XMLValue( const TiXmlElement* record, const std::string& param )
+	XMLValue( const XMLElement* record, const std::string& param )
 		: m_record( record )
 	{
 		m_param = param;
-		const TiXmlElement* firstElement = record->FirstChildElement( param.c_str() );
+		const XMLElement* firstElement = record->FirstChildElement( param.c_str() );
 		if( firstElement )
 		{
 			m_type = ::ToWString( firstElement->Attribute( "type" ) );
-			m_value = ::ToWString( record->FirstChildElement( param.c_str() )->Attribute( "value" ) );
+			m_value = ::ToWString( firstElement->Attribute( "value" ) );
 		}
 		else
 		{
@@ -99,7 +101,7 @@ private:
 	std::string m_param;
 	std::wstring m_type;
 	std::wstring m_value;
-	const TiXmlElement* m_record;
+	const XMLElement* m_record;
 };
 
 inline bool operator == ( const XMLValue& lhs, const wchar_t* rhs )
@@ -155,21 +157,21 @@ inline std::string GetType( int val )
 	return "double";
 }
 
-template<typename T>
-void SetXMLValue( TiXmlNode& parent, const std::string& name, const T& v )
-{
-	std::string type( ::GetType( v ) );
-	TiXmlElement* node = static_cast<TiXmlElement*>( parent.InsertEndChild( TiXmlElement( name ) ) );
-
-	node->SetAttribute( "type", type );
-	node->SetAttribute( "value", ::ToString( ::ToWString( v ) ) );
-}
+//template<typename T>
+//void SetXMLValue( TiXmlNode& parent, const std::string& name, const T& v )
+//{
+//	std::string type( ::GetType( v ) );
+//	TiXmlElement* node = static_cast<TiXmlElement*>( parent.InsertEndChild( TiXmlElement( name ) ) );
+//
+//	node->SetAttribute( "type", type );
+//	node->SetAttribute( "value", ::ToString( ::ToWString( v ) ) );
+//}
 
 // = 연산자에 Str 암시적변환이 잘 안되어서 만듦
 class XMLStrValue
 {
 public:
-	XMLStrValue( const TiXmlElement* record, const std::string& param )
+	XMLStrValue( const XMLElement* record, const std::string& param )
 		: m_value( record, param )
 	{
 	}

@@ -1,7 +1,11 @@
 #pragma once
-
+#include <tchar.h>
+#include <windows.h>
 #include <boost/format.hpp>
 #include <ql/quantlib.hpp>
+
+
+using namespace QuantLib;
 
 // case insensitive한 비교를 위해 transform을 하기 때문에 참조자로 받지 않는다.
 bool CompareString( std::wstring lhs, std::wstring rhs );
@@ -42,12 +46,12 @@ inline std::wstring ToWString( const std::wstring& str )
 	return str;
 }
 
-//inline std::wstring ToWString( const Date& date )
-//{
-//	std::wostringstream buf;
-//	buf << boost::wformat( L"%04d-%02d-%02d" ) % date.year() % date.month() % date.dayOfMonth();
-//	return buf.str();
-//}
+inline std::wstring ToWString( const Date& date )
+{
+	std::wostringstream buf;
+	buf << boost::wformat( L"%04d-%02d-%02d" ) % date.year() % date.month() % date.dayOfMonth();
+	return buf.str();
+}
 
 template<typename T>
 inline std::wstring ToWString( const std::vector<T>& v )
@@ -84,25 +88,24 @@ inline std::string ToString( double val )
 
 inline Date ConvertToDate( const std::wstring& str )
 {
-	return Date();
-	//std::vector<std::wstring> dt;
-	//boost::algorithm::split( dt, str, boost::is_any_of( L" " ), boost::algorithm::token_compress_on );
-	//std::vector<std::wstring> ymd;
-	//boost::algorithm::split( ymd, dt[ 0 ], boost::is_any_of( L"-" ), boost::algorithm::token_compress_on );
+	std::vector<std::wstring> dt;
+	boost::algorithm::split( dt, str, boost::is_any_of( L" " ), boost::algorithm::token_compress_on );
+	std::vector<std::wstring> ymd;
+	boost::algorithm::split( ymd, dt[ 0 ], boost::is_any_of( L"-/" ), boost::algorithm::token_compress_on );
 
-	//QL_ASSERT( ymd.size() == 3, ::ToString( str ) + "날짜가 이상합니다" );
+	QL_ASSERT( ymd.size() == 3, ::ToString( str ) + "날짜가 이상합니다" );
 
-	//BigInteger y = boost::lexical_cast<BigInteger>( ymd[ 0 ] );
-	//BigInteger m = boost::lexical_cast<BigInteger>( ymd[ 1 ] );
-	//BigInteger d = boost::lexical_cast<BigInteger>( ymd[ 2 ] );
+	BigInteger y = boost::lexical_cast<BigInteger>( ymd[ 0 ] );
+	BigInteger m = boost::lexical_cast<BigInteger>( ymd[ 1 ] );
+	BigInteger d = boost::lexical_cast<BigInteger>( ymd[ 2 ] );
 
-	//return Date( Day( d ), Month( m ), Year( y ) );
+	return Date( Day( d ), Month( m ), Year( y ) );
 }
 
-//inline Date ConvertToDate( const std::string& str )
-//{
-//	return ConvertToDate( ::ToWString( str ) );
-//}
+inline Date ConvertToDate( const std::string& str )
+{
+	return ConvertToDate( ::ToWString( str ) );
+}
 
 
 template<typename strType, typename Pred>
