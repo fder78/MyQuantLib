@@ -23,6 +23,7 @@ namespace QuantLib {
 		Real obs1FXVol, Real obs1FXCorr,
 		Handle<YieldTermStructure>& discTS,
 		Size rGrid, Size tGrid,
+		Schedule floatingSchedule,
 		Real alpha,
 		Real pastFixing) {
 
@@ -32,7 +33,6 @@ namespace QuantLib {
 		Settings::instance().evaluationDate() = todaysDate;
 
 		Size n1 = schedule.size() - 1;
-		Schedule floatingSchedule(schedule);
 		Size n2 = floatingSchedule.size() - 1;
 
 		boost::shared_ptr<IborIndex> index(new USDLibor(Period(3,Months), Handle<YieldTermStructure>(discTS)));

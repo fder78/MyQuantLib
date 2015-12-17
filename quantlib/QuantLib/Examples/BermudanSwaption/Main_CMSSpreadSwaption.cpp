@@ -45,6 +45,8 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 		if (argc > 1) {
 
+			boost::timer timer;
+
 			const char* fileName = argv[1];
 			tinyxml2::XMLDocument doc;
 			XMLError e = doc.LoadFile(fileName);
@@ -118,7 +120,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				else if (bdc == L"ModifiedPreceding") fixedLegConvention = ModifiedPreceding;
 				else if (bdc == L"Unadjust") fixedLegConvention = Unadjusted;
 				else throw(std::exception("undefined BDC"));
-				Schedule fixedSchedule(effectiveDate, terminationDate, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);
+				Schedule fixedSchedule(effectiveDate, terminationDate, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);			
 
 				//floating leg
 				double alpha = XMLValue(element, "PayerPaymentSpread").GetValue<double>();
@@ -145,18 +147,29 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				} 
 				Handle<YieldTermStructure> rhTermStructure(boost::shared_ptr<YieldTermStructure>(new InterpolatedZeroCurve<Linear>(dates, rates, curveDayCounter)));
 				boost::shared_ptr<IborIndex> index(new Euribor3M(rhTermStructure));
+				Schedule floatingSchedule(effectiveDate, terminationDate, index->tenor(), calendar, index->businessDayConvention(), index->businessDayConvention(), DateGeneration::Backward, false);
 
 				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("curve_root")->FirstChildElement("curve")->FirstChildElement("SwaptionVolData");
 				//parameters calibration
 				SwaptionVolData swaptionVolData;
 				XMLElement* vdata = element->FirstChildElement("SwaptionVolDataItem");
+				Period length = Period();
+				Period maturity = Period();
 				while (1) {
 					std::wstring vol = ::ToWString(vdata->Attribute("Vol"));
 					std::wstring len = ::ToWString(vdata->Attribute("Length"));
 					std::wstring mat = ::ToWString(vdata->Attribute("Maturity"));
-					swaptionVolData.vols.push_back(std::stod(vol));
-					swaptionVolData.lengths.push_back(PeriodParser::parse(::ToString(len)));
-					swaptionVolData.maturities.push_back(PeriodParser::parse(::ToString(mat)));
+					
+					length = PeriodParser::parse(::ToString(len));
+					maturity = PeriodParser::parse(::ToString(mat));
+
+					Date terminal = evaluationDate + length + maturity;
+					unsigned int n = std::abs(terminal - terminationDate);
+					if (n < 365) {
+						swaptionVolData.vols.push_back(std::stod(vol));
+						swaptionVolData.lengths.push_back(length);
+						swaptionVolData.maturities.push_back(maturity);
+					}
 					if (vdata == element->LastChildElement("SwaptionVolDataItem")) break;
 					vdata = vdata->NextSiblingElement();
 				}
@@ -167,7 +180,33 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 				// defining the models
 				boost::shared_ptr<G2> modelG2(new G2(rhTermStructure));
-				G2Parameters param = calibration_g2(evaluationDate, swaptionVolData);				
+#ifdef _DEBUG
+				G2Parameters param(0.5, 0.1, 0.5, 0.1, -0.6, modelG2);
+#else
+				G2Parameters param = calibration_g2(evaluationDate, swaptionVolData);
+#endif
+			
+				tinyxml2::XMLDocument doc;
+				XMLNode* pRoot = doc.NewElement("root");
+				doc.InsertFirstChild(pRoot);
+				XMLElement* pElement = doc.NewElement("g2Parameters");
+				pRoot->InsertEndChild(pElement);
+				
+				XMLElement* pElement1 = doc.NewElement("a");
+				pElement1->SetText(param.a);
+				pElement->InsertEndChild(pElement1);
+				pElement1 = doc.NewElement("sigma");
+				pElement1->SetText(param.sigma);
+				pElement->InsertEndChild(pElement1);
+				pElement1 = doc.NewElement("b");
+				pElement1->SetText(param.b);
+				pElement->InsertEndChild(pElement1);
+				pElement1 = doc.NewElement("eta");
+				pElement1->SetText(param.eta);
+				pElement->InsertEndChild(pElement1);
+				pElement1 = doc.NewElement("rho");
+				pElement1->SetText(param.rho);
+				pElement->InsertEndChild(pElement1);				
 				///////////////////////////////////////////////////////////////////////////////////////////////
 
 				
@@ -190,6 +229,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 					0.0, 0.0,						//	Real obs1FXVol, Real obs1FXCorr,
 					rhTermStructure,				//	Handle<YieldTermStructure>& discTS,
 					gridnum[0], gridnum[1],							//	Size tGrid, Size rGrid,
+					floatingSchedule,
 					alpha,							//	Real alpha,
 					pastFixing								//	Real pastFixing,
 				);
@@ -197,6 +237,14 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				double price = rst[0];
 				std::cout.precision(20);
 				std::cout << "OK" << price << std::endl;
+
+				pElement = doc.NewElement("computationTime");
+				pRoot->InsertEndChild(pElement);
+
+				pElement1 = doc.NewElement("ctime");
+				pElement1->SetText(timer.elapsed());
+				pElement->InsertEndChild(pElement1);
+				doc.SaveFile("g2_parameters.xml");
 			}
 			else
 				throw(std::exception("Cannot open the XML file"));

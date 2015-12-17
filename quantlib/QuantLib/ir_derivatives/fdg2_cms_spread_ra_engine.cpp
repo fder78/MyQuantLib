@@ -94,11 +94,31 @@ namespace QuantLib {
 				Time t = (i == 0) ? 0.0 : (payTimes[i - 1] <= 0.0) ? 0.0 : payTimes[i - 1];
 				Size n = unsigned int(tGrid_ * (payTimes[i] - t));
 				Real dt = (payTimes[i] - t) / n;
+				Time t0 = t;
 				for (Size k = 0; k < n; ++k) {
-					accrualTimes.push_back(t + k*dt);
+					for (Size j = 0; j < floatingTimes.size(); ++j) {
+						if (floatingTimes[j]>t0 && floatingTimes[j] < t + k*dt) {
+							timeInterval[accrualTimes.back()] = floatingTimes[j] - t0;
+							accrualTimes.push_back(floatingTimes[j]);
+							timeInterval[accrualTimes.back()] = t + k*dt - floatingTimes[j];
+							std::pair<Size, Time> idxPair(i, payTimes[i]);
+							cfIndex[accrualTimes.back()] = idxPair;
+						}
+					}
+					t0 = t + k*dt;
+					accrualTimes.push_back(t0);
 					timeInterval[accrualTimes.back()] = dt;
 					std::pair<Size, Time> idxPair(i, payTimes[i]);
 					cfIndex[accrualTimes.back()] = idxPair;
+				}
+				for (Size j = 0; j < floatingTimes.size(); ++j) {
+					if (floatingTimes[j]>t0 && floatingTimes[j] < t + n*dt) {
+						timeInterval[accrualTimes.back()] = floatingTimes[j] - t0;
+						accrualTimes.push_back(floatingTimes[j]);
+						timeInterval[accrualTimes.back()] = t + n*dt - floatingTimes[j];
+						std::pair<Size, Time> idxPair(i, payTimes[i]);
+						cfIndex[accrualTimes.back()] = idxPair;
+					}
 				}
 			}
 		}

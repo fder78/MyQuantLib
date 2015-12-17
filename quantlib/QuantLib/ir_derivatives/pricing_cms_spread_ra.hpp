@@ -23,6 +23,7 @@ namespace QuantLib {
 		Real obs1FXVol, Real obs1FXCorr,
 		Handle<YieldTermStructure>& discTS,
 		Size rGrid, Size tGrid,
+		Schedule floatingSchedule,
 		Real alpha,
 		Real pastFixing);
 
