@@ -20,7 +20,8 @@ namespace QuantLib {
 
 	G2Parameters calibration_g2(
 		const Date& evalDate,
-		const CapVolData& volData
+		const CapVolData& volData,
+		const G2Parameters& init
 	)
 	{
 			boost::shared_ptr<IborIndex> index = volData.index;
@@ -30,7 +31,7 @@ namespace QuantLib {
 			Settings::instance().evaluationDate() = Date( evalDate.serialNumber() );
 
 			Handle<YieldTermStructure> rts_hw(index->forwardingTermStructure().currentLink());
-			boost::shared_ptr<G2> model(new G2(rts_hw));
+			boost::shared_ptr<G2> model(new G2(rts_hw, init.a, init.sigma, init.b, init.eta, init.rho));
 			boost::shared_ptr<PricingEngine> engine_g2(new AnalyticCapFloorEngine(model));
 
 			std::vector<boost::shared_ptr<CalibrationHelper> > caps;
@@ -59,7 +60,8 @@ namespace QuantLib {
 
 	G2Parameters calibration_g2(
 		const Date& evalDate,
-		const SwaptionVolData& volData
+		const SwaptionVolData& volData,
+		const G2Parameters& init
 		)
 	{
 			boost::shared_ptr<IborIndex> index = volData.index;
@@ -70,7 +72,7 @@ namespace QuantLib {
 			Settings::instance().evaluationDate() = Date( evalDate.serialNumber() );
 
 			Handle<YieldTermStructure> rts_hw(index->forwardingTermStructure().currentLink());
-			boost::shared_ptr<G2> model(new G2(rts_hw));		
+			boost::shared_ptr<G2> model(new G2(rts_hw, init.a, init.sigma, init.b, init.eta, init.rho));
 			boost::shared_ptr<PricingEngine> engine_g2(new G2SwaptionEngine(model, 6., 16));
 
 			std::vector<boost::shared_ptr<CalibrationHelper> > swaptions;

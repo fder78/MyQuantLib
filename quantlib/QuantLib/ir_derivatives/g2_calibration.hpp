@@ -25,13 +25,15 @@ namespace QuantLib {
 	G2Parameters calibration_g2
 	(
 		const Date& evalDate,
-		const CapVolData& volData
+		const CapVolData& volData,
+		const G2Parameters& init
 	);
 
 	G2Parameters calibration_g2
 	(
 		const Date& evalDate,
-		const SwaptionVolData& volData
+		const SwaptionVolData& volData,
+		const G2Parameters& init
 	);
 
 }

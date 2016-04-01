@@ -123,8 +123,37 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				Schedule fixedSchedule(effectiveDate, terminationDate, Period(fixedLegFrequency), calendar, fixedLegConvention, fixedLegConvention, DateGeneration::Backward, false);			
 
 				//floating leg
-				double alpha = XMLValue(element, "PayerPaymentSpread").GetValue<double>();
+				double alpha = XMLValue(element, "PayerPaymentSpread").GetValue<double>();				
 				double pastFixing = XMLValue(element, "PayerPastFixing").GetValue<double>();
+
+
+				//parameters calibration
+				bool forceParam = false;
+				double a = 0.1;
+				double sigma = 0.01;
+				double b = 0.1;
+				double eta = 0.01;
+				double rho = -0.5;
+				try {
+					forceParam = (XMLValue(element, "Obs1Calibrate").GetValue<std::wstring>() == std::wstring(L"Y")) ? false : true;
+					std::wstring g2Params = XMLValue(element, "Obs1G2Param").GetValue<std::wstring>();
+					std::vector<std::wstring> tmpObs1G2Param;
+					boost::algorithm::split(tmpObs1G2Param, g2Params, boost::is_any_of(L"/"), boost::algorithm::token_compress_on);
+					a = boost::lexical_cast<Real>(tmpObs1G2Param[0]);
+					b = boost::lexical_cast<Real>(tmpObs1G2Param[1]);
+					sigma = boost::lexical_cast<Real>(tmpObs1G2Param[2]);
+					eta = boost::lexical_cast<Real>(tmpObs1G2Param[3]);
+					rho = boost::lexical_cast<Real>(tmpObs1G2Param[4]);
+				}
+				catch (...) {
+					forceParam = false;
+					a = 0.1;
+					sigma = 0.01;
+					b = 0.1;
+					eta = 0.01;
+					rho = -0.5;
+				}
+
 
 				///////////////////////////////////////////////////////////////////////////////////////////////			
 				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("curve_root")->FirstChildElement("curve")->FirstChildElement("CurveData");
@@ -149,8 +178,11 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				boost::shared_ptr<IborIndex> index(new Euribor3M(rhTermStructure));
 				Schedule floatingSchedule(effectiveDate, terminationDate, index->tenor(), calendar, index->businessDayConvention(), index->businessDayConvention(), DateGeneration::Backward, false);
 
+				
+				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("curve_root")->FirstChildElement("curve");				
+				G2Parameters init(a, sigma, b, eta, rho);
+
 				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("curve_root")->FirstChildElement("curve")->FirstChildElement("SwaptionVolData");
-				//parameters calibration
 				SwaptionVolData swaptionVolData;
 				XMLElement* vdata = element->FirstChildElement("SwaptionVolDataItem");
 				Period length = Period();
@@ -183,7 +215,9 @@ int _tmain(int argc, _TCHAR* argv[]) {
 #ifdef _DEBUG
 				G2Parameters param(0.5, 0.1, 0.5, 0.1, -0.6, modelG2);
 #else
-				G2Parameters param = calibration_g2(evaluationDate, swaptionVolData);
+				G2Parameters param(init);
+				if (!forceParam)
+					param = calibration_g2(evaluationDate, swaptionVolData, init);
 #endif
 			
 				tinyxml2::XMLDocument doc;
@@ -209,7 +243,6 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				pElement->InsertEndChild(pElement1);				
 				///////////////////////////////////////////////////////////////////////////////////////////////
 
-				
 				std::vector<Real> rst = cms_spread_rangeaccrual_fdm(
 					evaluationDate,
 					type,

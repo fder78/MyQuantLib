@@ -1,0 +1,296 @@
+<root>
+	<param_root>
+		<data_date_alias type="double" value="0" />
+		<eval_time type="date" value="3/17/2016" />
+		<data_root>
+			<record>
+				<Group type="double" value="" />
+				<Name type="string" value="bb" />
+				<SimpleName type="string" value="DLBXX" />
+				<TraderID type="string" value="YJLee" />
+				<Code type="string" value="bb" />
+				<Book type="string" value="CMSRA" />
+				<BacktoBack type="string" value="Self-hedging" />
+				<CounterParty type="string" value="TBD" />
+				<Calc type="string" value="Y" />
+				<CalcDelta type="string" value="N" />
+				<CalcChunkDelta type="string" value="N" />
+				<CalcVega type="string" value="N" />
+				<CalcXGamma type="string" value="N" />
+				<Type type="string" value="RACMSSpreadSwap" />
+				<PayRec type="string" value="Pay" />
+				<TradeDate type="date" value="3/12/2015" />
+				<Upfrontpayment type="double" value="" />
+				<EvalDate type="date" value="3/12/2015" />
+				<Notional type="double" value="10000000" />
+				<Currency type="string" value="USD" />
+				<PaymentCalendar type="string" value="Seoul" />
+				<EffectiveDate type="date" value="3/12/2015" />
+				<TerminationDate type="date" value="3/12/2030" />
+				<Tenor type="string" value="Annually" />
+				<Calendar type="string" value="Seoul" />
+				<BDC type="string" value="Following" />
+				<BDC_Terminal type="string" value="Following" />
+				<Rule type="string" value="Backward" />
+				<EOM type="double" value="0" />
+				<FirstDate type="date" value="3/12/2015" />
+				<NextToLastDate type="date" value="3/12/2030" />
+				<AccrualRate type="double" value="0.0457" />
+				<DayCounterAccrual type="string" value="Actual365Fixed" />
+				<Obs1CCy1 type="string" value="USD" />
+				<Obs1Idx type="string" value="USDLibor3M" />
+				<Obs1Ticker type="string" value="USSW30 Curncy" />
+				<Obs1LowerLevel type="double" value="0" />
+				<Obs1UpperLevel type="double" value="1" />
+				<Obs1FXCorr type="double" value="0" />
+				<Obs1FXVol type="double" value="0" />
+				<Obs2CCy1 type="string" value="USD" />
+				<Obs2Idx type="string" value="USDLibor3M" />
+				<Obs2Ticker type="string" value="USSW2 Curncy" />
+				<Obs2LowerLevel type="double" value="-0.1" />
+				<Obs2UpperLevel type="double" value="1" />
+				<Obs2FXCorr type="double" value="0" />
+				<Obs2FXVol type="double" value="0" />
+				<IndexMatrix type="string" value="1,-1,0,0" />
+				<TenorMatrix type="string" value="30,2,0,0" />
+				<NumOfSimul type="string" value="50/20" />
+				<DiscountRateCurve type="string" value="USD" />
+				<CallPut type="string" value="Call" />
+				<CallValue type="double" value="10000000" />
+				<CallStartDate type="date" value="3/12/2016" />
+				<CallEndDate type="date" value="3/12/2030" />
+				<CallTenor type="string" value="Annually" />
+				<PayerPaymentSpread type="double" value="0.0085" />
+				<PayerEffectiveDate type="date" value="3/12/2015" />
+				<PayerTerminationDate type="date" value="3/12/2030" />
+				<PayerTenor type="string" value="Annually" />
+				<PayerCalendar type="string" value="Seoul" />
+				<PayerBDC type="string" value="Following" />
+				<PayerBDC_Terminal type="string" value="Following" />
+				<PayerRule type="string" value="Backward" />
+				<PayerEOM type="double" value="0" />
+				<PayerFirstDate type="date" value="3/12/2015" />
+				<PayerNextToLastDate type="date" value="3/12/2030" />
+				<InvGearing type="double" value="0.00000001" />
+				<InvCap type="double" value="1000000" />
+				<InvFloor type="double" value="-1000000" />
+				<Obs1Calibrate type="string" value="N" />
+				<Obs1G2Param type="string" value="0.03/0.5/0.01/0.01/-0.75" />
+				<Obs2Calibrate type="string" value="N" />
+				<Obs2G2Param type="string" value="0.03/0.5/0.01/0.01/-0.75" />
+				<Rho1Disc type="double" value="1.00000000" />
+				<Rho2Disc type="double" value="1.00000000" />
+				<Rho12 type="double" value="1.00000000" />
+				<PayerPastFixing type="double" value="0.02231300" />
+				<InvFixing type="double" value="0.02231300" />
+			</record>
+		</data_root>
+		<curve_root>
+			<curve type="string" value="Yield" name="USD">
+				<ShiftOption>
+					<record value="0" />
+					<record value="0" />
+					<record value="0" />
+					<record value="0.00000000" />
+					<record value="0.00000000" />
+					<record value="0.00000000" />
+					<record value="0" />
+					<record value="0" />
+					<record value="0.00000000" />
+					<record value="0.00000000" />
+				</ShiftOption>
+				<Tenor>
+					<record value="5839" />
+					<record value="0" />
+				</Tenor>
+				<CurveData DayCounter="Actual/365 (Fixed)">
+					<CurveDataItem Date="2016-03-17 00:00:00" Yield="0.00379497" ChunkIndex="0" />
+					<CurveDataItem Date="2016-03-18 23:59:59" Yield="0.00379497" ChunkIndex="0" />
+					<CurveDataItem Date="2016-03-28 23:59:59" Yield="0.00397664" ChunkIndex="0" />
+					<CurveDataItem Date="2016-04-21 23:59:59" Yield="0.00438956" ChunkIndex="0" />
+					<CurveDataItem Date="2016-06-21 23:59:59" Yield="0.00636413" ChunkIndex="0" />
+					<CurveDataItem Date="2016-07-20 23:59:59" Yield="0.00596464" ChunkIndex="0" />
+					<CurveDataItem Date="2016-08-18 23:59:59" Yield="0.00629474" ChunkIndex="0" />
+					<CurveDataItem Date="2016-09-15 23:59:59" Yield="0.00681451" ChunkIndex="1" />
+					<CurveDataItem Date="2016-10-20 23:59:59" Yield="0.00672101" ChunkIndex="0" />
+					<CurveDataItem Date="2016-12-21 23:59:59" Yield="0.00724044" ChunkIndex="1" />
+					<CurveDataItem Date="2017-03-21 23:59:59" Yield="0.00766058" ChunkIndex="0" />
+					<CurveDataItem Date="2017-06-15 23:59:59" Yield="0.00805493" ChunkIndex="0" />
+					<CurveDataItem Date="2017-09-21 23:59:59" Yield="0.00848892" ChunkIndex="0" />
+					<CurveDataItem Date="2017-12-20 23:59:59" Yield="0.00888139" ChunkIndex="0" />
+					<CurveDataItem Date="2020-03-23 23:59:59" Yield="0.01193739" ChunkIndex="1" />
+					<CurveDataItem Date="2021-03-22 23:59:59" Yield="0.01309849" ChunkIndex="1" />
+					<CurveDataItem Date="2022-03-21 23:59:59" Yield="0.01420604" ChunkIndex="2" />
+					<CurveDataItem Date="2023-03-21 23:59:59" Yield="0.01525096" ChunkIndex="2" />
+					<CurveDataItem Date="2024-03-21 23:59:59" Yield="0.01611285" ChunkIndex="2" />
+					<CurveDataItem Date="2025-03-21 23:59:59" Yield="0.01694884" ChunkIndex="2" />
+					<CurveDataItem Date="2026-03-23 23:59:59" Yield="0.01766665" ChunkIndex="2" />
+					<CurveDataItem Date="2027-03-22 23:59:59" Yield="0.01830576" ChunkIndex="2" />
+					<CurveDataItem Date="2028-03-21 23:59:59" Yield="0.01888125" ChunkIndex="2" />
+					<CurveDataItem Date="2031-03-21 23:59:59" Yield="0.02018380" ChunkIndex="2" />
+					<CurveDataItem Date="2036-03-21 23:59:59" Yield="0.02152735" ChunkIndex="2" />
+					<CurveDataItem Date="2041-03-21 23:59:59" Yield="0.02216619" ChunkIndex="2" />
+					<CurveDataItem Date="2046-03-21 23:59:59" Yield="0.02251152" ChunkIndex="2" />
+				</CurveData>
+				<SwaptionVolCurveData DayCounter="Actual/365 (Fixed)">
+					<SwaptionVolCurveDataItem Date="2016-03-17 00:00:00" Yield="0.00379497" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-03-18 23:59:59" Yield="0.00379497" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-03-28 23:59:59" Yield="0.00397664" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-04-21 23:59:59" Yield="0.00438956" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-06-21 23:59:59" Yield="0.00636413" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-07-20 23:59:59" Yield="0.00596464" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-08-18 23:59:59" Yield="0.00629474" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-09-15 23:59:59" Yield="0.00681451" ChunkIndex="1" />
+					<SwaptionVolCurveDataItem Date="2016-10-20 23:59:59" Yield="0.00672101" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2016-12-21 23:59:59" Yield="0.00724044" ChunkIndex="1" />
+					<SwaptionVolCurveDataItem Date="2017-03-21 23:59:59" Yield="0.00766058" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2017-06-15 23:59:59" Yield="0.00805493" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2017-09-21 23:59:59" Yield="0.00848892" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2017-12-20 23:59:59" Yield="0.00888139" ChunkIndex="0" />
+					<SwaptionVolCurveDataItem Date="2020-03-23 23:59:59" Yield="0.01193739" ChunkIndex="1" />
+					<SwaptionVolCurveDataItem Date="2021-03-22 23:59:59" Yield="0.01309849" ChunkIndex="1" />
+					<SwaptionVolCurveDataItem Date="2022-03-21 23:59:59" Yield="0.01420604" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2023-03-21 23:59:59" Yield="0.01525096" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2024-03-21 23:59:59" Yield="0.01611285" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2025-03-21 23:59:59" Yield="0.01694884" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2026-03-23 23:59:59" Yield="0.01766665" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2027-03-22 23:59:59" Yield="0.01830576" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2028-03-21 23:59:59" Yield="0.01888125" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2031-03-21 23:59:59" Yield="0.02018380" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2036-03-21 23:59:59" Yield="0.02152735" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2041-03-21 23:59:59" Yield="0.02216619" ChunkIndex="2" />
+					<SwaptionVolCurveDataItem Date="2046-03-21 23:59:59" Yield="0.02251152" ChunkIndex="2" />
+				</SwaptionVolCurveData>
+				<SwaptionVolData IborIndex="USDLibor3M" FixedFreq="Quarterly" FixedDayCounter="30/360 (Bond Basis)" FloatingDayCounter="Actual/360">
+					<SwaptionVolDataItem Maturity="3M" Length="1Y" Vol="0.58200000" />
+					<SwaptionVolDataItem Maturity="3M" Length="2Y" Vol="0.64215000" />
+					<SwaptionVolDataItem Maturity="3M" Length="3Y" Vol="0.62110000" />
+					<SwaptionVolDataItem Maturity="3M" Length="5Y" Vol="0.60950000" />
+					<SwaptionVolDataItem Maturity="3M" Length="7Y" Vol="0.54150000" />
+					<SwaptionVolDataItem Maturity="3M" Length="10Y" Vol="0.44710000" />
+					<SwaptionVolDataItem Maturity="3M" Length="12Y" Vol="0.44538000" />
+					<SwaptionVolDataItem Maturity="3M" Length="15Y" Vol="0.44280000" />
+					<SwaptionVolDataItem Maturity="3M" Length="20Y" Vol="0.42090000" />
+					<SwaptionVolDataItem Maturity="6M" Length="1Y" Vol="0.55880000" />
+					<SwaptionVolDataItem Maturity="6M" Length="2Y" Vol="0.57750000" />
+					<SwaptionVolDataItem Maturity="6M" Length="3Y" Vol="0.60040000" />
+					<SwaptionVolDataItem Maturity="6M" Length="5Y" Vol="0.56280000" />
+					<SwaptionVolDataItem Maturity="6M" Length="7Y" Vol="0.51160000" />
+					<SwaptionVolDataItem Maturity="6M" Length="10Y" Vol="0.45950000" />
+					<SwaptionVolDataItem Maturity="6M" Length="12Y" Vol="0.45138000" />
+					<SwaptionVolDataItem Maturity="6M" Length="15Y" Vol="0.43920000" />
+					<SwaptionVolDataItem Maturity="6M" Length="20Y" Vol="0.42200000" />
+					<SwaptionVolDataItem Maturity="9M" Length="1Y" Vol="0.54935000" />
+					<SwaptionVolDataItem Maturity="9M" Length="2Y" Vol="0.56150000" />
+					<SwaptionVolDataItem Maturity="9M" Length="3Y" Vol="0.56700000" />
+					<SwaptionVolDataItem Maturity="9M" Length="5Y" Vol="0.59530000" />
+					<SwaptionVolDataItem Maturity="9M" Length="7Y" Vol="0.49950000" />
+					<SwaptionVolDataItem Maturity="9M" Length="10Y" Vol="0.45200000" />
+					<SwaptionVolDataItem Maturity="9M" Length="12Y" Vol="0.43924000" />
+					<SwaptionVolDataItem Maturity="9M" Length="15Y" Vol="0.42010000" />
+					<SwaptionVolDataItem Maturity="9M" Length="20Y" Vol="0.39910000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="1Y" Vol="0.62150000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="2Y" Vol="0.60350000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="3Y" Vol="0.62730000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="5Y" Vol="0.54450000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="7Y" Vol="0.53520000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="10Y" Vol="0.44850000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="12Y" Vol="0.42790000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="15Y" Vol="0.39700000" />
+					<SwaptionVolDataItem Maturity="1Y" Length="20Y" Vol="0.38570000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="1Y" Vol="0.58610000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="2Y" Vol="0.57580000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="3Y" Vol="0.55400000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="5Y" Vol="0.50420000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="7Y" Vol="0.50890000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="10Y" Vol="0.43015000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="12Y" Vol="0.41009000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="15Y" Vol="0.38000000" />
+					<SwaptionVolDataItem Maturity="1Y6M" Length="20Y" Vol="0.37610000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="1Y" Vol="0.58940000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="2Y" Vol="0.57870000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="3Y" Vol="0.53120000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="5Y" Vol="0.50200000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="7Y" Vol="0.48500000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="10Y" Vol="0.42400000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="12Y" Vol="0.41108000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="15Y" Vol="0.39170000" />
+					<SwaptionVolDataItem Maturity="2Y" Length="20Y" Vol="0.36820000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="1Y" Vol="0.56790000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="2Y" Vol="0.53480000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="3Y" Vol="0.50900000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="5Y" Vol="0.48660000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="7Y" Vol="0.45070000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="10Y" Vol="0.40300000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="12Y" Vol="0.39116000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="15Y" Vol="0.37340000" />
+					<SwaptionVolDataItem Maturity="3Y" Length="20Y" Vol="0.33410000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="1Y" Vol="0.51770000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="2Y" Vol="0.48820000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="3Y" Vol="0.47700000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="5Y" Vol="0.43225000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="7Y" Vol="0.42360000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="10Y" Vol="0.38215000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="12Y" Vol="0.36373000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="15Y" Vol="0.33610000" />
+					<SwaptionVolDataItem Maturity="4Y" Length="20Y" Vol="0.32150000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="1Y" Vol="0.48500000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="2Y" Vol="0.46300000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="3Y" Vol="0.43600000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="5Y" Vol="0.41450000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="7Y" Vol="0.39400000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="10Y" Vol="0.36940000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="12Y" Vol="0.36056000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="15Y" Vol="0.34730000" />
+					<SwaptionVolDataItem Maturity="5Y" Length="20Y" Vol="0.32610000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="1Y" Vol="0.40700000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="2Y" Vol="0.39890000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="3Y" Vol="0.38860000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="5Y" Vol="0.37550000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="7Y" Vol="0.35610000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="10Y" Vol="0.33850000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="12Y" Vol="0.32854000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="15Y" Vol="0.31360000" />
+					<SwaptionVolDataItem Maturity="7Y" Length="20Y" Vol="0.29230000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="1Y" Vol="0.35130000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="2Y" Vol="0.34230000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="3Y" Vol="0.33400000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="5Y" Vol="0.33220000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="7Y" Vol="0.31860000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="10Y" Vol="0.31650000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="12Y" Vol="0.30862000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="15Y" Vol="0.29680000" />
+					<SwaptionVolDataItem Maturity="10Y" Length="20Y" Vol="0.27270000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="1Y" Vol="0.31060000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="2Y" Vol="0.28920000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="3Y" Vol="0.29780000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="5Y" Vol="0.29430000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="7Y" Vol="0.29050000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="10Y" Vol="0.27560000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="12Y" Vol="0.26756000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="15Y" Vol="0.25550000" />
+					<SwaptionVolDataItem Maturity="15Y" Length="20Y" Vol="0.24970000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="1Y" Vol="0.32020000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="2Y" Vol="0.29920000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="3Y" Vol="0.29070000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="5Y" Vol="0.27200000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="7Y" Vol="0.25470000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="10Y" Vol="0.24920000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="12Y" Vol="0.24464000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="15Y" Vol="0.23780000" />
+					<SwaptionVolDataItem Maturity="20Y" Length="20Y" Vol="0.24100000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="1Y" Vol="0.32020000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="2Y" Vol="0.29920000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="3Y" Vol="0.29070000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="5Y" Vol="0.27200000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="7Y" Vol="0.25470000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="10Y" Vol="0.24920000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="12Y" Vol="0.24464000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="15Y" Vol="0.23780000" />
+					<SwaptionVolDataItem Maturity="30Y" Length="20Y" Vol="0.24100000" />
+				</SwaptionVolData>
+			</curve>
+		</curve_root>
+	</param_root>
+	<func_root name="RunPricing" />
+</root>
