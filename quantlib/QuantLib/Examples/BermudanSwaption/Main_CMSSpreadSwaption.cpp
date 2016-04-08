@@ -273,11 +273,22 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 				pElement = doc.NewElement("computationTime");
 				pRoot->InsertEndChild(pElement);
-
 				pElement1 = doc.NewElement("ctime");
 				pElement1->SetText(timer.elapsed());
 				pElement->InsertEndChild(pElement1);
-				doc.SaveFile("g2_parameters.xml");
+
+				pElement = doc.NewElement("results");
+				pRoot->InsertEndChild(pElement);
+				pElement1 = doc.NewElement("npv");
+				pElement1->SetText(price);
+				pElement->InsertEndChild(pElement1);
+
+				const char* outfile;
+				if (argc > 2)
+					outfile = argv[2];
+				else
+					outfile = "g2_parameters.xml";
+				doc.SaveFile(outfile);
 			}
 			else
 				throw(std::exception("Cannot open the XML file"));

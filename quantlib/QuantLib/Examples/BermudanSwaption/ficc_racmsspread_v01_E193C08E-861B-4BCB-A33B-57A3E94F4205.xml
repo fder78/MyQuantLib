@@ -131,6 +131,7 @@
 					<CurveDataItem Date="2036-03-21 23:59:59" Yield="0.02152735" ChunkIndex="2" />
 					<CurveDataItem Date="2041-03-21 23:59:59" Yield="0.02216619" ChunkIndex="2" />
 					<CurveDataItem Date="2046-03-21 23:59:59" Yield="0.02251152" ChunkIndex="2" />
+          <CurveDataItem Date="2066-03-21 23:59:59" Yield="0.02251152" ChunkIndex="2" />
 				</CurveData>
 				<SwaptionVolCurveData DayCounter="Actual/365 (Fixed)">
 					<SwaptionVolCurveDataItem Date="2016-03-17 00:00:00" Yield="0.00379497" ChunkIndex="0" />
@@ -160,6 +161,7 @@
 					<SwaptionVolCurveDataItem Date="2036-03-21 23:59:59" Yield="0.02152735" ChunkIndex="2" />
 					<SwaptionVolCurveDataItem Date="2041-03-21 23:59:59" Yield="0.02216619" ChunkIndex="2" />
 					<SwaptionVolCurveDataItem Date="2046-03-21 23:59:59" Yield="0.02251152" ChunkIndex="2" />
+          <SwaptionVolCurveDataItem Date="2066-03-21 23:59:59" Yield="0.02251152" ChunkIndex="2" />
 				</SwaptionVolCurveData>
 				<SwaptionVolData IborIndex="USDLibor3M" FixedFreq="Quarterly" FixedDayCounter="30/360 (Bond Basis)" FloatingDayCounter="Actual/360">
 					<SwaptionVolDataItem Maturity="3M" Length="1Y" Vol="0.58200000" />

@@ -7,9 +7,9 @@
         <rho>-0.75</rho>
     </g2Parameters>
     <computationTime>
-        <ctime>27.719000000000001</ctime>
+        <ctime>31.137</ctime>
     </computationTime>
     <results>
-        <npv>137718.79750825412</npv>
+        <npv>137991.84666284861</npv>
     </results>
 </root>

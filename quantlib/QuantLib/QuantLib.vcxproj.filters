@@ -325,6 +325,9 @@
     <Filter Include="ir_derivatives">
       <UniqueIdentifier>{17afbc17-a283-46ce-a95a-ac3ea48c970b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eq_derivatives">
+      <UniqueIdentifier>{6ccbb721-10d5-4579-a0c3-9f44e5463937}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -4030,6 +4033,15 @@
     <ClInclude Include="ql\utilities\tinyxml2.h">
       <Filter>utilities</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\mc_callable_index_ra_engine.hpp">
+      <Filter>eq_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\callable_index_rangeaccrual.hpp">
+      <Filter>eq_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\participation_payoff.hpp">
+      <Filter>eq_derivatives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6499,6 +6511,15 @@
     </ClCompile>
     <ClCompile Include="ql\utilities\tinyxml2.cpp">
       <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\mc_callable_index_ra_engine.cpp">
+      <Filter>eq_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\callable_index_rangeaccrual.cpp">
+      <Filter>eq_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\participation_payoff.cpp">
+      <Filter>eq_derivatives</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

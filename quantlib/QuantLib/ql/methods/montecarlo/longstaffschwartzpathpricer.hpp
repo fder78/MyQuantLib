@@ -132,7 +132,10 @@ namespace QuantLib {
             price*=dF_[i];
 
             const Real exercise = (*pathPricer_)(path, i);
-            if (exercise > 0.0) {
+			//Modified by K.Hwang
+			//2016.04.06
+            //if (exercise > 0.0) {
+			if (true) {
                 const StateType regValue = pathPricer_->state(path, i);
 
                 Real continuationValue = 0.0;
@@ -178,7 +181,10 @@ namespace QuantLib {
             //roll back step
             for (Size j=0; j<n; ++j) {
                 exercise[j]=(*pathPricer_)(paths_[j], i);
-                if (exercise[j]>0.0) {
+				//Modified by K.Hwang
+				//2016.04.06
+                //if (exercise[j]>0.0) {
+				if (true) {
                     x.push_back(pathPricer_->state(paths_[j], i));
                     y.push_back(dF_[i]*prices[j]);
                 }
@@ -195,7 +201,10 @@ namespace QuantLib {
 
             for (Size j=0, k=0; j<n; ++j) {
                 prices[j]*=dF_[i];
-                if (exercise[j]>0.0) {
+				//Modified by K.Hwang
+				//2016.04.06
+                //if (exercise[j]>0.0) {
+				if (true) {
                     Real continuationValue = 0.0;
                     for (Size l=0; l<v_.size(); ++l) {
                         continuationValue += coeff_[i-1][l] * v_[l](x[k]);
