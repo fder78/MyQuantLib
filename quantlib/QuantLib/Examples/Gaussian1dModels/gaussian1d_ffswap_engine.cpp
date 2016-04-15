@@ -18,24 +18,19 @@ namespace QuantLib {
             return;
         }
 
-        rebatedExercise_ =
-            boost::dynamic_pointer_cast<RebatedExercise>(arguments_.exercise);
+        rebatedExercise_ = boost::dynamic_pointer_cast<RebatedExercise>(arguments_.exercise);
 
-        std::pair<Real, Real> result =
-            npvs(settlement, 0.0, includeTodaysExercise_, true);
+        std::pair<Real, Real> result = npvs(settlement, 0.0, includeTodaysExercise_, true);
 
         results_.value = result.first;
         results_.additionalResults["underlyingValue"] = result.second;
     }
 
-    const Real
-    G1d_FFSwap_Engine::underlyingNpv(const Date &expiry,
-                                                      const Real y) const {
+    const Real G1d_FFSwap_Engine::underlyingNpv(const Date &expiry, const Real y) const {
         return npvs(expiry, y, true).second;
     }
 
-    const VanillaSwap::Type
-    G1d_FFSwap_Engine::underlyingType() const {
+    const VanillaSwap::Type G1d_FFSwap_Engine::underlyingType() const {
         return arguments_.swap->type();
     }
 
@@ -45,13 +40,10 @@ namespace QuantLib {
         return l2 >= l1 ? l2 : l1;
     }
 
-    const Disposable<Array>
-    G1d_FFSwap_Engine::initialGuess(const Date &expiry) const {
+    const Disposable<Array> G1d_FFSwap_Engine::initialGuess(const Date &expiry) const {
 
-        Size idx1 =
-            std::upper_bound(arguments_.leg1ResetDates.begin(),
-                             arguments_.leg1ResetDates.end(), expiry - 1) -
-            arguments_.leg1ResetDates.begin();
+        Size idx1 = std::upper_bound(arguments_.leg1ResetDates.begin(), arguments_.leg1ResetDates.end(), expiry - 1) 
+			- arguments_.leg1ResetDates.begin();
 
         // very simple initial guess
         // check guess for nominal and weighted maturity !
@@ -61,12 +53,10 @@ namespace QuantLib {
         for (Size i = idx1; i < arguments_.leg1ResetDates.size(); i++) {
             nominalSum1 += arguments_.nominal1[i];
         }
-        Real nominalAvg1 = nominalSum1 /=
-            (arguments_.leg1ResetDates.size() - idx1);
+        Real nominalAvg1 = nominalSum1 /= (arguments_.leg1ResetDates.size() - idx1);
         Real weightedMaturity1 = 0.0;
         for (Size i = idx1; i < arguments_.leg1ResetDates.size(); i++) {
-            weightedMaturity1 +=
-                arguments_.leg1AccrualTimes[i] * arguments_.nominal1[i];
+            weightedMaturity1 += arguments_.leg1AccrualTimes[i] * arguments_.nominal1[i];
         }
         weightedMaturity1 /= nominalAvg1;
 
@@ -78,60 +68,40 @@ namespace QuantLib {
     }
 
     // calculate npv and underlying npv as of expiry date
-    const std::pair<Real, Real> G1d_FFSwap_Engine::npvs(
-        const Date &expiry, const Real y, const bool includeExerciseOnExpiry,
-        const bool considerProbabilities) const {
+    const std::pair<Real, Real> G1d_FFSwap_Engine::npvs(const Date &expiry, const Real y, const bool includeExerciseOnExpiry, const bool considerProbabilities) const {
 
         // pricing
-
-        // event dates are coupon fixing dates and exercise dates
-        // we explicitly estimate cms and also libor coupons (although
-        // the latter could be calculated analytically) to make the code
-        // simpler
+        // event dates are coupon fixing dates and exercise dates 
+		// we explicitly estimate cms and also libor coupons (although the latter could be calculated analytically) to make the code simpler
 
         std::vector<Date> events;
-        events.insert(events.end(), arguments_.exercise->dates().begin(),
-                      arguments_.exercise->dates().end());
-        events.insert(events.end(), arguments_.leg1FixingDates.begin(),
-                      arguments_.leg1FixingDates.end());
-        events.insert(events.end(), arguments_.leg2FixingDates.begin(),
-                      arguments_.leg2FixingDates.end());
+        events.insert(events.end(), arguments_.exercise->dates().begin(), arguments_.exercise->dates().end());
+        events.insert(events.end(), arguments_.leg1FixingDates.begin(), arguments_.leg1FixingDates.end());
+        events.insert(events.end(), arguments_.leg2FixingDates.begin(), arguments_.leg2FixingDates.end());
         std::sort(events.begin(), events.end());
 
-        std::vector<Date>::iterator it =
-            std::unique(events.begin(), events.end());
+        std::vector<Date>::iterator it = std::unique(events.begin(), events.end());
         events.resize(std::distance(events.begin(), it));
 
-        // only events on or after expiry are of interest by definition of the
-        // deal part that is exericsed into.
-
-        std::vector<Date>::iterator filit =
-            std::upper_bound(events.begin(), events.end(),
-                             expiry - (includeExerciseOnExpiry ? 1 : 0));
+        // only events on or after expiry are of interest by definition of the deal part that is exericsed into.
+        std::vector<Date>::iterator filit = std::upper_bound(events.begin(), events.end(), expiry - (includeExerciseOnExpiry ? 1 : 0));
         events.erase(events.begin(), filit);
 
         int idx = events.size() - 1;
 
         FloatFloatSwap swap = *arguments_.swap;
-        Option::Type type =
-            arguments_.type == VanillaSwap::Payer ? Option::Call : Option::Put;
+        Option::Type type = arguments_.type == VanillaSwap::Payer ? Option::Call : Option::Put;
 
-        Array npv0(2 * integrationPoints_ + 1, 0.0),
-            npv1(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the
-                                                   // option
-        Array npv0a(2 * integrationPoints_ + 1, 0.0),
-            npv1a(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the
-                                                    // underlying
+        Array npv0(2 * integrationPoints_ + 1, 0.0), npv1(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the option
+        Array npv0a(2 * integrationPoints_ + 1, 0.0), npv1a(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the underlying
         Array z = model_->yGrid(stddevs_, integrationPoints_);
         Array p(z.size(), 0.0), pa(z.size(), 0.0);
 
         // for probability computation
         std::vector<Array> npvp0, npvp1;
         // how many active exercise dates are there ?
-        Size noEx =  arguments_.exercise->dates().size() -
-            (std::upper_bound(arguments_.exercise->dates().begin(),
-                         arguments_.exercise->dates().end(),
-                         expiry - (includeExerciseOnExpiry ? 1 : 0)) -
+        Size noEx =  arguments_.exercise->dates().size() - 
+			(std::upper_bound(arguments_.exercise->dates().begin(), arguments_.exercise->dates().end(), expiry - (includeExerciseOnExpiry ? 1 : 0)) -
              arguments_.exercise->dates().begin());
         Size exIdx = noEx; // current exercise index
         if (considerProbabilities && probabilities_ != None) {
@@ -149,23 +119,15 @@ namespace QuantLib {
 
         bool isExercise, isLeg1Fixing, isLeg2Fixing;
 
-        boost::shared_ptr<IborIndex> ibor1 =
-            boost::dynamic_pointer_cast<IborIndex>(arguments_.index1);
-        boost::shared_ptr<SwapIndex> cms1 =
-            boost::dynamic_pointer_cast<SwapIndex>(arguments_.index1);
-        boost::shared_ptr<SwapSpreadIndex> cmsspread1 =
-            boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.index1);
-        boost::shared_ptr<IborIndex> ibor2 =
-            boost::dynamic_pointer_cast<IborIndex>(arguments_.index2);
-        boost::shared_ptr<SwapIndex> cms2 =
-            boost::dynamic_pointer_cast<SwapIndex>(arguments_.index2);
-        boost::shared_ptr<SwapSpreadIndex> cmsspread2 =
-            boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.index2);
+        boost::shared_ptr<IborIndex> ibor1 = boost::dynamic_pointer_cast<IborIndex>(arguments_.index1);
+        boost::shared_ptr<SwapIndex> cms1 = boost::dynamic_pointer_cast<SwapIndex>(arguments_.index1);
+        boost::shared_ptr<SwapSpreadIndex> cmsspread1 = boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.index1);
+        boost::shared_ptr<IborIndex> ibor2 = boost::dynamic_pointer_cast<IborIndex>(arguments_.index2);
+        boost::shared_ptr<SwapIndex> cms2 = boost::dynamic_pointer_cast<SwapIndex>(arguments_.index2);
+        boost::shared_ptr<SwapSpreadIndex> cmsspread2 = boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.index2);
 
-        QL_REQUIRE(ibor1 != NULL || cms1 != NULL || cmsspread1 != NULL,
-                   "index1 must be ibor or swap or swap spread index");
-        QL_REQUIRE(ibor2 != NULL || cms2 != NULL || cmsspread2 != NULL,
-                   "index2 must be ibor or swap or swap spread index");
+        QL_REQUIRE(ibor1 != NULL || cms1 != NULL || cmsspread1 != NULL, "index1 must be ibor or swap or swap spread index");
+        QL_REQUIRE(ibor2 != NULL || cms2 != NULL || cmsspread2 != NULL, "index2 must be ibor or swap or swap spread index");
 
         do {
 
@@ -183,29 +145,22 @@ namespace QuantLib {
                               // earliest event date
             }
 
-            if (std::find(arguments_.exercise->dates().begin(),
-                          arguments_.exercise->dates().end(),
-                          event0) != arguments_.exercise->dates().end())
+            if (std::find(arguments_.exercise->dates().begin(), arguments_.exercise->dates().end(), event0) != arguments_.exercise->dates().end())
                 isExercise = true;
             else
                 isExercise = false;
 
-            if (std::find(arguments_.leg1FixingDates.begin(),
-                          arguments_.leg1FixingDates.end(),
-                          event0) != arguments_.leg1FixingDates.end())
+            if (std::find(arguments_.leg1FixingDates.begin(), arguments_.leg1FixingDates.end(), event0) != arguments_.leg1FixingDates.end())
                 isLeg1Fixing = true;
             else
                 isLeg1Fixing = false;
 
-            if (std::find(arguments_.leg2FixingDates.begin(),
-                          arguments_.leg2FixingDates.end(),
-                          event0) != arguments_.leg2FixingDates.end())
+            if (std::find(arguments_.leg2FixingDates.begin(), arguments_.leg2FixingDates.end(), event0) != arguments_.leg2FixingDates.end())
                 isLeg2Fixing = true;
             else
                 isLeg2Fixing = false;
 
-            event0Time = std::max(
-                model_->termStructure()->timeFromReference(event0), 0.0);
+            event0Time = std::max(model_->termStructure()->timeFromReference(event0), 0.0);
 
             // todo add openmp support later on (as in gaussian1dswaptionengine)
 
@@ -215,13 +170,8 @@ namespace QuantLib {
 
                 Real price = 0.0, pricea = 0.0;
                 if (event1Time != Null<Real>()) {
-                    Real zSpreadDf = oas_.empty()
-                                         ? 1.0
-                                         : std::exp(-oas_->value() *
-                                                    (event1Time - event0Time));
-                    Array yg =
-                        model_->yGrid(stddevs_, integrationPoints_, event1Time,
-                                      event0Time, event0 > expiry ? z[k] : y);
+                    Real zSpreadDf = oas_.empty() ? 1.0 : std::exp(-oas_->value() * (event1Time - event0Time));
+                    Array yg = model_->yGrid(stddevs_, integrationPoints_, event1Time, event0Time, event0 > expiry ? z[k] : y);
                     CubicInterpolation payoff0(
                         z.begin(), z.end(), npv1.begin(),
                         CubicInterpolation::Spline, true,
@@ -329,14 +279,8 @@ namespace QuantLib {
                     for (Size m = 0; m < npvp0.size(); m++) {
                         Real price = 0.0;
                         if (event1Time != Null<Real>()) {
-                            Real zSpreadDf =
-                                oas_.empty()
-                                    ? 1.0
-                                    : std::exp(-oas_->value() *
-                                               (event1Time - event0Time));
-                            Array yg = model_->yGrid(
-                                stddevs_, integrationPoints_, event1Time,
-                                event0Time, event0 > expiry ? z[k] : 0.0);
+                            Real zSpreadDf = oas_.empty() ? 1.0 : std::exp(-oas_->value() * (event1Time - event0Time));
+                            Array yg = model_->yGrid(stddevs_, integrationPoints_, event1Time, event0Time, event0 > expiry ? z[k] : 0.0);
                             CubicInterpolation payoff0(
                                 z.begin(), z.end(), npvp1[m].begin(),
                                 CubicInterpolation::Spline, true,
@@ -420,24 +364,9 @@ namespace QuantLib {
 
                     Real zk = event0 > expiry ? z[k] : y;
 
-                    if (isLeg1Fixing) { // if event is a fixing date and
-                                        // exercise date,
-                        // the coupon is part of the exercise into right (by
-                        // definition)
-                        Size j = std::find(arguments_.leg1FixingDates.begin(),
-                                           arguments_.leg1FixingDates.end(),
-                                           event0) -
-                                 arguments_.leg1FixingDates.begin();
-                        Real zSpreadDf =
-                            oas_.empty()
-                                ? 1.0
-                                : std::exp(
-                                      -oas_->value() *
-                                      (model_->termStructure()
-                                           ->dayCounter()
-                                           .yearFraction(
-                                                event0,
-                                                arguments_.leg1PayDates[j])));
+                    if (isLeg1Fixing) { // if event is a fixing date and exercise date, the coupon is part of the exercise into right (by definition)
+                        Size j = std::find(arguments_.leg1FixingDates.begin(), arguments_.leg1FixingDates.end(), event0) - arguments_.leg1FixingDates.begin();
+                        Real zSpreadDf = oas_.empty() ? 1.0 : std::exp(-oas_->value() * (model_->termStructure()->dayCounter().yearFraction(event0, arguments_.leg1PayDates[j])));
                         bool done = false;
                         do {
                             Real amount;
@@ -446,82 +375,35 @@ namespace QuantLib {
                             } else {
                                 Real estFixing = 0.0;
                                 if(ibor1 != NULL) {
-                                    estFixing = model_->forwardRate(
-                                        arguments_.leg1FixingDates[j], event0,
-                                        zk, ibor1);
+                                    estFixing = model_->forwardRate(arguments_.leg1FixingDates[j], event0, zk, ibor1);
                                 }
                                 if(cms1 != NULL) {
-                                    estFixing = model_->swapRate(
-                                        arguments_.leg1FixingDates[j],
-                                        cms1->tenor(), event0, zk, cms1);
+                                    estFixing = model_->swapRate(arguments_.leg1FixingDates[j], cms1->tenor(), event0, zk, cms1);
                                 }
                                 if (cmsspread1 != NULL)
-                                    estFixing =
-                                        cmsspread1->gearing1() *
-                                            model_->swapRate(
-                                                arguments_.leg1FixingDates[j],
-                                                cmsspread1->swapIndex1()
-                                                    ->tenor(),
-                                                event0, zk,
-                                                cmsspread1->swapIndex1()) +
-                                        cmsspread1->gearing2() *
-                                            model_->swapRate(
-                                                arguments_.leg1FixingDates[j],
-                                                cmsspread1->swapIndex2()
-                                                    ->tenor(),
-                                                event0, zk,
-                                                cmsspread1->swapIndex2());
-                                Real rate =
-                                    arguments_.leg1Spreads[j] +
-                                    arguments_.leg1Gearings[j] * estFixing;
-                                if (arguments_.leg1CappedRates[j] !=
-                                    Null<Real>())
-                                    rate = std::min(
-                                        arguments_.leg1CappedRates[j], rate);
-                                if (arguments_.leg1FlooredRates[j] !=
-                                    Null<Real>())
-                                    rate = std::max(
-                                        arguments_.leg1FlooredRates[j], rate);
-                                amount = rate * arguments_.nominal1[j] *
-                                         arguments_.leg1AccrualTimes[j];
+                                    estFixing = cmsspread1->gearing1() * model_->swapRate(arguments_.leg1FixingDates[j], cmsspread1->swapIndex1()->tenor(), event0, zk, cmsspread1->swapIndex1()) +
+                                        cmsspread1->gearing2() * model_->swapRate(arguments_.leg1FixingDates[j], cmsspread1->swapIndex2()->tenor(), event0, zk, cmsspread1->swapIndex2());
+                                Real rate = arguments_.leg1Spreads[j] + arguments_.leg1Gearings[j] * estFixing;
+                                if (arguments_.leg1CappedRates[j] != Null<Real>())
+                                    rate = std::min(arguments_.leg1CappedRates[j], rate);
+                                if (arguments_.leg1FlooredRates[j] != Null<Real>())
+                                    rate = std::max(arguments_.leg1FlooredRates[j], rate);
+                                amount = rate * arguments_.nominal1[j] * arguments_.leg1AccrualTimes[j];
                             }
 
-                            npv0a[k] -=
-                                amount *
-                                model_->zerobond(arguments_.leg1PayDates[j],
-                                                 event0, zk, discountCurve_) /
-                                model_->numeraire(event0Time, zk,
-                                                  discountCurve_) *
-                                zSpreadDf;
+                            npv0a[k] -= amount * model_->zerobond(arguments_.leg1PayDates[j], event0, zk, discountCurve_) / model_->numeraire(event0Time, zk, discountCurve_) * zSpreadDf;
 
                             if (j < arguments_.leg1FixingDates.size() - 1) {
                                 j++;
-                                done =
-                                    (event0 != arguments_.leg1FixingDates[j]);
+                                done = (event0 != arguments_.leg1FixingDates[j]);
                             } else
                                 done = true;
-
                         } while (!done);
                     }
 
-                    if (isLeg2Fixing) { // if event is a fixing date and
-                                        // exercise date,
-                        // the coupon is part of the exercise into right (by
-                        // definition)
-                        Size j = std::find(arguments_.leg2FixingDates.begin(),
-                                           arguments_.leg2FixingDates.end(),
-                                           event0) -
-                                 arguments_.leg2FixingDates.begin();
-                        Real zSpreadDf =
-                            oas_.empty()
-                                ? 1.0
-                                : std::exp(
-                                      -oas_->value() *
-                                      (model_->termStructure()
-                                           ->dayCounter()
-                                           .yearFraction(
-                                                event0,
-                                                arguments_.leg2PayDates[j])));
+                    if (isLeg2Fixing) { // if event is a fixing date and exercise date, the coupon is part of the exercise into right (by definition)
+                        Size j = std::find(arguments_.leg2FixingDates.begin(), arguments_.leg2FixingDates.end(), event0) - arguments_.leg2FixingDates.begin();
+                        Real zSpreadDf = oas_.empty() ? 1.0 : std::exp(-oas_->value() * (model_->termStructure()->dayCounter().yearFraction(event0, arguments_.leg2PayDates[j])));
                         bool done;
                         do {
                             Real amount;
@@ -534,47 +416,20 @@ namespace QuantLib {
                                 if(cms2 != NULL)
                                     estFixing = model_->swapRate(arguments_.leg2FixingDates[j],cms2->tenor(),event0,zk,cms2);
                                 if (cmsspread2 != NULL)
-                                    estFixing =
-                                        cmsspread2->gearing1() *
-                                            model_->swapRate(
-                                                arguments_.leg2FixingDates[j],
-                                                cmsspread2->swapIndex1()
-                                                    ->tenor(),
-                                                event0, zk,
-                                                cmsspread2->swapIndex1()) +
-                                        cmsspread2->gearing2() *
-                                            model_->swapRate(
-                                                arguments_.leg2FixingDates[j],
-                                                cmsspread2->swapIndex2()
-                                                    ->tenor(),
-                                                event0, zk,
-                                                cmsspread2->swapIndex2());
-                                Real rate =
-                                    arguments_.leg2Spreads[j] +
-                                    arguments_.leg2Gearings[j] * estFixing;
-                                if (arguments_.leg2CappedRates[j] !=
-                                    Null<Real>())
-                                    rate = std::min(
-                                        arguments_.leg2CappedRates[j], rate);
-                                if (arguments_.leg2FlooredRates[j] !=
-                                    Null<Real>())
-                                    rate = std::max(
-                                        arguments_.leg2FlooredRates[j], rate);
-                                amount = rate * arguments_.nominal2[j] *
-                                         arguments_.leg2AccrualTimes[j];
+                                    estFixing = cmsspread2->gearing1() * model_->swapRate(arguments_.leg2FixingDates[j], cmsspread2->swapIndex1()->tenor(), event0, zk, cmsspread2->swapIndex1()) +
+                                        cmsspread2->gearing2() * model_->swapRate(arguments_.leg2FixingDates[j], cmsspread2->swapIndex2()->tenor(),event0, zk, cmsspread2->swapIndex2());
+                                Real rate = arguments_.leg2Spreads[j] + arguments_.leg2Gearings[j] * estFixing;
+                                if (arguments_.leg2CappedRates[j] != Null<Real>())
+                                    rate = std::min(arguments_.leg2CappedRates[j], rate);
+                                if (arguments_.leg2FlooredRates[j] != Null<Real>())
+                                    rate = std::max(arguments_.leg2FlooredRates[j], rate);
+                                amount = rate * arguments_.nominal2[j] * arguments_.leg2AccrualTimes[j];
                             }
 
-                            npv0a[k] +=
-                                amount *
-                                model_->zerobond(arguments_.leg2PayDates[j],
-                                                 event0, zk, discountCurve_) /
-                                model_->numeraire(event0Time, zk,
-                                                  discountCurve_) *
-                                zSpreadDf;
+                            npv0a[k] +=  amount * model_->zerobond(arguments_.leg2PayDates[j], event0, zk, discountCurve_) / model_->numeraire(event0Time, zk, discountCurve_) * zSpreadDf;
                             if (j < arguments_.leg2FixingDates.size() - 1) {
                                 j++;
-                                done =
-                                    (event0 != arguments_.leg2FixingDates[j]);
+                                done = (event0 != arguments_.leg2FixingDates[j]);
                             } else
                                 done = true;
 
@@ -582,30 +437,16 @@ namespace QuantLib {
                     }
 
                     if (isExercise) {
-                        Size j = std::find(arguments_.exercise->dates().begin(),
-                                           arguments_.exercise->dates().end(),
-                                           event0) -
-                                 arguments_.exercise->dates().begin();
+                        Size j = std::find(arguments_.exercise->dates().begin(), arguments_.exercise->dates().end(), event0) - arguments_.exercise->dates().begin();
                         Real rebate = 0.0;
                         Real zSpreadDf = 1.0;
                         Date rebateDate = event0;
                         if (rebatedExercise_ != NULL) {
                             rebate = rebatedExercise_->rebate(j);
                             rebateDate = rebatedExercise_->rebatePaymentDate(j);
-                            zSpreadDf =
-                                oas_.empty()
-                                    ? 1.0
-                                    : std::exp(-oas_->value() *
-                                               (model_->termStructure()
-                                                    ->dayCounter()
-                                                    .yearFraction(event0,
-                                                                  rebateDate)));
+                            zSpreadDf = oas_.empty() ? 1.0 : std::exp(-oas_->value() *(model_->termStructure()->dayCounter().yearFraction(event0, rebateDate)));
                         }
-                        Real exerciseValue =
-                            (type == Option::Call ? 1.0 : -1.0) * npv0a[k] +
-                            rebate * model_->zerobond(rebateDate, event0) *
-                                zSpreadDf / model_->numeraire(event0Time, zk,
-                                                              discountCurve_);
+                        Real exerciseValue = (type == Option::Call ? 1.0 : -1.0) * npv0a[k] + rebate * model_->zerobond(rebateDate, event0) * zSpreadDf / model_->numeraire(event0Time, zk, discountCurve_);
 
                         if (considerProbabilities && probabilities_ != None) {
                             if (exIdx == noEx) {
@@ -613,25 +454,11 @@ namespace QuantLib {
                                 // so we init
                                 // the no call probability
                                 npvp0.back()[k] =
-                                    probabilities_ == Naive
-                                        ? 1.0
-                                        : 1.0 / (model_->zerobond(
-                                                     event0Time, 0.0, 0.0,
-                                                     discountCurve_) *
-                                                 model_->numeraire(
-                                                     event0, z[k],
-                                                     discountCurve_));
+                                    probabilities_ == Naive? 1.0 : 1.0 / (model_->zerobond(event0Time, 0.0, 0.0, discountCurve_) * model_->numeraire(event0, z[k], discountCurve_));
                             }
                             if (exerciseValue >= npv0[k]) {
                                 npvp0[exIdx-1][k] =
-                                    probabilities_ == Naive
-                                        ? 1.0
-                                        : 1.0 / (model_->zerobond(
-                                                     event0Time, 0.0, 0.0,
-                                                     discountCurve_) *
-                                                 model_->numeraire(
-                                                     event0Time, z[k],
-                                                     discountCurve_));
+                                    probabilities_ == Naive ? 1.0 : 1.0 / (model_->zerobond(event0Time, 0.0, 0.0, discountCurve_) * model_->numeraire(event0Time, z[k], discountCurve_));
                                 for (Size ii = exIdx; ii < noEx+1; ++ii)
                                     npvp0[ii][k] = 0.0;
                             }
@@ -664,17 +491,13 @@ namespace QuantLib {
 
         std::pair<Real, Real> res(
             npv1[0] * model_->numeraire(event1Time, y, discountCurve_),
-            npv1a[0] * model_->numeraire(event1Time, y, discountCurve_) *
-                (type == Option::Call ? 1.0 : -1.0));
+            npv1a[0] * model_->numeraire(event1Time, y, discountCurve_) * (type == Option::Call ? 1.0 : -1.0));
 
         // for probability computation
         if (considerProbabilities && probabilities_ != None) {
             std::vector<Real> prob(noEx+1);
             for (Size i = 0; i < noEx+1; i++) {
-                prob[i] = npvp1[i][0] *
-                          (probabilities_ == Naive
-                               ? 1.0
-                               : model_->numeraire(0.0, 0.0, discountCurve_));
+                prob[i] = npvp1[i][0] * (probabilities_ == Naive ? 1.0 : model_->numeraire(0.0, 0.0, discountCurve_));
             }
             results_.additionalResults["probabilities"] = prob;
         }

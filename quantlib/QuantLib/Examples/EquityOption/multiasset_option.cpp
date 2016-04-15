@@ -30,7 +30,7 @@ namespace QuantLib {
 
 void testIndexRA() {
 
-	std::ofstream fout("E:\\Index_RA.csv");
+	//std::ofstream fout("E:\\Index_RA.csv");
 	DayCounter dc = Actual365Fixed();
 	Date today = Date::todaysDate();
 
@@ -39,20 +39,20 @@ void testIndexRA() {
 	//////////////////////////////////////////	
 	Real s1 = 100, s2 = 100;
 	Real r = 0.02;
-	Real v1 = 0.4, v2 = 0.4;
-	Real corr = 0.6;
+	Real v1 = 0.25, v2 = 0.25;
+	Real corr = 0.75;
 	//////////////////////////////////////////
 	//PRODUCT SPEC
 	//////////////////////////////////////////
 	Real notional = 10000;
 	std::vector<Real> basePrices(2, 100);
-	Real barrier = 0.6;
+	Real barrier = 0.55;
 	std::vector<std::pair<Real, Real> > rabounds(2, std::pair<Real, Real>(barrier, QL_MAX_REAL));
 	Date startDate = today;
 	Schedule couponDates(startDate, startDate + 5 * Years, Period(6, Months), NullCalendar(), ModifiedFollowing, ModifiedFollowing, DateGeneration::Backward, false);
 	Schedule paymentDates(couponDates);
 	//coupon payoff
-	Real participation = 0.18, strike = 0.1;
+	Real participation = 0.27, strike = 0.19;
 	Size inRangeCount = 0;
 	//////////////////////////////////////////
 	//MC SETTINGS
@@ -66,12 +66,12 @@ void testIndexRA() {
 #endif
 	Size timeSteps = 252;
 	///////////////////////////////////////////
-	for (Size iter1 = 0; iter1 <= 3; ++iter1) {
-		Real params1 = iter1*0.25;
-		corr = params1;
+	//for (Size iter1 = 0; iter1 <= 3; ++iter1) {
+	//	Real params1 = iter1*0.25;
+	//	corr = params1;
 		for (Size iter = 0; iter <= 20; ++iter) {
-			Real params = 0.2 + iter*0.02;
-			v1 = v2 = params;
+			Real params = 120 - 5 * iter;
+			s1 = s2 = params;
 
 			boost::shared_ptr<SimpleQuote> spot1(new SimpleQuote(0.0));
 			boost::shared_ptr<SimpleQuote> spot2(new SimpleQuote(0.0));
@@ -143,11 +143,11 @@ void testIndexRA() {
 			Real calculated = amBasketOption.NPV();
 			Real errorEstimate = amBasketOption.errorEstimate();
 			std::cout << "Price = " << calculated << "     SE = " << errorEstimate << std::endl;
-			fout.precision(20);
-			fout << params1 << "," <<params << "," << calculated << "," << errorEstimate << std::endl;
+			//fout.precision(20);
+			//fout << params1 << "," <<params << "," << calculated << "," << errorEstimate << std::endl;
 		}
-	}
-	fout.close();
+	//}
+	//fout.close();
 }
 
 int main(int, char*[]) {

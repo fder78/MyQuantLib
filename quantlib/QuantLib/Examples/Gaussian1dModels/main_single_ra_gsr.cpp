@@ -39,7 +39,7 @@ void printBasket(
 			<< std::setw(14) << rate << std::setw(12)
 			<< (type == VanillaSwap::Payer ? "Payer" : "Receiver")
 			<< std::setw(14) << vol << std::endl;
-}
+	}
 }
 
 // helper function that prints the result of a model calibraiton to std::cout
@@ -102,8 +102,8 @@ int main(int argc, char *argv[]) {
 		Timer timer;
 
 		Date refDate(30, April, 2014);
-		Settings::instance().evaluationDate() = refDate;
-				
+		Settings::instance().evaluationDate() = refDate - 3*Years;
+
 		std::cout << "\nThe evaluation date = " << Settings::instance().evaluationDate() << std::endl;
 
 
@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 		Handle<SwaptionVolatilityStructure> swaptionVol(boost::make_shared<ConstantSwaptionVolatility>(0, TARGET(), ModifiedFollowing, volQuote, Actual365Fixed()));
 
 		std::cout << "The volatility = " << volLevel << std::endl;
-		
+
 		//BERMUDAN SWAPTION SPEC
 		//Real strike = 0.025;
 		//std::cout << "\nWe consider a standard 10y bermudan payer swaption with yearly exercises at a strike of " << strike << std::endl;
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
 		Date maturityDate = TARGET().advance(effectiveDate, 10 * Years);
 
 		Schedule fixedSchedule(effectiveDate, maturityDate, 1 * Years, TARGET(), ModifiedFollowing, ModifiedFollowing, DateGeneration::Forward, false);
-		Schedule floatingSchedule(effectiveDate, maturityDate, 6 * Months, TARGET(), ModifiedFollowing, ModifiedFollowing, DateGeneration::Forward,	false);
+		Schedule floatingSchedule(effectiveDate, maturityDate, 6 * Months, TARGET(), ModifiedFollowing, ModifiedFollowing, DateGeneration::Forward, false);
 
 		std::vector<Date> exerciseDates;
 		for (Size i = 1; i < 10; ++i)
@@ -152,12 +152,12 @@ int main(int argc, char *argv[]) {
 
 		//CALIBRATION BASKET
 		boost::shared_ptr<PricingEngine> swaptionEngine = boost::make_shared<Gaussian1dSwaptionEngine>(gsr, 64, 7.0, true, false, ytsOis);
-		boost::shared_ptr<SwapIndex> swapIndex = boost::make_shared<EuriborSwapIsdaFixA>(10 * Years, yts6m, ytsOis);		
-		
+		boost::shared_ptr<SwapIndex> swapIndex = boost::make_shared<EuriborSwapIsdaFixA>(10 * Years, yts6m, ytsOis);
+
 		boost::shared_ptr<FloatFloatSwap> underlying4(new FloatFloatSwap(
-			VanillaSwap::Payer, 10000.0, 10000.0, 
-			fixedSchedule, swapIndex, Thirty360(), 
-			floatingSchedule, euribor6m, Actual360(), 
+			VanillaSwap::Receiver, 10000.0, 10000.0,
+			fixedSchedule, swapIndex, Thirty360(),
+			floatingSchedule, euribor6m, Actual360(),
 			false, false, 1.0, 0.0, Null<Real>(), Null<Real>(), 1.0, 0.0010));
 
 		boost::shared_ptr<FloatFloatSwaption> swaption4 = boost::make_shared<FloatFloatSwaption>(underlying4, exercise);
@@ -175,18 +175,18 @@ int main(int argc, char *argv[]) {
 
 		LevenbergMarquardt method;
 		EndCriteria ec(1000, 10, 1E-8, 1E-8, 1E-8);
-		gsr->calibrateVolatilitiesIterative(basket, method, ec);
+		//gsr->calibrateVolatilitiesIterative(basket, method, ec);
 		timer.stop();
 
 		printBasket(basket);
-		printModelCalibration(basket, gsr->volatility());
+		//printModelCalibration(basket, gsr->volatility());
 		printTiming(timer);
-		
+
 		timer.start();
 		Real npv6 = swaption4->NPV();
 		timer.stop();
-		
-		std::cout << "\nFloat swaption NPV (GSR) = " << std::setprecision(6) << npv6 << std::endl;		
+
+		std::cout << "\nFloat swaption NPV (GSR) = " << std::setprecision(6) << npv6 << std::endl;
 		std::cout << "\nFloat swap NPV (GSR) = " << std::setprecision(6) << swaption4->result<Real>("underlyingValue") << std::endl;
 		printTiming(timer);
 	}
