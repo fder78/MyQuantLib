@@ -89,7 +89,10 @@ namespace QuantLib {
 
         int idx = events.size() - 1;
 
-        FloatFloatSwap swap = *arguments_.swap;
+        //FloatFloatSwap swap = *arguments_.swap; //////////////////////////////////////////////////////////////////
+		boost::shared_ptr<RAFloatSwap> swap_p = boost::dynamic_pointer_cast<RAFloatSwap>(arguments_.swap);
+		QL_REQUIRE(swap_p != NULL, "underlying swap should be RAFloatSwap");
+		RAFloatSwap swap = *swap_p;
         Option::Type type = arguments_.type == VanillaSwap::Payer ? Option::Call : Option::Put;
 
         Array npv0(2 * integrationPoints_ + 1, 0.0), npv1(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the option

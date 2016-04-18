@@ -125,7 +125,7 @@ namespace QuantLib {
         void setupArguments(PricingEngine::arguments *args) const;
         void fetchResults(const PricingEngine::results *) const;
 
-      private:
+      protected:
         void init(boost::optional<BusinessDayConvention> paymentConvention1,
                   boost::optional<BusinessDayConvention> paymentConvention2);
         void setupExpired() const;

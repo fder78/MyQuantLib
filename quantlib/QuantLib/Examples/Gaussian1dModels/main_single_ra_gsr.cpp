@@ -1,7 +1,6 @@
 
 #include <ql/quantlib.hpp>
 #include <boost/timer.hpp>
-#include "gaussian1d_ra_swap_engine.hpp"
 #include "gaussian1d_ffswap_engine.hpp"
 
 using namespace QuantLib;
@@ -154,7 +153,7 @@ int main(int argc, char *argv[]) {
 		boost::shared_ptr<PricingEngine> swaptionEngine = boost::make_shared<Gaussian1dSwaptionEngine>(gsr, 64, 7.0, true, false, ytsOis);
 		boost::shared_ptr<SwapIndex> swapIndex = boost::make_shared<EuriborSwapIsdaFixA>(10 * Years, yts6m, ytsOis);
 
-		boost::shared_ptr<FloatFloatSwap> underlying4(new FloatFloatSwap(
+		boost::shared_ptr<FloatFloatSwap> underlying4(new RAFloatSwap(
 			VanillaSwap::Receiver, 10000.0, 10000.0,
 			fixedSchedule, swapIndex, Thirty360(),
 			floatingSchedule, euribor6m, Actual360(),

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ra_float_swap.hpp"
 #include <ql/instruments/floatfloatswaption.hpp>
 #include <ql/models/shortrate/onefactormodels/gaussian1dmodel.hpp>
 #include <ql/rebatedexercise.hpp>

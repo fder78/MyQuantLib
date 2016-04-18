@@ -21,10 +21,10 @@
     <ClCompile Include="main_single_ra_gsr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gaussian1d_ra_swap_engine.cpp">
+    <ClCompile Include="gaussian1d_ffswap_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gaussian1d_ffswap_engine.cpp">
+    <ClCompile Include="ra_float_swap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gaussian1d_ra_swap_engine.hpp">
+    <ClInclude Include="gaussian1d_ffswap_engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gaussian1d_ffswap_engine.hpp">
+    <ClInclude Include="ra_float_swap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
