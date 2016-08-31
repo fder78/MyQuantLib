@@ -24,6 +24,9 @@
     <ClCompile Include="StringUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CMS_leverage_note.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -34,6 +37,9 @@
     </ClInclude>
     <ClInclude Include="XMLValue.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMS_leverage_note.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

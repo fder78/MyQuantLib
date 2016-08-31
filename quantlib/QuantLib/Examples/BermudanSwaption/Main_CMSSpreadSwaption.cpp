@@ -6,6 +6,7 @@
 #include <oleauto.h>
 #include <assert.h>
 
+#include "CMS_leverage_note.h"
 #include "StringUtil.h"
 #include "XMLValue.h"
 #include <ql/quantlib.hpp>
@@ -38,7 +39,6 @@ namespace QuantLib {
 }
 #endif
 
-
 int _tmain(int argc, _TCHAR* argv[]) {
 
 	try{
@@ -58,8 +58,18 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				Settings::instance().evaluationDate() = evaluationDate;
 				
 				element = doc.FirstChildElement("root")->FirstChildElement("param_root")->FirstChildElement("data_root")->FirstChildElement("record");
+
+				std::wstring prodType = XMLValue(element, "Type").GetValue<std::wstring>();
+				if (prodType == L"CMSReverseConvertible") {
+
+					Real price = cms_leverage_note(fileName);
+					std::cout.precision(30);
+					std::cout << "OK" << price << std::endl;
+					return 0;
+				}
+
 				//pastAccrual
-				double pastAccrual = 0.0;
+				double pastAccrual = 0.0;///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				std::wstring grid = XMLValue(element, "NumOfSimul").GetValue<std::wstring>();
 				std::vector<Size> gridnum;

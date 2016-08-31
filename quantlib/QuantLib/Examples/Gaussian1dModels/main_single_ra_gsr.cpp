@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
 		Timer timer;
 
 		Date refDate(30, April, 2014);
-		Settings::instance().evaluationDate() = refDate - 3*Years;
+		Settings::instance().evaluationDate() = refDate;// -3 * Years;
 
 		std::cout << "\nThe evaluation date = " << Settings::instance().evaluationDate() << std::endl;
 
@@ -153,11 +153,13 @@ int main(int argc, char *argv[]) {
 		boost::shared_ptr<PricingEngine> swaptionEngine = boost::make_shared<Gaussian1dSwaptionEngine>(gsr, 64, 7.0, true, false, ytsOis);
 		boost::shared_ptr<SwapIndex> swapIndex = boost::make_shared<EuriborSwapIsdaFixA>(10 * Years, yts6m, ytsOis);
 
+		Rate fixedRate = 0.06;
+		std::pair<Real, Real> indexRange(-1.5, 1.5);
 		boost::shared_ptr<FloatFloatSwap> underlying4(new RAFloatSwap(
 			VanillaSwap::Receiver, 10000.0, 10000.0,
-			fixedSchedule, swapIndex, Thirty360(),
+			fixedSchedule, fixedRate, swapIndex, indexRange, Thirty360(),
 			floatingSchedule, euribor6m, Actual360(),
-			false, false, 1.0, 0.0, Null<Real>(), Null<Real>(), 1.0, 0.0010));
+			false, false, 1.0, 0.0, Null<Real>(), Null<Real>(), 0.0, 0.00));
 
 		boost::shared_ptr<FloatFloatSwaption> swaption4 = boost::make_shared<FloatFloatSwaption>(underlying4, exercise);
 
@@ -182,11 +184,13 @@ int main(int argc, char *argv[]) {
 		printTiming(timer);
 
 		timer.start();
-		Real npv6 = swaption4->NPV();
+		Real optionValue = swaption4->NPV();
+		Real swapValue = (-1.0)*swaption4->result<Real>("underlyingValue");
 		timer.stop();
 
-		std::cout << "\nFloat swaption NPV (GSR) = " << std::setprecision(6) << npv6 << std::endl;
-		std::cout << "\nFloat swap NPV (GSR) = " << std::setprecision(6) << swaption4->result<Real>("underlyingValue") << std::endl;
+		std::cout << "\nSwaption NPV (option value) = " << std::setprecision(6) << optionValue << std::endl;
+		std::cout << "RA swap NPV (non-call) = " << std::setprecision(6) << swapValue << std::endl;
+		std::cout << "RA swap NPV (Total Value) = " << std::setprecision(6) << optionValue + swapValue << std::endl;
 		printTiming(timer);
 	}
 	catch (QuantLib::Error e) {

@@ -94,6 +94,8 @@ namespace QuantLib {
 		QL_REQUIRE(swap_p != NULL, "underlying swap should be RAFloatSwap");
 		RAFloatSwap swap = *swap_p;
         Option::Type type = arguments_.type == VanillaSwap::Payer ? Option::Call : Option::Put;
+		std::vector<std::pair<Real, Real> > indexRange = swap.getRange();
+		std::vector<Rate> fixedRate = swap.getFixedRate();
 
         Array npv0(2 * integrationPoints_ + 1, 0.0), npv1(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the option
         Array npv0a(2 * integrationPoints_ + 1, 0.0), npv1a(2 * integrationPoints_ + 1, 0.0); // arrays for npvs of the underlying
@@ -386,7 +388,13 @@ namespace QuantLib {
                                 if (cmsspread1 != NULL)
                                     estFixing = cmsspread1->gearing1() * model_->swapRate(arguments_.leg1FixingDates[j], cmsspread1->swapIndex1()->tenor(), event0, zk, cmsspread1->swapIndex1()) +
                                         cmsspread1->gearing2() * model_->swapRate(arguments_.leg1FixingDates[j], cmsspread1->swapIndex2()->tenor(), event0, zk, cmsspread1->swapIndex2());
-                                Real rate = arguments_.leg1Spreads[j] + arguments_.leg1Gearings[j] * estFixing;
+
+								//Range Accrual////////////////////////
+								Real nPerN = 0.0;
+								if (estFixing >= indexRange[j].first && estFixing <= indexRange[j].second) {
+									nPerN = 1.0;
+								}
+								Real rate = arguments_.leg1Spreads[j] + arguments_.leg1Gearings[j] * fixedRate[j] * nPerN;
                                 if (arguments_.leg1CappedRates[j] != Null<Real>())
                                     rate = std::min(arguments_.leg1CappedRates[j], rate);
                                 if (arguments_.leg1FlooredRates[j] != Null<Real>())

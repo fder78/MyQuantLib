@@ -10,10 +10,7 @@
 namespace QuantLib {
 
 	class G1d_FFSwap_Engine
-		: public BasketGeneratingEngine,
-		public GenericModelEngine<Gaussian1dModel,
-		FloatFloatSwaption::arguments,
-		FloatFloatSwaption::results> {
+		: public BasketGeneratingEngine, public GenericModelEngine<Gaussian1dModel,	FloatFloatSwaption::arguments, FloatFloatSwaption::results> {
 	public:
 		enum Probabilities {
 			None,

@@ -160,7 +160,7 @@ void testIndexRA() {
 	//fout.close();
 }
 
-int main(int, char*[]) {
+int main_(int, char*[]) {
 
 	try {
 

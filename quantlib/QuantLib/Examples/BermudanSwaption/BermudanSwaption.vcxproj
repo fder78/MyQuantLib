@@ -549,6 +549,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CMS_leverage_note.cpp" />
     <ClCompile Include="Main_CMSSpreadSwaption.cpp" />
     <ClCompile Include="StringUtil.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -571,6 +572,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CMS_leverage_note.h" />
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="XMLValue.h" />
   </ItemGroup>

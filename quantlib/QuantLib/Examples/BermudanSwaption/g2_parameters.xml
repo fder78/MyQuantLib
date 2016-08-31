@@ -1,15 +1,15 @@
 <root>
     <g2Parameters>
-        <a>0.029999999999999999</a>
-        <sigma>0.01</sigma>
-        <b>0.5</b>
-        <eta>0.01</eta>
-        <rho>-0.75</rho>
+        <a>0.024749576840191592</a>
+        <sigma>0.010295253491455379</sigma>
+        <b>0.68768177365117233</b>
+        <eta>6.8154904608435455e-10</eta>
+        <rho>-0.65925650990888063</rho>
     </g2Parameters>
     <computationTime>
-        <ctime>27.719000000000001</ctime>
+        <ctime>30.975000000000001</ctime>
     </computationTime>
     <results>
-        <npv>137718.79750825412</npv>
+        <npv>29193.025612213511</npv>
     </results>
 </root>

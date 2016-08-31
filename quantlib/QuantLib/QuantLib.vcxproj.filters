@@ -328,6 +328,9 @@
     <Filter Include="eq_derivatives">
       <UniqueIdentifier>{6ccbb721-10d5-4579-a0c3-9f44e5463937}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eq_derivatives\3d_fdm">
+      <UniqueIdentifier>{0e97e635-3c5a-4e79-ab77-66cf4e5213ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -4042,6 +4045,18 @@
     <ClInclude Include="eq_derivatives\participation_payoff.hpp">
       <Filter>eq_derivatives</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\fd2d_callable_index_ra_engine.hpp">
+      <Filter>eq_derivatives</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\3dfdm\fdm3dblackscholessolver.hpp">
+      <Filter>eq_derivatives\3d_fdm</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\3dfdm\fd3dblackscholesvanillaengine.hpp">
+      <Filter>eq_derivatives\3d_fdm</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\3dfdm\fdm3dblackscholesop.hpp">
+      <Filter>eq_derivatives\3d_fdm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6520,6 +6535,18 @@
     </ClCompile>
     <ClCompile Include="eq_derivatives\participation_payoff.cpp">
       <Filter>eq_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\fd2d_callable_index_ra_engine.cpp">
+      <Filter>eq_derivatives</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\3dfdm\fd3dblackscholesvanillaengine.cpp">
+      <Filter>eq_derivatives\3d_fdm</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\3dfdm\fdm3dblackscholesop.cpp">
+      <Filter>eq_derivatives\3d_fdm</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\3dfdm\fdm3dblackscholessolver.cpp">
+      <Filter>eq_derivatives\3d_fdm</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
