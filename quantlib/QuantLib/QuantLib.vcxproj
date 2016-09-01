@@ -492,6 +492,11 @@
     <ClInclude Include="eq_derivatives\3dfdm\fd3dblackscholesvanillaengine.hpp" />
     <ClInclude Include="eq_derivatives\3dfdm\fdm3dblackscholesop.hpp" />
     <ClInclude Include="eq_derivatives\3dfdm\fdm3dblackscholessolver.hpp" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_calculator.h" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_condition.h" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_engine.h" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_stepcondition.h" />
+    <ClInclude Include="eq_derivatives\autocallable_instrument\autocallable_note.h" />
     <ClInclude Include="eq_derivatives\callable_index_rangeaccrual.hpp" />
     <ClInclude Include="eq_derivatives\fd2d_callable_index_ra_engine.hpp" />
     <ClInclude Include="eq_derivatives\mc_callable_index_ra_engine.hpp" />
@@ -1759,6 +1764,11 @@
     <ClCompile Include="eq_derivatives\3dfdm\fd3dblackscholesvanillaengine.cpp" />
     <ClCompile Include="eq_derivatives\3dfdm\fdm3dblackscholesop.cpp" />
     <ClCompile Include="eq_derivatives\3dfdm\fdm3dblackscholessolver.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_calculator.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_condition.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_engine.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_stepcondition.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_instrument\autocallable_note.cpp" />
     <ClCompile Include="eq_derivatives\callable_index_rangeaccrual.cpp" />
     <ClCompile Include="eq_derivatives\fd2d_callable_index_ra_engine.cpp" />
     <ClCompile Include="eq_derivatives\mc_callable_index_ra_engine.cpp" />

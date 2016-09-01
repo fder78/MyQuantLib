@@ -371,7 +371,6 @@ int main(int, char* []) {
                   << std::setw(widths[2]) << std::left << "N/A"
                   << std::setw(widths[3]) << std::left << "N/A"
                   << std::endl;
-
         // Monte Carlo Method: MC (Longstaff Schwartz)
         method = "MC (Longstaff Schwartz)";
         boost::shared_ptr<PricingEngine> mcengine3;

@@ -331,6 +331,12 @@
     <Filter Include="eq_derivatives\3d_fdm">
       <UniqueIdentifier>{0e97e635-3c5a-4e79-ab77-66cf4e5213ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eq_derivatives\autocallable_engine">
+      <UniqueIdentifier>{514329ac-707a-4977-8ccc-8bdcb5c8d594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eq_derivatives\autocallable_instrument">
+      <UniqueIdentifier>{941ee180-b477-4bb4-a26c-b50ff6f61eac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -4057,6 +4063,21 @@
     <ClInclude Include="eq_derivatives\3dfdm\fdm3dblackscholesop.hpp">
       <Filter>eq_derivatives\3d_fdm</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_stepcondition.h">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_calculator.h">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_engine.h">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_condition.h">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_instrument\autocallable_note.h">
+      <Filter>eq_derivatives\autocallable_instrument</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6547,6 +6568,21 @@
     </ClCompile>
     <ClCompile Include="eq_derivatives\3dfdm\fdm3dblackscholessolver.cpp">
       <Filter>eq_derivatives\3d_fdm</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_stepcondition.cpp">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_calculator.cpp">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_engine.cpp">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_condition.cpp">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_instrument\autocallable_note.cpp">
+      <Filter>eq_derivatives\autocallable_instrument</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
