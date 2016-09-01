@@ -12,7 +12,7 @@ namespace QuantLib {
 	class FdmAutocallStepCondition : public StepCondition<Array> {
 	public:
 		FdmAutocallStepCondition(
-			const std::vector<Date> & exerciseDates,
+			const Date& exerciseDates,
 			const Date& referenceDate,
 			const DayCounter& dayCounter,
 			const boost::shared_ptr<FdmMesher> & mesher,

@@ -6,19 +6,15 @@
 namespace QuantLib {
 
 	FdmAutocallStepCondition::FdmAutocallStepCondition(
-		const std::vector<Date>& exerciseDates,
+		const Date& exerciseDates,
 		const Date& referenceDate,
 		const DayCounter& dayCounter,
 		const boost::shared_ptr<FdmMesher> & mesher,
 		const boost::shared_ptr<FdmInnerValueCalculator> & calculator,
 		const boost::shared_ptr<AutocallCondition> & condition)
 		: mesher_(mesher), condition_(condition), calculator_(calculator) {
-		exerciseTimes_.reserve(exerciseDates.size());
-		for (std::vector<Date>::const_iterator iter = exerciseDates.begin();
-		iter != exerciseDates.end(); ++iter) {
-			exerciseTimes_.push_back(
-				dayCounter.yearFraction(referenceDate, *iter));
-		}
+		exerciseTimes_.reserve(1);
+		exerciseTimes_.push_back(dayCounter.yearFraction(referenceDate, exerciseDates));
 	}
 
 	const std::vector<Time>& FdmAutocallStepCondition::exerciseTimes() const {

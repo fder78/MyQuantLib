@@ -5,14 +5,17 @@
 
 namespace QuantLib {
 
-	AutocallableNote::AutocallableNote(
-		const boost::shared_ptr<BasketPayoff>& payoff,
-		const boost::shared_ptr<Exercise>& exercise)
-		: payoff_(payoff), exercise_(exercise) {}
-
+	AutocallableNote::AutocallableNote(const Real notionalAmt,
+		const std::vector<Date>& autocallDates,
+		const std::vector<Date>& paymentDates,
+		const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions,
+		const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
+		const boost::shared_ptr<BasketPayoff> terminalPayoff) 
+		: notionalAmt_(notionalAmt), autocallDates_(autocallDates), paymentDates_(paymentDates),
+		autocallConditions_(autocallConditions), autocallPayoffs_(autocallPayoffs), terminalPayoff_(terminalPayoff), isKI_(false) {}
 
 	bool AutocallableNote::isExpired() const {
-		return detail::simple_event(exercise_->lastDate()).hasOccurred();
+		return detail::simple_event(autocallDates_.back()).hasOccurred();
 	}
 
 	std::vector<Real> AutocallableNote::delta() const {
@@ -60,8 +63,13 @@ namespace QuantLib {
 	inline void AutocallableNote::setupArguments(PricingEngine::arguments* args) const {
 		AutocallableNote::arguments* arguments = dynamic_cast<AutocallableNote::arguments*>(args);
 		QL_REQUIRE(arguments != 0, "wrong argument type");
-		arguments->payoff = payoff_;
-		arguments->exercise = exercise_;
+		arguments->notionalAmt = notionalAmt_;
+		arguments->autocallDates = autocallDates_;
+		arguments->paymentDates = paymentDates_;
+		arguments->autocallConditions = autocallConditions_;
+		arguments->autocallPayoffs = autocallPayoffs_;
+		arguments->terminalPayoff = terminalPayoff_;
+		arguments->isKI = isKI_;
 	}
 
 	void AutocallableNote::fetchResults(const PricingEngine::results* r) const {

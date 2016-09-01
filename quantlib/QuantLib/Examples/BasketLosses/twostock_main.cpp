@@ -392,10 +392,15 @@ void testEuroTwoValues() {
 
 		Date exDate = today + Integer(values[i].t * 360 + 0.5);
 		std::vector<Date> dates;
+		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
+		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
+		boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(payoff));
 		for (Size i = 1; i <= 12; ++i) {
 			dates.push_back(today + i*Months);
+			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(100)));
+			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
 		}
-		boost::shared_ptr<Exercise> exercise(new BermudanExercise(dates));
+		//boost::shared_ptr<Exercise> exercise(new BermudanExercise(dates));
 
 		spot1->setValue(values[i].s1);
 		spot2->setValue(values[i].s2);
@@ -465,9 +470,14 @@ void testEuroTwoValues() {
 		boost::shared_ptr<PricingEngine> fdEngine(
 			new FdAutocallEngine(p1, p2, values[i].rho,	50, 50, 15));
 
-		AutocallableNote autocallable(basketTypeToPayoff(values[i].basketType,
-			payoff),
-			exercise);
+		AutocallableNote autocallable(
+			10000, //notional
+			dates, //exercise
+			dates, //payment
+			autocallConditions,
+			autocallPayoffs,
+			terminalPayoff
+			);
 
 		//// analytic engine
 		//basketOption.setPricingEngine(analyticEngine);
@@ -493,9 +503,6 @@ void testEuroTwoValues() {
 		//std::cout << std::string(30, '-') << std::endl;
 	}
 }
-
-
-#include <eq_derivatives\autocallable_engine\autocall_condition.h>
 
 int main(int, char*[]) {
 	try {

@@ -24,14 +24,14 @@ namespace QuantLib {
 
 	void FdAutocallEngine::calculate() const {
 		// 1. Payoff
-		const boost::shared_ptr<BasketPayoff> payoff = boost::dynamic_pointer_cast<BasketPayoff>(arguments_.payoff);
+		const boost::shared_ptr<BasketPayoff> payoff = arguments_.terminalPayoff;
 		// 1.1 AutoCall Condition
-		const boost::shared_ptr<AutocallCondition> condition(new MinUpCondition(100));
+		const boost::shared_ptr<AutocallCondition> condition;
 		// 1.2 AutoCall Payoff
-		const boost::shared_ptr<BasketPayoff> autocallPayoff = boost::dynamic_pointer_cast<BasketPayoff>(arguments_.payoff);
+		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs = arguments_.autocallPayoffs;
 
 		// 2. Mesher
-		const Time maturity = p1_->time(arguments_.exercise->lastDate());
+		const Time maturity = p1_->time(arguments_.autocallDates.back());
 		const boost::shared_ptr<Fdm1dMesher> em1(
 			new FdmBlackScholesMesher(
 				xGrid_, p1_, maturity, p1_->x0(),
@@ -47,7 +47,10 @@ namespace QuantLib {
 		const boost::shared_ptr<FdmMesher> mesher(new FdmMesherComposite(em1, em2));
 
 		// 3. Calculator
-		const boost::shared_ptr<FdmInnerValueCalculator> calculator(new FdmAutocallInnerValue(autocallPayoff, mesher));
+		std::vector<boost::shared_ptr<FdmInnerValueCalculator> > calculators;
+		for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i)
+			calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(autocallPayoffs[i], mesher)));
+		boost::shared_ptr<FdmInnerValueCalculator> calculator(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
 
 		// 4. Step conditions
 		std::list<std::vector<Time> > stoppingTimes;
@@ -61,10 +64,12 @@ namespace QuantLib {
 			stepConditions.push_back(dividendCondition);
 			stoppingTimes.push_back(dividendCondition->dividendTimes());
 		}
-		boost::shared_ptr<FdmAutocallStepCondition> autocallCondition(
-				new FdmAutocallStepCondition(arguments_.exercise->dates(), refDate, dayCounter, mesher, calculator, condition));
-		stepConditions.push_back(autocallCondition);
-		stoppingTimes.push_back(autocallCondition->exerciseTimes());
+		for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i) {
+			boost::shared_ptr<FdmAutocallStepCondition> autocallCondition(
+				new FdmAutocallStepCondition(arguments_.autocallDates[i], refDate, dayCounter, mesher, calculators[i], arguments_.autocallConditions[i]));
+			stepConditions.push_back(autocallCondition);
+			stoppingTimes.push_back(autocallCondition->exerciseTimes());
+		}
 
 		const boost::shared_ptr<FdmStepConditionComposite> conditions(new FdmStepConditionComposite(stoppingTimes, stepConditions));
 

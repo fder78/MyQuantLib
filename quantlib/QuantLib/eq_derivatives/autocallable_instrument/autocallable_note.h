@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ql/instruments/basketoption.hpp>
+#include <eq_derivatives\autocallable_engine\autocall_condition.h>
 #include <ql/pricingengine.hpp>
 
 namespace QuantLib {
@@ -11,7 +12,17 @@ namespace QuantLib {
 		class engine;
 		class results;
 
-		AutocallableNote(const boost::shared_ptr<BasketPayoff>&, const boost::shared_ptr<Exercise>&);
+		AutocallableNote(
+			const Real notionalAmt,
+			const std::vector<Date>& autocallDates,
+			const std::vector<Date>& paymentDates,
+			const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions,
+			const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
+			const boost::shared_ptr<BasketPayoff> terminalPayoff);
+
+		void withKIPayoff(boost::shared_ptr<BasketPayoff> KIPayoff) {
+			isKI_ = true;
+		}
 
 		bool isExpired() const;
 		std::vector<Real> delta() const;
@@ -25,9 +36,15 @@ namespace QuantLib {
 		void fetchResults(const PricingEngine::results*) const;
 
 	protected:
-		boost::shared_ptr<BasketPayoff> payoff_;
-		boost::shared_ptr<Exercise> exercise_;
+		const Real notionalAmt_;
+		const std::vector<Date>& autocallDates_;
+		const std::vector<Date>& paymentDates_;
+		const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions_;
+		const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs_;
+		const boost::shared_ptr<BasketPayoff> terminalPayoff_;
 		void setupExpired() const;
+		bool isKI_;
+
 		// results
 		mutable std::vector<Real> delta_, gamma_, theta_, vega_, rho_, dividendRho_;
 	};
@@ -36,8 +53,13 @@ namespace QuantLib {
 	public:
 		arguments() {}
 		void validate() const {}
-		boost::shared_ptr<BasketPayoff> payoff;
-		boost::shared_ptr<Exercise> exercise;
+		Real notionalAmt;
+		std::vector<Date> autocallDates;
+		std::vector<Date> paymentDates;
+		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
+		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
+		boost::shared_ptr<BasketPayoff> terminalPayoff;
+		bool isKI;
 	};
 
 	class AutocallableNote::results : public virtual Instrument::results {
