@@ -16833,5 +16833,294 @@ class ZeroCurve(YieldTermStructure):
 ZeroCurve_swigregister = _QuantLib.ZeroCurve_swigregister
 ZeroCurve_swigregister(ZeroCurve)
 
+class AutocallCondition(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "AutocallCondition *":
+        return _QuantLib.AutocallCondition___deref__(self)
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.AutocallCondition___nonzero__(self)
+
+    def __init__(self):
+        this = _QuantLib.new_AutocallCondition()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_AutocallCondition
+    __del__ = lambda self: None
+
+    def __call__(self, a: 'Array') -> "Real":
+        return _QuantLib.AutocallCondition___call__(self, a)
+AutocallCondition_swigregister = _QuantLib.AutocallCondition_swigregister
+AutocallCondition_swigregister(AutocallCondition)
+
+class GeneralPayoff(Payoff):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, startPoints: 'DoubleVector', startPayoffs: 'DoubleVector', slopes: 'DoubleVector'):
+        this = _QuantLib.new_GeneralPayoff(startPoints, startPayoffs, slopes)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_GeneralPayoff
+    __del__ = lambda self: None
+GeneralPayoff_swigregister = _QuantLib.GeneralPayoff_swigregister
+GeneralPayoff_swigregister(GeneralPayoff)
+
+class AutocallableNote(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, notionalAmt: 'Real const', autocallDates: 'DateVector', paymentDates: 'DateVector', autocallConditions: 'AutocallConditionVector', autocallPayoffs: 'BasketPayoffVector', terminalPayoff: 'boost::shared_ptr< BasketPayoff > const'):
+        this = _QuantLib.new_AutocallableNote(notionalAmt, autocallDates, paymentDates, autocallConditions, autocallPayoffs, terminalPayoff)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_AutocallableNote
+    __del__ = lambda self: None
+AutocallableNote_swigregister = _QuantLib.AutocallableNote_swigregister
+AutocallableNote_swigregister(AutocallableNote)
+
+class MinUpCondition(AutocallCondition):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, barrier: 'Real'):
+        this = _QuantLib.new_MinUpCondition(barrier)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_MinUpCondition
+    __del__ = lambda self: None
+MinUpCondition_swigregister = _QuantLib.MinUpCondition_swigregister
+MinUpCondition_swigregister(MinUpCondition)
+
+class AutocallConditionVector(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def iterator(self) -> "swig::SwigPyIterator *":
+        return _QuantLib.AutocallConditionVector_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.AutocallConditionVector___nonzero__(self)
+
+    def __bool__(self) -> "bool":
+        return _QuantLib.AutocallConditionVector___bool__(self)
+
+    def __len__(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::size_type":
+        return _QuantLib.AutocallConditionVector___len__(self)
+
+    def __getslice__(self, i: 'std::vector< boost::shared_ptr< AutocallCondition > >::difference_type', j: 'std::vector< boost::shared_ptr< AutocallCondition > >::difference_type') -> "std::vector< boost::shared_ptr< AutocallCondition >,std::allocator< boost::shared_ptr< AutocallCondition > > > *":
+        return _QuantLib.AutocallConditionVector___getslice__(self, i, j)
+
+    def __setslice__(self, *args) -> "void":
+        return _QuantLib.AutocallConditionVector___setslice__(self, *args)
+
+    def __delslice__(self, i: 'std::vector< boost::shared_ptr< AutocallCondition > >::difference_type', j: 'std::vector< boost::shared_ptr< AutocallCondition > >::difference_type') -> "void":
+        return _QuantLib.AutocallConditionVector___delslice__(self, i, j)
+
+    def __delitem__(self, *args) -> "void":
+        return _QuantLib.AutocallConditionVector___delitem__(self, *args)
+
+    def __getitem__(self, *args) -> "std::vector< boost::shared_ptr< AutocallCondition > >::value_type const &":
+        return _QuantLib.AutocallConditionVector___getitem__(self, *args)
+
+    def __setitem__(self, *args) -> "void":
+        return _QuantLib.AutocallConditionVector___setitem__(self, *args)
+
+    def pop(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::value_type":
+        return _QuantLib.AutocallConditionVector_pop(self)
+
+    def append(self, x: 'AutocallCondition') -> "void":
+        return _QuantLib.AutocallConditionVector_append(self, x)
+
+    def empty(self) -> "bool":
+        return _QuantLib.AutocallConditionVector_empty(self)
+
+    def size(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::size_type":
+        return _QuantLib.AutocallConditionVector_size(self)
+
+    def swap(self, v: 'AutocallConditionVector') -> "void":
+        return _QuantLib.AutocallConditionVector_swap(self, v)
+
+    def begin(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::iterator":
+        return _QuantLib.AutocallConditionVector_begin(self)
+
+    def end(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::iterator":
+        return _QuantLib.AutocallConditionVector_end(self)
+
+    def rbegin(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::reverse_iterator":
+        return _QuantLib.AutocallConditionVector_rbegin(self)
+
+    def rend(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::reverse_iterator":
+        return _QuantLib.AutocallConditionVector_rend(self)
+
+    def clear(self) -> "void":
+        return _QuantLib.AutocallConditionVector_clear(self)
+
+    def get_allocator(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::allocator_type":
+        return _QuantLib.AutocallConditionVector_get_allocator(self)
+
+    def pop_back(self) -> "void":
+        return _QuantLib.AutocallConditionVector_pop_back(self)
+
+    def erase(self, *args) -> "std::vector< boost::shared_ptr< AutocallCondition > >::iterator":
+        return _QuantLib.AutocallConditionVector_erase(self, *args)
+
+    def __init__(self, *args):
+        this = _QuantLib.new_AutocallConditionVector(*args)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+
+    def push_back(self, x: 'AutocallCondition') -> "void":
+        return _QuantLib.AutocallConditionVector_push_back(self, x)
+
+    def front(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::value_type const &":
+        return _QuantLib.AutocallConditionVector_front(self)
+
+    def back(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::value_type const &":
+        return _QuantLib.AutocallConditionVector_back(self)
+
+    def assign(self, n: 'std::vector< boost::shared_ptr< AutocallCondition > >::size_type', x: 'AutocallCondition') -> "void":
+        return _QuantLib.AutocallConditionVector_assign(self, n, x)
+
+    def resize(self, *args) -> "void":
+        return _QuantLib.AutocallConditionVector_resize(self, *args)
+
+    def insert(self, *args) -> "void":
+        return _QuantLib.AutocallConditionVector_insert(self, *args)
+
+    def reserve(self, n: 'std::vector< boost::shared_ptr< AutocallCondition > >::size_type') -> "void":
+        return _QuantLib.AutocallConditionVector_reserve(self, n)
+
+    def capacity(self) -> "std::vector< boost::shared_ptr< AutocallCondition > >::size_type":
+        return _QuantLib.AutocallConditionVector_capacity(self)
+    __swig_destroy__ = _QuantLib.delete_AutocallConditionVector
+    __del__ = lambda self: None
+AutocallConditionVector_swigregister = _QuantLib.AutocallConditionVector_swigregister
+AutocallConditionVector_swigregister(AutocallConditionVector)
+
+class BasketPayoffVector(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def iterator(self) -> "swig::SwigPyIterator *":
+        return _QuantLib.BasketPayoffVector_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.BasketPayoffVector___nonzero__(self)
+
+    def __bool__(self) -> "bool":
+        return _QuantLib.BasketPayoffVector___bool__(self)
+
+    def __len__(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::size_type":
+        return _QuantLib.BasketPayoffVector___len__(self)
+
+    def __getslice__(self, i: 'std::vector< boost::shared_ptr< BasketPayoff > >::difference_type', j: 'std::vector< boost::shared_ptr< BasketPayoff > >::difference_type') -> "std::vector< boost::shared_ptr< BasketPayoff >,std::allocator< boost::shared_ptr< BasketPayoff > > > *":
+        return _QuantLib.BasketPayoffVector___getslice__(self, i, j)
+
+    def __setslice__(self, *args) -> "void":
+        return _QuantLib.BasketPayoffVector___setslice__(self, *args)
+
+    def __delslice__(self, i: 'std::vector< boost::shared_ptr< BasketPayoff > >::difference_type', j: 'std::vector< boost::shared_ptr< BasketPayoff > >::difference_type') -> "void":
+        return _QuantLib.BasketPayoffVector___delslice__(self, i, j)
+
+    def __delitem__(self, *args) -> "void":
+        return _QuantLib.BasketPayoffVector___delitem__(self, *args)
+
+    def __getitem__(self, *args) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &":
+        return _QuantLib.BasketPayoffVector___getitem__(self, *args)
+
+    def __setitem__(self, *args) -> "void":
+        return _QuantLib.BasketPayoffVector___setitem__(self, *args)
+
+    def pop(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type":
+        return _QuantLib.BasketPayoffVector_pop(self)
+
+    def append(self, x: 'std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &') -> "void":
+        return _QuantLib.BasketPayoffVector_append(self, x)
+
+    def empty(self) -> "bool":
+        return _QuantLib.BasketPayoffVector_empty(self)
+
+    def size(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::size_type":
+        return _QuantLib.BasketPayoffVector_size(self)
+
+    def swap(self, v: 'BasketPayoffVector') -> "void":
+        return _QuantLib.BasketPayoffVector_swap(self, v)
+
+    def begin(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::iterator":
+        return _QuantLib.BasketPayoffVector_begin(self)
+
+    def end(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::iterator":
+        return _QuantLib.BasketPayoffVector_end(self)
+
+    def rbegin(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::reverse_iterator":
+        return _QuantLib.BasketPayoffVector_rbegin(self)
+
+    def rend(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::reverse_iterator":
+        return _QuantLib.BasketPayoffVector_rend(self)
+
+    def clear(self) -> "void":
+        return _QuantLib.BasketPayoffVector_clear(self)
+
+    def get_allocator(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::allocator_type":
+        return _QuantLib.BasketPayoffVector_get_allocator(self)
+
+    def pop_back(self) -> "void":
+        return _QuantLib.BasketPayoffVector_pop_back(self)
+
+    def erase(self, *args) -> "std::vector< boost::shared_ptr< BasketPayoff > >::iterator":
+        return _QuantLib.BasketPayoffVector_erase(self, *args)
+
+    def __init__(self, *args):
+        this = _QuantLib.new_BasketPayoffVector(*args)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+
+    def push_back(self, x: 'std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &') -> "void":
+        return _QuantLib.BasketPayoffVector_push_back(self, x)
+
+    def front(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &":
+        return _QuantLib.BasketPayoffVector_front(self)
+
+    def back(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &":
+        return _QuantLib.BasketPayoffVector_back(self)
+
+    def assign(self, n: 'std::vector< boost::shared_ptr< BasketPayoff > >::size_type', x: 'std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &') -> "void":
+        return _QuantLib.BasketPayoffVector_assign(self, n, x)
+
+    def resize(self, *args) -> "void":
+        return _QuantLib.BasketPayoffVector_resize(self, *args)
+
+    def insert(self, *args) -> "void":
+        return _QuantLib.BasketPayoffVector_insert(self, *args)
+
+    def reserve(self, n: 'std::vector< boost::shared_ptr< BasketPayoff > >::size_type') -> "void":
+        return _QuantLib.BasketPayoffVector_reserve(self, n)
+
+    def capacity(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::size_type":
+        return _QuantLib.BasketPayoffVector_capacity(self)
+    __swig_destroy__ = _QuantLib.delete_BasketPayoffVector
+    __del__ = lambda self: None
+BasketPayoffVector_swigregister = _QuantLib.BasketPayoffVector_swigregister
+BasketPayoffVector_swigregister(BasketPayoffVector)
+
 
 

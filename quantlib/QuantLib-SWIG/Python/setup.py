@@ -27,7 +27,7 @@ from distutils import sysconfig
 
 class test(Command):
     # Original version of this class posted
-    # by Berthold Höllmann to distutils-sig@python.org
+    # by Berthold H?lmann to distutils-sig@python.org
     description = "test the distribution prior to install"
 
     user_options = [
@@ -138,7 +138,7 @@ class my_build_ext(build_ext):
             self.define += [('__WIN32__', None), ('WIN32', None),
                             ('NDEBUG', None), ('_WINDOWS', None),
                             ('NOMINMAX', None)]
-            extra_compile_args = ['/GR', '/FD', '/Zm250', '/EHsc', '/bigobj' ]
+            extra_compile_args = ['/GR', '/FD', '/Zm250', '/EHsc', '/bigobj' ,'/w']
             extra_link_args = ['/subsystem:windows', machinetype]
 
             if self.debug:

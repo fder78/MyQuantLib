@@ -207,6 +207,7 @@
 %include volatilities.i
 %include volatilitymodels.i
 %include zerocurve.i
+%include autocallable.i
 
 // to be deprecated
 %include old_volatility.i

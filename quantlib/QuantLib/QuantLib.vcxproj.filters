@@ -4078,6 +4078,12 @@
     <ClInclude Include="eq_derivatives\autocallable_instrument\autocallable_note.h">
       <Filter>eq_derivatives\autocallable_instrument</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_instrument\general_payoff.h">
+      <Filter>eq_derivatives\autocallable_instrument</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\all.hpp">
+      <Filter>eq_derivatives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6582,6 +6588,9 @@
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClCompile>
     <ClCompile Include="eq_derivatives\autocallable_instrument\autocallable_note.cpp">
+      <Filter>eq_derivatives\autocallable_instrument</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_instrument\general_payoff.cpp">
       <Filter>eq_derivatives\autocallable_instrument</Filter>
     </ClCompile>
   </ItemGroup>

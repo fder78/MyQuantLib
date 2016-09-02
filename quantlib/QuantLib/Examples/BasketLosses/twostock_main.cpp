@@ -7,6 +7,7 @@
 #include <eq_derivatives\3dfdm\fd3dblackscholesvanillaengine.hpp>
 #include <eq_derivatives\autocallable_engine\autocall_engine.h>
 #include <eq_derivatives\autocallable_instrument\autocallable_note.h>
+#include <eq_derivatives\autocallable_instrument\general_payoff.h>
 
 using namespace std;
 using namespace QuantLib;
@@ -386,18 +387,33 @@ void testEuroTwoValues() {
 	const Real mcRelativeErrorTolerance = 0.01;
 	const Real fdRelativeErrorTolerance = 0.01;
 
+	//Spec.
+	Real notional = 10000;
+	Real couponRate = 0.06;
+	Real mat = 3;
+	Date effectiveDate(10, June, 2016);
+	Date terminationDate = effectiveDate + mat * Years;
+	Period tenor(6, Months);
+	Real redempBarrier[6] = { 90,90,85,85,80,60 };
+
 	for (Size i = 0; i<LENGTH(values); i++) {
+		Real x[] = { 0, redempBarrier[5] };
+		Real y[] = { 0, notional*(1 + couponRate * mat) };
+		Real slope[] = { notional / 100., 0.0};
+		boost::shared_ptr<Payoff> terPayoff(new GeneralPayoff(
+			std::vector<Real>(x, x+1), std::vector<Real>(y, y+1), std::vector<Real>(slope, slope+1)));
+		boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(terPayoff));
 
-		boost::shared_ptr<PlainVanillaPayoff> payoff(new PlainVanillaPayoff(values[i].type, values[i].strike));
-
-		Date exDate = today + Integer(values[i].t * 360 + 0.5);
 		std::vector<Date> dates;
 		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
 		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
-		boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(payoff));
-		for (Size i = 1; i <= 12; ++i) {
-			dates.push_back(today + i*Months);
-			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(100)));
+		Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
+		dates = exDate.dates();
+		dates.erase(dates.begin());
+		for (Size i = 0; i < dates.size(); ++i) {
+			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
+			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
+				std::vector<Real>(1, 0), std::vector<Real>(1, notional*(1+couponRate*(i+1))), std::vector<Real>(1, 0)));
 			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
 		}
 		//boost::shared_ptr<Exercise> exercise(new BermudanExercise(dates));
@@ -471,7 +487,7 @@ void testEuroTwoValues() {
 			new FdAutocallEngine(p1, p2, values[i].rho,	50, 50, 15));
 
 		AutocallableNote autocallable(
-			10000, //notional
+			notional, //notional
 			dates, //exercise
 			dates, //payment
 			autocallConditions,
@@ -489,11 +505,11 @@ void testEuroTwoValues() {
 		// fd engine
 		autocallable.setPricingEngine(fdEngine);
 		Real calculated = autocallable.NPV();
-		Real relError = relativeError(calculated, expected, expected);
-		std::cout << calculated << " " << expected << " " << relError << std::endl;
+		std::cout << "price=" << calculated << std::endl;
 		std::cout << "theta=" << autocallable.theta()[0] << std::endl;
 		std::cout << "delta=" << autocallable.delta()[0] << "   " << autocallable.delta()[1] << std::endl;
 		std::cout << "gamma=" << autocallable.gamma()[0] << "   " << autocallable.gamma()[1] << std::endl;
+		std::cout << std::string(30, '-') << std::endl;
 
 		//// mc engine
 		//basketOption.setPricingEngine(mcEngine);
@@ -503,6 +519,8 @@ void testEuroTwoValues() {
 		//std::cout << std::string(30, '-') << std::endl;
 	}
 }
+
+
 
 int main(int, char*[]) {
 	try {

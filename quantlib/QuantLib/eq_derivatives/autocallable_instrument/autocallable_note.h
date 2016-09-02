@@ -20,7 +20,9 @@ namespace QuantLib {
 			const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
 			const boost::shared_ptr<BasketPayoff> terminalPayoff);
 
-		void withKIPayoff(boost::shared_ptr<BasketPayoff> KIPayoff) {
+		void withKI(const Real kibarrier, boost::shared_ptr<BasketPayoff> KIPayoff) {
+			kibarrier_ = kibarrier;
+			KIPayoff_ = KIPayoff;
 			isKI_ = true;
 		}
 
@@ -42,8 +44,11 @@ namespace QuantLib {
 		const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions_;
 		const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs_;
 		const boost::shared_ptr<BasketPayoff> terminalPayoff_;
+		boost::shared_ptr<BasketPayoff> KIPayoff_;
 		void setupExpired() const;
 		bool isKI_;
+		Real kibarrier_;
+
 
 		// results
 		mutable std::vector<Real> delta_, gamma_, theta_, vega_, rho_, dividendRho_;
