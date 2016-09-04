@@ -408,8 +408,6 @@ void testEuroTwoValues() {
 		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
 		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
 		Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
-		dates = exDate.dates();
-		dates.erase(dates.begin());
 		for (Size i = 0; i < dates.size(); ++i) {
 			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
 			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
@@ -488,8 +486,8 @@ void testEuroTwoValues() {
 
 		AutocallableNote autocallable(
 			notional, //notional
-			dates, //exercise
-			dates, //payment
+			exDate, //exercise
+			exDate, //payment
 			autocallConditions,
 			autocallPayoffs,
 			terminalPayoff

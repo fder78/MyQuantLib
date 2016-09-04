@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ql/time/schedule.hpp>
 #include <ql/instruments/basketoption.hpp>
 #include <eq_derivatives\autocallable_engine\autocall_condition.h>
 #include <ql/pricingengine.hpp>
@@ -14,8 +15,8 @@ namespace QuantLib {
 
 		AutocallableNote(
 			const Real notionalAmt,
-			const std::vector<Date>& autocallDates,
-			const std::vector<Date>& paymentDates,
+			const Schedule& autocallDates,
+			const Schedule& paymentDates,
 			const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions,
 			const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
 			const boost::shared_ptr<BasketPayoff> terminalPayoff);
@@ -39,8 +40,8 @@ namespace QuantLib {
 
 	protected:
 		const Real notionalAmt_;
-		const std::vector<Date>& autocallDates_;
-		const std::vector<Date>& paymentDates_;
+		std::vector<Date> autocallDates_;
+		std::vector<Date> paymentDates_;
 		const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions_;
 		const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs_;
 		const boost::shared_ptr<BasketPayoff> terminalPayoff_;

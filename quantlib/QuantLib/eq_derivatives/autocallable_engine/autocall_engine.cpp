@@ -20,9 +20,11 @@ namespace QuantLib {
 		Size xGrid, Size yGrid,
 		Size tGrid, Size dampingSteps,
 		const FdmSchemeDesc& schemeDesc)
-		: p1_(p1), p2_(p2), correlation_(correlation), xGrid_(xGrid), yGrid_(yGrid), tGrid_(tGrid),	dampingSteps_(dampingSteps), schemeDesc_(schemeDesc) {}
+		: p1_(p1), p2_(p2), correlation_(correlation), xGrid_(xGrid), yGrid_(yGrid), tGrid_(tGrid),	dampingSteps_(dampingSteps), schemeDesc_(schemeDesc) {
+	}
 
 	void FdAutocallEngine::calculate() const {
+
 		// 1. Payoff
 		const boost::shared_ptr<BasketPayoff> payoff = arguments_.terminalPayoff;
 		// 1.1 AutoCall Condition

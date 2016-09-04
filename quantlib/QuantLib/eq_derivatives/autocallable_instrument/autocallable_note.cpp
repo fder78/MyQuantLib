@@ -2,17 +2,24 @@
 #include <eq_derivatives\autocallable_instrument\autocallable_note.h>
 #include <ql/event.hpp>
 #include <ql/exercise.hpp>
+#include <ql/settings.hpp>
 
 namespace QuantLib {
 
 	AutocallableNote::AutocallableNote(const Real notionalAmt,
-		const std::vector<Date>& autocallDates,
-		const std::vector<Date>& paymentDates,
+		const Schedule&autocallDates,
+		const Schedule& paymentDates,
 		const std::vector<boost::shared_ptr<AutocallCondition> >& autocallConditions,
 		const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
 		const boost::shared_ptr<BasketPayoff> terminalPayoff) 
-		: notionalAmt_(notionalAmt), autocallDates_(autocallDates), paymentDates_(paymentDates),
-		autocallConditions_(autocallConditions), autocallPayoffs_(autocallPayoffs), terminalPayoff_(terminalPayoff), isKI_(false) {}
+		: notionalAmt_(notionalAmt),
+		autocallConditions_(autocallConditions), autocallPayoffs_(autocallPayoffs), terminalPayoff_(terminalPayoff), isKI_(false) {
+
+		for (Size i = 1; i < autocallDates.size(); ++i) {
+			autocallDates_.push_back(autocallDates[i]);
+			paymentDates_.push_back(paymentDates[i]);
+		}
+	}
 
 	bool AutocallableNote::isExpired() const {
 		return detail::simple_event(autocallDates_.back()).hasOccurred();
@@ -70,6 +77,7 @@ namespace QuantLib {
 		arguments->autocallPayoffs = autocallPayoffs_;
 		arguments->terminalPayoff = terminalPayoff_;
 		arguments->isKI = isKI_;
+		
 	}
 
 	void AutocallableNote::fetchResults(const PricingEngine::results* r) const {
@@ -82,5 +90,6 @@ namespace QuantLib {
 		vega_ = results->vega;
 		rho_ = results->rho;
 		dividendRho_ = results->dividendRho;
+		
 	}
 }
