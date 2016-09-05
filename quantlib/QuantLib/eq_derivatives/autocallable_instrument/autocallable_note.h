@@ -21,15 +21,21 @@ namespace QuantLib {
 			const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
 			const boost::shared_ptr<BasketPayoff> terminalPayoff);
 
-		void withKI(const Real kibarrier, boost::shared_ptr<BasketPayoff> KIPayoff) {
+		void withKI(boost::shared_ptr<AutocallCondition> kibarrier, 
+			boost::shared_ptr<BasketPayoff> KIPayoff) {
+			QL_REQUIRE(kibarrier->getBarrier() > 0, "KI Barrier should be positive.");
 			kibarrier_ = kibarrier;
 			KIPayoff_ = KIPayoff;
+		}
+
+		void hasKnockedIn() {
 			isKI_ = true;
 		}
 
 		bool isExpired() const;
 		std::vector<Real> delta() const;
 		std::vector<Real> gamma() const;
+		std::vector<Real> xgamma() const;
 		std::vector<Real> theta() const;
 		std::vector<Real> vega() const;
 		std::vector<Real> rho() const;
@@ -48,11 +54,11 @@ namespace QuantLib {
 		boost::shared_ptr<BasketPayoff> KIPayoff_;
 		void setupExpired() const;
 		bool isKI_;
-		Real kibarrier_;
+		boost::shared_ptr<AutocallCondition> kibarrier_;
 
 
 		// results
-		mutable std::vector<Real> delta_, gamma_, theta_, vega_, rho_, dividendRho_;
+		mutable std::vector<Real> delta_, gamma_, xgamma_, theta_, vega_, rho_, dividendRho_;
 	};
 
 	class AutocallableNote::arguments : public virtual PricingEngine::arguments {
@@ -64,7 +70,8 @@ namespace QuantLib {
 		std::vector<Date> paymentDates;
 		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
 		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
-		boost::shared_ptr<BasketPayoff> terminalPayoff;
+		boost::shared_ptr<BasketPayoff> terminalPayoff, KIPayoff;
+		boost::shared_ptr<AutocallCondition> kibarrier;
 		bool isKI;
 	};
 
@@ -72,9 +79,9 @@ namespace QuantLib {
 	public:
 		void reset() {
 			Instrument::results::reset();
-			delta = gamma = theta = vega = rho = dividendRho = std::vector<Real>();
+			xgamma = delta = gamma = theta = vega = rho = dividendRho = std::vector<Real>();
 		}
-		std::vector<Real> delta, gamma, theta, vega, rho, dividendRho;
+		std::vector<Real> delta, gamma, xgamma, theta, vega, rho, dividendRho;
 	};
 
 	class AutocallableNote::engine

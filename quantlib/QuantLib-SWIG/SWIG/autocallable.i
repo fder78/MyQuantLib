@@ -14,10 +14,12 @@ using QuantLib::GeneralPayoff;
 using QuantLib::AutocallableNote;
 using QuantLib::AutocallCondition;
 using QuantLib::MinUpCondition;
+using QuantLib::MinDownCondition;
 typedef boost::shared_ptr<Payoff> GeneralPayoffPtr;
 typedef boost::shared_ptr<BasketPayoff> MinBasketPayoffPtr2;
 typedef boost::shared_ptr<Instrument> AutocallableNotePtr;
 typedef boost::shared_ptr<AutocallCondition> MinUpConditionPtr;
+typedef boost::shared_ptr<AutocallCondition> MinDownConditionPtr;
 %}
 
 %ignore AutocallCondition;
@@ -65,9 +67,18 @@ class AutocallableNotePtr : public boost::shared_ptr<Instrument> {
 			const boost::shared_ptr<BasketPayoff> terminalPayoff) {
 			
             return new AutocallableNotePtr(new AutocallableNote(
-			notionalAmt, autocallDates, paymentDates, autocallConditions, autocallPayoffs, terminalPayoff));
-			
+			notionalAmt, autocallDates, paymentDates, autocallConditions, autocallPayoffs, terminalPayoff));			
         }
+				
+		void withKIBarrier(boost::shared_ptr<AutocallCondition> kibarrier, 
+			boost::shared_ptr<BasketPayoff> KIPayoff) {
+			boost::dynamic_pointer_cast<AutocallableNote>(*self)->withKI(kibarrier, KIPayoff);
+		}
+
+		void hasKnockedIn() {
+			boost::dynamic_pointer_cast<AutocallableNote>(*self)->hasKnockedIn();
+		}
+		
 		std::vector<Real> delta() const {
             return boost::dynamic_pointer_cast<AutocallableNote>(*self)->delta();
         }
@@ -76,6 +87,9 @@ class AutocallableNotePtr : public boost::shared_ptr<Instrument> {
         }
 		std::vector<Real> theta() const {
             return boost::dynamic_pointer_cast<AutocallableNote>(*self)->theta();
+        }
+		std::vector<Real> xgamma() const {
+            return boost::dynamic_pointer_cast<AutocallableNote>(*self)->xgamma();
         }
     }
 };
@@ -86,6 +100,16 @@ class MinUpConditionPtr : public boost::shared_ptr<AutocallCondition> {
     %extend {
         MinUpConditionPtr(Real barrier) {
             return new MinUpConditionPtr(new MinUpCondition(barrier));
+        }
+    }
+};
+
+%rename(MinDownCondition) MinDownConditionPtr;
+class MinDownConditionPtr : public boost::shared_ptr<AutocallCondition> {
+  public:
+    %extend {
+        MinDownConditionPtr(Real barrier) {
+            return new MinDownConditionPtr(new MinDownCondition(barrier));
         }
     }
 };

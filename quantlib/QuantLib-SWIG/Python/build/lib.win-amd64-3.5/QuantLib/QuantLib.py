@@ -16872,16 +16872,70 @@ class GeneralPayoff(Payoff):
 GeneralPayoff_swigregister = _QuantLib.GeneralPayoff_swigregister
 GeneralPayoff_swigregister(GeneralPayoff)
 
-class AutocallableNote(object):
+class BasketPayoff2(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, notionalAmt: 'Real const', autocallDates: 'DateVector', paymentDates: 'DateVector', autocallConditions: 'AutocallConditionVector', autocallPayoffs: 'BasketPayoffVector', terminalPayoff: 'boost::shared_ptr< BasketPayoff > const'):
+    def __deref__(self) -> "BasketPayoff *":
+        return _QuantLib.BasketPayoff2___deref__(self)
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.BasketPayoff2___nonzero__(self)
+
+    def __init__(self):
+        this = _QuantLib.new_BasketPayoff2()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_BasketPayoff2
+    __del__ = lambda self: None
+BasketPayoff2_swigregister = _QuantLib.BasketPayoff2_swigregister
+BasketPayoff2_swigregister(BasketPayoff2)
+
+class MinBasketPayoff2(BasketPayoff2):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, p: 'Payoff'):
+        this = _QuantLib.new_MinBasketPayoff2(p)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_MinBasketPayoff2
+    __del__ = lambda self: None
+MinBasketPayoff2_swigregister = _QuantLib.MinBasketPayoff2_swigregister
+MinBasketPayoff2_swigregister(MinBasketPayoff2)
+
+class AutocallableNote(Instrument):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, notionalAmt: 'Real const', autocallDates: 'Schedule', paymentDates: 'Schedule', autocallConditions: 'AutocallConditionVector', autocallPayoffs: 'BasketPayoffVector', terminalPayoff: 'BasketPayoff2'):
         this = _QuantLib.new_AutocallableNote(notionalAmt, autocallDates, paymentDates, autocallConditions, autocallPayoffs, terminalPayoff)
         try:
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
+
+    def withKIBarrier(self, kibarrier: 'AutocallCondition', KIPayoff: 'BasketPayoff2') -> "void":
+        return _QuantLib.AutocallableNote_withKIBarrier(self, kibarrier, KIPayoff)
+
+    def hasKnockedIn(self) -> "void":
+        return _QuantLib.AutocallableNote_hasKnockedIn(self)
+
+    def delta(self) -> "std::vector< Real,std::allocator< Real > >":
+        return _QuantLib.AutocallableNote_delta(self)
+
+    def gamma(self) -> "std::vector< Real,std::allocator< Real > >":
+        return _QuantLib.AutocallableNote_gamma(self)
+
+    def theta(self) -> "std::vector< Real,std::allocator< Real > >":
+        return _QuantLib.AutocallableNote_theta(self)
+
+    def xgamma(self) -> "std::vector< Real,std::allocator< Real > >":
+        return _QuantLib.AutocallableNote_xgamma(self)
     __swig_destroy__ = _QuantLib.delete_AutocallableNote
     __del__ = lambda self: None
 AutocallableNote_swigregister = _QuantLib.AutocallableNote_swigregister
@@ -16901,6 +16955,21 @@ class MinUpCondition(AutocallCondition):
     __del__ = lambda self: None
 MinUpCondition_swigregister = _QuantLib.MinUpCondition_swigregister
 MinUpCondition_swigregister(MinUpCondition)
+
+class MinDownCondition(AutocallCondition):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, barrier: 'Real'):
+        this = _QuantLib.new_MinDownCondition(barrier)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_MinDownCondition
+    __del__ = lambda self: None
+MinDownCondition_swigregister = _QuantLib.MinDownCondition_swigregister
+MinDownCondition_swigregister(MinDownCondition)
 
 class AutocallConditionVector(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -17051,7 +17120,7 @@ class BasketPayoffVector(object):
     def pop(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type":
         return _QuantLib.BasketPayoffVector_pop(self)
 
-    def append(self, x: 'std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &') -> "void":
+    def append(self, x: 'BasketPayoff2') -> "void":
         return _QuantLib.BasketPayoffVector_append(self, x)
 
     def empty(self) -> "bool":
@@ -17094,7 +17163,7 @@ class BasketPayoffVector(object):
         except __builtin__.Exception:
             self.this = this
 
-    def push_back(self, x: 'std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &') -> "void":
+    def push_back(self, x: 'BasketPayoff2') -> "void":
         return _QuantLib.BasketPayoffVector_push_back(self, x)
 
     def front(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &":
@@ -17103,7 +17172,7 @@ class BasketPayoffVector(object):
     def back(self) -> "std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &":
         return _QuantLib.BasketPayoffVector_back(self)
 
-    def assign(self, n: 'std::vector< boost::shared_ptr< BasketPayoff > >::size_type', x: 'std::vector< boost::shared_ptr< BasketPayoff > >::value_type const &') -> "void":
+    def assign(self, n: 'std::vector< boost::shared_ptr< BasketPayoff > >::size_type', x: 'BasketPayoff2') -> "void":
         return _QuantLib.BasketPayoffVector_assign(self, n, x)
 
     def resize(self, *args) -> "void":
@@ -17121,6 +17190,21 @@ class BasketPayoffVector(object):
     __del__ = lambda self: None
 BasketPayoffVector_swigregister = _QuantLib.BasketPayoffVector_swigregister
 BasketPayoffVector_swigregister(BasketPayoffVector)
+
+class FdAutocallEngine(PricingEngine):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, process1: 'GeneralizedBlackScholesProcess', process2: 'GeneralizedBlackScholesProcess', correlation: 'Real', xGrid: 'Size'=100, yGrid: 'Size'=100, tGrid: 'Size'=50):
+        this = _QuantLib.new_FdAutocallEngine(process1, process2, correlation, xGrid, yGrid, tGrid)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_FdAutocallEngine
+    __del__ = lambda self: None
+FdAutocallEngine_swigregister = _QuantLib.FdAutocallEngine_swigregister
+FdAutocallEngine_swigregister(FdAutocallEngine)
 
 
 

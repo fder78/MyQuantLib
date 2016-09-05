@@ -496,6 +496,7 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_calculator.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_condition.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_engine.h" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_solver.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_stepcondition.h" />
     <ClInclude Include="eq_derivatives\autocallable_instrument\autocallable_note.h" />
     <ClInclude Include="eq_derivatives\autocallable_instrument\general_payoff.h" />
@@ -1769,6 +1770,7 @@
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_calculator.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_condition.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_engine.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_solver.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_stepcondition.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_instrument\autocallable_note.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_instrument\general_payoff.cpp" />

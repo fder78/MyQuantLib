@@ -299,72 +299,6 @@ void testBarraquandThreeValues() {
 
 void testEuroTwoValues() {
 
-	BasketOptionTwoData values[] = {
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.90, 10.898, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.70,  8.483, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.50,  6.844, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30,  5.531, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.10,  4.413, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.50, 0.70, 0.00,  4.981, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.50, 0.30, 0.00,  4.159, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.50, 0.10, 0.00,  2.597, 1.0e-3 },
-		{ MinBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.50, 0.10, 0.50,  4.030, 1.0e-3 },
-
-		{ MaxBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.90, 17.565, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.70, 19.980, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.50, 21.619, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30, 22.932, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.10, 24.049, 1.1e-3 },
-		{ MaxBasket, Option::Call,  100.0,  80.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30, 16.508, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0,  80.0,  80.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30,  8.049, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0,  80.0, 120.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30, 30.141, 1.0e-3 },
-		{ MaxBasket, Option::Call,  100.0, 120.0, 120.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30, 42.889, 1.0e-3 },
-
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.90, 11.369, 1.0e-3 },
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.70, 12.856, 1.0e-3 },
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.50, 13.890, 1.0e-3 },
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30, 14.741, 1.0e-3 },
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.10, 15.485, 1.0e-3 },
-
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 0.50, 0.30, 0.30, 0.10, 11.893, 1.0e-3 },
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 0.25, 0.30, 0.30, 0.10,  8.881, 1.0e-3 },
-		{ MinBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 2.00, 0.30, 0.30, 0.10, 19.268, 1.0e-3 },
-
-		{ MaxBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.90,  7.339, 1.0e-3 },
-		{ MaxBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.70,  5.853, 1.0e-3 },
-		{ MaxBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.50,  4.818, 1.0e-3 },
-		{ MaxBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.30,  3.967, 1.1e-3 },
-		{ MaxBasket,  Option::Put,  100.0, 100.0, 100.0, 0.00, 0.00, 0.05, 1.00, 0.30, 0.30, 0.10,  3.223, 1.0e-3 },
-
-		{ MinBasket, Option::Call,   98.0, 100.0, 105.0, 0.00, 0.00, 0.05, 0.50, 0.11, 0.16, 0.63,  4.8177, 1.0e-4 },
-		{ MaxBasket, Option::Call,   98.0, 100.0, 105.0, 0.00, 0.00, 0.05, 0.50, 0.11, 0.16, 0.63, 11.6323, 1.0e-4 },
-		{ MinBasket,  Option::Put,   98.0, 100.0, 105.0, 0.00, 0.00, 0.05, 0.50, 0.11, 0.16, 0.63,  2.0376, 1.0e-4 },
-		{ MaxBasket,  Option::Put,   98.0, 100.0, 105.0, 0.00, 0.00, 0.05, 0.50, 0.11, 0.16, 0.63,  0.5731, 1.0e-4 },
-		{ MinBasket, Option::Call,   98.0, 100.0, 105.0, 0.06, 0.09, 0.05, 0.50, 0.11, 0.16, 0.63,  2.9340, 1.0e-4 },
-		{ MinBasket,  Option::Put,   98.0, 100.0, 105.0, 0.06, 0.09, 0.05, 0.50, 0.11, 0.16, 0.63,  3.5224, 1.0e-4 },
-		{ MaxBasket, Option::Call,   98.0, 100.0, 105.0, 0.06, 0.09, 0.05, 0.50, 0.11, 0.16, 0.63,  8.0701, 1.0e-4 },
-		{ MaxBasket,  Option::Put,   98.0, 100.0, 105.0, 0.06, 0.09, 0.05, 0.50, 0.11, 0.16, 0.63,  1.2181, 1.0e-4 },
-
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.20, 0.20, -0.5, 4.7530, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.20, 0.20,  0.0, 3.7970, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.20, 0.20,  0.5, 2.5537, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.25, 0.20, -0.5, 5.4275, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.25, 0.20,  0.0, 4.3712, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.25, 0.20,  0.5, 3.0086, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.20, 0.25, -0.5, 5.4061, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.20, 0.25,  0.0, 4.3451, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.1, 0.20, 0.25,  0.5, 2.9723, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.20, 0.20, -0.5,10.7517, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.20, 0.20,  0.0, 8.7020, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.20, 0.20,  0.5, 6.0257, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.25, 0.20, -0.5,12.1941, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.25, 0.20,  0.0, 9.9340, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.25, 0.20,  0.5, 7.0067, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.20, 0.25, -0.5,12.1483, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.20, 0.25,  0.0, 9.8780, 1.0e-3 },
-		{ SpreadBasket, Option::Call, 3.0,  122.0, 120.0, 0.0, 0.0, 0.10,  0.5, 0.20, 0.25,  0.5, 6.9284, 1.0e-3 }
-	};
-
 	DayCounter dc = Actual360();
 	Date today = Date::todaysDate();
 
@@ -396,133 +330,76 @@ void testEuroTwoValues() {
 	Period tenor(6, Months);
 	Real redempBarrier[6] = { 90,90,85,85,80,60 };
 
-	for (Size i = 0; i<LENGTH(values); i++) {
-		Real x[] = { 0, redempBarrier[5] };
-		Real y[] = { 0, notional*(1 + couponRate * mat) };
-		Real slope[] = { notional / 100., 0.0};
-		boost::shared_ptr<Payoff> terPayoff(new GeneralPayoff(
-			std::vector<Real>(x, x+1), std::vector<Real>(y, y+1), std::vector<Real>(slope, slope+1)));
-		boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(terPayoff));
+	Real x[] = { 0, redempBarrier[5] };
+	Real y[] = { 0, 100*(1 + couponRate * mat) };
+	Real slope[] = { 1.0, 0.0 };
+	boost::shared_ptr<Payoff> terPayoff(new GeneralPayoff(
+		std::vector<Real>(x, x + 1), std::vector<Real>(y, y + 1), std::vector<Real>(slope, slope + 1)));
+	boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(terPayoff));
 
-		std::vector<Date> dates;
-		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
-		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
-		Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
-		for (Size i = 0; i < dates.size(); ++i) {
-			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
-			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
-				std::vector<Real>(1, 0), std::vector<Real>(1, notional*(1+couponRate*(i+1))), std::vector<Real>(1, 0)));
-			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
-		}
-		//boost::shared_ptr<Exercise> exercise(new BermudanExercise(dates));
-
-		spot1->setValue(values[i].s1);
-		spot2->setValue(values[i].s2);
-		qRate1->setValue(values[i].q1);
-		qRate2->setValue(values[i].q2);
-		rRate->setValue(values[i].r);
-		vol1->setValue(values[i].v1);
-		vol2->setValue(values[i].v2);
-
-		boost::shared_ptr<PricingEngine> analyticEngine;
-		boost::shared_ptr<GeneralizedBlackScholesProcess> p1, p2;
-		switch (values[i].basketType) {
-		case MaxBasket:
-		case MinBasket:
-			p1 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
-				new BlackScholesMertonProcess(
-					Handle<Quote>(spot1),
-					Handle<YieldTermStructure>(qTS1),
-					Handle<YieldTermStructure>(rTS),
-					Handle<BlackVolTermStructure>(volTS1)));
-			p2 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
-				new BlackScholesMertonProcess(
-					Handle<Quote>(spot2),
-					Handle<YieldTermStructure>(qTS2),
-					Handle<YieldTermStructure>(rTS),
-					Handle<BlackVolTermStructure>(volTS2)));
-			analyticEngine = boost::shared_ptr<PricingEngine>(
-				new StulzEngine(p1, p2, values[i].rho));
-			break;
-		case SpreadBasket:
-			p1 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
-				new BlackProcess(Handle<Quote>(spot1),
-					Handle<YieldTermStructure>(rTS),
-					Handle<BlackVolTermStructure>(volTS1)));
-			p2 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
-				new BlackProcess(Handle<Quote>(spot2),
-					Handle<YieldTermStructure>(rTS),
-					Handle<BlackVolTermStructure>(volTS2)));
-
-			analyticEngine = boost::shared_ptr<PricingEngine>(
-				new KirkEngine(boost::dynamic_pointer_cast<BlackProcess>(p1),
-					boost::dynamic_pointer_cast<BlackProcess>(p2),
-					values[i].rho));
-			break;
-		default:
-			QL_FAIL("unknown basket type");
-		}
-
-		std::vector<boost::shared_ptr<StochasticProcess1D> > procs;
-		procs.push_back(p1);
-		procs.push_back(p2);
-
-		Matrix correlationMatrix(2, 2, values[i].rho);
-		for (Integer j = 0; j < 2; j++) {
-			correlationMatrix[j][j] = 1.0;
-		}
-
-		boost::shared_ptr<StochasticProcessArray> process(
-			new StochasticProcessArray(procs, correlationMatrix));
-
-		boost::shared_ptr<PricingEngine> mcEngine =
-			MakeMCEuropeanBasketEngine<PseudoRandom, Statistics>(process)
-			.withStepsPerYear(1)
-			.withSamples(10000)
-			.withSeed(42);
-
-		boost::shared_ptr<PricingEngine> fdEngine(
-			new FdAutocallEngine(p1, p2, values[i].rho,	50, 50, 15));
-
-		AutocallableNote autocallable(
-			notional, //notional
-			exDate, //exercise
-			exDate, //payment
-			autocallConditions,
-			autocallPayoffs,
-			terminalPayoff
-			);
-
-		//// analytic engine
-		//basketOption.setPricingEngine(analyticEngine);
-		//Real calculated = basketOption.NPV();
-		Real expected = values[i].result;
-		//Real error = std::fabs(calculated - expected);
-		//std::cout << calculated << " " << expected << " " << error << std::endl;
-
-		// fd engine
-		autocallable.setPricingEngine(fdEngine);
-		Real calculated = autocallable.NPV();
-		std::cout << "price=" << calculated << std::endl;
-		std::cout << "theta=" << autocallable.theta()[0] << std::endl;
-		std::cout << "delta=" << autocallable.delta()[0] << "   " << autocallable.delta()[1] << std::endl;
-		std::cout << "gamma=" << autocallable.gamma()[0] << "   " << autocallable.gamma()[1] << std::endl;
-		std::cout << std::string(30, '-') << std::endl;
-
-		//// mc engine
-		//basketOption.setPricingEngine(mcEngine);
-		//calculated = basketOption.NPV();
-		//relError = relativeError(calculated, expected, values[i].s1);
-		//std::cout << calculated << " " << expected << " " << relError << std::endl;
-		//std::cout << std::string(30, '-') << std::endl;
+	std::vector<Date> dates;
+	std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
+	std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
+	Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
+	for (Size i = 0; i < dates.size(); ++i) {
+		autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
+		boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
+			std::vector<Real>(1, 0), std::vector<Real>(1, notional*(1 + couponRate*(i + 1))), std::vector<Real>(1, 0)));
+		autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
 	}
+
+	spot1->setValue(50);
+	spot2->setValue(50);
+	qRate1->setValue(0.01);
+	qRate2->setValue(0.01);
+	rRate->setValue(0.02);
+	vol1->setValue(0.2);
+	vol2->setValue(0.2);
+
+	boost::shared_ptr<PricingEngine> analyticEngine;
+	boost::shared_ptr<GeneralizedBlackScholesProcess> p1, p2;
+	p1 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
+		new BlackScholesMertonProcess(
+			Handle<Quote>(spot1),
+			Handle<YieldTermStructure>(qTS1),
+			Handle<YieldTermStructure>(rTS),
+			Handle<BlackVolTermStructure>(volTS1)));
+	p2 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
+		new BlackScholesMertonProcess(
+			Handle<Quote>(spot2),
+			Handle<YieldTermStructure>(qTS2),
+			Handle<YieldTermStructure>(rTS),
+			Handle<BlackVolTermStructure>(volTS2)));
+
+	boost::shared_ptr<PricingEngine> fdEngine(
+		new FdAutocallEngine(p1, p2, 0.6, 50, 50, 15));
+
+	AutocallableNote autocallable(
+		notional, //notional
+		exDate, //exercise
+		exDate, //payment
+		autocallConditions,
+		autocallPayoffs,
+		terminalPayoff
+		);
+
+	// fd engine
+	autocallable.setPricingEngine(fdEngine);
+	Real calculated = autocallable.NPV();
+	std::cout << "price=" << calculated << std::endl;
+	std::cout << "theta=" << autocallable.theta()[0] << std::endl;
+	std::cout << "delta=" << autocallable.delta()[0] << "   " << autocallable.delta()[1] << std::endl;
+	std::cout << "gamma=" << autocallable.gamma()[0] << "   " << autocallable.gamma()[1] << std::endl;
+	std::cout << "xgamma=" << autocallable.xgamma()[0] << std::endl;
+	std::cout << std::string(30, '-') << std::endl;
+
 }
 
 
 
 int main(int, char*[]) {
 	try {
-		
+
 		boost::timer timer;
 		testEuroTwoValues();
 		std::cout << "time = " << timer.elapsed() << std::endl;

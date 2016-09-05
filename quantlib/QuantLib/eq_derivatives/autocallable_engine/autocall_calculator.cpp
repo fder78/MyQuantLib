@@ -10,8 +10,7 @@ namespace QuantLib {
 	FdmAutocallInnerValue::FdmAutocallInnerValue(
 		const boost::shared_ptr<BasketPayoff>& payoff,
 		const boost::shared_ptr<FdmMesher>& mesher)
-		: payoff_(payoff),
-		mesher_(mesher) { }
+		: payoff_(payoff), mesher_(mesher) { }
 
 	Real FdmAutocallInnerValue::innerValue(
 		const FdmLinearOpIterator& iter, Time) {

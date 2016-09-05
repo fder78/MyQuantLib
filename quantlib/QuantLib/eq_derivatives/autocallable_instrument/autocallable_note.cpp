@@ -13,7 +13,8 @@ namespace QuantLib {
 		const std::vector<boost::shared_ptr<BasketPayoff> >& autocallPayoffs,
 		const boost::shared_ptr<BasketPayoff> terminalPayoff) 
 		: notionalAmt_(notionalAmt),
-		autocallConditions_(autocallConditions), autocallPayoffs_(autocallPayoffs), terminalPayoff_(terminalPayoff), isKI_(false) {
+		autocallConditions_(autocallConditions), autocallPayoffs_(autocallPayoffs), terminalPayoff_(terminalPayoff), 
+		isKI_(false), kibarrier_(boost::shared_ptr<AutocallCondition>(new NullAutocallCondition())) {
 
 		for (Size i = 1; i < autocallDates.size(); ++i) {
 			autocallDates_.push_back(autocallDates[i]);
@@ -35,6 +36,12 @@ namespace QuantLib {
 		calculate();
 		QL_REQUIRE(gamma_.size()>0, "gamma not provided");
 		return gamma_;
+	}
+
+	std::vector<Real> AutocallableNote::xgamma() const {
+		calculate();
+		QL_REQUIRE(gamma_.size()>0, "gamma not provided");
+		return xgamma_;
 	}
 
 	std::vector<Real> AutocallableNote::theta() const {
@@ -63,7 +70,7 @@ namespace QuantLib {
 
 	void AutocallableNote::setupExpired() const {
 		NPV_ = 0.0;
-		delta_ = gamma_ = theta_ = vega_ = rho_ = dividendRho_ = std::vector<Real>();
+		xgamma_ = delta_ = gamma_ = theta_ = vega_ = rho_ = dividendRho_ = std::vector<Real>();
 	}
 
 
@@ -77,7 +84,8 @@ namespace QuantLib {
 		arguments->autocallPayoffs = autocallPayoffs_;
 		arguments->terminalPayoff = terminalPayoff_;
 		arguments->isKI = isKI_;
-		
+		arguments->kibarrier = kibarrier_;
+		arguments->KIPayoff = KIPayoff_;
 	}
 
 	void AutocallableNote::fetchResults(const PricingEngine::results* r) const {
@@ -86,6 +94,7 @@ namespace QuantLib {
 		QL_ENSURE(results != 0, "no greeks returned from pricing engine");
 		delta_ = results->delta;
 		gamma_ = results->gamma;
+		xgamma_ = results->xgamma;
 		theta_ = results->theta;
 		vega_ = results->vega;
 		rho_ = results->rho;
