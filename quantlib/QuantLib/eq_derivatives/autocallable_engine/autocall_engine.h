@@ -10,6 +10,7 @@ namespace QuantLib {
 	class FdAutocallEngine : public AutocallableNote::engine {
 	public:
 		FdAutocallEngine(
+			const boost::shared_ptr<YieldTermStructure>& disc,
 			const boost::shared_ptr<GeneralizedBlackScholesProcess>& p1,
 			const boost::shared_ptr<GeneralizedBlackScholesProcess>& p2,
 			Real correlation,
@@ -20,6 +21,7 @@ namespace QuantLib {
 		void calculate() const;
 
 	private:
+		const boost::shared_ptr<YieldTermStructure>& disc_;
 		const boost::shared_ptr<GeneralizedBlackScholesProcess> p1_;
 		const boost::shared_ptr<GeneralizedBlackScholesProcess> p2_;
 		const Real correlation_;

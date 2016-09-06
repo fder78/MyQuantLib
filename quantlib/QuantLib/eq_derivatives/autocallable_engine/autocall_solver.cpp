@@ -1,20 +1,20 @@
 
 #include <ql/processes/blackscholesprocess.hpp>
-#include <ql/methods/finitedifferences/solvers/fdm2dimsolver.hpp>
-#include <ql/methods/finitedifferences/operators/fdm2dblackscholesop.hpp>
+#include <eq_derivatives/autocallable_engine/autocall_fdm2dimsolver.h>
+#include <eq_derivatives/autocallable_engine/autocall_fdm2dblackscholesop.h>
 #include <eq_derivatives/autocallable_engine/autocall_solver.h>
 
 
 namespace QuantLib {
 
 	AutocallSolver::AutocallSolver(
+		const Handle<YieldTermStructure>& disc,
 		const Handle<GeneralizedBlackScholesProcess>& p1,
 		const Handle<GeneralizedBlackScholesProcess>& p2,
 		const Real correlation,
 		const FdmSolverDesc& solverDesc,
 		const FdmSchemeDesc& schemeDesc)
-		: p1_(p1),
-		p2_(p2),
+		: disc_(disc), p1_(p1), p2_(p2),
 		correlation_(correlation),
 		solverDesc_(solverDesc),
 		schemeDesc_(schemeDesc) {
@@ -25,15 +25,16 @@ namespace QuantLib {
 
 	void AutocallSolver::performCalculations() const {
 
-		boost::shared_ptr<Fdm2dBlackScholesOp> op(
-			new Fdm2dBlackScholesOp(solverDesc_.mesher,
+		boost::shared_ptr<AutocallFdm2dBlackScholesOp> op(
+			new AutocallFdm2dBlackScholesOp(solverDesc_.mesher,
+				disc_.currentLink(),
 				p1_.currentLink(),
 				p2_.currentLink(),
 				correlation_,
 				solverDesc_.maturity));
 
-		solver_ = boost::shared_ptr<Fdm2DimSolver>(
-			new Fdm2DimSolver(solverDesc_, schemeDesc_, op));
+		solver_ = boost::shared_ptr<AutocallFdm2DimSolver>(
+			new AutocallFdm2DimSolver(solverDesc_, schemeDesc_, op));
 	}
 
 	Real AutocallSolver::valueAt(Real u, Real v) const {

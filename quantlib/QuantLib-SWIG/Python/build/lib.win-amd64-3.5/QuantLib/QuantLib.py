@@ -17195,8 +17195,8 @@ class FdAutocallEngine(PricingEngine):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, process1: 'GeneralizedBlackScholesProcess', process2: 'GeneralizedBlackScholesProcess', correlation: 'Real', xGrid: 'Size'=100, yGrid: 'Size'=100, tGrid: 'Size'=50):
-        this = _QuantLib.new_FdAutocallEngine(process1, process2, correlation, xGrid, yGrid, tGrid)
+    def __init__(self, disc: 'YieldTermStructure', process1: 'GeneralizedBlackScholesProcess', process2: 'GeneralizedBlackScholesProcess', correlation: 'Real', xGrid: 'Size'=100, yGrid: 'Size'=100, tGrid: 'Size'=50):
+        this = _QuantLib.new_FdAutocallEngine(disc, process1, process2, correlation, xGrid, yGrid, tGrid)
         try:
             self.this.append(this)
         except __builtin__.Exception:

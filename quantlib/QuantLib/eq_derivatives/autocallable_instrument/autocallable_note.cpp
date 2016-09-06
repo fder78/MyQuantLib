@@ -23,7 +23,7 @@ namespace QuantLib {
 	}
 
 	bool AutocallableNote::isExpired() const {
-		return detail::simple_event(autocallDates_.back()).hasOccurred();
+		return detail::simple_event(autocallDates_.back()).hasOccurred(Date(), true);
 	}
 
 	std::vector<Real> AutocallableNote::delta() const {

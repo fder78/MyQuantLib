@@ -300,99 +300,116 @@ void testBarraquandThreeValues() {
 void testEuroTwoValues() {
 
 	DayCounter dc = Actual360();
-	Date today = Date::todaysDate();
+	Date today0 = Date::todaysDate();
 
-	boost::shared_ptr<SimpleQuote> spot1(new SimpleQuote(0.0));
-	boost::shared_ptr<SimpleQuote> spot2(new SimpleQuote(0.0));
+	for (Size i = 0; i < 24; ++i) {
+		Date effectiveDate(10, June, 2016);
+		Settings::instance().evaluationDate() = effectiveDate + i*Months;
+		Date today = Settings::instance().evaluationDate();
+		boost::shared_ptr<SimpleQuote> spot1(new SimpleQuote(0.0));
+		boost::shared_ptr<SimpleQuote> spot2(new SimpleQuote(0.0));
 
-	boost::shared_ptr<SimpleQuote> qRate1(new SimpleQuote(0.0));
-	boost::shared_ptr<YieldTermStructure> qTS1 = flatRate(today, qRate1, dc);
-	boost::shared_ptr<SimpleQuote> qRate2(new SimpleQuote(0.0));
-	boost::shared_ptr<YieldTermStructure> qTS2 = flatRate(today, qRate2, dc);
+		boost::shared_ptr<SimpleQuote> qRate1(new SimpleQuote(0.0));
+		boost::shared_ptr<YieldTermStructure> qTS1 = flatRate(today, qRate1, dc);
+		boost::shared_ptr<SimpleQuote> qRate2(new SimpleQuote(0.0));
+		boost::shared_ptr<YieldTermStructure> qTS2 = flatRate(today, qRate2, dc);
 
-	boost::shared_ptr<SimpleQuote> rRate(new SimpleQuote(0.0));
-	boost::shared_ptr<YieldTermStructure> rTS = flatRate(today, rRate, dc);
+		boost::shared_ptr<SimpleQuote> rRate(new SimpleQuote(0.0));
+		boost::shared_ptr<YieldTermStructure> rTS = flatRate(today, rRate, dc);
 
-	boost::shared_ptr<SimpleQuote> vol1(new SimpleQuote(0.0));
-	boost::shared_ptr<BlackVolTermStructure> volTS1 = flatVol(today, vol1, dc);
-	boost::shared_ptr<SimpleQuote> vol2(new SimpleQuote(0.0));
-	boost::shared_ptr<BlackVolTermStructure> volTS2 = flatVol(today, vol2, dc);
+		boost::shared_ptr<SimpleQuote> discRate(new SimpleQuote(0.0));
+		boost::shared_ptr<YieldTermStructure> discTS = flatRate(today, rRate, dc);
 
-	const Real mcRelativeErrorTolerance = 0.01;
-	const Real fdRelativeErrorTolerance = 0.01;
+		boost::shared_ptr<SimpleQuote> vol1(new SimpleQuote(0.0));
+		boost::shared_ptr<BlackVolTermStructure> volTS1 = flatVol(today, vol1, dc);
+		boost::shared_ptr<SimpleQuote> vol2(new SimpleQuote(0.0));
+		boost::shared_ptr<BlackVolTermStructure> volTS2 = flatVol(today, vol2, dc);
 
-	//Spec.
-	Real notional = 10000;
-	Real couponRate = 0.06;
-	Real mat = 3;
-	Date effectiveDate(10, June, 2016);
-	Date terminationDate = effectiveDate + mat * Years;
-	Period tenor(6, Months);
-	Real redempBarrier[6] = { 90,90,85,85,80,60 };
+		const Real mcRelativeErrorTolerance = 0.01;
+		const Real fdRelativeErrorTolerance = 0.01;
 
-	Real x[] = { 0, redempBarrier[5] };
-	Real y[] = { 0, 100*(1 + couponRate * mat) };
-	Real slope[] = { 1.0, 0.0 };
-	boost::shared_ptr<Payoff> terPayoff(new GeneralPayoff(
-		std::vector<Real>(x, x + 1), std::vector<Real>(y, y + 1), std::vector<Real>(slope, slope + 1)));
-	boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(terPayoff));
+		//Spec.
+		Real notional = 10000;
+		Real couponRate = 0.06;
+		Real mat = 3;
+		
+		Date terminationDate = effectiveDate + mat * Years;
+		Period tenor(6, Months);
+		Real redempBarrier[6] = { 90,90,85,85,80,80 };
+		Real kibarrier = 50;
 
-	std::vector<Date> dates;
-	std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
-	std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
-	Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
-	for (Size i = 0; i < dates.size(); ++i) {
-		autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
-		boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
-			std::vector<Real>(1, 0), std::vector<Real>(1, notional*(1 + couponRate*(i + 1))), std::vector<Real>(1, 0)));
-		autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
+		Real x[] = { 0, kibarrier };
+		Real y[] = { 0, 100 * (1 + couponRate * mat) };
+		Real slope[] = { 1.0, 0.0 };
+		boost::shared_ptr<Payoff> terPayoff(new GeneralPayoff(
+			std::vector<Real>(x, x + 2), std::vector<Real>(y, y + 2), std::vector<Real>(slope, slope + 2)));
+		boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(terPayoff));
+
+		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
+		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
+		Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
+		for (Size i = 0; i < exDate.size() - 1; ++i) {
+			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
+			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
+				std::vector<Real>(1, 0), std::vector<Real>(1, 100 * (1 + couponRate*(i + 1)/2.0)), std::vector<Real>(1, 0)));
+			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
+		}
+
+		spot1->setValue(10);
+		spot2->setValue(10);
+		qRate1->setValue(0.01);
+		qRate2->setValue(0.01);
+		rRate->setValue(0.02);
+		vol1->setValue(0.2);
+		vol2->setValue(0.2);
+
+		boost::shared_ptr<PricingEngine> analyticEngine;
+		boost::shared_ptr<GeneralizedBlackScholesProcess> p1, p2;
+		p1 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
+			new BlackScholesMertonProcess(
+				Handle<Quote>(spot1),
+				Handle<YieldTermStructure>(qTS1),
+				Handle<YieldTermStructure>(rTS),
+				Handle<BlackVolTermStructure>(volTS1)));
+		p2 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
+			new BlackScholesMertonProcess(
+				Handle<Quote>(spot2),
+				Handle<YieldTermStructure>(qTS2),
+				Handle<YieldTermStructure>(rTS),
+				Handle<BlackVolTermStructure>(volTS2)));
+
+		boost::shared_ptr<PricingEngine> fdEngine(
+			new FdAutocallEngine(discTS, p1, p2, 0.6, 100, 100, 50));
+
+		AutocallableNote autocallable(
+			notional, //notional
+			exDate, //exercise
+			exDate, //payment
+			autocallConditions,
+			autocallPayoffs,
+			terminalPayoff
+			);
+		
+
+		Real kix[] = { 0, redempBarrier[5] };
+		Real kiy[] = { 0, 100 * (1 + couponRate * mat) };
+		Real kislope[] = { 1.0, 0.0 };
+		boost::shared_ptr<Payoff> kiPayoff(new GeneralPayoff(std::vector<Real>(kix, kix + 2), std::vector<Real>(kiy, kiy + 2), std::vector<Real>(kislope, kislope + 2)));
+		boost::shared_ptr<BasketPayoff> KIPayoff(new MinBasketPayoff(kiPayoff));
+		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kibarrier));
+		autocallable.withKI(kiCondition, KIPayoff);
+		autocallable.hasKnockedIn();
+
+		// fd engine
+		autocallable.setPricingEngine(fdEngine);
+		Real calculated = autocallable.NPV();
+		std::cout << "price=" << calculated << std::endl;
+		std::cout << "theta=" << autocallable.theta()[0] << std::endl;
+		std::cout << "delta=" << autocallable.delta()[0] << "   " << autocallable.delta()[1] << std::endl;
+		std::cout << "gamma=" << autocallable.gamma()[0] << "   " << autocallable.gamma()[1] << std::endl;
+		std::cout << "xgamma=" << autocallable.xgamma()[0] << std::endl;
+		std::cout << std::string(30, '-') << std::endl;
 	}
-
-	spot1->setValue(50);
-	spot2->setValue(50);
-	qRate1->setValue(0.01);
-	qRate2->setValue(0.01);
-	rRate->setValue(0.02);
-	vol1->setValue(0.2);
-	vol2->setValue(0.2);
-
-	boost::shared_ptr<PricingEngine> analyticEngine;
-	boost::shared_ptr<GeneralizedBlackScholesProcess> p1, p2;
-	p1 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
-		new BlackScholesMertonProcess(
-			Handle<Quote>(spot1),
-			Handle<YieldTermStructure>(qTS1),
-			Handle<YieldTermStructure>(rTS),
-			Handle<BlackVolTermStructure>(volTS1)));
-	p2 = boost::shared_ptr<GeneralizedBlackScholesProcess>(
-		new BlackScholesMertonProcess(
-			Handle<Quote>(spot2),
-			Handle<YieldTermStructure>(qTS2),
-			Handle<YieldTermStructure>(rTS),
-			Handle<BlackVolTermStructure>(volTS2)));
-
-	boost::shared_ptr<PricingEngine> fdEngine(
-		new FdAutocallEngine(p1, p2, 0.6, 50, 50, 15));
-
-	AutocallableNote autocallable(
-		notional, //notional
-		exDate, //exercise
-		exDate, //payment
-		autocallConditions,
-		autocallPayoffs,
-		terminalPayoff
-		);
-
-	// fd engine
-	autocallable.setPricingEngine(fdEngine);
-	Real calculated = autocallable.NPV();
-	std::cout << "price=" << calculated << std::endl;
-	std::cout << "theta=" << autocallable.theta()[0] << std::endl;
-	std::cout << "delta=" << autocallable.delta()[0] << "   " << autocallable.delta()[1] << std::endl;
-	std::cout << "gamma=" << autocallable.gamma()[0] << "   " << autocallable.gamma()[1] << std::endl;
-	std::cout << "xgamma=" << autocallable.xgamma()[0] << std::endl;
-	std::cout << std::string(30, '-') << std::endl;
-
 }
 
 

@@ -7,12 +7,13 @@
 
 namespace QuantLib {
 
-	class Fdm2DimSolver;
+	class AutocallFdm2DimSolver;
 	class GeneralizedBlackScholesProcess;
 
 	class AutocallSolver : public LazyObject {
 	public:
 		AutocallSolver(
+			const Handle<YieldTermStructure>& disc,
 			const Handle<GeneralizedBlackScholesProcess>& p1,
 			const Handle<GeneralizedBlackScholesProcess>& p2,
 			const Real correlation,
@@ -31,12 +32,13 @@ namespace QuantLib {
 		void performCalculations() const;
 
 	private:
+		const Handle<YieldTermStructure> disc_;
 		const Handle<GeneralizedBlackScholesProcess> p1_;
 		const Handle<GeneralizedBlackScholesProcess> p2_;
 		const Real correlation_;
 		const FdmSolverDesc solverDesc_;
 		const FdmSchemeDesc schemeDesc_;
 
-		mutable boost::shared_ptr<Fdm2DimSolver> solver_;
+		mutable boost::shared_ptr<AutocallFdm2DimSolver> solver_;
 	};
 }

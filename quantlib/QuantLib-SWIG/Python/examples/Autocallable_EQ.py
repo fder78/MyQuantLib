@@ -47,6 +47,7 @@ product = AutocallableNote(notional, dates, dates, autocallConditions, autocallP
 
 # market data
 underlying1 = SimpleQuote(100.0)
+discountCurve = FlatForward(today, 0.025, Actual365Fixed())
 riskFreeRate = FlatForward(today, 0.02, Actual365Fixed())
 volatility1 = BlackConstantVol(today, TARGET(), 0.20, Actual365Fixed())
 dividendYield1 = FlatForward(today, 0.01, Actual365Fixed())
@@ -65,19 +66,20 @@ process2 = BlackScholesMertonProcess(QuoteHandle(underlying2),
                                     BlackVolTermStructureHandle(volatility2))
 correlation = 0.6
 
-engine = FdAutocallEngine(process1, process2, correlation)
+engine = FdAutocallEngine(discountCurve, process1, process2, correlation)
 product.setPricingEngine(engine)
 
 print("NPV = ",product.NPV())
 print("delta = ",product.delta())
 print("gamma = ",product.gamma())
 print("theta = ",product.theta())
+print("XGamma = ",product.xgamma())
 
 
 ###################################
 #Prices & Greeks wrt. Underlying
 ###################################
-price = np.linspace(10,150,30)
+price = np.linspace(15,150,30)
 npvs = np.zeros(price.shape)
 delta = np.zeros(price.shape)
 gamma = np.zeros(price.shape)

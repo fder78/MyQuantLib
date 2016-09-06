@@ -147,7 +147,9 @@ class FdAutocallEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FdAutocallEnginePtr(const GeneralizedBlackScholesProcessPtr& process1,
+        FdAutocallEnginePtr(
+			const boost::shared_ptr<YieldTermStructure>& disc,
+			const GeneralizedBlackScholesProcessPtr& process1,
 			const GeneralizedBlackScholesProcessPtr& process2,
 			Real correlation,
 			Size xGrid = 100, Size yGrid = 100,	Size tGrid = 50) {
@@ -158,7 +160,7 @@ class FdAutocallEnginePtr
                  boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process2);
             QL_REQUIRE(bsProcess2, "Black-Scholes process required");
             return new FdAutocallEnginePtr(
-                          new FdAutocallEngine(bsProcess1,bsProcess2,correlation,xGrid,yGrid,tGrid));
+                          new FdAutocallEngine(disc, bsProcess1,bsProcess2,correlation,xGrid,yGrid,tGrid));
         }
     }
 };
