@@ -6,7 +6,7 @@
 #include <ql/methods/finitedifferences/utilities/fdmdividendhandler.hpp>
 #include <ql/methods/finitedifferences/stepconditions/fdmstepconditioncomposite.hpp>
 
-#include <ql/methods/finitedifferences/meshers/predefined1dmesher.hpp>
+#include <eq_derivatives/autocallable_engine/mesher_mandatory.h>
 #include <eq_derivatives\autocallable_engine\autocall_stepcondition.h>
 #include <eq_derivatives\autocallable_engine\autocall_engine.h>
 #include <eq_derivatives\autocallable_engine\autocall_calculator.h>
@@ -65,38 +65,25 @@ namespace QuantLib {
 			// 2. Mesher
 			const Time maturity = disc_->dayCounter().yearFraction(disc_->referenceDate(), arguments_.autocallDates.back());
 			Real maxMesher = 5, minMesher = 0.2;
-			Real mustHave;
-			if (arguments_.kibarrier->getBarrier() != Null<Real>())
-				mustHave = std::log(arguments_.kibarrier->getBarrier());
-			else
-				mustHave = std::log(arguments_.autocallConditions.back()->getBarrier());
-			std::vector<Real> xs(xGrid_ + 1, 0.0), ys(yGrid_ + 1, 0.0);
+			std::vector<Real> mustHavex, mustHavey;
+			if (arguments_.kibarrier->getBarrier() != Null<Real>()) {
+				mustHavex.push_back(std::log(arguments_.kibarrier->getBarrier()));
+				mustHavey.push_back(std::log(arguments_.kibarrier->getBarrier()));
+			}
+			else {
+				mustHavex.push_back(std::log(arguments_.autocallConditions.back()->getBarrier()));
+				mustHavey.push_back(std::log(arguments_.autocallConditions.back()->getBarrier()));
+			}
 			Real logx = std::log(p1_->x0()); Real logy = std::log(p2_->x0());
+			mustHavex.push_back(logx); mustHavey.push_back(logy);
+
 			Real maxx = logx + std::log(maxMesher), maxy = logy + std::log(maxMesher);
 			Real minx = logx + std::log(minMesher), miny = logy + std::log(minMesher);
-			Real margin = std::log(2);
-			maxx = (maxx < mustHave + margin) ? mustHave + margin : maxx; maxy = (maxy < mustHave + margin) ? mustHave + margin : maxy;
-			minx = (minx > mustHave - margin) ? mustHave - margin : minx; miny = (miny > mustHave - margin) ? mustHave - margin : miny;
-			Size xg2 = (Size)((maxx - mustHave) / (maxx - minx) * xGrid_), xg1 = xGrid_ - xg2;
-			Size yg2 = (Size)((maxy - mustHave) / (maxy - miny) * yGrid_), yg1 = yGrid_ - yg2;
-			Real dx1 = (mustHave - minx) / xg1, dx2 = (maxx - mustHave) / xg2;
-			Real dy1 = (mustHave - miny) / yg1, dy2 = (maxy - mustHave) / yg2;
-			for (Size i = 0; i <= xGrid_; ++i) {
-				if (i < xg1)
-					xs[i] = minx + dx1 * i;
-				else
-					xs[i] = mustHave + dx2 * (i - xg1);
-			}
-			for (Size i = 0; i <= yGrid_; ++i) {
-				if (i < yg1)
-					ys[i] = miny + dy1 * i;
-				else
-					ys[i] = mustHave + dy2 * (i - yg1);
-			}
-			const boost::shared_ptr<Fdm1dMesher> em1(new Predefined1dMesher(xs));
-			const boost::shared_ptr<Fdm1dMesher> em2(new Predefined1dMesher(ys));
+			std::sort(mustHavex.begin(), mustHavex.end());  mustHavex.erase(std::unique(mustHavex.begin(), mustHavex.end()), mustHavex.end());
+			std::sort(mustHavey.begin(), mustHavey.end());  mustHavey.erase(std::unique(mustHavey.begin(), mustHavey.end()), mustHavey.end());
+			const boost::shared_ptr<Fdm1dMesher> em1(new MandatoryMesher(xGrid_, minx, maxx, mustHavex));
+			const boost::shared_ptr<Fdm1dMesher> em2(new MandatoryMesher(yGrid_, miny, maxy, mustHavey));
 			const boost::shared_ptr<FdmMesher> mesher(new FdmMesherComposite(em1, em2));
-			//const boost::shared_ptr<Fdm1dMesher> em1(new MandatoryMesher(xGrid_, minx, maxx, mustHave);
 
 			// 3. Calculator
 			std::vector<boost::shared_ptr<FdmInnerValueCalculator> > calculators;

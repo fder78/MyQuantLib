@@ -1,26 +1,30 @@
 #include <eq_derivatives/autocallable_engine/mesher_mandatory.h>
 
 namespace QuantLib {
-	MandatoryMesher::MandatoryMesher(Size n, Real min, Real max, std::vector<Real> mandaroty)
-		: Fdm1dMesher(n + 1) {
-
-		std::vector<Real> xs(n + 1, 0.0);
+	MandatoryMesher::MandatoryMesher(Size n, Real min, Real max, std::vector<Real> mandaroty) : Fdm1dMesher(0) {			
 		Real margin = std::log(2);
-		Real mustHave = mandaroty[0];
-		Real maxx = (max < mustHave + margin) ? mustHave + margin : max; 
-		Real minx = (min > mustHave - margin) ? mustHave - margin : min; 
-		Size xg2 = (Size)((maxx - mustHave) / (maxx - minx) * n);
-		Size xg1 = n - xg2;
-		Real dx1 = (mustHave - minx) / xg1;
-		Real dx2 = (maxx - mustHave) / xg2;
-
-		for (Size i = 0; i <= n; ++i) {
-			if (i < xg1)
-				xs[i] = minx + dx1 * i;
-			else
-				xs[i] = mustHave + dx2 * (i - xg1);
+		Real maxx = max, minx = min;
+		if (mandaroty.size() > 0) {
+			maxx = (max < mandaroty.back() + margin) ? mandaroty.back() + margin : max;
+			minx = (min > mandaroty[0] - margin) ? mandaroty[0] - margin : min;
 		}
 
+		mandaroty.insert(mandaroty.begin(), minx);
+		mandaroty.push_back(maxx);
+		std::vector<Real> xs(1, minx);
+
+		for (Size k = 1; k < mandaroty.size(); ++k) {
+			Real x0 = mandaroty[k - 1], x1 = mandaroty[k];
+			Size xg = (Size)((x1 - x0) / (maxx - minx) * n);
+			Real dx = (x1 - x0) / xg;
+			for (Size i = 1; i < xg; ++i) {
+				xs.push_back(xs.back() + dx);
+			}
+			xs.push_back(x1);
+		}
+		locations_.resize(xs.size());
+		dplus_.resize(xs.size());
+		dminus_.resize(xs.size());
 		std::copy(xs.begin(), xs.end(), locations_.begin());
 		dplus_.back() = dminus_.front() = Null<Real>();
 		for (Size i = 0; i < xs.size() - 1; ++i) {
