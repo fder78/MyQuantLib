@@ -4096,6 +4096,9 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\mesher_mandatory.h">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\recording_stepcondition.h">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6615,6 +6618,9 @@
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClCompile>
     <ClCompile Include="eq_derivatives\autocallable_engine\mesher_mandatory.cpp">
+      <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\recording_stepcondition.cpp">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClCompile>
   </ItemGroup>

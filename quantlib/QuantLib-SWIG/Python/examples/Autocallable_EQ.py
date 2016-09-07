@@ -42,8 +42,8 @@ for i in range(1,7):
 terPayoff = GeneralPayoff([0,60], [0,100*(1+cpnRate*3)], [1,0])
 terminalPayoff = MinBasketPayoff2(terPayoff)
 product = AutocallableNote(notional, dates, dates, autocallConditions, autocallPayoffs, terminalPayoff)
-#product.withKIBarrier(MinDownCondition(55), MinBasketPayoff2(KIPayoff))
-#product.hasKnockedIn()
+product.withKIBarrier(MinDownCondition(55), MinBasketPayoff2(KIPayoff))
+product.hasKnockedIn()
 
 # market data
 underlying1 = SimpleQuote(100.0)

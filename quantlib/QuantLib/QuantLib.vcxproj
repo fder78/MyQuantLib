@@ -501,6 +501,7 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_solver.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_stepcondition.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\mesher_mandatory.h" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\recording_stepcondition.h" />
     <ClInclude Include="eq_derivatives\autocallable_instrument\autocallable_note.h" />
     <ClInclude Include="eq_derivatives\autocallable_instrument\general_payoff.h" />
     <ClInclude Include="eq_derivatives\callable_index_rangeaccrual.hpp" />
@@ -1778,6 +1779,7 @@
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_solver.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_stepcondition.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\mesher_mandatory.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\recording_stepcondition.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_instrument\autocallable_note.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_instrument\general_payoff.cpp" />
     <ClCompile Include="eq_derivatives\callable_index_rangeaccrual.cpp" />

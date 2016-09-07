@@ -7,10 +7,11 @@
 #include <ql/methods/finitedifferences/stepconditions/fdmstepconditioncomposite.hpp>
 
 #include <eq_derivatives/autocallable_engine/mesher_mandatory.h>
-#include <eq_derivatives\autocallable_engine\autocall_stepcondition.h>
-#include <eq_derivatives\autocallable_engine\autocall_engine.h>
-#include <eq_derivatives\autocallable_engine\autocall_calculator.h>
+#include <eq_derivatives/autocallable_engine/autocall_stepcondition.h>
+#include <eq_derivatives/autocallable_engine/autocall_engine.h>
+#include <eq_derivatives/autocallable_engine/autocall_calculator.h>
 #include <eq_derivatives/autocallable_engine/autocall_solver.h>
+#include <eq_derivatives/autocallable_engine/recording_stepcondition.h>
 
 namespace QuantLib {
 
@@ -22,7 +23,7 @@ namespace QuantLib {
 		Size xGrid, Size yGrid,
 		Size tGrid, Size dampingSteps,
 		const FdmSchemeDesc& schemeDesc)
-		: disc_(disc), p1_(p1), p2_(p2), correlation_(correlation), xGrid_(xGrid), yGrid_(yGrid), tGrid_(tGrid),	dampingSteps_(dampingSteps), schemeDesc_(schemeDesc) {
+		: disc_(disc), p1_(p1), p2_(p2), correlation_(correlation), xGrid_(xGrid), yGrid_(yGrid), tGrid_(tGrid), dampingSteps_(dampingSteps), schemeDesc_(schemeDesc) {
 	}
 
 	void FdAutocallEngine::calculate() const {
@@ -40,11 +41,11 @@ namespace QuantLib {
 					results_.xgamma = std::vector<Real>(1, 0);
 					return;
 				}
-			}			
+			}
 		}
 		if (Settings::instance().evaluationDate() == arguments_.autocallDates.back()) {
 			results_.value = arguments_.terminalPayoff->operator()(prices) * arguments_.notionalAmt / 100.0;
-			if (arguments_.isKI && arguments_.kibarrier->getBarrier()!=Null<Real>())
+			if (arguments_.isKI && arguments_.kibarrier->getBarrier() != Null<Real>())
 				results_.value = arguments_.KIPayoff->operator()(prices) * arguments_.notionalAmt / 100.0;
 			results_.theta = std::vector<Real>(1, 0);
 			results_.delta = std::vector<Real>(2, 0);
@@ -53,7 +54,12 @@ namespace QuantLib {
 			return;
 		}
 
+		enum CalcType { None, firstKI, secondKI };
+		CalcType type = None;
 		bool repeat = true, firstRound = true;
+		boost::shared_ptr<FdmStepConditionComposite> conditions;
+
+
 		while (repeat) {
 			// 1. Payoff
 			const boost::shared_ptr<BasketPayoff> payoff;
@@ -92,15 +98,25 @@ namespace QuantLib {
 
 			boost::shared_ptr<FdmInnerValueCalculator> calculator;
 
-			if (arguments_.kibarrier->getBarrier() != Null<Real>() && firstRound) {
+			//HAVE KI Barrier?
+			bool haveKIBarrier = arguments_.kibarrier->getBarrier() != Null<Real>();
+			if (!haveKIBarrier) {
+				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
+				repeat = false;
+			}
+			else if (arguments_.isKI) {
+				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.KIPayoff, mesher));
+				repeat = false;
+			}
+			else if (firstRound) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.KIPayoff, mesher));
 				firstRound = false;
-				if (arguments_.isKI) 
-					repeat = false;
+				type = firstKI;
 			}
 			else {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
 				repeat = false;
+				type = secondKI;
 			}
 
 			// 4. Step conditions
@@ -124,7 +140,17 @@ namespace QuantLib {
 				}
 			}
 
-			const boost::shared_ptr<FdmStepConditionComposite> conditions(new FdmStepConditionComposite(stoppingTimes, stepConditions));
+			if (type == firstKI) {
+				boost::shared_ptr<FdmRecordingStepCondition> recordingCondition(new FdmRecordingStepCondition(mesher));
+				stepConditions.push_back(recordingCondition);
+			}
+			else if (type == secondKI) {
+				std::map<Time, Array> temp = boost::dynamic_pointer_cast<FdmRecordingStepCondition>(conditions->conditions().back())->getValues();
+				boost::shared_ptr<FdmWritingStepCondition> writingCondition(new FdmWritingStepCondition(mesher, temp, arguments_.kibarrier));
+				stepConditions.push_back(writingCondition);
+			}
+
+			conditions = boost::shared_ptr<FdmStepConditionComposite>(new FdmStepConditionComposite(stoppingTimes, stepConditions));
 
 			// 5. Boundary conditions
 			const FdmBoundaryConditionSet boundaries;
@@ -151,19 +177,21 @@ namespace QuantLib {
 				}
 			}
 
-			results_.value = values[1][1];
-			results_.theta = std::vector<Real>(1, mult * solver->thetaAt(x, y) / 365.0);
+			if (!repeat) {
+				results_.value = values[1][1];
+				results_.theta = std::vector<Real>(1, mult * solver->thetaAt(x, y) / 365.0);
 
-			results_.delta.resize(0);
-			results_.delta.push_back((values[2][1] - values[0][1]) / 2.0);
-			results_.delta.push_back((values[1][2] - values[1][0]) / 2.0);
+				results_.delta.resize(0);
+				results_.delta.push_back((values[2][1] - values[0][1]) / 2.0);
+				results_.delta.push_back((values[1][2] - values[1][0]) / 2.0);
 
-			results_.gamma.resize(0);
-			results_.gamma.push_back(values[2][1] + values[0][1] - 2 * values[1][1]);
-			results_.gamma.push_back(values[1][2] + values[1][0] - 2 * values[1][1]);
+				results_.gamma.resize(0);
+				results_.gamma.push_back(values[2][1] + values[0][1] - 2 * values[1][1]);
+				results_.gamma.push_back(values[1][2] + values[1][0] - 2 * values[1][1]);
 
-			results_.xgamma.resize(0);
-			results_.xgamma.push_back((values[2][2] + values[0][0] - values[2][0] - values[0][2]) / 4.0);
+				results_.xgamma.resize(0);
+				results_.xgamma.push_back((values[2][2] + values[0][0] - values[2][0] - values[0][2]) / 4.0);
+			}
 		}
 	}
 }

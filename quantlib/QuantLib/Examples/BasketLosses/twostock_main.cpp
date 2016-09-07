@@ -355,8 +355,8 @@ void testEuroTwoValues() {
 			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
 		}
 
-		spot1->setValue(100);
-		spot2->setValue(100);
+		spot1->setValue(70);
+		spot2->setValue(70);
 		qRate1->setValue(0.01);
 		qRate2->setValue(0.01);
 		rRate->setValue(0.02);
@@ -397,8 +397,8 @@ void testEuroTwoValues() {
 		boost::shared_ptr<Payoff> kiPayoff(new GeneralPayoff(std::vector<Real>(kix, kix + 2), std::vector<Real>(kiy, kiy + 2), std::vector<Real>(kislope, kislope + 2)));
 		boost::shared_ptr<BasketPayoff> KIPayoff(new MinBasketPayoff(kiPayoff));
 		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kibarrier));
-		autocallable.withKI(kiCondition, KIPayoff);
-		autocallable.hasKnockedIn();
+		//autocallable.withKI(kiCondition, KIPayoff);
+		//autocallable.hasKnockedIn();
 
 		// fd engine
 		autocallable.setPricingEngine(fdEngine);
