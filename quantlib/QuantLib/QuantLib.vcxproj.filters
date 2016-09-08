@@ -337,6 +337,15 @@
     <Filter Include="eq_derivatives\autocallable_instrument">
       <UniqueIdentifier>{941ee180-b477-4bb4-a26c-b50ff6f61eac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eq_derivatives\autocallable_engine\one_dim">
+      <UniqueIdentifier>{66cecbff-f8b0-4f70-aaaf-35be86df51ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eq_derivatives\autocallable_engine\two_dim">
+      <UniqueIdentifier>{9d6e4675-e4c0-4ed9-8e10-24204c97af9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eq_derivatives\autocallable_engine\three_dim">
+      <UniqueIdentifier>{99edcdb2-7454-4d80-a56e-f669ca74c81c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -4087,17 +4096,29 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_solver.h">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClInclude>
-    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_fdm2dimsolver.h">
-      <Filter>eq_derivatives\autocallable_engine</Filter>
-    </ClInclude>
-    <ClInclude Include="eq_derivatives\autocallable_engine\autocall_fdm2dblackscholesop.h">
-      <Filter>eq_derivatives\autocallable_engine</Filter>
-    </ClInclude>
     <ClInclude Include="eq_derivatives\autocallable_engine\mesher_mandatory.h">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClInclude>
     <ClInclude Include="eq_derivatives\autocallable_engine\recording_stepcondition.h">
       <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\two_dim\autocall_fdm2dimsolver.h">
+      <Filter>eq_derivatives\autocallable_engine\two_dim</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\two_dim\autocall_fdm2dblackscholesop.h">
+      <Filter>eq_derivatives\autocallable_engine\two_dim</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dimsolver.h">
+      <Filter>eq_derivatives\autocallable_engine\one_dim</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dblackscholesop.h">
+      <Filter>eq_derivatives\autocallable_engine\one_dim</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dimsolver.h">
+      <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
+    </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dblackscholesop.h">
+      <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6611,17 +6632,29 @@
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_solver.cpp">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClCompile>
-    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_fdm2dimsolver.cpp">
-      <Filter>eq_derivatives\autocallable_engine</Filter>
-    </ClCompile>
-    <ClCompile Include="eq_derivatives\autocallable_engine\autocall_fdm2dblackscholesop.cpp">
-      <Filter>eq_derivatives\autocallable_engine</Filter>
-    </ClCompile>
     <ClCompile Include="eq_derivatives\autocallable_engine\mesher_mandatory.cpp">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClCompile>
     <ClCompile Include="eq_derivatives\autocallable_engine\recording_stepcondition.cpp">
       <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\two_dim\autocall_fdm2dimsolver.cpp">
+      <Filter>eq_derivatives\autocallable_engine\two_dim</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\two_dim\autocall_fdm2dblackscholesop.cpp">
+      <Filter>eq_derivatives\autocallable_engine\two_dim</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dblackscholesop.cpp">
+      <Filter>eq_derivatives\autocallable_engine\one_dim</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dimsolver.cpp">
+      <Filter>eq_derivatives\autocallable_engine\one_dim</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dblackscholesop.cpp">
+      <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dimsolver.cpp">
+      <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

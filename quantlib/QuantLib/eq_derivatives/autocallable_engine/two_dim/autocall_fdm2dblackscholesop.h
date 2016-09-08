@@ -43,6 +43,7 @@ namespace QuantLib {
         const Array x_, y_;
         
         Real currentForwardRate_;
+
         FdmBlackScholesOp opX_, opY_;
         NinePointLinearOp corrMapT_;
         const NinePointLinearOp corrMapTemplate_;

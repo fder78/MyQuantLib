@@ -6,7 +6,7 @@
 #include <ql/methods/finitedifferences/utilities/fdminnervaluecalculator.hpp>
 #include <ql/methods/finitedifferences/stepconditions/fdmstepconditioncomposite.hpp>
 #include <ql/methods/finitedifferences/stepconditions/fdmsnapshotcondition.hpp>
-#include <eq_derivatives/autocallable_engine/autocall_fdm2dimsolver.h>
+#include <eq_derivatives/autocallable_engine/two_dim/autocall_fdm2dimsolver.h>
 
 namespace QuantLib {
 

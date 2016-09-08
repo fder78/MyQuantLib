@@ -4,7 +4,7 @@
 #include <ql/methods/finitedifferences/operators/fdmlinearoplayout.hpp>
 #include <ql/methods/finitedifferences/operators/secondordermixedderivativeop.hpp>
 
-#include <eq_derivatives/autocallable_engine/autocall_fdm2dBlackScholesOp.h>
+#include <eq_derivatives/autocallable_engine/two_dim/autocall_fdm2dBlackScholesOp.h>
 
 
 #if !defined(QL_NO_UBLAS_SUPPORT)

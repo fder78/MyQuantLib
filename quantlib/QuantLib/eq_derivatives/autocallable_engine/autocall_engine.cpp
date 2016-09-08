@@ -23,22 +23,44 @@ namespace QuantLib {
 		Size xGrid, Size yGrid,
 		Size tGrid, Size dampingSteps,
 		const FdmSchemeDesc& schemeDesc)
-		: disc_(disc), p1_(p1), p2_(p2), correlation_(correlation), xGrid_(xGrid), yGrid_(yGrid), tGrid_(tGrid), dampingSteps_(dampingSteps), schemeDesc_(schemeDesc) {
+		: disc_(disc), p1_(p1), p2_(p2), correlation_(correlation), numGrid_(std::vector<Size>(2,0)), tGrid_(tGrid),
+		dampingSteps_(dampingSteps), schemeDesc_(schemeDesc), isGeneral_(false), assetNumber_(2)
+	{
+		numGrid_[0] = xGrid;  numGrid_[1] = yGrid;
+		//ProcessArray
+		std::vector<boost::shared_ptr<StochasticProcess1D> > procs;
+		procs.push_back(p1_);	procs.push_back(p2_);
+		Matrix correlationMatrix(2, 2, correlation);
+		correlationMatrix[0][0] = correlationMatrix[1][1] = 1.0;
+		process_ = boost::shared_ptr<StochasticProcessArray>(new StochasticProcessArray(procs, correlationMatrix));
 	}
+
+	
+	FdAutocallEngine::FdAutocallEngine(
+		const boost::shared_ptr<YieldTermStructure>& disc,
+		const boost::shared_ptr<StochasticProcessArray>& process,
+		Size xGrid, 
+		Size tGrid, Size dampingSteps,
+		const FdmSchemeDesc& schemeDesc)
+		: disc_(disc), process_(process), numGrid_(std::vector<Size>(process->size(), xGrid)), tGrid_(tGrid),
+		dampingSteps_(dampingSteps), schemeDesc_(schemeDesc), isGeneral_(true), assetNumber_(process->size()) {}
 
 	void FdAutocallEngine::calculate() const {
 
-		Array prices(2), logprices(2);
-		prices[0] = p1_->x0(); prices[1] = p2_->x0();
-		logprices[0] = std::log(prices[0]); logprices[1] = std::log(prices[1]);
+		//is redempted?
+		Array prices(assetNumber_), logprices(assetNumber_);
+		for (Size i = 0; i < assetNumber_; ++i) {
+			prices[i] = process_->process(i)->x0();
+			logprices[i] = std::log(prices[i]);
+		}
 		for (Size i = 0; i < arguments_.autocallDates.size(); ++i) {
 			if (Settings::instance().evaluationDate() == arguments_.autocallDates[i]) {
 				if (arguments_.autocallConditions[i]->operator()(logprices)) {
 					results_.value = arguments_.autocallPayoffs[i]->operator()(prices) * arguments_.notionalAmt / 100.0;
 					results_.theta = std::vector<Real>(1, 0);
-					results_.delta = std::vector<Real>(2, 0);
-					results_.gamma = std::vector<Real>(2, 0);
-					results_.xgamma = std::vector<Real>(1, 0);
+					results_.delta = std::vector<Real>(assetNumber_, 0);
+					results_.gamma = std::vector<Real>(assetNumber_, 0);
+					results_.xgamma = std::vector<Real>(assetNumber_*(assetNumber_-1)/2, 0);
 					return;
 				}
 			}
@@ -48,12 +70,13 @@ namespace QuantLib {
 			if (arguments_.isKI && arguments_.kibarrier->getBarrier() != Null<Real>())
 				results_.value = arguments_.KIPayoff->operator()(prices) * arguments_.notionalAmt / 100.0;
 			results_.theta = std::vector<Real>(1, 0);
-			results_.delta = std::vector<Real>(2, 0);
-			results_.gamma = std::vector<Real>(2, 0);
-			results_.xgamma = std::vector<Real>(1, 0);
+			results_.delta = std::vector<Real>(assetNumber_, 0);
+			results_.gamma = std::vector<Real>(assetNumber_, 0);
+			results_.xgamma = std::vector<Real>(assetNumber_*(assetNumber_ - 1) / 2, 0);
 			return;
 		}
 
+		//Calculation Start
 		enum CalcType { None, firstKI, secondKI };
 		CalcType type = None;
 		bool repeat = true, firstRound = true;
@@ -71,26 +94,35 @@ namespace QuantLib {
 			// 2. Mesher
 			const Time maturity = disc_->dayCounter().yearFraction(disc_->referenceDate(), arguments_.autocallDates.back());
 			Real maxMesher = 5, minMesher = 0.2;
-			std::vector<Real> mustHavex, mustHavey;
-			if (arguments_.kibarrier->getBarrier() != Null<Real>()) {
-				mustHavex.push_back(std::log(arguments_.kibarrier->getBarrier()));
-				mustHavey.push_back(std::log(arguments_.kibarrier->getBarrier()));
+			std::vector<std::vector<Real> > mustHave(assetNumber_, std::vector<Real>());
+			std::vector<boost::shared_ptr<Fdm1dMesher> > ems;
+			for (Size i = 0; i < assetNumber_; ++i) {
+				if (arguments_.kibarrier->getBarrier() != Null<Real>())
+					mustHave[i].push_back(std::log(arguments_.kibarrier->getBarrier()));
+				else
+					mustHave[i].push_back(std::log(arguments_.autocallConditions.back()->getBarrier()));			
+				mustHave[i].push_back(logprices[i]);
+				Real maxx = logprices[i] + std::log(maxMesher);
+				Real minx = logprices[i] + std::log(minMesher);
+				std::sort(mustHave[i].begin(), mustHave[i].end());  
+				mustHave[i].erase(std::unique(mustHave[i].begin(), mustHave[i].end()), mustHave[i].end());
+				ems.push_back(boost::shared_ptr<Fdm1dMesher>(new MandatoryMesher(numGrid_[i], minx, maxx, mustHave[i])));
+			}		
+			boost::shared_ptr<FdmMesher> mesher;
+			switch (assetNumber_) {
+			case 1:
+				mesher = boost::shared_ptr<FdmMesher>(new FdmMesherComposite(ems[0]));
+				break;
+			case 2:
+				mesher = boost::shared_ptr<FdmMesher>(new FdmMesherComposite(ems[0], ems[1]));
+				break;
+			case 3:
+				mesher = boost::shared_ptr<FdmMesher>(new FdmMesherComposite(ems[0], ems[1], ems[2]));
+				break;
+			default:
+				QL_FAIL("Number of input processes is greater than 3.");
 			}
-			else {
-				mustHavex.push_back(std::log(arguments_.autocallConditions.back()->getBarrier()));
-				mustHavey.push_back(std::log(arguments_.autocallConditions.back()->getBarrier()));
-			}
-			Real logx = std::log(p1_->x0()); Real logy = std::log(p2_->x0());
-			mustHavex.push_back(logx); mustHavey.push_back(logy);
-
-			Real maxx = logx + std::log(maxMesher), maxy = logy + std::log(maxMesher);
-			Real minx = logx + std::log(minMesher), miny = logy + std::log(minMesher);
-			std::sort(mustHavex.begin(), mustHavex.end());  mustHavex.erase(std::unique(mustHavex.begin(), mustHavex.end()), mustHavex.end());
-			std::sort(mustHavey.begin(), mustHavey.end());  mustHavey.erase(std::unique(mustHavey.begin(), mustHavey.end()), mustHavey.end());
-			const boost::shared_ptr<Fdm1dMesher> em1(new MandatoryMesher(xGrid_, minx, maxx, mustHavex));
-			const boost::shared_ptr<Fdm1dMesher> em2(new MandatoryMesher(yGrid_, miny, maxy, mustHavey));
-			const boost::shared_ptr<FdmMesher> mesher(new FdmMesherComposite(em1, em2));
-
+			
 			// 3. Calculator
 			std::vector<boost::shared_ptr<FdmInnerValueCalculator> > calculators;
 			for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i)
@@ -161,37 +193,82 @@ namespace QuantLib {
 			boost::shared_ptr<AutocallSolver> solver(
 				new AutocallSolver(
 					Handle<YieldTermStructure>(disc_),
-					Handle<GeneralizedBlackScholesProcess>(p1_),
-					Handle<GeneralizedBlackScholesProcess>(p2_),
-					correlation_, solverDesc, schemeDesc_));
+					process_,
+					solverDesc, schemeDesc_));
 
-			const Real x = p1_->x0();
-			const Real y = p2_->x0();
+
+			// 7. Fetch Results
 			Real mult = arguments_.notionalAmt / 100.0;
-
-			Matrix values(3, 3, 0.0);
+			Real x = prices[0], y=0, z=0;
 			Real perturbations[3] = { 0.99, 1.0, 1.01 };
-			for (Size i = 0; i < 3; ++i) {
-				for (Size j = 0; j < 3; ++j) {
-					values[i][j] = mult * solver->valueAt(x*perturbations[i], y*perturbations[j]);
+			if (assetNumber_ == 1) {
+				Array values(3, 0.0);
+				for (Size j = 0; j < 3; ++j)
+					values[j] = mult * solver->valueAt(x*perturbations[j]);
+				if (!repeat) {
+					results_.value = values[1];
+					results_.theta = std::vector<Real>(1, mult * solver->thetaAt(x) / 365.0);
+					results_.delta.resize(0);
+					results_.delta.push_back((values[2] - values[0]) / 2.0);
+					results_.gamma.resize(0);
+					results_.gamma.push_back(values[2] + values[0] - 2 * values[1]);
+					results_.xgamma.resize(0);
+				}
+			} 
+			else if (assetNumber_ == 2) {
+				y = prices[1];
+				Matrix values(3, 3, 0.0);				
+				for (Size i = 0; i < 3; ++i)
+					for (Size j = 0; j < 3; ++j)
+						values[i][j] = mult * solver->valueAt(x*perturbations[i], y*perturbations[j]);
+
+				if (!repeat) {
+					results_.value = values[1][1];
+					results_.theta = std::vector<Real>(1, mult * solver->thetaAt(x, y) / 365.0);
+
+					results_.delta.resize(0);
+					results_.delta.push_back((values[2][1] - values[0][1]) / 2.0);
+					results_.delta.push_back((values[1][2] - values[1][0]) / 2.0);
+
+					results_.gamma.resize(0);
+					results_.gamma.push_back(values[2][1] + values[0][1] - 2 * values[1][1]);
+					results_.gamma.push_back(values[1][2] + values[1][0] - 2 * values[1][1]);
+
+					results_.xgamma.resize(0);
+					results_.xgamma.push_back((values[2][2] + values[0][0] - values[2][0] - values[0][2]) / 4.0);
 				}
 			}
+			else if (assetNumber_ == 3) {
+				y = prices[1];  z = prices[2];
+				std::vector<Matrix> values(3, Matrix(3, 3, 0.0));
+				for (Size i = 0; i < 3; ++i)
+					for (Size j = 0; j < 3; ++j)
+						for (Size k = 0; k < 3; ++k)
+							values[i][j][k] = mult * solver->valueAt(x*perturbations[i], y*perturbations[j], z*perturbations[k]);
 
-			if (!repeat) {
-				results_.value = values[1][1];
-				results_.theta = std::vector<Real>(1, mult * solver->thetaAt(x, y) / 365.0);
+				if (!repeat) {
+					results_.value = values[1][1][1];
+					results_.theta = std::vector<Real>(1, mult * solver->thetaAt(x, y, z) / 365.0);
 
-				results_.delta.resize(0);
-				results_.delta.push_back((values[2][1] - values[0][1]) / 2.0);
-				results_.delta.push_back((values[1][2] - values[1][0]) / 2.0);
+					results_.delta.resize(0);
+					results_.delta.push_back((values[2][1][1] - values[0][1][1]) / 2.0);
+					results_.delta.push_back((values[1][2][1] - values[1][0][1]) / 2.0);
+					results_.delta.push_back((values[1][1][2] - values[1][1][0]) / 2.0);
 
-				results_.gamma.resize(0);
-				results_.gamma.push_back(values[2][1] + values[0][1] - 2 * values[1][1]);
-				results_.gamma.push_back(values[1][2] + values[1][0] - 2 * values[1][1]);
+					results_.gamma.resize(0);
+					results_.gamma.push_back(values[2][1][1] + values[0][1][1] - 2 * values[1][1][1]);
+					results_.gamma.push_back(values[1][2][1] + values[1][0][1] - 2 * values[1][1][1]);
+					results_.gamma.push_back(values[1][1][2] + values[1][1][0] - 2 * values[1][1][1]);
 
-				results_.xgamma.resize(0);
-				results_.xgamma.push_back((values[2][2] + values[0][0] - values[2][0] - values[0][2]) / 4.0);
+					results_.xgamma.resize(0);
+					results_.xgamma.push_back((values[2][2][1] + values[0][0][1] - values[2][0][1] - values[0][2][1]) / 4.0);
+					results_.xgamma.push_back((values[2][1][2] + values[0][1][0] - values[2][1][0] - values[0][1][2]) / 4.0);
+					results_.xgamma.push_back((values[1][2][2] + values[1][0][0] - values[1][0][2] - values[1][2][0]) / 4.0);
+				}
 			}
+			else
+				QL_FAIL("Number of input processes is greater than 3.");
+
 		}
 	}
 }
