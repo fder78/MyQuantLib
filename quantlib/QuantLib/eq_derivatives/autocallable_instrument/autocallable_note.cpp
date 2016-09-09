@@ -38,7 +38,7 @@ namespace QuantLib {
 		return gamma_;
 	}
 
-	std::vector<Real> AutocallableNote::xgamma() const {
+	std::vector<std::vector<Real> > AutocallableNote::xgamma() const {
 		calculate();
 		QL_REQUIRE(gamma_.size()>0, "gamma not provided");
 		return xgamma_;
@@ -70,7 +70,8 @@ namespace QuantLib {
 
 	void AutocallableNote::setupExpired() const {
 		NPV_ = 0.0;
-		xgamma_ = delta_ = gamma_ = theta_ = vega_ = rho_ = dividendRho_ = std::vector<Real>();
+		delta_ = gamma_ = theta_ = vega_ = rho_ = dividendRho_ = std::vector<Real>();
+		xgamma_ = std::vector<std::vector<Real> >();
 	}
 
 

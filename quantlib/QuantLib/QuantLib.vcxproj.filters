@@ -4120,6 +4120,9 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dblackscholesop.h">
       <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_instrument\basket_payoff.h">
+      <Filter>eq_derivatives\autocallable_instrument</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6655,6 +6658,9 @@
     </ClCompile>
     <ClCompile Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dimsolver.cpp">
       <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_instrument\basket_payoff.cpp">
+      <Filter>eq_derivatives\autocallable_instrument</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

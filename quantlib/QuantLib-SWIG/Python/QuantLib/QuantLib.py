@@ -1024,6 +1024,116 @@ class DoubleVector(object):
 DoubleVector_swigregister = _QuantLib.DoubleVector_swigregister
 DoubleVector_swigregister(DoubleVector)
 
+class VectorOfDoubleVector(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def iterator(self) -> "swig::SwigPyIterator *":
+        return _QuantLib.VectorOfDoubleVector_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.VectorOfDoubleVector___nonzero__(self)
+
+    def __bool__(self) -> "bool":
+        return _QuantLib.VectorOfDoubleVector___bool__(self)
+
+    def __len__(self) -> "std::vector< std::vector< double > >::size_type":
+        return _QuantLib.VectorOfDoubleVector___len__(self)
+
+    def __getslice__(self, i: 'std::vector< std::vector< double > >::difference_type', j: 'std::vector< std::vector< double > >::difference_type') -> "std::vector< std::vector< double,std::allocator< double > >,std::allocator< std::vector< double,std::allocator< double > > > > *":
+        return _QuantLib.VectorOfDoubleVector___getslice__(self, i, j)
+
+    def __setslice__(self, *args) -> "void":
+        return _QuantLib.VectorOfDoubleVector___setslice__(self, *args)
+
+    def __delslice__(self, i: 'std::vector< std::vector< double > >::difference_type', j: 'std::vector< std::vector< double > >::difference_type') -> "void":
+        return _QuantLib.VectorOfDoubleVector___delslice__(self, i, j)
+
+    def __delitem__(self, *args) -> "void":
+        return _QuantLib.VectorOfDoubleVector___delitem__(self, *args)
+
+    def __getitem__(self, *args) -> "std::vector< std::vector< double > >::value_type const &":
+        return _QuantLib.VectorOfDoubleVector___getitem__(self, *args)
+
+    def __setitem__(self, *args) -> "void":
+        return _QuantLib.VectorOfDoubleVector___setitem__(self, *args)
+
+    def pop(self) -> "std::vector< std::vector< double > >::value_type":
+        return _QuantLib.VectorOfDoubleVector_pop(self)
+
+    def append(self, x: 'DoubleVector') -> "void":
+        return _QuantLib.VectorOfDoubleVector_append(self, x)
+
+    def empty(self) -> "bool":
+        return _QuantLib.VectorOfDoubleVector_empty(self)
+
+    def size(self) -> "std::vector< std::vector< double > >::size_type":
+        return _QuantLib.VectorOfDoubleVector_size(self)
+
+    def swap(self, v: 'VectorOfDoubleVector') -> "void":
+        return _QuantLib.VectorOfDoubleVector_swap(self, v)
+
+    def begin(self) -> "std::vector< std::vector< double > >::iterator":
+        return _QuantLib.VectorOfDoubleVector_begin(self)
+
+    def end(self) -> "std::vector< std::vector< double > >::iterator":
+        return _QuantLib.VectorOfDoubleVector_end(self)
+
+    def rbegin(self) -> "std::vector< std::vector< double > >::reverse_iterator":
+        return _QuantLib.VectorOfDoubleVector_rbegin(self)
+
+    def rend(self) -> "std::vector< std::vector< double > >::reverse_iterator":
+        return _QuantLib.VectorOfDoubleVector_rend(self)
+
+    def clear(self) -> "void":
+        return _QuantLib.VectorOfDoubleVector_clear(self)
+
+    def get_allocator(self) -> "std::vector< std::vector< double > >::allocator_type":
+        return _QuantLib.VectorOfDoubleVector_get_allocator(self)
+
+    def pop_back(self) -> "void":
+        return _QuantLib.VectorOfDoubleVector_pop_back(self)
+
+    def erase(self, *args) -> "std::vector< std::vector< double > >::iterator":
+        return _QuantLib.VectorOfDoubleVector_erase(self, *args)
+
+    def __init__(self, *args):
+        this = _QuantLib.new_VectorOfDoubleVector(*args)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+
+    def push_back(self, x: 'DoubleVector') -> "void":
+        return _QuantLib.VectorOfDoubleVector_push_back(self, x)
+
+    def front(self) -> "std::vector< std::vector< double > >::value_type const &":
+        return _QuantLib.VectorOfDoubleVector_front(self)
+
+    def back(self) -> "std::vector< std::vector< double > >::value_type const &":
+        return _QuantLib.VectorOfDoubleVector_back(self)
+
+    def assign(self, n: 'std::vector< std::vector< double > >::size_type', x: 'DoubleVector') -> "void":
+        return _QuantLib.VectorOfDoubleVector_assign(self, n, x)
+
+    def resize(self, *args) -> "void":
+        return _QuantLib.VectorOfDoubleVector_resize(self, *args)
+
+    def insert(self, *args) -> "void":
+        return _QuantLib.VectorOfDoubleVector_insert(self, *args)
+
+    def reserve(self, n: 'std::vector< std::vector< double > >::size_type') -> "void":
+        return _QuantLib.VectorOfDoubleVector_reserve(self, n)
+
+    def capacity(self) -> "std::vector< std::vector< double > >::size_type":
+        return _QuantLib.VectorOfDoubleVector_capacity(self)
+    __swig_destroy__ = _QuantLib.delete_VectorOfDoubleVector
+    __del__ = lambda self: None
+VectorOfDoubleVector_swigregister = _QuantLib.VectorOfDoubleVector_swigregister
+VectorOfDoubleVector_swigregister(VectorOfDoubleVector)
+
 class StrVector(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
@@ -16934,7 +17044,7 @@ class AutocallableNote(Instrument):
     def theta(self) -> "std::vector< Real,std::allocator< Real > >":
         return _QuantLib.AutocallableNote_theta(self)
 
-    def xgamma(self) -> "std::vector< Real,std::allocator< Real > >":
+    def xgamma(self) -> "std::vector< std::vector< Real,std::allocator< Real > >,std::allocator< std::vector< Real,std::allocator< Real > > > >":
         return _QuantLib.AutocallableNote_xgamma(self)
     __swig_destroy__ = _QuantLib.delete_AutocallableNote
     __del__ = lambda self: None

@@ -88,7 +88,7 @@ class AutocallableNotePtr : public boost::shared_ptr<Instrument> {
 		std::vector<Real> theta() const {
             return boost::dynamic_pointer_cast<AutocallableNote>(*self)->theta();
         }
-		std::vector<Real> xgamma() const {
+		std::vector<std::vector<Real> > xgamma() const {
             return boost::dynamic_pointer_cast<AutocallableNote>(*self)->xgamma();
         }
     }

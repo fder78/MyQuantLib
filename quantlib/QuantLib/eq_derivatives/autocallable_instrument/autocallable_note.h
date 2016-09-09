@@ -23,7 +23,6 @@ namespace QuantLib {
 
 		void withKI(boost::shared_ptr<AutocallCondition> kibarrier, 
 			boost::shared_ptr<BasketPayoff> KIPayoff) {
-			QL_REQUIRE(kibarrier->getBarrier() > 0, "KI Barrier should be positive.");
 			kibarrier_ = kibarrier;
 			KIPayoff_ = KIPayoff;
 		}
@@ -35,7 +34,7 @@ namespace QuantLib {
 		bool isExpired() const;
 		std::vector<Real> delta() const;
 		std::vector<Real> gamma() const;
-		std::vector<Real> xgamma() const;
+		std::vector<std::vector<Real> > xgamma() const;
 		std::vector<Real> theta() const;
 		std::vector<Real> vega() const;
 		std::vector<Real> rho() const;
@@ -58,7 +57,8 @@ namespace QuantLib {
 
 
 		// results
-		mutable std::vector<Real> delta_, gamma_, xgamma_, theta_, vega_, rho_, dividendRho_;
+		mutable std::vector<Real> delta_, gamma_, theta_, vega_, rho_, dividendRho_;
+		mutable std::vector<std::vector<Real> > xgamma_;
 	};
 
 	class AutocallableNote::arguments : public virtual PricingEngine::arguments {
@@ -79,9 +79,11 @@ namespace QuantLib {
 	public:
 		void reset() {
 			Instrument::results::reset();
-			xgamma = delta = gamma = theta = vega = rho = dividendRho = std::vector<Real>();
+			delta = gamma = theta = vega = rho = dividendRho = std::vector<Real>();
+			xgamma = std::vector<std::vector<Real> >();
 		}
-		std::vector<Real> delta, gamma, xgamma, theta, vega, rho, dividendRho;
+		std::vector<Real> delta, gamma, theta, vega, rho, dividendRho;
+		std::vector<std::vector<Real> > xgamma;
 	};
 
 	class AutocallableNote::engine

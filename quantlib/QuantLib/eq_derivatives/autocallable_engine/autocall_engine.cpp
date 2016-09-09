@@ -60,19 +60,19 @@ namespace QuantLib {
 					results_.theta = std::vector<Real>(1, 0);
 					results_.delta = std::vector<Real>(assetNumber_, 0);
 					results_.gamma = std::vector<Real>(assetNumber_, 0);
-					results_.xgamma = std::vector<Real>(assetNumber_*(assetNumber_-1)/2, 0);
+					results_.xgamma = std::vector<std::vector<Real> >(assetNumber_, std::vector<Real>(assetNumber_, 0));
 					return;
 				}
 			}
 		}
 		if (Settings::instance().evaluationDate() == arguments_.autocallDates.back()) {
 			results_.value = arguments_.terminalPayoff->operator()(prices) * arguments_.notionalAmt / 100.0;
-			if (arguments_.isKI && arguments_.kibarrier->getBarrier() != Null<Real>())
+			if (arguments_.isKI && arguments_.kibarrier->getBarrierNumbers() > 0)
 				results_.value = arguments_.KIPayoff->operator()(prices) * arguments_.notionalAmt / 100.0;
 			results_.theta = std::vector<Real>(1, 0);
 			results_.delta = std::vector<Real>(assetNumber_, 0);
 			results_.gamma = std::vector<Real>(assetNumber_, 0);
-			results_.xgamma = std::vector<Real>(assetNumber_*(assetNumber_ - 1) / 2, 0);
+			results_.xgamma = std::vector<std::vector<Real> >(assetNumber_, std::vector<Real>(assetNumber_, 0));
 			return;
 		}
 
@@ -96,11 +96,14 @@ namespace QuantLib {
 			Real maxMesher = 5, minMesher = 0.2;
 			std::vector<std::vector<Real> > mustHave(assetNumber_, std::vector<Real>());
 			std::vector<boost::shared_ptr<Fdm1dMesher> > ems;
+
+			Size nb = arguments_.kibarrier->getBarrierNumbers();
+			Size nb1 = arguments_.autocallConditions.back()->getBarrierNumbers();
 			for (Size i = 0; i < assetNumber_; ++i) {
-				if (arguments_.kibarrier->getBarrier() != Null<Real>())
-					mustHave[i].push_back(std::log(arguments_.kibarrier->getBarrier()));
+				if (nb > 0)
+					mustHave[i].push_back(std::log(arguments_.kibarrier->getBarrier()[(nb>i) ? i : nb - 1]));
 				else
-					mustHave[i].push_back(std::log(arguments_.autocallConditions.back()->getBarrier()));			
+					mustHave[i].push_back(std::log(arguments_.autocallConditions.back()->getBarrier()[(nb1>i) ? i : nb1 - 1]));
 				mustHave[i].push_back(logprices[i]);
 				Real maxx = logprices[i] + std::log(maxMesher);
 				Real minx = logprices[i] + std::log(minMesher);
@@ -131,7 +134,7 @@ namespace QuantLib {
 			boost::shared_ptr<FdmInnerValueCalculator> calculator;
 
 			//HAVE KI Barrier?
-			bool haveKIBarrier = arguments_.kibarrier->getBarrier() != Null<Real>();
+			bool haveKIBarrier = arguments_.kibarrier->getBarrierNumbers() > 0;
 			if (!haveKIBarrier) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
 				repeat = false;
@@ -234,8 +237,8 @@ namespace QuantLib {
 					results_.gamma.push_back(values[2][1] + values[0][1] - 2 * values[1][1]);
 					results_.gamma.push_back(values[1][2] + values[1][0] - 2 * values[1][1]);
 
-					results_.xgamma.resize(0);
-					results_.xgamma.push_back((values[2][2] + values[0][0] - values[2][0] - values[0][2]) / 4.0);
+					results_.xgamma = std::vector<std::vector<Real> >(2, std::vector<Real>(2, 0));
+					results_.xgamma[1][0] = results_.xgamma[0][1] = (values[2][2] + values[0][0] - values[2][0] - values[0][2]) / 4.0;
 				}
 			}
 			else if (assetNumber_ == 3) {
@@ -260,10 +263,10 @@ namespace QuantLib {
 					results_.gamma.push_back(values[1][2][1] + values[1][0][1] - 2 * values[1][1][1]);
 					results_.gamma.push_back(values[1][1][2] + values[1][1][0] - 2 * values[1][1][1]);
 
-					results_.xgamma.resize(0);
-					results_.xgamma.push_back((values[2][2][1] + values[0][0][1] - values[2][0][1] - values[0][2][1]) / 4.0);
-					results_.xgamma.push_back((values[2][1][2] + values[0][1][0] - values[2][1][0] - values[0][1][2]) / 4.0);
-					results_.xgamma.push_back((values[1][2][2] + values[1][0][0] - values[1][0][2] - values[1][2][0]) / 4.0);
+					results_.xgamma = std::vector<std::vector<Real> >(3, std::vector<Real>(3, 0));
+					results_.xgamma[1][0] = results_.xgamma[0][1] = (values[2][2][1] + values[0][0][1] - values[2][0][1] - values[0][2][1]) / 4.0;
+					results_.xgamma[2][0] = results_.xgamma[0][2] = (values[2][1][2] + values[0][1][0] - values[2][1][0] - values[0][1][2]) / 4.0;
+					results_.xgamma[2][1] = results_.xgamma[1][2] = (values[1][2][2] + values[1][0][0] - values[1][0][2] - values[1][2][0]) / 4.0;
 				}
 			}
 			else

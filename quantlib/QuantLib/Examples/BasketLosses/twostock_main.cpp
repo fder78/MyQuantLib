@@ -349,8 +349,10 @@ void testEuroTwoValues() {
 		Real kislope[] = { 1.0, 0.0 };
 		boost::shared_ptr<Payoff> kiPayoff(new GeneralPayoff(std::vector<Real>(kix, kix + 2), std::vector<Real>(kiy, kiy + 2), std::vector<Real>(kislope, kislope + 2)));
 		boost::shared_ptr<BasketPayoff> KIPayoff(new MinBasketPayoff(kiPayoff));
-		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kibarrier));
-		//autocallable.withKI(kiCondition, KIPayoff);
+		std::vector<Real> kib(1, kibarrier);
+		kib.push_back(60);
+		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kib));
+		autocallable.withKI(kiCondition, KIPayoff);
 		//autocallable.hasKnockedIn();
 
 
@@ -422,7 +424,7 @@ void testEuroTwoValues() {
 		std::vector<boost::shared_ptr<StochasticProcess1D> > procs;
 		procs.push_back(p1);
 		procs.push_back(p2);		
-		procs.push_back(p3);
+		//procs.push_back(p3);
 
 		Matrix correlationMatrix(procs.size(), procs.size(), corr);
 		for (Integer j = 0; j < procs.size(); j++) {
@@ -440,11 +442,14 @@ void testEuroTwoValues() {
 		std::cout << "price=" << calculated << std::endl;
 		std::cout << "theta=" << autocallable.theta()[0] << std::endl;
 		for (Size i = 0; i < n; ++i) {
-			std::cout << "delta=" << autocallable.delta()[i] << "   ";
-			std::cout << "gamma=" << autocallable.gamma()[i] << std::endl;
+			std::cout << "delta[" << i + 1 << "]=" << autocallable.delta()[i] << "   ";
+			std::cout << "gamma[" << i + 1 << "]=" << autocallable.gamma()[i] << std::endl;
 		}
-		for (Size i = 0; i < n*(n-1)/2; ++i) {
-			std::cout << "xgamma=" << autocallable.xgamma()[i] << std::endl;
+		std::cout << "xgamma=" << std::endl;
+		for (Size i = 0; i < n; ++i) {
+			for (Size j = 0; j < n; ++j)
+				std::cout <<  autocallable.xgamma()[i][j] << "   ";
+			std::cout << std::endl;
 		}
 		std::cout << std::string(30, '-') << std::endl;
 	}

@@ -42,8 +42,8 @@ for i in range(1,7):
 terPayoff = GeneralPayoff([0,60], [0,100*(1+cpnRate*3)], [1,0])
 terminalPayoff = MinBasketPayoff2(terPayoff)
 product = AutocallableNote(notional, dates, dates, autocallConditions, autocallPayoffs, terminalPayoff)
-product.withKIBarrier(MinDownCondition(55), MinBasketPayoff2(KIPayoff))
-product.hasKnockedIn()
+#product.withKIBarrier(MinDownCondition(55), MinBasketPayoff2(KIPayoff))
+#product.hasKnockedIn()
 
 # market data
 underlying1 = SimpleQuote(100.0)
@@ -94,7 +94,7 @@ for i, p in enumerate(price):
     npvs[i] = product.NPV()
     delta[i] = product.delta()[0]
     gamma[i] = product.gamma()[0]
-    xgamma[i] = product.xgamma()[0]
+    xgamma[i] = product.xgamma()[0][1]
     theta[i] = product.theta()[0]
     t1 = time.time()
     print("time = ", t1-t0)    

@@ -32,6 +32,7 @@ namespace std {
     %template(IntVector) vector<int>;
     %template(UnsignedIntVector) vector<unsigned int>;
     %template(DoubleVector) vector<double>;
+	%template(VectorOfDoubleVector) vector<vector<double> >;
     %template(StrVector) vector<std::string>;
     %template(BoolVector) vector<bool>;
 
