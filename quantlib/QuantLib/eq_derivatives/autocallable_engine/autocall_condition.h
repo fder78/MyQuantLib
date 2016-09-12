@@ -29,14 +29,14 @@ namespace QuantLib {
 	class MinUpCondition : public AutocallCondition {
 	public:
 		MinUpCondition(Real barrier) : AutocallCondition(barrier) {}
-		MinUpCondition(std::vector<Real> barrier) : AutocallCondition(barrier) {}
+		MinUpCondition(std::vector<Real> barrier);
 		virtual bool operator()(Array& a);
 	};
 
 	class MinDownCondition : public AutocallCondition {
 	public:
 		MinDownCondition(Real barrier) : AutocallCondition(barrier) {}
-		MinDownCondition(std::vector<Real> barrier) : AutocallCondition(barrier) {}
+		MinDownCondition(std::vector<Real> barrier);
 		virtual bool operator()(Array& a);
 	};
 }

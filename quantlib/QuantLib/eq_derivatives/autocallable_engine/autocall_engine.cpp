@@ -13,6 +13,7 @@
 #include <eq_derivatives/autocallable_engine/autocall_solver.h>
 #include <eq_derivatives/autocallable_engine/recording_stepcondition.h>
 
+
 namespace QuantLib {
 
 	FdAutocallEngine::FdAutocallEngine(
@@ -198,7 +199,6 @@ namespace QuantLib {
 					Handle<YieldTermStructure>(disc_),
 					process_,
 					solverDesc, schemeDesc_));
-
 
 			// 7. Fetch Results
 			Real mult = arguments_.notionalAmt / 100.0;

@@ -4120,7 +4120,7 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dblackscholesop.h">
       <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
     </ClInclude>
-    <ClInclude Include="eq_derivatives\autocallable_instrument\basket_payoff.h">
+    <ClInclude Include="eq_derivatives\autocallable_instrument\general_basket_payoff.h">
       <Filter>eq_derivatives\autocallable_instrument</Filter>
     </ClInclude>
   </ItemGroup>
@@ -6659,7 +6659,7 @@
     <ClCompile Include="eq_derivatives\autocallable_engine\three_dim\autocall_fdm3dimsolver.cpp">
       <Filter>eq_derivatives\autocallable_engine\three_dim</Filter>
     </ClCompile>
-    <ClCompile Include="eq_derivatives\autocallable_instrument\basket_payoff.cpp">
+    <ClCompile Include="eq_derivatives\autocallable_instrument\general_basket_payoff.cpp">
       <Filter>eq_derivatives\autocallable_instrument</Filter>
     </ClCompile>
   </ItemGroup>

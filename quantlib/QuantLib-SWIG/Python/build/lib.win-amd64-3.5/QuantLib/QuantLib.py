@@ -16943,6 +16943,30 @@ class ZeroCurve(YieldTermStructure):
 ZeroCurve_swigregister = _QuantLib.ZeroCurve_swigregister
 ZeroCurve_swigregister(ZeroCurve)
 
+class ArrayPayoffPtr(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "ArrayPayoff *":
+        return _QuantLib.ArrayPayoffPtr___deref__(self)
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.ArrayPayoffPtr___nonzero__(self)
+
+    def __init__(self):
+        this = _QuantLib.new_ArrayPayoffPtr()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_ArrayPayoffPtr
+    __del__ = lambda self: None
+
+    def __call__(self, a: 'Array') -> "Real":
+        return _QuantLib.ArrayPayoffPtr___call__(self, a)
+ArrayPayoffPtr_swigregister = _QuantLib.ArrayPayoffPtr_swigregister
+ArrayPayoffPtr_swigregister(ArrayPayoffPtr)
+
 class AutocallCondition(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
@@ -16966,6 +16990,131 @@ class AutocallCondition(object):
         return _QuantLib.AutocallCondition___call__(self, a)
 AutocallCondition_swigregister = _QuantLib.AutocallCondition_swigregister
 AutocallCondition_swigregister(AutocallCondition)
+
+class PayoffVector(object):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def iterator(self) -> "swig::SwigPyIterator *":
+        return _QuantLib.PayoffVector_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self) -> "bool":
+        return _QuantLib.PayoffVector___nonzero__(self)
+
+    def __bool__(self) -> "bool":
+        return _QuantLib.PayoffVector___bool__(self)
+
+    def __len__(self) -> "std::vector< boost::shared_ptr< Payoff > >::size_type":
+        return _QuantLib.PayoffVector___len__(self)
+
+    def __getslice__(self, i: 'std::vector< boost::shared_ptr< Payoff > >::difference_type', j: 'std::vector< boost::shared_ptr< Payoff > >::difference_type') -> "std::vector< boost::shared_ptr< Payoff >,std::allocator< boost::shared_ptr< Payoff > > > *":
+        return _QuantLib.PayoffVector___getslice__(self, i, j)
+
+    def __setslice__(self, *args) -> "void":
+        return _QuantLib.PayoffVector___setslice__(self, *args)
+
+    def __delslice__(self, i: 'std::vector< boost::shared_ptr< Payoff > >::difference_type', j: 'std::vector< boost::shared_ptr< Payoff > >::difference_type') -> "void":
+        return _QuantLib.PayoffVector___delslice__(self, i, j)
+
+    def __delitem__(self, *args) -> "void":
+        return _QuantLib.PayoffVector___delitem__(self, *args)
+
+    def __getitem__(self, *args) -> "std::vector< boost::shared_ptr< Payoff > >::value_type const &":
+        return _QuantLib.PayoffVector___getitem__(self, *args)
+
+    def __setitem__(self, *args) -> "void":
+        return _QuantLib.PayoffVector___setitem__(self, *args)
+
+    def pop(self) -> "std::vector< boost::shared_ptr< Payoff > >::value_type":
+        return _QuantLib.PayoffVector_pop(self)
+
+    def append(self, x: 'Payoff') -> "void":
+        return _QuantLib.PayoffVector_append(self, x)
+
+    def empty(self) -> "bool":
+        return _QuantLib.PayoffVector_empty(self)
+
+    def size(self) -> "std::vector< boost::shared_ptr< Payoff > >::size_type":
+        return _QuantLib.PayoffVector_size(self)
+
+    def swap(self, v: 'PayoffVector') -> "void":
+        return _QuantLib.PayoffVector_swap(self, v)
+
+    def begin(self) -> "std::vector< boost::shared_ptr< Payoff > >::iterator":
+        return _QuantLib.PayoffVector_begin(self)
+
+    def end(self) -> "std::vector< boost::shared_ptr< Payoff > >::iterator":
+        return _QuantLib.PayoffVector_end(self)
+
+    def rbegin(self) -> "std::vector< boost::shared_ptr< Payoff > >::reverse_iterator":
+        return _QuantLib.PayoffVector_rbegin(self)
+
+    def rend(self) -> "std::vector< boost::shared_ptr< Payoff > >::reverse_iterator":
+        return _QuantLib.PayoffVector_rend(self)
+
+    def clear(self) -> "void":
+        return _QuantLib.PayoffVector_clear(self)
+
+    def get_allocator(self) -> "std::vector< boost::shared_ptr< Payoff > >::allocator_type":
+        return _QuantLib.PayoffVector_get_allocator(self)
+
+    def pop_back(self) -> "void":
+        return _QuantLib.PayoffVector_pop_back(self)
+
+    def erase(self, *args) -> "std::vector< boost::shared_ptr< Payoff > >::iterator":
+        return _QuantLib.PayoffVector_erase(self, *args)
+
+    def __init__(self, *args):
+        this = _QuantLib.new_PayoffVector(*args)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+
+    def push_back(self, x: 'Payoff') -> "void":
+        return _QuantLib.PayoffVector_push_back(self, x)
+
+    def front(self) -> "std::vector< boost::shared_ptr< Payoff > >::value_type const &":
+        return _QuantLib.PayoffVector_front(self)
+
+    def back(self) -> "std::vector< boost::shared_ptr< Payoff > >::value_type const &":
+        return _QuantLib.PayoffVector_back(self)
+
+    def assign(self, n: 'std::vector< boost::shared_ptr< Payoff > >::size_type', x: 'Payoff') -> "void":
+        return _QuantLib.PayoffVector_assign(self, n, x)
+
+    def resize(self, *args) -> "void":
+        return _QuantLib.PayoffVector_resize(self, *args)
+
+    def insert(self, *args) -> "void":
+        return _QuantLib.PayoffVector_insert(self, *args)
+
+    def reserve(self, n: 'std::vector< boost::shared_ptr< Payoff > >::size_type') -> "void":
+        return _QuantLib.PayoffVector_reserve(self, n)
+
+    def capacity(self) -> "std::vector< boost::shared_ptr< Payoff > >::size_type":
+        return _QuantLib.PayoffVector_capacity(self)
+    __swig_destroy__ = _QuantLib.delete_PayoffVector
+    __del__ = lambda self: None
+PayoffVector_swigregister = _QuantLib.PayoffVector_swigregister
+PayoffVector_swigregister(PayoffVector)
+
+class MinOfPayoffs(ArrayPayoffPtr):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, payoffs: 'PayoffVector'):
+        this = _QuantLib.new_MinOfPayoffs(payoffs)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_MinOfPayoffs
+    __del__ = lambda self: None
+MinOfPayoffs_swigregister = _QuantLib.MinOfPayoffs_swigregister
+MinOfPayoffs_swigregister(MinOfPayoffs)
 
 class GeneralPayoff(Payoff):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -17018,6 +17167,21 @@ class MinBasketPayoff2(BasketPayoff2):
 MinBasketPayoff2_swigregister = _QuantLib.MinBasketPayoff2_swigregister
 MinBasketPayoff2_swigregister(MinBasketPayoff2)
 
+class GeneralBasketPayoff(BasketPayoff2):
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, payoff: 'ArrayPayoffPtr'):
+        this = _QuantLib.new_GeneralBasketPayoff(payoff)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _QuantLib.delete_GeneralBasketPayoff
+    __del__ = lambda self: None
+GeneralBasketPayoff_swigregister = _QuantLib.GeneralBasketPayoff_swigregister
+GeneralBasketPayoff_swigregister(GeneralBasketPayoff)
+
 class AutocallableNote(Instrument):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
@@ -17055,7 +17219,7 @@ class MinUpCondition(AutocallCondition):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, barrier: 'Real'):
+    def __init__(self, barrier: 'DoubleVector'):
         this = _QuantLib.new_MinUpCondition(barrier)
         try:
             self.this.append(this)
@@ -17070,8 +17234,8 @@ class MinDownCondition(AutocallCondition):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, barrier: 'Real'):
-        this = _QuantLib.new_MinDownCondition(barrier)
+    def __init__(self, *args):
+        this = _QuantLib.new_MinDownCondition(*args)
         try:
             self.this.append(this)
         except __builtin__.Exception:

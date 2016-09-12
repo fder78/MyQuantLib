@@ -31,7 +31,7 @@ namespace QuantLib {
 			Array locations(dims);
 			for (FdmLinearOpIterator iter = layout->begin(); iter != endIter; ++iter) {
 				for (Size i = 0; i < dims; ++i)
-					locations[i] = mesher_->location(iter, i);				
+					locations[i] = std::exp(mesher_->location(iter, i));				
 				if ((*condition_)(locations)) {
 					Real innerValue = calculator_->innerValue(iter, t);
 					a[iter.index()] = innerValue;

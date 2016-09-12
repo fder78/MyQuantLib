@@ -10,17 +10,33 @@
 %include scheduler.i
 
 %{
+using QuantLib::ArrayPayoff;
 using QuantLib::GeneralPayoff;
+using QuantLib::GeneralBasketPayoff;
+using QuantLib::MinOfPayoffs;
 using QuantLib::AutocallableNote;
 using QuantLib::AutocallCondition;
 using QuantLib::MinUpCondition;
 using QuantLib::MinDownCondition;
 typedef boost::shared_ptr<Payoff> GeneralPayoffPtr;
+typedef boost::shared_ptr<BasketPayoff> GeneralBasketPayoffPtr;
+typedef boost::shared_ptr<ArrayPayoff> MinOfPayoffsPtr;
 typedef boost::shared_ptr<BasketPayoff> MinBasketPayoffPtr2;
 typedef boost::shared_ptr<Instrument> AutocallableNotePtr;
 typedef boost::shared_ptr<AutocallCondition> MinUpConditionPtr;
 typedef boost::shared_ptr<AutocallCondition> MinDownConditionPtr;
 %}
+
+%ignore ArrayPayoff;
+class ArrayPayoff {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
+    %rename(call) operator();
+    #endif
+  public:
+    Real operator()(const Array& a);
+};
+%template(ArrayPayoffPtr) boost::shared_ptr<ArrayPayoff>;
 
 %ignore AutocallCondition;
 class AutocallCondition {
@@ -31,8 +47,18 @@ class AutocallCondition {
   public:
     Real operator()(Array& a) const;
 };
-
 %template(AutocallCondition) boost::shared_ptr<AutocallCondition>;
+
+%template(PayoffVector) std::vector<boost::shared_ptr<Payoff> >;
+%rename(MinOfPayoffs) MinOfPayoffsPtr;
+class MinOfPayoffsPtr : public boost::shared_ptr<ArrayPayoff> {
+  public:
+    %extend {
+        MinOfPayoffsPtr(std::vector<boost::shared_ptr<Payoff> > payoffs) {
+            return new MinOfPayoffsPtr(new MinOfPayoffs(payoffs));
+        }
+    }
+};
 
 %rename(GeneralPayoff) GeneralPayoffPtr;
 class GeneralPayoffPtr : public boost::shared_ptr<Payoff> {
@@ -43,6 +69,7 @@ class GeneralPayoffPtr : public boost::shared_ptr<Payoff> {
         }
     }
 };
+
 %template(BasketPayoff2) boost::shared_ptr<BasketPayoff>;
 %rename(MinBasketPayoff2) MinBasketPayoffPtr2;
 class MinBasketPayoffPtr2 : public boost::shared_ptr<BasketPayoff> {
@@ -54,6 +81,15 @@ class MinBasketPayoffPtr2 : public boost::shared_ptr<BasketPayoff> {
     }
 };
 
+%rename(GeneralBasketPayoff) GeneralBasketPayoffPtr;
+class GeneralBasketPayoffPtr : public boost::shared_ptr<BasketPayoff> {
+  public:
+    %extend {
+        GeneralBasketPayoffPtr(const boost::shared_ptr<ArrayPayoff>& payoff) {
+            return new GeneralBasketPayoffPtr(new GeneralBasketPayoff(payoff));
+        }
+    }
+};
 
 %rename(AutocallableNote) AutocallableNotePtr;
 class AutocallableNotePtr : public boost::shared_ptr<Instrument> {
@@ -98,7 +134,10 @@ class AutocallableNotePtr : public boost::shared_ptr<Instrument> {
 class MinUpConditionPtr : public boost::shared_ptr<AutocallCondition> {
   public:
     %extend {
-        MinUpConditionPtr(Real barrier) {
+        //MinUpConditionPtr(Real barrier) {
+        //    return new MinUpConditionPtr(new MinUpCondition(barrier));
+        //}
+		MinUpConditionPtr(std::vector<Real> barrier) {
             return new MinUpConditionPtr(new MinUpCondition(barrier));
         }
     }
@@ -109,6 +148,9 @@ class MinDownConditionPtr : public boost::shared_ptr<AutocallCondition> {
   public:
     %extend {
         MinDownConditionPtr(Real barrier) {
+            return new MinDownConditionPtr(new MinDownCondition(barrier));
+        }
+		MinDownConditionPtr(std::vector<Real> barrier) {
             return new MinDownConditionPtr(new MinDownCondition(barrier));
         }
     }

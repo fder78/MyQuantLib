@@ -8,6 +8,7 @@
 #include <eq_derivatives\autocallable_engine\autocall_engine.h>
 #include <eq_derivatives\autocallable_instrument\autocallable_note.h>
 #include <eq_derivatives\autocallable_instrument\general_payoff.h>
+#include <eq_derivatives\autocallable_instrument\general_basket_payoff.h>
 
 using namespace std;
 using namespace QuantLib;
@@ -315,20 +316,29 @@ void testEuroTwoValues() {
 		Date terminationDate = effectiveDate + mat * Years;
 		Period tenor(6, Months);
 		Real redempBarrier[6] = { 90,90,85,85,80,80 };
-		Real kibarrier = 50;
+		Real kibarrier[2] = { 50,60 };
 
-		Real x[] = { 0, kibarrier };
+		Real x1[] = { 0, kibarrier[0] };
+		Real x2[] = { 0, kibarrier[1] };
 		Real y[] = { 0, 100 * (1 + couponRate * mat) };
 		Real slope[] = { 1.0, 0.0 };
-		boost::shared_ptr<Payoff> terPayoff(new GeneralPayoff(
-			std::vector<Real>(x, x + 2), std::vector<Real>(y, y + 2), std::vector<Real>(slope, slope + 2)));
-		boost::shared_ptr<BasketPayoff> terminalPayoff(new MinBasketPayoff(terPayoff));
+		boost::shared_ptr<Payoff> terPayoff1(new GeneralPayoff(
+			std::vector<Real>(x1, x1 + 2), std::vector<Real>(y, y + 2), std::vector<Real>(slope, slope + 2)));
+		boost::shared_ptr<Payoff> terPayoff2(new GeneralPayoff(
+			std::vector<Real>(x2, x2 + 2), std::vector<Real>(y, y + 2), std::vector<Real>(slope, slope + 2)));
+		std::vector<boost::shared_ptr<Payoff> > terPayoff;
+		terPayoff.push_back(terPayoff1);
+		terPayoff.push_back(terPayoff2);
+		boost::shared_ptr<ArrayPayoff> minofpayoff(new MinOfPayoffs(terPayoff));
+		boost::shared_ptr<BasketPayoff> terminalPayoff(new GeneralBasketPayoff(minofpayoff));
 
 		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
 		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
 		Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
 		for (Size i = 0; i < exDate.size() - 1; ++i) {
-			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redempBarrier[i])));
+			std::vector<Real> redBarriers(1, redempBarrier[i]);
+			redBarriers.push_back(redempBarrier[i] + 5);
+			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redBarriers)));
 			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
 				std::vector<Real>(1, 0), std::vector<Real>(1, 100 * (1 + couponRate*(i + 1)/2.0)), std::vector<Real>(1, 0)));
 			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
@@ -343,18 +353,25 @@ void testEuroTwoValues() {
 			terminalPayoff
 			);
 
-
+		
 		Real kix[] = { 0, redempBarrier[5] };
 		Real kiy[] = { 0, 100 * (1 + couponRate * mat) };
 		Real kislope[] = { 1.0, 0.0 };
 		boost::shared_ptr<Payoff> kiPayoff(new GeneralPayoff(std::vector<Real>(kix, kix + 2), std::vector<Real>(kiy, kiy + 2), std::vector<Real>(kislope, kislope + 2)));
-		boost::shared_ptr<BasketPayoff> KIPayoff(new MinBasketPayoff(kiPayoff));
-		std::vector<Real> kib(1, kibarrier);
-		kib.push_back(60);
+		//boost::shared_ptr<BasketPayoff> KIPayoff(new MinBasketPayoff(kiPayoff));
+
+		std::vector<boost::shared_ptr<Payoff> > kipayoffs(1, kiPayoff);
+		kipayoffs.push_back(kiPayoff);
+		boost::shared_ptr<ArrayPayoff> kipayoff(new MinOfPayoffs(kipayoffs));
+		boost::shared_ptr<BasketPayoff> KIPayoff(new GeneralBasketPayoff(kipayoff));
+
+		//two way KI 베리어를 다르게
+		std::vector<Real> kib(1, kibarrier[0]);
+		kib.push_back(kibarrier[1]);
 		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kib));
 		autocallable.withKI(kiCondition, KIPayoff);
 		//autocallable.hasKnockedIn();
-
+		
 
 		////////////////////////////
 		// Market Data
