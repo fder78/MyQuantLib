@@ -134,9 +134,9 @@ class AutocallableNotePtr : public boost::shared_ptr<Instrument> {
 class MinUpConditionPtr : public boost::shared_ptr<AutocallCondition> {
   public:
     %extend {
-        //MinUpConditionPtr(Real barrier) {
-        //    return new MinUpConditionPtr(new MinUpCondition(barrier));
-        //}
+        MinUpConditionPtr(Real barrier) {
+            return new MinUpConditionPtr(new MinUpCondition(barrier));
+        }
 		MinUpConditionPtr(std::vector<Real> barrier) {
             return new MinUpConditionPtr(new MinUpCondition(barrier));
         }

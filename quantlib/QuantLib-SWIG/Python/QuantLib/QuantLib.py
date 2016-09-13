@@ -17219,8 +17219,8 @@ class MinUpCondition(AutocallCondition):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, barrier: 'DoubleVector'):
-        this = _QuantLib.new_MinUpCondition(barrier)
+    def __init__(self, *args):
+        this = _QuantLib.new_MinUpCondition(*args)
         try:
             self.this.append(this)
         except __builtin__.Exception:
