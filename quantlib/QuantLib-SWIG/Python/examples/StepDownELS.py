@@ -81,5 +81,5 @@ def plainvanilla(today, s, k, r, q, matDate, vol, flag):
     
     # method: analytic
     option.setPricingEngine(AnalyticEuropeanEngine(process))
-    res = {"npv":option.NPV(), "delta":option.delta(), "gamma":option.gamma(), "theta": option.theta()}
+    res = {"npv":option.NPV(), "delta":option.delta()*0.01*s, "gamma":option.gamma()*((0.01*s)**2), "theta": option.theta()}
     return res

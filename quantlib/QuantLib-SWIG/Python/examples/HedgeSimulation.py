@@ -37,8 +37,6 @@ maxDate = d.index[-1]-relativedelta(months=6)
 v1, v2 = 0.220302, 0.211879
 q1, q2 = 0.01, 0.01
 corr = 0.6
-discRate = 0.016
-rf = 0.014
 
 #ELS Parameters
 stk = [95,95,90,90,85,60]
@@ -46,12 +44,22 @@ targetPrice = 9750
 notional = 10000
 
 today = dt.datetime(2010,1,6)
+#today = dt.datetime(2011,1,26)
 count = 0
-printformat = "  %.4f"
+printformat = "  %.6f"
 t0 = time.time()
+
+fnames = ["els_price.csv","els_delta1.csv","els_delta2.csv","els_pl1.csv","els_pl2.csv","els_carry.csv","els_nav.csv","els_summary.csv"]
+f = [open(fn,'w') for fn in fnames]
+ofnames = ["op_price1.csv","op_price2.csv","op_delta1.csv","op_delta2.csv","op_pl1.csv","op_pl2.csv","op_carry1.csv","op_carry2.csv","op_nav1.csv","op_nav2.csv","op_summary1.csv","op_summary2.csv"]
+of = [open(fn,'w') for fn in ofnames]
 
 while today<=maxDate:    
     print(count+1,": ",today.strftime("%Y-%m-%d"),end=" ")
+    for fn in f:
+        fn.write(today.strftime("%Y-%m-%d")+",")
+    for fn in of:
+        fn.write(today.strftime("%Y-%m-%d")+",")
     todaysDate = Date(today.day, today.month, today.year)
     evaluationDate = todaysDate
     dateidx = d.index.get_loc(today)
@@ -65,20 +73,26 @@ while today<=maxDate:
     #ELS valuation    
     res = stepdownels(todaysDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
     print(printformat%cpnRate, printformat%res["npv"])
+    f[-1].write(printformat%cpnRate + "," + printformat%res["npv"] + ",")
     deltaAcc = notional  #Delta-Hedge Account
-    (delta1, delta2) = res["delta"]
-    (gamma1, gamma2) = res["gamma"]
+    elsPrice = res["npv"]
+    (delta1, delta2) = res["delta"]  #1% delta
+    (gamma1, gamma2) = res["gamma"]  #1% gamma
     tradingAmt = delta1 + delta2
-    #print(today.strftime("%Y-%m-%d"), printformat%res["npv"], (printformat+printformat)%(res["delta"]), (printformat+printformat)%(res["gamma"]))    
+    #issue date print
+    outvalue = [elsPrice, delta1, delta2, deltaAcc]
+    for n, fn in enumerate([f[i] for i in (0,1,2,6)]):
+        fn.write("%.4f,"%outvalue[n])    
     
     #Option valuation
     optionMat = redmpDates[1]
-    resOption1 = plainvanilla(todaysDate, s1, stk[0], rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도
-    resOption2 = plainvanilla(todaysDate, s2, stk[0], rf, q2, optionMat, v2-0.01, "put")
+    strike = stk[0]
+    resOption1 = plainvanilla(todaysDate, s1, strike, rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도
+    resOption2 = plainvanilla(todaysDate, s2, strike, rf, q2, optionMat, v2-0.01, "put")
     
     #매도 수량
-    optionNum1 = gamma1 / resOption1["gamma"]
-    optionNum2 = gamma2 / resOption2["gamma"]
+    optionNum1 = - gamma1 / resOption1["gamma"]
+    optionNum2 = - gamma2 / resOption2["gamma"]
     #매도 금액
     optionPrice1 = resOption1["npv"] * optionNum1
     optionPrice2 = resOption2["npv"] * optionNum2
@@ -88,64 +102,112 @@ while today<=maxDate:
     #Option Hedge Account
     optionAcc1 = optionPrice1
     optionAcc2 = optionPrice2
-    #print(today.strftime("%Y-%m-%d"), printformat%resOption["npv"], printformat%(resOption["delta"]), printformat%(resOption["gamma"]))
     
-    ii = 0
+    #issue date print
+    outvalue = [optionPrice1, optionPrice2, optionDelta1, optionDelta2, optionAcc1, optionAcc2]
+    for n, fn in enumerate([of[i] for i in (0,1,2,3,8,9)]):
+        fn.write("%.4f,"%outvalue[n]) 
+    
+    ii = 1
+    x1 = x2 = 0
     while True:
         isRed = False        
+        #아직 상환 또는 종료되지 않은 ELS는 시뮬레이션 중지
+        eDate = d.index[dateidx+ii]
+        if eDate>=d.index[-1]:
+            print("99999")
+            isRed = True
+            for fn in f:
+                fn.write("99999\n")
+            for fn in of:
+                fn.write("99999\n")
+            break
+        
+        evaluationDate = Date(eDate.day, eDate.month, eDate.year)    
         for it in range(2):
-            #it=0 주간 , 1 야간            
+            #it=0 주간 , 1 야간
             R1 = R2 = 0
             if it==0:
                 ii += 1  #날짜 변경
                 s1_temp = d.ix[dateidx+ii].K200 / spot1 * 100
-                s2_temp = (d.ix[dateidx+ii].SPX * d.ix[dateidx+ii].USDKRW) / 1000 / spot2 * 100
-                R1 = (s1_temp / s1 - 1.0)
-                carry = (deltaAcc - (delta1*100 + delta2*100)*1.2) * rf / 365;
+                s2_temp = (d.ix[dateidx+ii-1].SPX * d.ix[dateidx+ii].USDKRW) / 1000 / spot2 * 100               
+                carry = (deltaAcc - (delta1*100 + delta2*100)*1.2) * rf / 365
+                carry_1 = (optionAcc1 - optionDelta1*100*1.2) * rf / 365
+                carry_2 = 0
             else:
                 s1_temp = d.ix[dateidx+ii].K200 / spot1 * 100
                 s2_temp = d.ix[dateidx+ii].SPXinKRW / spot2 * 100
-                R2 = (s2_temp / s2 - 1.0)  
                 carry = 0
-                
-            pl1, pl2 = delta1*R1*100, delta2*R2*100
-            deltaAcc = pl1 + pl2 + carry 
-            s1, s2 = s1_temp, s2_temp    
+                carry_1 = 0
+                carry_2 = (optionAcc2 - optionDelta2*100*1.2) * rf / 365
             
+            R1 = (s1_temp / s1 - 1.0)
+            R2 = (s2_temp / (d.ix[dateidx+ii-1].SPXinKRW / spot2 * 100) - 1.0) if it==1 else 0
+            pl1, pl2, optionPL1, optionPL2 = delta1*R1*100, delta2*R2*100, optionDelta1*R1*100, optionDelta2*R2*100
+            deltaAcc += pl1 + pl2 + carry
+            optionAcc1 += optionPL1 + carry_1
+            optionAcc2 += optionPL2 + carry_2
+            s1, s2 = s1_temp, s2_temp
             
-            eDate = d.index[dateidx+ii]
-            if eDate>=d.index[-1]:
-                print("99999")
-                isRed = true
-                break
-            
-            evaluationDate = Date(eDate.day, eDate.month, eDate.year)
-            
-            '''
-            if evaluationDate in redmpDates and it==0:
-                evaluationDate = evaluationDate - Period(1,Days)  #중도상환일에 greek이 계산안되는 문제 해결
-            '''
-            
+            isRed0 = evaluationDate in redmpDates  #조기행사일인지?
             if it==1:
-                #상환여부처리   
-                isRed0 = evaluationDate in redmpDates
-                if isRed0:
+                #상환여부처리               
+                if isRed0: #조기상환일이면
+                    x1 += np.maximum(strike - s1, 0) * optionNum1
+                    x2 += np.maximum(strike - s2, 0) * optionNum2
                     i = [x for x in redmpDates].index(evaluationDate) - 1
-                    isRed1 = isRed0 and s1>=stk[i] and s2>=stk[i]
-                    if (isRed1 or evaluationDate==redmpDates[-1]):
+                    isRed1 = isRed0 and s1>=stk[i] and s2>=stk[i]   #조기상환조건 만족하면 또는
+                    if (isRed1 or evaluationDate==redmpDates[-1]):  #마지막 상환일이면
                         isRed = True
                         x = notional * (1+cpnRate/2*(i+1))
                         if (evaluationDate==redmpDates[-1]):
                             i = redmpDates.size()-1
-                            x = notional*(1+cpnRate*3)
+                            x = notional*(1+cpnRate*3)  #dummy coupon
                         if (not isRed1 and (s1 < stk[-1] or s2 < stk[-1])):
                             x = s1 if s1<s2 else s2
-                            x *= notional / 100
-                        print("[",i,"]",eDate.strftime("%Y-%m-%d"), "%.2f  %.2f  %.2f  %.2f"%(s1, s2, deltaAcc, x))
+                            x *= notional / 100                        
+                        #realized vol
+                        rv = np.log(d[dateidx:dateidx+ii+1]).diff().std()*np.sqrt(365)
+                        print("[",i,"]",eDate.strftime("%Y-%m-%d"), "%.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.2f"
+                        %(s1, s2, rv.K200, rv.SPXinKRW, deltaAcc, x, deltaAcc-x))
+                        f[-1].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
+                        ",%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f" %(s1, s2, rv.K200, rv.SPXinKRW, deltaAcc, x, deltaAcc-x))                        
+                        of[-2].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
+                        ",%.2f,%.4f,%.2f,%.2f,%.2f" %(s1, rv.K200, optionAcc1, x1, optionAcc1-x1))                      
+                        of[-1].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
+                        ",%.2f,%.4f,%.2f,%.2f,%.2f" %(s2, rv.SPXinKRW, optionAcc2, x2, optionAcc2-x2))
+                        
+                        for fn in f:
+                            fn.write("\n")
+                        for fn in of:
+                            fn.write("\n")
                         break
-                    
+                    else:
+                        #roll-over
+                        optionMat = redmpDates[i+2]
+                        strike = stk[i+1]
+                        res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+                        resOption1 = plainvanilla(evaluationDate, s1, strike, rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도
+                        resOption2 = plainvanilla(evaluationDate, s2, strike, rf, q2, optionMat, v2-0.01, "put")
+                        (gamma1, gamma2) = res["gamma"]  #1% gamma
+                        optionNum1 = - gamma1 / resOption1["gamma"]
+                        optionNum2 = - gamma2 / resOption2["gamma"]
+                        #매도 금액
+                        optionPrice1 = resOption1["npv"] * optionNum1
+                        optionPrice2 = resOption2["npv"] * optionNum2
+                        #Delta
+                        optionDelta1 = resOption1["delta"] * optionNum1
+                        optionDelta2 = resOption2["delta"] * optionNum2
+                        #Option Hedge Account
+                        optionAcc1 += optionPrice1
+                        optionAcc2 += optionPrice2
+                        
             #오늘의 greek 계산
-            #res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+            if (not isRed0):
+                res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+                resOption1 = plainvanilla(evaluationDate, s1, strike, rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도
+                resOption2 = plainvanilla(evaluationDate, s2, strike, rf, q2, optionMat, v2-0.01, "put")
+
             delta1_t, delta2_t = res["delta"]
             if it==0:
                 tradingamt = np.abs(delta1_t-delta1)
@@ -155,9 +217,25 @@ while today<=maxDate:
                 delta2 = delta2_t
             elsPrice = res["npv"]
             
+            outvalue = [elsPrice, delta1, delta2, pl1, pl2, carry, deltaAcc]
+            for n, fn in enumerate(f[:-1]):
+                fn.write("%.4f,"%outvalue[n])                
+                
+            #매도 금액
+            optionPrice1 = resOption1["npv"] * optionNum1
+            optionPrice2 = resOption2["npv"] * optionNum2
+            #Delta
+            optionDelta1 = resOption1["delta"] * optionNum1
+            optionDelta2 = resOption2["delta"] * optionNum2                     
+         
+            outvalue = [optionPrice1, optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
+            for n, fn in enumerate(of[:-2]):
+                fn.write("%.4f,"%outvalue[n])
+
         if isRed:
             break
-        
+    
+    #one hedge simulation finished
     count += 1
     today = today + relativedelta(days=7)
     
@@ -167,15 +245,10 @@ while today<=maxDate:
     print("-"*50)
     t0 = t1
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+for fn in f:
+    fn.close()
+for fn in of:
+    fn.close()
     
     
     
