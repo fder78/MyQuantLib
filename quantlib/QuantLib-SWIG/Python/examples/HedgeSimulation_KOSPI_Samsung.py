@@ -191,6 +191,7 @@ while today<=maxDate:
                 optionAcc2 += optionPrice2
                     
         #오늘의 greek 계산
+        ii += 1
         if (not isRed0):
             res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
             resOption1 = plainvanilla(evaluationDate, s1, strike, rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도

@@ -220,14 +220,16 @@ while today<=maxDate:
             outvalue = [elsPrice, delta1, delta2, pl1, pl2, carry, deltaAcc]
             for n, fn in enumerate(f[:-1]):
                 fn.write("%.4f,"%outvalue[n])                
-                
-            #매도 금액
-            optionPrice1 = resOption1["npv"] * optionNum1
-            optionPrice2 = resOption2["npv"] * optionNum2
-            #Delta
-            optionDelta1 = resOption1["delta"] * optionNum1
-            optionDelta2 = resOption2["delta"] * optionNum2                     
-         
+            
+            if it==0:
+                #매도 금액
+                optionPrice1 = resOption1["npv"] * optionNum1                
+                #Delta
+                optionDelta1 = resOption1["delta"] * optionNum1               
+            else:
+                optionPrice2 = resOption2["npv"] * optionNum2
+                optionDelta2 = resOption2["delta"] * optionNum2
+            
             outvalue = [optionPrice1, optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
             for n, fn in enumerate(of[:-2]):
                 fn.write("%.4f,"%outvalue[n])
