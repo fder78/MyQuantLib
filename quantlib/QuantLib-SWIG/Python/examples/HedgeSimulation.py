@@ -230,7 +230,7 @@ while today<=maxDate:
                 optionPrice2 = resOption2["npv"] * optionNum2
                 optionDelta2 = resOption2["delta"] * optionNum2
             
-            outvalue = [optionPrice1, optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
+            outvalue = [x1+optionPrice1, x2+optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
             for n, fn in enumerate(of[:-2]):
                 fn.write("%.4f,"%outvalue[n])
 

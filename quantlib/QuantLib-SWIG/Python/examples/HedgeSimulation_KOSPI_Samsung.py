@@ -149,7 +149,7 @@ while today<=maxDate:
                 isRed = True
                 x = notional * (1+cpnRate/2*(i+1))
                 if (evaluationDate==redmpDates[-1]):
-                    i = redmpDates.size()-1
+                    i = len(redmpDates)-1
                     x = notional*(1+cpnRate*3)  #dummy coupon
                 if (not isRed1 and (s1 < stk[-1] or s2 < stk[-1])):
                     x = s1 if s1<s2 else s2
@@ -214,7 +214,7 @@ while today<=maxDate:
         optionDelta1 = resOption1["delta"] * optionNum1
         optionDelta2 = resOption2["delta"] * optionNum2                     
      
-        outvalue = [optionPrice1, optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
+        outvalue = [x1+optionPrice1, x2+optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
         for n, fn in enumerate(of[:-2]):
             fn.write("%.4f,"%outvalue[n])
     
