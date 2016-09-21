@@ -12,15 +12,17 @@ namespace QuantLib {
 		mandaroty.insert(mandaroty.begin(), minx);
 		mandaroty.push_back(maxx);
 		std::vector<Real> xs(1, minx);
+		Real minWidth = (max - min) / n / 2.5;
 
 		for (Size k = 1; k < mandaroty.size(); ++k) {
 			Real x0 = mandaroty[k - 1], x1 = mandaroty[k];
 			Size xg = (Size)((x1 - x0) / (maxx - minx) * n);
 			Real dx = (x1 - x0) / xg;
-			for (Size i = 1; i < xg; ++i) {
-				xs.push_back(xs.back() + dx);
+			if (x1 - x0 > minWidth) {
+				for (Size i = 1; i < xg; ++i)
+					xs.push_back(xs.back() + dx);
+				xs.push_back(x1);
 			}
-			xs.push_back(x1);
 		}
 		locations_.resize(xs.size());
 		dplus_.resize(xs.size());

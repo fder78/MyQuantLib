@@ -28,7 +28,7 @@ namespace QuantLib {
 		Array locations(dims);
 		for (FdmLinearOpIterator iter = layout->begin(); iter != layout->end(); ++iter) {
 			for (Size i = 0; i < dims; ++i)
-				locations[i] = mesher_->location(iter, i);
+				locations[i] = std::exp(mesher_->location(iter, i));
 			if ((*condition_)(locations))
 				a[iter.index()] = temp[iter.index()];
 		}

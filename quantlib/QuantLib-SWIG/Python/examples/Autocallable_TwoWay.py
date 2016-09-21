@@ -8,12 +8,12 @@ Settings.instance().evaluationDate = today
 notional = 10000
 cpnRate = 0.045
 dates = Schedule(today, today+Period(3,Years), Period(6,Months), SouthKorea(), Following, Following, DateGeneration.Forward, False)
-barriers = [[90,95],[90,95],[85,90],[85,90],[80,85],[80,85]]
-kibarrier = [50,60];
+barriers = [[90,90],[90,90],[85,85],[85,85],[80,80],[60,60]]
+kibarrier = [30,30];
 
 rf = 0.02
 discRate = 0.025
-(s1, v1, div1) = (100, 0.25, 0.01)
+(s1, v1, div1) = (100, 0.2, 0.01)
 (s2, v2, div2) = (100, 0.2, 0.01)
 
 
@@ -43,12 +43,12 @@ kip2 = GeneralPayoff([0,barriers[-1][1]], [0,100*(1+cpnRate*3)], [1,0])
 kiPayoff = PayoffVector()
 kiPayoff.push_back(kip1)
 kiPayoff.push_back(kip2)
-mop_ki = MinOfPayoffs(terPayoff)
+mop_ki = MinOfPayoffs(kiPayoff)
 KIPayoff = GeneralBasketPayoff(mop_ki)
 
 product = AutocallableNote(notional, dates, dates, autocallConditions, autocallPayoffs, terminalPayoff)
 product.withKIBarrier(MinDownCondition(kibarrier), KIPayoff)
-#product.hasKnockedIn()
+product.hasKnockedIn()
 
 # market data
 underlying1 = SimpleQuote(s1)
@@ -84,6 +84,7 @@ print("XGamma = ",product.xgamma())
 ###################################
 #Prices & Greeks wrt. Underlying
 ###################################
+
 price = np.linspace(15,150,30)
 npvs = np.zeros(price.shape)
 delta = np.zeros((len(price),2))

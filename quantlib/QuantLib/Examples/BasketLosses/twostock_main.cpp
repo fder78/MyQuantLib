@@ -369,7 +369,7 @@ void testEuroTwoValues() {
 		std::vector<Real> kib(1, kibarrier[0]);
 		kib.push_back(kibarrier[1]);
 		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kib));
-		autocallable.withKI(kiCondition, KIPayoff);
+		//autocallable.withKI(kiCondition, KIPayoff);
 		//autocallable.hasKnockedIn();
 		
 
@@ -400,9 +400,9 @@ void testEuroTwoValues() {
 		boost::shared_ptr<SimpleQuote> vol3(new SimpleQuote(0.0));
 		boost::shared_ptr<BlackVolTermStructure> volTS3 = flatVol(today, vol3, dc);
 
-		spot1->setValue(70);
-		spot2->setValue(70);
-		spot3->setValue(70);
+		spot1->setValue(80.00001);
+		spot2->setValue(80.00001);
+		spot3->setValue(80.00001);
 		qRate1->setValue(0.01);
 		qRate2->setValue(0.01);
 		qRate3->setValue(0.01);

@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-
+'''
 def showGraph(f):
     underlyingPrice = np.linspace(0,130,131)
     v_payoff = np.vectorize(f)
@@ -19,7 +19,7 @@ redemptionPayoff = GeneralPayoff([0],[105],[0])
 #Show the Payoffs
 showGraph(redemptionPayoff)
 showGraph(KIPayoff)
-
+'''
 
 ###################################################
 today = Date.todaysDate()
@@ -46,12 +46,12 @@ product = AutocallableNote(notional, dates, dates, autocallConditions, autocallP
 #product.hasKnockedIn()
 
 # market data
-underlying1 = SimpleQuote(100.0)
+underlying1 = SimpleQuote(79.0)
 discountCurve = FlatForward(today, 0.025, Actual365Fixed())
 riskFreeRate = FlatForward(today, 0.02, Actual365Fixed())
 volatility1 = BlackConstantVol(today, TARGET(), 0.20, Actual365Fixed())
 dividendYield1 = FlatForward(today, 0.01, Actual365Fixed())
-underlying2 = SimpleQuote(100.0)
+underlying2 = SimpleQuote(79.0)
 volatility2 = BlackConstantVol(today, TARGET(), 0.20, Actual365Fixed())
 dividendYield2 = FlatForward(today, 0.01, Actual365Fixed())
 
@@ -79,7 +79,8 @@ print("XGamma = ",product.xgamma())
 ###################################
 #Prices & Greeks wrt. Underlying
 ###################################
-price = np.linspace(15,150,30)
+
+price = np.linspace(50,70)
 npvs = np.zeros(price.shape)
 delta = np.zeros(price.shape)
 gamma = np.zeros(price.shape)
@@ -99,7 +100,7 @@ for i, p in enumerate(price):
     t1 = time.time()
     print("time = ", t1-t0)    
 
-print(npvs)
+print(np.c_[price,npvs])
 
 fig, ax = plt.subplots(2,2, figsize=(10,10))
 ax[0,0].plot(price,xgamma,'-s')
