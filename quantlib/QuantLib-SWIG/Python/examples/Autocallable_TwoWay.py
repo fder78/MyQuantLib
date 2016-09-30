@@ -8,8 +8,8 @@ Settings.instance().evaluationDate = today
 notional = 10000
 cpnRate = 0.045
 dates = Schedule(today, today+Period(3,Years), Period(6,Months), SouthKorea(), Following, Following, DateGeneration.Forward, False)
-barriers = [[90,90],[90,90],[85,85],[85,85],[80,80],[60,60]]
-kibarrier = [30,30];
+barriers = [[90,90],[90,90],[85,85],[85,85],[80,80],[80,80]]
+kibarrier = [50,50];
 
 rf = 0.02
 discRate = 0.025
@@ -48,44 +48,45 @@ KIPayoff = GeneralBasketPayoff(mop_ki)
 
 product = AutocallableNote(notional, dates, dates, autocallConditions, autocallPayoffs, terminalPayoff)
 product.withKIBarrier(MinDownCondition(kibarrier), KIPayoff)
-product.hasKnockedIn()
+#product.hasKnockedIn()
 
-# market data
-underlying1 = SimpleQuote(s1)
-discountCurve = FlatForward(today, discRate, Actual365Fixed())
-riskFreeRate = FlatForward(today, rf, Actual365Fixed())
-volatility1 = BlackConstantVol(today, TARGET(), v1, Actual365Fixed())
-dividendYield1 = FlatForward(today, div1, Actual365Fixed())
-underlying2 = SimpleQuote(s2)
-volatility2 = BlackConstantVol(today, TARGET(), v2, Actual365Fixed())
-dividendYield2 = FlatForward(today, div2, Actual365Fixed())
-
-process1 = BlackScholesMertonProcess(QuoteHandle(underlying1),
-                                    YieldTermStructureHandle(dividendYield1),
-                                    YieldTermStructureHandle(riskFreeRate),
-                                    BlackVolTermStructureHandle(volatility1))
-
-process2 = BlackScholesMertonProcess(QuoteHandle(underlying2),
-                                    YieldTermStructureHandle(dividendYield2),
-                                    YieldTermStructureHandle(riskFreeRate),
-                                    BlackVolTermStructureHandle(volatility2))
-correlation = 0.6
-
-engine = FdAutocallEngine(discountCurve, process1, process2, correlation)
-product.setPricingEngine(engine)
-
-print("NPV = ",product.NPV())
-print("delta = ",product.delta())
-print("gamma = ",product.gamma())
-print("theta = ",product.theta())
-print("XGamma = ",product.xgamma())
+for i in range(10):
+    # market data
+    underlying1 = SimpleQuote(s1)
+    discountCurve = FlatForward(today, discRate, Actual365Fixed())
+    riskFreeRate = FlatForward(today, rf+i/1000, Actual365Fixed())
+    volatility1 = BlackConstantVol(today, TARGET(), v1, Actual365Fixed())
+    dividendYield1 = FlatForward(today, div1, Actual365Fixed())
+    underlying2 = SimpleQuote(s2)
+    volatility2 = BlackConstantVol(today, TARGET(), v2, Actual365Fixed())
+    dividendYield2 = FlatForward(today, div2, Actual365Fixed())
+    
+    process1 = BlackScholesMertonProcess(QuoteHandle(underlying1),
+                                        YieldTermStructureHandle(dividendYield1),
+                                        YieldTermStructureHandle(riskFreeRate),
+                                        BlackVolTermStructureHandle(volatility1))
+    
+    process2 = BlackScholesMertonProcess(QuoteHandle(underlying2),
+                                        YieldTermStructureHandle(dividendYield2),
+                                        YieldTermStructureHandle(riskFreeRate),
+                                        BlackVolTermStructureHandle(volatility2))
+    correlation = 0.6
+    
+    engine = FdAutocallEngine(discountCurve, process1, process2, correlation)
+    product.setPricingEngine(engine)
+    
+    print("NPV = ",product.NPV())
+    #print("delta = ",product.delta())
+    #print("gamma = ",product.gamma())
+    #print("theta = ",product.theta())
+    #print("XGamma = ",product.xgamma())
 
 
 ###################################
 #Prices & Greeks wrt. Underlying
 ###################################
-
-price = np.linspace(15,150,30)
+'''
+price = np.linspace(99.5,101.5)
 npvs = np.zeros(price.shape)
 delta = np.zeros((len(price),2))
 gamma = np.zeros((len(price),2))
@@ -127,4 +128,4 @@ fig1, ax1 = plt.subplots(1,1, figsize=(6,4))
 ax1.plot(price,npvs,'-s')
 ax1.set_title("NPV")
 fig1.show()
-
+'''

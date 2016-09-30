@@ -80,7 +80,7 @@ print("XGamma = ",product.xgamma())
 #Prices & Greeks wrt. Underlying
 ###################################
 
-price = np.linspace(50,70)
+price = np.linspace(20,140)
 npvs = np.zeros(price.shape)
 delta = np.zeros(price.shape)
 gamma = np.zeros(price.shape)

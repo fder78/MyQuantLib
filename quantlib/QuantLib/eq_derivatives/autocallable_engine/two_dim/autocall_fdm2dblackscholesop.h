@@ -1,8 +1,8 @@
 #pragma once
 
 #include <ql/methods/finitedifferences/operators/ninepointlinearop.hpp>
-#include <ql/methods/finitedifferences/operators/fdmblackscholesop.hpp>
 #include <ql/methods/finitedifferences/operators/fdmlinearopcomposite.hpp>
+#include <eq_derivatives/autocallable_engine/autocall_fdmblackscholesop.h>
 
 namespace QuantLib {
 
@@ -44,7 +44,7 @@ namespace QuantLib {
         
         Real currentForwardRate_;
 
-        FdmBlackScholesOp opX_, opY_;
+        Autocall_FdmBlackScholesOp opX_, opY_;
         NinePointLinearOp corrMapT_;
         const NinePointLinearOp corrMapTemplate_;
         const Real illegalLocalVolOverwrite_;

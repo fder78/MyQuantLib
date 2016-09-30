@@ -2,6 +2,7 @@
 #include <ql/quantlib.hpp>
 #include <boost/timer.hpp>
 #include <iostream>
+#include <fstream>
 
 #include "utilities.hpp"
 #include <eq_derivatives\3dfdm\fd3dblackscholesvanillaengine.hpp>
@@ -302,10 +303,11 @@ void testEuroTwoValues() {
 
 	DayCounter dc = Actual360();
 	Date today0 = Date::todaysDate();
+	std::ofstream fout("d:\\els_prices.csv");
 
-	for (Size i = 0; i < 24; ++i) {
+	for (Size i = 0; i < 100; ++i) {
 		Date effectiveDate(10, June, 2016);
-		Settings::instance().evaluationDate() = effectiveDate + i*Months;
+		Settings::instance().evaluationDate() = effectiveDate;
 		Date today = Settings::instance().evaluationDate();
 
 		//Spec.
@@ -391,7 +393,7 @@ void testEuroTwoValues() {
 		boost::shared_ptr<YieldTermStructure> rTS = flatRate(today, rRate, dc);
 
 		boost::shared_ptr<SimpleQuote> discRate(new SimpleQuote(0.0));
-		boost::shared_ptr<YieldTermStructure> discTS = flatRate(today, rRate, dc);
+		boost::shared_ptr<YieldTermStructure> discTS = flatRate(today, discRate, dc);
 
 		boost::shared_ptr<SimpleQuote> vol1(new SimpleQuote(0.0));
 		boost::shared_ptr<BlackVolTermStructure> volTS1 = flatVol(today, vol1, dc);
@@ -400,13 +402,14 @@ void testEuroTwoValues() {
 		boost::shared_ptr<SimpleQuote> vol3(new SimpleQuote(0.0));
 		boost::shared_ptr<BlackVolTermStructure> volTS3 = flatVol(today, vol3, dc);
 
-		spot1->setValue(80.00001);
-		spot2->setValue(80.00001);
-		spot3->setValue(80.00001);
+		spot1->setValue(100 +0.02*i);
+		spot2->setValue(100 +0.02*i);
+		spot3->setValue(100);
 		qRate1->setValue(0.01);
 		qRate2->setValue(0.01);
 		qRate3->setValue(0.01);
-		rRate->setValue(0.02);
+		rRate->setValue(0.03);
+		discRate->setValue(0.02);
 		vol1->setValue(0.2);
 		vol2->setValue(0.2);
 		vol3->setValue(0.2);
@@ -469,7 +472,9 @@ void testEuroTwoValues() {
 			std::cout << std::endl;
 		}
 		std::cout << std::string(30, '-') << std::endl;
+		fout << calculated << "\n";
 	}
+	fout.close();
 }
 
 

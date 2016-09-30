@@ -105,9 +105,9 @@ namespace QuantLib {
 					mustHave[i].push_back(std::log(arguments_.kibarrier->getBarrier()[(nb>i) ? i : nb - 1]));
 				else
 					mustHave[i].push_back(std::log(arguments_.autocallConditions.back()->getBarrier()[(nb1>i) ? i : nb1 - 1]));
-				mustHave[i].push_back(logprices[i]);
-				Real maxx = logprices[i] + std::log(maxMesher);
-				Real minx = logprices[i] + std::log(minMesher);
+				//mustHave[i].push_back(logprices[i]);
+				Real maxx = std::log(300.0); // logprices[i] + std::log(maxMesher);
+				Real minx = std::log(5.0);   // logprices[i] + std::log(minMesher);
 				std::sort(mustHave[i].begin(), mustHave[i].end());  
 				mustHave[i].erase(std::unique(mustHave[i].begin(), mustHave[i].end()), mustHave[i].end());
 				ems.push_back(boost::shared_ptr<Fdm1dMesher>(new MandatoryMesher(numGrid_[i], minx, maxx, mustHave[i])));

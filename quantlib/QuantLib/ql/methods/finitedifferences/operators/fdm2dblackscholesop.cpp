@@ -120,7 +120,7 @@ namespace QuantLib {
     }
     
     Disposable<Array> Fdm2dBlackScholesOp::apply_mixed(const Array& x) const {
-        return corrMapT_.apply(x) + currentForwardRate_*x;
+		return corrMapT_.apply(x) +currentForwardRate_*x;
     }
     
     Disposable<Array> Fdm2dBlackScholesOp::apply_direction(
@@ -159,9 +159,8 @@ namespace QuantLib {
         std::vector<SparseMatrix> retVal(3);
         retVal[0] = opX_.toMatrix();
         retVal[1] = opY_.toMatrix();
-        retVal[2] = corrMapT_.toMatrix() +
-            currentForwardRate_*boost::numeric::ublas::identity_matrix<Real>(
-                    mesher_->layout()->size());
+		retVal[2] = corrMapT_.toMatrix()
+					+ currentForwardRate_*boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size());
 
         return retVal;
     }

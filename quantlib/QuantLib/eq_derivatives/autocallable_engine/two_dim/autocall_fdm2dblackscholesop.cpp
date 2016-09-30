@@ -34,8 +34,8 @@ namespace QuantLib {
 		x_((localVol) ? Array(Exp(mesher->locations(0))) : Array()),
 		y_((localVol) ? Array(Exp(mesher->locations(1))) : Array()),
 
-		opX_(mesher, p1, p1->x0(), localVol, illegalLocalVolOverwrite, 0),
-		opY_(mesher, p2, p2->x0(), localVol, illegalLocalVolOverwrite, 1),
+		opX_(mesher, p1, disc, p1->x0(), localVol, illegalLocalVolOverwrite, 0),
+		opY_(mesher, p2, disc, p2->x0(), localVol, illegalLocalVolOverwrite, 1),
 
 		corrMapT_(0, 1, mesher),
 		corrMapTemplate_(SecondOrderMixedDerivativeOp(0, 1, mesher)
@@ -89,7 +89,7 @@ namespace QuantLib {
 			corrMapT_ = corrMapTemplate_.mult(Array(mesher_->layout()->size(), vol1*vol2));
 		}
 
-		currentForwardRate_ = disc_->forwardRate(t1, t2, Continuous).rate();
+		//currentForwardRate_ = disc_->forwardRate(t1, t2, Continuous).rate();
 	}
 
 	Disposable<Array> AutocallFdm2dBlackScholesOp::apply(const Array& x) const {
@@ -97,7 +97,7 @@ namespace QuantLib {
 	}
 
 	Disposable<Array> AutocallFdm2dBlackScholesOp::apply_mixed(const Array& x) const {
-		return corrMapT_.apply(x) + currentForwardRate_*x;
+		return corrMapT_.apply(x);// +currentForwardRate_*x;
 	}
 
 	Disposable<Array> AutocallFdm2dBlackScholesOp::apply_direction(
@@ -135,7 +135,7 @@ namespace QuantLib {
 		std::vector<SparseMatrix> retVal(3);
 		retVal[0] = opX_.toMatrix();
 		retVal[1] = opY_.toMatrix();
-		retVal[2] = corrMapT_.toMatrix() + currentForwardRate_*boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size());
+		retVal[2] = corrMapT_.toMatrix();// +currentForwardRate_*boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size());
 		return retVal;
 	}
 #endif
