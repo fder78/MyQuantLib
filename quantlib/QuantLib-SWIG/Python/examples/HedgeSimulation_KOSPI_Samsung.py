@@ -169,7 +169,7 @@ while today<=maxDate:
                     fn.write("\n")
                 for fn in of:
                     fn.write("\n")
-                break
+                #break
             else:
                 #roll-over
                 optionMat = redmpDates[i+2]

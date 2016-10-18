@@ -8,6 +8,7 @@
 
 #include <eq_derivatives/autocallable_engine/mesher_mandatory.h>
 #include <eq_derivatives/autocallable_engine/autocall_stepcondition.h>
+#include <eq_derivatives/autocallable_engine/call_stepcondition.h>
 #include <eq_derivatives/autocallable_engine/autocall_engine.h>
 #include <eq_derivatives/autocallable_engine/autocall_calculator.h>
 #include <eq_derivatives/autocallable_engine/autocall_solver.h>
@@ -169,8 +170,9 @@ namespace QuantLib {
 			}
 			for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i) {
 				if (arguments_.autocallDates[i] > refDate) {
-					boost::shared_ptr<FdmAutocallStepCondition> autocallCondition(
-						new FdmAutocallStepCondition(arguments_.autocallDates[i], refDate, dayCounter, mesher, calculators[i], arguments_.autocallConditions[i]));
+					// Slope Payoff º¯°æ
+					boost::shared_ptr<FdmCallStepCondition> autocallCondition(
+						new FdmCallStepCondition(arguments_.autocallDates[i], refDate, dayCounter, mesher, calculators[i], arguments_.autocallConditions[i]));
 					stepConditions.push_back(autocallCondition);
 					stoppingTimes.push_back(autocallCondition->exerciseTimes());
 				}

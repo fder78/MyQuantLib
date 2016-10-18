@@ -499,6 +499,7 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_fdmblackscholesop.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_solver.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\autocall_stepcondition.h" />
+    <ClInclude Include="eq_derivatives\autocallable_engine\call_stepcondition.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\mesher_mandatory.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dblackscholesop.h" />
     <ClInclude Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dimsolver.h" />
@@ -1783,6 +1784,7 @@
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_fdmblackscholesop.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_solver.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\autocall_stepcondition.cpp" />
+    <ClCompile Include="eq_derivatives\autocallable_engine\call_stepcondition.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\mesher_mandatory.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dblackscholesop.cpp" />
     <ClCompile Include="eq_derivatives\autocallable_engine\one_dim\autocall_fdm1dimsolver.cpp" />

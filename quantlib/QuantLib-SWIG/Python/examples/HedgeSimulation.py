@@ -108,7 +108,7 @@ while today<=maxDate:
     for n, fn in enumerate([of[i] for i in (0,1,2,3,8,9)]):
         fn.write("%.4f,"%outvalue[n]) 
     
-    ii = 1
+    ii = 0
     x1 = x2 = 0
     while True:
         isRed = False        
@@ -181,7 +181,7 @@ while today<=maxDate:
                             fn.write("\n")
                         for fn in of:
                             fn.write("\n")
-                        break
+                        #break
                     else:
                         #roll-over
                         optionMat = redmpDates[i+2]

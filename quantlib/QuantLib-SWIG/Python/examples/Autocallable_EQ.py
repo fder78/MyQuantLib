@@ -37,7 +37,7 @@ autocallPayoffs = BasketPayoffVector();
 for i in range(1,7):
     condition = MinUpCondition(barriers[i-1])
     autocallConditions.push_back(condition)
-    redemptionPayoff = MinBasketPayoff2(GeneralPayoff([0],[100*(1+cpnRate*i/2.0)],[0]))
+    redemptionPayoff = MinBasketPayoff2(GeneralPayoff([0,barriers[i-1]],[0,100*(1+cpnRate*i/2.0)],[0,0]))
     autocallPayoffs.push_back(redemptionPayoff)
 terPayoff = GeneralPayoff([0,60], [0,100*(1+cpnRate*3)], [1,0])
 terminalPayoff = MinBasketPayoff2(terPayoff)

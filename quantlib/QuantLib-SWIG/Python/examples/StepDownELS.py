@@ -1,6 +1,6 @@
 from QuantLib import *
 
-def stepdownels(today, notional, cpnRate, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf):
+def stepdownels(today, notional, cpnRate, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes=[1000]*6):
 
     Settings.instance().evaluationDate = today
     dates = redmpDates
@@ -8,11 +8,17 @@ def stepdownels(today, notional, cpnRate, barriers, redmpDates, underlyings, vol
     autocallPayoffs = BasketPayoffVector();
     
     for i in range(1,7):
-        condition = MinUpCondition(barriers[i-1])
+        b = barriers[i-1]
+        s = slopes[i-1]
+        p = 100*(1+cpnRate*i/2.0)
+        condition = MinUpCondition(b)
         autocallConditions.push_back(condition)
-        redemptionPayoff = MinBasketPayoff2(GeneralPayoff([0],[100*(1+cpnRate*i/2.0)],[0]))
+        redemptionPayoff = MinBasketPayoff2(GeneralPayoff([0,b-p/s,b],[0,0,p],[0,s,0]))
         autocallPayoffs.push_back(redemptionPayoff)
-    terPayoff = GeneralPayoff([0,barriers[-1]], [0,100*(1+cpnRate*3)], [1,0])
+    
+    tp = 100*(1+cpnRate*3)
+    x = (slopes[-1]*barriers[-1] - tp) / (slopes[-1] - 1)
+    terPayoff = GeneralPayoff([0,x,barriers[-1]], [0,x,tp], [1,slopes[-1],0])
     terminalPayoff = MinBasketPayoff2(terPayoff)
     product = AutocallableNote(notional, dates, dates, autocallConditions, autocallPayoffs, terminalPayoff)
     #product.withKIBarrier(MinDownCondition(55), MinBasketPayoff2(KIPayoff))
@@ -50,11 +56,11 @@ def stepdownels(today, notional, cpnRate, barriers, redmpDates, underlyings, vol
 
 
 
-def couponfinder(today, notional, targetPrice, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf):
+def couponfinder(today, notional, targetPrice, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes=[1000]*6):
     c0 = 0.0
     c1 = 0.1
-    p0 = stepdownels(today, notional, c0, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf)["npv"]
-    p1 = stepdownels(today, notional, c1, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf)["npv"]
+    p0 = stepdownels(today, notional, c0, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes)["npv"]
+    p1 = stepdownels(today, notional, c1, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes)["npv"]
     return c0 + (targetPrice-p0) / (p1-p0) *(c1-c0)  
 
 
@@ -83,3 +89,25 @@ def plainvanilla(today, s, k, r, q, matDate, vol, flag):
     option.setPricingEngine(AnalyticEuropeanEngine(process))
     res = {"npv":option.NPV(), "delta":option.delta()*0.01*s, "gamma":option.gamma()*((0.01*s)**2), "theta": option.theta()}
     return res
+    
+    
+    
+    
+if __name__=='__main__':
+    print("MAIN")
+
+    today = Date.todaysDate()
+    notional = 10000
+    cpnRate = 0.06
+    stk = [95,95,90,90,85,60]
+    redmpDates = Schedule(today, today+Period(3,Years), Period(6,Months), NullCalendar(), Following, Following, DateGeneration.Forward, False)
+    underlyings = [100,100]
+    vols = [0.2, 0.2]
+    divs = [0.01, 0.01]
+    correlation = 0.6
+    discRate = 0.025
+    rf = 0.02
+    slopes = [10]*5 + [10]
+    
+    res = stepdownels(today, notional, cpnRate, stk, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes)
+    print(res)

@@ -794,8 +794,9 @@ int InverseFloater(Real rateLevel)
 int main()
 {
     try {
-        for (Size i=5; i < 10; ++i)
-            InverseFloater(i/100.0);
+		Bermudan();
+        //for (Size i=5; i < 10; ++i)
+        //    InverseFloater(i/100.0);
 
         return 0;
     } catch (std::exception& e) {
