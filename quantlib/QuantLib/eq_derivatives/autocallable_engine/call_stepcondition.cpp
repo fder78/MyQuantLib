@@ -33,6 +33,10 @@ namespace QuantLib {
 				for (Size i = 0; i < dims; ++i)
 					locations[i] = std::exp(mesher_->location(iter, i));
 				Real innerValue = calculator_->innerValue(iter, t);
+				if ((*condition_)(locations)) {
+					a[iter.index()] = innerValue;
+					continue;
+				}
 				if (innerValue > a[iter.index()])
 					a[iter.index()] = innerValue;
 			}
