@@ -34,7 +34,7 @@ d["SPXinKRW"] = d.SPX * d.USDKRW / 1000
 maxDate = d.index[-1]-relativedelta(months=6)
 
 #Market Parameters
-v1, v2 = 0.220302, 0.211879
+v1, v2 = 0.18, 0.24
 q1, q2 = 0.01, 0.01
 corr = 0.6
 
@@ -49,9 +49,9 @@ count = 0
 printformat = "  %.6f"
 t0 = time.time()
 
-fnames = ["els_price.csv","els_delta1.csv","els_delta2.csv","els_pl1.csv","els_pl2.csv","els_carry.csv","els_nav.csv","els_summary.csv"]
+fnames = ["els_price.csv","els_delta1.csv","els_delta2.csv","els_pf_pl1.csv","els_pf_pl2.csv","els_pf_carry.csv","els_pf_nav.csv","els_summary.csv"]
 f = [open(fn,'w') for fn in fnames]
-ofnames = ["op_price1.csv","op_price2.csv","op_delta1.csv","op_delta2.csv","op_pl1.csv","op_pl2.csv","op_carry1.csv","op_carry2.csv","op_nav1.csv","op_nav2.csv","op_summary1.csv","op_summary2.csv"]
+ofnames = ["op_price1.csv","op_price2.csv","op_delta1.csv","op_delta2.csv","op_pf_pl1.csv","op_pf_pl2.csv","op_pf_carry1.csv","op_pf_carry2.csv","op_pf_nav1.csv","op_pf_nav2.csv","op_summary1.csv","op_summary2.csv"]
 of = [open(fn,'w') for fn in ofnames]
 
 while today<=maxDate:    
@@ -149,7 +149,7 @@ while today<=maxDate:
             optionAcc2 += optionPL2 + carry_2
             s1, s2 = s1_temp, s2_temp
             
-            isRed0 = evaluationDate in redmpDates  #조기행사일인지?
+            isRed0 = evaluationDate in redmpDates and evaluationDate!=redmpDates[0]  #조기행사일인지?
             if it==1:
                 #상환여부처리               
                 if isRed0: #조기상환일이면
@@ -168,20 +168,21 @@ while today<=maxDate:
                             x *= notional / 100                        
                         #realized vol
                         rv = np.log(d[dateidx:dateidx+ii+1]).diff().std()*np.sqrt(365)
+                        cr = np.log(d[dateidx:dateidx+ii+1]).diff().corr()['K200']['SPXinKRW']
                         print("[",i,"]",eDate.strftime("%Y-%m-%d"), "%.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.2f"
                         %(s1, s2, rv.K200, rv.SPXinKRW, deltaAcc, x, deltaAcc-x))
                         f[-1].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
-                        ",%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f" %(s1, s2, rv.K200, rv.SPXinKRW, deltaAcc, x, deltaAcc-x))                        
+                        ",%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.4f" %(s1, s2, rv.K200, rv.SPXinKRW, deltaAcc, x, deltaAcc-x, cr))                        
                         of[-2].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
                         ",%.2f,%.4f,%.2f,%.2f,%.2f" %(s1, rv.K200, optionAcc1, x1, optionAcc1-x1))                      
                         of[-1].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
                         ",%.2f,%.4f,%.2f,%.2f,%.2f" %(s2, rv.SPXinKRW, optionAcc2, x2, optionAcc2-x2))
                         
-                        for fn in f:
-                            fn.write("\n")
-                        for fn in of:
-                            fn.write("\n")
-                        #break
+#                        for fn in f:
+#                            fn.write("\n")
+#                        for fn in of:
+#                            fn.write("\n")
+#                        break
                     else:
                         #roll-over
                         optionMat = redmpDates[i+2]
@@ -232,9 +233,13 @@ while today<=maxDate:
             
             outvalue = [x1+optionPrice1, x2+optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
             for n, fn in enumerate(of[:-2]):
-                fn.write("%.4f,"%outvalue[n])
+                fn.write("%.4f,"%outvalue[n])                
 
         if isRed:
+            for fn in f:
+                fn.write("\n")
+            for fn in of:
+                fn.write("\n")
             break
     
     #one hedge simulation finished

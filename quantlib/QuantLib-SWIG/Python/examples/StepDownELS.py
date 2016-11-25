@@ -57,8 +57,8 @@ def stepdownels(today, notional, cpnRate, barriers, redmpDates, underlyings, vol
 
 
 def couponfinder(today, notional, targetPrice, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes=[1000]*6):
-    c0 = 0.0
-    c1 = 0.1
+    c0 = 0.04
+    c1 = 0.07
     p0 = stepdownels(today, notional, c0, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes)["npv"]
     p1 = stepdownels(today, notional, c1, barriers, redmpDates, underlyings, vols, divs, correlation, discRate, rf, slopes)["npv"]
     return c0 + (targetPrice-p0) / (p1-p0) *(c1-c0)  

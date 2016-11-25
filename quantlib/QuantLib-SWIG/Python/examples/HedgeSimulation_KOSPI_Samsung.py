@@ -39,18 +39,19 @@ corr = 0.6
 
 #ELS Parameters
 stk = [95,95,90,90,85,60]
+slopes = [4]*5 + [7]
 targetPrice = 9750
 notional = 10000
 
 today = dt.datetime(2010,1,6)
-#today = dt.datetime(2011,1,26)
+#today = dt.datetime(2016,4,13)
 count = 0
 printformat = "  %.6f"
 t0 = time.time()
 
-fnames = ["els_price.csv","els_delta1.csv","els_delta2.csv","els_pl1.csv","els_pl2.csv","els_carry.csv","els_nav.csv","els_summary.csv"]
+fnames = ["els_price.csv","els_delta1.csv","els_delta2.csv","els_pf_pl1.csv","els_pf_pl2.csv","els_pf_carry.csv","els_pf_nav.csv","els_summary.csv"]
 f = [open(fn,'w') for fn in fnames]
-ofnames = ["op_price1.csv","op_price2.csv","op_delta1.csv","op_delta2.csv","op_pl1.csv","op_pl2.csv","op_carry1.csv","op_carry2.csv","op_nav1.csv","op_nav2.csv","op_summary1.csv","op_summary2.csv"]
+ofnames = ["op_price1.csv","op_price2.csv","op_delta1.csv","op_delta2.csv","op_pf_pl1.csv","op_pf_pl2.csv","op_pf_carry1.csv","op_pf_carry2.csv","op_pf_nav1.csv","op_pf_nav2.csv","op_summary1.csv","op_summary2.csv"]
 of = [open(fn,'w') for fn in ofnames]
 
 while today<=maxDate:    
@@ -67,10 +68,10 @@ while today<=maxDate:
     spot2 = d.ix[today].SE    
     s1, s2 = 100, 100
     redmpDates = Schedule(todaysDate, todaysDate+Period(3,Years), Period(6,Months), NullCalendar(), Following, Following, DateGeneration.Forward, False)
-    cpnRate = couponfinder(todaysDate, notional, targetPrice, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+    cpnRate = couponfinder(todaysDate, notional, targetPrice, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf, slopes)
     
     #ELS valuation    
-    res = stepdownels(todaysDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+    res = stepdownels(todaysDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf, slopes)
     print(printformat%cpnRate, printformat%res["npv"])
     f[-1].write(printformat%cpnRate + "," + printformat%res["npv"] + ",")
     deltaAcc = notional  #Delta-Hedge Account
@@ -123,6 +124,7 @@ while today<=maxDate:
             break
         
         evaluationDate = Date(eDate.day, eDate.month, eDate.year)
+        
         R1 = R2 = 0
         s1_temp = d.ix[dateidx+ii].K200 / spot1 * 100
         s2_temp = d.ix[dateidx+ii].SE / spot2 * 100
@@ -156,25 +158,21 @@ while today<=maxDate:
                     x *= notional / 100                        
                 #realized vol
                 rv = np.log(d[dateidx:dateidx+ii+1]).diff().std()*np.sqrt(365)
+                cr = np.log(d[dateidx:dateidx+ii+1]).diff().corr()['K200']['SE']
                 print("[",i,"]",eDate.strftime("%Y-%m-%d"), "%.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.2f"
                 %(s1, s2, rv.K200, rv.SE, deltaAcc, x, deltaAcc-x))
                 f[-1].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
-                ",%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f" %(s1, s2, rv.K200, rv.SE, deltaAcc, x, deltaAcc-x))                        
+                ",%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.4f" %(s1, s2, rv.K200, rv.SE, deltaAcc, x, deltaAcc-x, cr))                        
                 of[-2].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
                 ",%.2f,%.4f,%.2f,%.2f,%.2f" %(s1, rv.K200, optionAcc1, x1, optionAcc1-x1))                      
                 of[-1].write("%d"%(i+1) + "," + eDate.strftime("%Y-%m-%d") + 
                 ",%.2f,%.4f,%.2f,%.2f,%.2f" %(s2, rv.SE, optionAcc2, x2, optionAcc2-x2))
                 
-                for fn in f:
-                    fn.write("\n")
-                for fn in of:
-                    fn.write("\n")
-                #break
             else:
                 #roll-over
                 optionMat = redmpDates[i+2]
                 strike = stk[i+1]
-                res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+                res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf, slopes)
                 resOption1 = plainvanilla(evaluationDate, s1, strike, rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도
                 resOption2 = plainvanilla(evaluationDate, s2, strike, rf, q2, optionMat, v2-0.01, "put")
                 (gamma1, gamma2) = res["gamma"]  #1% gamma
@@ -193,7 +191,7 @@ while today<=maxDate:
         #오늘의 greek 계산
         ii += 1
         if (not isRed0):
-            res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf)
+            res = stepdownels(evaluationDate, notional, cpnRate, stk, redmpDates, (s1,s2), (v1,v2), (q1,q2), corr, discRate, rf, slopes)
             resOption1 = plainvanilla(evaluationDate, s1, strike, rf, q1, optionMat, v1-0.01, "put") #발행보다 1% 낮은 vol 매도
             resOption2 = plainvanilla(evaluationDate, s2, strike, rf, q2, optionMat, v2-0.01, "put")
 
@@ -217,6 +215,13 @@ while today<=maxDate:
         outvalue = [x1+optionPrice1, x2+optionPrice2, optionDelta1, optionDelta2, optionPL1, optionPL2, carry_1, carry_2, optionAcc1, optionAcc2]
         for n, fn in enumerate(of[:-2]):
             fn.write("%.4f,"%outvalue[n])
+    
+        if isRed:
+            for fn in f:
+                fn.write("\n")
+            for fn in of:
+                fn.write("\n")
+            break   
     
     #one hedge simulation finished
     count += 1
