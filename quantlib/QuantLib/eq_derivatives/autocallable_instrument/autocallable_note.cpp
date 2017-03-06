@@ -14,7 +14,8 @@ namespace QuantLib {
 		const boost::shared_ptr<BasketPayoff> terminalPayoff) 
 		: notionalAmt_(notionalAmt),
 		autocallConditions_(autocallConditions), autocallPayoffs_(autocallPayoffs), terminalPayoff_(terminalPayoff), 
-		isKI_(false), kibarrier_(boost::shared_ptr<AutocallCondition>(new NullAutocallCondition())) {
+		isKI_(true), kibarrier_(boost::shared_ptr<AutocallCondition>(new NullAutocallCondition())),
+		KIautocallConditions_(autocallConditions), KIautocallPayoffs_(autocallPayoffs) {
 
 		for (Size i = 1; i < autocallDates.size(); ++i) {
 			autocallDates_.push_back(autocallDates[i]);
@@ -83,6 +84,8 @@ namespace QuantLib {
 		arguments->paymentDates = paymentDates_;
 		arguments->autocallConditions = autocallConditions_;
 		arguments->autocallPayoffs = autocallPayoffs_;
+		arguments->KIautocallConditions = KIautocallConditions_;
+		arguments->KIautocallPayoffs = KIautocallPayoffs_;
 		arguments->terminalPayoff = terminalPayoff_;
 		arguments->isKI = isKI_;
 		arguments->kibarrier = kibarrier_;

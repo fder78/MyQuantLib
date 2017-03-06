@@ -88,14 +88,12 @@ namespace QuantLib {
 		while (repeat) {
 			// 1. Payoff
 			const boost::shared_ptr<BasketPayoff> payoff;
-			// 1.1 AutoCall Condition
-			const boost::shared_ptr<AutocallCondition> condition;
-			// 1.2 AutoCall Payoff
 			std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs = arguments_.autocallPayoffs;
+			std::vector<boost::shared_ptr<BasketPayoff> > KIautocallPayoffs = arguments_.KIautocallPayoffs;
 
 			// 2. Mesher
 			const Time maturity = disc_->dayCounter().yearFraction(disc_->referenceDate(), arguments_.autocallDates.back());
-			Real maxMesher = 5, minMesher = 0.2;
+			Real maxMesher = 2, minMesher = 0.3;
 			std::vector<std::vector<Real> > mustHave(assetNumber_, std::vector<Real>());
 			std::vector<boost::shared_ptr<Fdm1dMesher> > ems;
 
@@ -107,8 +105,10 @@ namespace QuantLib {
 				else
 					mustHave[i].push_back(std::log(arguments_.autocallConditions.back()->getBarrier()[(nb1>i) ? i : nb1 - 1]));
 				//mustHave[i].push_back(logprices[i]);
-				Real maxx = std::log(300.0); // logprices[i] + std::log(maxMesher);
-				Real minx = std::log(5.0);   // logprices[i] + std::log(minMesher);
+				Real maxx = logprices[i] + std::log(maxMesher);
+				Real minx = logprices[i] + std::log(minMesher);
+				maxx = (maxx > std::log(200)) ? maxx : std::log(200);
+				minx = (minx < std::log(30)) ? minx : std::log(30);
 				std::sort(mustHave[i].begin(), mustHave[i].end());  
 				mustHave[i].erase(std::unique(mustHave[i].begin(), mustHave[i].end()), mustHave[i].end());
 				ems.push_back(boost::shared_ptr<Fdm1dMesher>(new MandatoryMesher(numGrid_[i], minx, maxx, mustHave[i])));
@@ -130,28 +130,33 @@ namespace QuantLib {
 			
 			// 3. Calculator
 			std::vector<boost::shared_ptr<FdmInnerValueCalculator> > calculators;
-			for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i)
-				calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(autocallPayoffs[i], mesher)));
-
 			boost::shared_ptr<FdmInnerValueCalculator> calculator;
 
 			//HAVE KI Barrier?
 			bool haveKIBarrier = arguments_.kibarrier->getBarrierNumbers() > 0;
 			if (!haveKIBarrier) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
+				for (Size i = 0; i < autocallPayoffs.size(); ++i)
+					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(autocallPayoffs[i], mesher)));
 				repeat = false;
 			}
 			else if (arguments_.isKI) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.KIPayoff, mesher));
+				for (Size i = 0; i < KIautocallPayoffs.size(); ++i)
+					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(KIautocallPayoffs[i], mesher)));
 				repeat = false;
 			}
 			else if (firstRound) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.KIPayoff, mesher));
+				for (Size i = 0; i < KIautocallPayoffs.size(); ++i)
+					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(KIautocallPayoffs[i], mesher)));
 				firstRound = false;
 				type = firstKI;
 			}
 			else {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
+				for (Size i = 0; i < autocallPayoffs.size(); ++i)
+					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(autocallPayoffs[i], mesher)));
 				repeat = false;
 				type = secondKI;
 			}
@@ -168,15 +173,23 @@ namespace QuantLib {
 				stepConditions.push_back(dividendCondition);
 				stoppingTimes.push_back(dividendCondition->dividendTimes());
 			}
+
+
 			for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i) {
 				if (arguments_.autocallDates[i] > refDate) {
-					// Slope Payoff º¯°æ
-					boost::shared_ptr<FdmCallStepCondition> autocallCondition(
-						new FdmCallStepCondition(arguments_.autocallDates[i], refDate, dayCounter, mesher, calculators[i], arguments_.autocallConditions[i]));
+					boost::shared_ptr<FdmCallStepCondition> autocallCondition;
+					if (type==firstKI || arguments_.isKI)
+						autocallCondition = boost::shared_ptr<FdmCallStepCondition>(
+							new FdmCallStepCondition(arguments_.autocallDates[i], refDate, dayCounter, mesher, calculators[i], arguments_.KIautocallConditions[i]));
+					else
+						autocallCondition = boost::shared_ptr<FdmCallStepCondition>(
+							new FdmCallStepCondition(arguments_.autocallDates[i], refDate, dayCounter, mesher, calculators[i], arguments_.autocallConditions[i]));
+
 					stepConditions.push_back(autocallCondition);
 					stoppingTimes.push_back(autocallCondition->exerciseTimes());
 				}
 			}
+
 
 			if (type == firstKI) {
 				boost::shared_ptr<FdmRecordingStepCondition> recordingCondition(new FdmRecordingStepCondition(mesher));

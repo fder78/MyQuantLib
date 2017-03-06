@@ -6,6 +6,7 @@
 
 #include "utilities.hpp"
 #include <eq_derivatives\autocallable_engine\autocall_engine.h>
+#include <eq_derivatives\autocallable_mc_engine\mc_autocall_engine.h>
 #include <eq_derivatives\autocallable_instrument\autocallable_note.h>
 #include <eq_derivatives\autocallable_instrument\general_payoff.h>
 #include <eq_derivatives\autocallable_instrument\general_basket_payoff.h>
@@ -21,30 +22,30 @@ namespace QuantLib {
 
 void testEuroTwoValues() {
 
+
 	DayCounter dc = Actual360();
 	Date today0 = Date::todaysDate();
-	std::ofstream fout("d:\\els_prices.csv");
+	std::ofstream fout("c:\\drivers\\els_prices.csv");
 
-	for (Size iter = 0; iter < 10; ++iter) {
+	for (Size iter = 0; iter < 20; ++iter) {
+		boost::timer timer;
 		Date effectiveDate(10, June, 2016);
-		Settings::instance().evaluationDate() = effectiveDate;
+		Settings::instance().evaluationDate() = effectiveDate + iter*Months;
 		Date today = Settings::instance().evaluationDate();
 
 		//Spec.
 		Real notional = 10000;
-		Real couponRate = 0.06;
+		Real couponRate = 0.04;
 		Real mat = 3;
 		
 		Date terminationDate = effectiveDate + mat * Years;
 		Period tenor(6, Months);
 		Real redempBarrier[6] = { 90,90,85,85,80,70 };
-		Real slopes[6] = { 4,4,4,4,4,4 };
-		Real terminalSlope = 4;
+		Real KIredempBarrier[6] = { 85,85,80,80,75,65 };
+		Real slopes[6] = { 4000,4000,4000,4000,4000,4000 };
+		Real terminalSlope = 4000;
 
-		for (int i = 0; i < 6; ++i)
-			redempBarrier[i] -= iter / 5.0;
-
-		Real kibarrier[2] = { 60, 60 };
+		Real kibarrier[2] = { 55, 55 };
 		Real redPayoff = 100 * (1 + couponRate * mat);
 		Real crossPoint1 = (kibarrier[0] * terminalSlope - redPayoff) / (terminalSlope - 1.0);
 		Real crossPoint2 = (kibarrier[1] * terminalSlope - redPayoff) / (terminalSlope - 1.0);
@@ -58,23 +59,35 @@ void testEuroTwoValues() {
 		std::vector<boost::shared_ptr<Payoff> > terPayoff;
 		terPayoff.push_back(terPayoff1);
 		terPayoff.push_back(terPayoff2);
+		//terPayoff.push_back(terPayoff2);
 		boost::shared_ptr<ArrayPayoff> minofpayoff(new MinOfPayoffs(terPayoff));
 		boost::shared_ptr<BasketPayoff> terminalPayoff(new GeneralBasketPayoff(minofpayoff));
 
-		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions;
-		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs;
+		std::vector<boost::shared_ptr<AutocallCondition> > autocallConditions, KIautocallConditions;
+		std::vector<boost::shared_ptr<BasketPayoff> > autocallPayoffs, KIautocallPayoffs;
 		Schedule exDate = Schedule(effectiveDate, terminationDate, tenor, SouthKorea(), Following, Following, DateGeneration::Forward, false);
 		for (Size i = 0; i < exDate.size() - 1; ++i) {
 			std::vector<Real> redBarriers(1, redempBarrier[i]);
 			redBarriers.push_back(redempBarrier[i]); //TWO way
+			//redBarriers.push_back(redempBarrier[i]); //TWO way
 			autocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(redBarriers)));
 			Real redpayoff = 100 * (1 + couponRate*(i + 1) / 2.0);
 			std::vector<Real> x = { 0, redempBarrier[i] - redpayoff / slopes[i], redempBarrier[i] };
 			std::vector<Real> y = { 0, 0, redpayoff };
 			std::vector<Real> s = { 0, slopes[i], 0 };
-			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(
-				x, y, s));
+			boost::shared_ptr<Payoff> payoff(new GeneralPayoff(x, y, s));
 			autocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(payoff)));
+
+			std::vector<Real> KIredBarriers(1, KIredempBarrier[i]);
+			KIredBarriers.push_back(KIredempBarrier[i]); //TWO way
+			//redBarriers.push_back(KIredempBarrier[i]); //TWO way
+			KIautocallConditions.push_back(boost::shared_ptr<AutocallCondition>(new MinUpCondition(KIredBarriers)));
+			Real KIredpayoff = 100 * (1 + couponRate*(i + 1) / 2.0);
+			std::vector<Real> KIx = { 0, KIredempBarrier[i] - KIredpayoff / slopes[i], KIredempBarrier[i] };
+			std::vector<Real> KIy = { 0, 0, KIredpayoff };
+			std::vector<Real> KIs = { 0, slopes[i], 0 };
+			boost::shared_ptr<Payoff> KIpayoff(new GeneralPayoff(KIx, KIy, KIs));
+			KIautocallPayoffs.push_back(boost::shared_ptr<BasketPayoff>(new MinBasketPayoff(KIpayoff)));
 		}
 
 		AutocallableNote autocallable(
@@ -87,9 +100,8 @@ void testEuroTwoValues() {
 			);
 
 
-		//NO KI
-		/*
-		Real kix[] = { 0, redempBarrier[5] };
+		//NO KI		
+		Real kix[] = { 0, KIredempBarrier[5] };
 		Real kiy[] = { 0, 100 * (1 + couponRate * mat) };
 		Real kislope[] = { 1.0, 0.0 };
 		boost::shared_ptr<Payoff> kiPayoff(new GeneralPayoff(std::vector<Real>(kix, kix + 2), std::vector<Real>(kiy, kiy + 2), std::vector<Real>(kislope, kislope + 2)));
@@ -104,9 +116,13 @@ void testEuroTwoValues() {
 		std::vector<Real> kib(1, kibarrier[0]);
 		kib.push_back(kibarrier[1]);
 		boost::shared_ptr<AutocallCondition> kiCondition(new MinDownCondition(kib));
-		//autocallable.withKI(kiCondition, KIPayoff);
+		autocallable.withKI(
+			kiCondition, 
+			autocallConditions,
+			autocallPayoffs, 
+			KIPayoff);
 		//autocallable.hasKnockedIn();
-		*/
+		
 
 		////////////////////////////
 		// Market Data
@@ -130,8 +146,9 @@ void testEuroTwoValues() {
 		boost::shared_ptr<SimpleQuote> vol2(new SimpleQuote(0.0));
 		boost::shared_ptr<BlackVolTermStructure> volTS2 = flatVol(today, vol2, dc);
 
-		spot1->setValue(100);
-		spot2->setValue(100);
+		Real x = 110 - 6 * 5;
+		spot1->setValue(x);
+		spot2->setValue(x);
 		qRate1->setValue(0.01);
 		qRate2->setValue(0.01);
 		rRate->setValue(0.03);
@@ -155,14 +172,15 @@ void testEuroTwoValues() {
 				Handle<YieldTermStructure>(rTS),
 				Handle<BlackVolTermStructure>(volTS2)));
 
-		boost::shared_ptr<PricingEngine> fdEngine(
-			new FdAutocallEngine(discTS, p1, p2, corr, 100, 100, 50));
+		//boost::shared_ptr<PricingEngine> fdEngine(
+		//	new FdAutocallEngine(discTS, p1, p2, corr, 100, 100, 50));
 
 
 		//ProcessArray
 		std::vector<boost::shared_ptr<StochasticProcess1D> > procs;
 		procs.push_back(p1);
 		procs.push_back(p2);
+		//procs.push_back(p2);
 
 		Matrix correlationMatrix(procs.size(), procs.size(), corr);
 		for (Integer j = 0; j < procs.size(); j++) {
@@ -171,26 +189,35 @@ void testEuroTwoValues() {
 		boost::shared_ptr<StochasticProcessArray> process(new StochasticProcessArray(procs, correlationMatrix));
 
 		boost::shared_ptr<PricingEngine> fdEngine_new(new FdAutocallEngine(discTS, process, 100, 50));
-		
+		boost::shared_ptr<PricingEngine> mcEngine = MakeMCAutocallEngine<>(process, discTS)
+			.withSteps(1)
+			.withSamples(10000);
 
+
+
+		autocallable.setPricingEngine(mcEngine);
+		Real mc = autocallable.NPV() *100;
+		Real se = autocallable.errorEstimate() * 100;
+		std::cout << mc << ",";
 		// fd engine
 		autocallable.setPricingEngine(fdEngine_new);
-		Size n = process->size();
-		Real calculated = autocallable.NPV();
-		std::cout << "price=" << calculated << std::endl;
-		std::cout << "theta=" << autocallable.theta()[0] << std::endl;
-		for (Size i = 0; i < n; ++i) {
-			std::cout << "delta[" << i + 1 << "]=" << autocallable.delta()[i] << "   ";
-			std::cout << "gamma[" << i + 1 << "]=" << autocallable.gamma()[i] << std::endl;
-		}
-		std::cout << "xgamma=" << std::endl;
-		for (Size i = 0; i < n; ++i) {
-			for (Size j = 0; j < n; ++j)
-				std::cout <<  autocallable.xgamma()[i][j] << "   ";
-			std::cout << std::endl;
-		}
-		std::cout << std::string(30, '-') << std::endl;
-		fout << calculated << "\n";
+		Real fdm = autocallable.NPV();
+
+		std::cout << fdm << ",";
+		//std::cout << "theta=" << autocallable.theta()[0] << std::endl;
+		//for (Size i = 0; i < n; ++i) {
+		//	std::cout << "delta[" << i + 1 << "]=" << autocallable.delta()[i] << "   ";
+		//	std::cout << "gamma[" << i + 1 << "]=" << autocallable.gamma()[i] << std::endl;
+		//}
+		//std::cout << "xgamma=" << std::endl;
+		//for (Size i = 0; i < n; ++i) {
+		//	for (Size j = 0; j < n; ++j)
+		//		std::cout <<  autocallable.xgamma()[i][j] << "   ";
+		//	std::cout << std::endl;
+		//}
+		std::cout << timer.elapsed() << std::endl;
+		//std::cout << std::string(30, '-') << std::endl;
+		fout << x << "," << fdm << "," << mc << "," << se <<std::endl;
 	}
 	fout.close();
 }

@@ -346,6 +346,9 @@
     <Filter Include="eq_derivatives\autocallable_engine\three_dim">
       <UniqueIdentifier>{99edcdb2-7454-4d80-a56e-f669ca74c81c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="eq_derivatives\autocallable_mc_engine">
+      <UniqueIdentifier>{79776c25-7e09-486f-bdba-c533d878cd4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -4129,6 +4132,9 @@
     <ClInclude Include="eq_derivatives\autocallable_engine\call_stepcondition.h">
       <Filter>eq_derivatives\autocallable_engine</Filter>
     </ClInclude>
+    <ClInclude Include="eq_derivatives\autocallable_mc_engine\mc_autocall_engine.h">
+      <Filter>eq_derivatives\autocallable_mc_engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6673,6 +6679,9 @@
     </ClCompile>
     <ClCompile Include="eq_derivatives\autocallable_engine\call_stepcondition.cpp">
       <Filter>eq_derivatives\autocallable_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="eq_derivatives\autocallable_mc_engine\mc_autocall_engine.cpp">
+      <Filter>eq_derivatives\autocallable_mc_engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

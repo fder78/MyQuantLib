@@ -36,9 +36,9 @@ namespace QuantLib {
 		y_((localVol) ? Array(Exp(mesher->locations(1))) : Array()),
 		z_((localVol) ? Array(Exp(mesher->locations(2))) : Array()),
 
-		opX_(mesher, p1, p1->x0(), localVol, illegalLocalVolOverwrite, 0),
-		opY_(mesher, p2, p2->x0(), localVol, illegalLocalVolOverwrite, 1),
-		opZ_(mesher, p3, p3->x0(), localVol, illegalLocalVolOverwrite, 2),
+		opX_(mesher, p1, disc, p1->x0(), localVol, illegalLocalVolOverwrite, 0),
+		opY_(mesher, p2, disc, p2->x0(), localVol, illegalLocalVolOverwrite, 1),
+		opZ_(mesher, p3, disc, p3->x0(), localVol, illegalLocalVolOverwrite, 2),
 		corrMapT12_(0, 1, mesher),
 		corrMapTemplate12_(SecondOrderMixedDerivativeOp(0, 1, mesher)
 			.mult(Array(mesher->layout()->size(), correlation[0][1]))),
@@ -95,8 +95,8 @@ namespace QuantLib {
 				}
 			}
 			corrMapT12_ = corrMapTemplate12_.mult(vol1*vol2);
-			corrMapT13_ = corrMapTemplate12_.mult(vol1*vol3);
-			corrMapT23_ = corrMapTemplate12_.mult(vol2*vol3);
+			corrMapT13_ = corrMapTemplate13_.mult(vol1*vol3);
+			corrMapT23_ = corrMapTemplate23_.mult(vol2*vol3);
 		}
 		else {
 			const Real vol1 = p1_->blackVolatility()->blackForwardVol(t1, t2, p1_->x0());
@@ -107,7 +107,7 @@ namespace QuantLib {
 			corrMapT23_ = corrMapTemplate23_.mult(Array(mesher_->layout()->size(), vol2*vol3));
 		}
 
-		currentForwardRate_ = disc_->forwardRate(t1, t2, Continuous).rate();  //todo
+		//currentForwardRate_ = disc_->forwardRate(t1, t2, Continuous).rate();  //todo
 	}
 
 	Disposable<Array> AutocallFdm3dBlackScholesOp::apply(const Array& x) const {
@@ -115,7 +115,7 @@ namespace QuantLib {
 	}
 
 	Disposable<Array> AutocallFdm3dBlackScholesOp::apply_mixed(const Array& x) const {
-		return corrMapT12_.apply(x) + corrMapT13_.apply(x) + corrMapT23_.apply(x) + currentForwardRate_*x;
+		return corrMapT12_.apply(x) + corrMapT13_.apply(x) + corrMapT23_.apply(x);// +currentForwardRate_*x;
 	}
 
 	Disposable<Array> AutocallFdm3dBlackScholesOp::apply_direction(Size direction, const Array& x) const {
@@ -158,8 +158,8 @@ namespace QuantLib {
 		retVal[0] = opX_.toMatrix();
 		retVal[1] = opY_.toMatrix();
 		retVal[2] = opZ_.toMatrix();
-		retVal[3] = corrMapT12_.toMatrix() + corrMapT23_.toMatrix() + corrMapT13_.toMatrix()
-			+ currentForwardRate_*boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size());
+		retVal[3] = corrMapT12_.toMatrix() + corrMapT23_.toMatrix() + corrMapT13_.toMatrix();
+			//+ currentForwardRate_*boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size());
 
 		return retVal;
 	}

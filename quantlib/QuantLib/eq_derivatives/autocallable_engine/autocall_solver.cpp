@@ -32,7 +32,7 @@ namespace QuantLib {
 				new AutocallFdm1dBlackScholesOp(solverDesc_.mesher,
 					disc_.currentLink(),
 					boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process_->process(0)),
-					solverDesc_.maturity));
+					solverDesc_.maturity, true, 0.0));
 			solver1d_ = boost::shared_ptr<AutocallFdm1DimSolver>(new AutocallFdm1DimSolver(solverDesc_, schemeDesc_, op));
 			break;
 		case 2:
@@ -42,7 +42,7 @@ namespace QuantLib {
 					boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process_->process(0)),
 					boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process_->process(1)),
 					process_->correlation()[0][1],
-					solverDesc_.maturity));
+					solverDesc_.maturity, true, 0.0));
 			solver2d_ = boost::shared_ptr<AutocallFdm2DimSolver>(new AutocallFdm2DimSolver(solverDesc_, schemeDesc_, op));
 			break;
 		case 3:			
@@ -53,7 +53,7 @@ namespace QuantLib {
 				boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process_->process(1)),
 				boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process_->process(2)),
 				process_->correlation(),
-				solverDesc_.maturity));
+				solverDesc_.maturity, true, 0.0));
 			solver3d_ = boost::shared_ptr<AutocallFdm3DimSolver>(new AutocallFdm3DimSolver(solverDesc_, schemeDesc_, op));
 			break;
 		default:
