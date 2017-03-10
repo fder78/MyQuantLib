@@ -47,14 +47,16 @@ namespace QuantLib {
 				for (Size i = 0; i < numAssets; ++i) {
 					s[i] = multiPath[i][callIdx_[j]];
 				}
-				k = nextCallIdx_ + j;
-				if (hasKI) {
-					if (arguments_.KIautocallConditions[k]->operator()(s))
-						return discCurve_->discount(arguments_.paymentDates[k]) * arguments_.KIautocallPayoffs[k]->operator()(s);
-				}
-				else {
-					if (arguments_.autocallConditions[k]->operator()(s))
-						return discCurve_->discount(arguments_.paymentDates[k]) * arguments_.autocallPayoffs[k]->operator()(s);
+				if (j < callIdx_.size() - 1) {
+					k = nextCallIdx_ + j;
+					if (hasKI) {
+						if (arguments_.KIautocallConditions[k]->operator()(s))
+							return discCurve_->discount(arguments_.paymentDates[k]) * arguments_.KIautocallPayoffs[k]->operator()(s);
+					}
+					else {
+						if (arguments_.autocallConditions[k]->operator()(s))
+							return discCurve_->discount(arguments_.paymentDates[k]) * arguments_.autocallPayoffs[k]->operator()(s);
+					}
 				}
 			}
 			if (hasKI)
@@ -73,24 +75,38 @@ namespace QuantLib {
 							s[i] = multiPath[i][jj];
 						if (arguments_.kibarrier->operator()(s)) {
 							iski = true;
+							break;
 						}
 					}
 				}
-				k = nextCallIdx_ + j;
-				if (iski) {
-					if (arguments_.KIautocallConditions[k]->operator()(s))
-						return discCurve_->discount(arguments_.paymentDates[k]) * arguments_.KIautocallPayoffs[k]->operator()(s);
-				}
-				else {
-					if (arguments_.autocallConditions[k]->operator()(s))
-						return discCurve_->discount(arguments_.paymentDates[k]) * arguments_.autocallPayoffs[k]->operator()(s);
+				if (j < callIdx_.size() - 1) {
+					for (Size i = 0; i < numAssets; ++i)
+						s[i] = multiPath[i][callIdx_[j]];
+					k = nextCallIdx_ + j;
+					if (iski) {
+						if (arguments_.KIautocallConditions[k]->operator()(s)) {
+							discPayoff = discCurve_->discount(arguments_.paymentDates[k]) * arguments_.KIautocallPayoffs[k]->operator()(s);
+							return discPayoff;
+						}
+					}
+					else {
+						if (arguments_.autocallConditions[k]->operator()(s)) {
+							discPayoff = discCurve_->discount(arguments_.paymentDates[k]) * arguments_.autocallPayoffs[k]->operator()(s);
+							return discPayoff;
+						}
+					}
 				}
 			}
-			if (iski)
+			for (Size i = 0; i < numAssets; ++i)
+				s[i] = multiPath[i][callIdx_.back()];
+			if (iski) {
 				discPayoff = discCurve_->discount(arguments_.paymentDates.back()) * arguments_.KIPayoff->operator()(s);
-			else
+				return discPayoff;
+			}
+			else {
 				discPayoff = discCurve_->discount(arguments_.paymentDates.back()) * arguments_.terminalPayoff->operator()(s);
-			return discPayoff;
+				return discPayoff;
+			}
 		}
     }
 

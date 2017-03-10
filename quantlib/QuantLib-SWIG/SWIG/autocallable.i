@@ -182,6 +182,9 @@ typedef std::vector<boost::shared_ptr<BasketPayoff> > BasketPayoffVector;
 %{
 using QuantLib::FdAutocallEngine;
 typedef boost::shared_ptr<PricingEngine> FdAutocallEnginePtr;
+using QuantLib::MCAutocallEngine;
+using QuantLib::MakeMCAutocallEngine;
+typedef boost::shared_ptr<PricingEngine> MCAutocallEnginePtr;
 %}
 
 %rename(FdAutocallEngine) FdAutocallEnginePtr;
@@ -194,7 +197,7 @@ class FdAutocallEnginePtr
 			const GeneralizedBlackScholesProcessPtr& process1,
 			const GeneralizedBlackScholesProcessPtr& process2,
 			Real correlation,
-			Size xGrid = 100, Size yGrid = 100,	Size tGrid = 50) {
+			Size xGrid = 100, Size yGrid = 100, Size tGrid = 50) {
             boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess1 =
                  boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(process1);
             QL_REQUIRE(bsProcess1, "Black-Scholes process required");
@@ -204,9 +207,38 @@ class FdAutocallEnginePtr
             return new FdAutocallEnginePtr(
                           new FdAutocallEngine(disc, bsProcess1,bsProcess2,correlation,xGrid,yGrid,tGrid));
         }
+        
+        FdAutocallEnginePtr(
+			const boost::shared_ptr<YieldTermStructure>& disc,
+			const StochasticProcessArrayPtr& process,
+			Size xGrid = 100, Size tGrid = 50) {
+			boost::shared_ptr<StochasticProcessArray> processes =
+                 boost::dynamic_pointer_cast<StochasticProcessArray>(process);
+            QL_REQUIRE(processes, "stochastic process array required");
+            return new FdAutocallEnginePtr(
+                          new FdAutocallEngine(disc, processes, xGrid, tGrid));
+        }
     }
 };
 
+%rename(MCAutocallEngine) MCAutocallEnginePtr;
+class MCAutocallEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {        
+        MCAutocallEnginePtr(
+			const boost::shared_ptr<YieldTermStructure>& disc,
+			const StochasticProcessArrayPtr& process,
+                 const Size& n) 
+        {
+    			boost::shared_ptr<StochasticProcessArray> processes = 
+                                                               boost::dynamic_pointer_cast<StochasticProcessArray>(process);
+                 QL_REQUIRE(processes, "stochastic process array required");
+                 return new MCAutocallEnginePtr(
+                                  MakeMCAutocallEngine<>(processes, disc).withSteps(1).withSamples(n));
+        }
+    }
+};
 
 
 

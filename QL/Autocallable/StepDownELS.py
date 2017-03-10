@@ -46,7 +46,7 @@ class StepDownELS:
             if self.isKI:
                 self.product.hasKnockedIn()
                 
-    def calc(self, flatVol = []):   
+    def calc(self, flatVol = [], method = "fd"):   
         self.initProduct()
         if len(flatVol)>0:
             if len(flatVol) != self.n:
@@ -78,7 +78,7 @@ class StepDownELS:
             else:
                 volatility = ql.BlackVarianceSurface(self.evaldate, ql.SouthKorea(), exdates, strikes, vols, ql.Actual365Fixed())                
             
-            volatility.enableExtrapolation()
+            #volatility.enableExtrapolation()
             #volatility.setInterpolation("bicubic")
             dividendYield = getDividendCurveWithQuantoAdjustment(mdata, code, self.discCode)
             riskFreeRate = getYieldCurve(mdata, code)
@@ -94,7 +94,10 @@ class StepDownELS:
                 matrix[i][j] = matrix[j][i] = mdata['corr'][(self.underlyings[0][i], self.underlyings[0][j])]
     
         process = ql.StochasticProcessArray(procs, matrix)
-        engine = ql.FdAutocallEngine(discountCurve, process, 50, 50)
+        if method=="fd":
+            engine = ql.FdAutocallEngine(discountCurve, process, 200, 200)
+        elif method=="mc":
+            engine = ql.MCAutocallEngine(discountCurve, process, 10000)
         self.product.setPricingEngine(engine)
         
         res = {"underlyings": tuple(underlyingPrices),
@@ -200,18 +203,19 @@ if __name__=='__main__':
     import datetime
     import dateutil.relativedelta as rd
     from makeMarketData_EQ import getMarketData
-    today = datetime.datetime.today()
+    today = datetime.datetime(2017,1,31)
     mdata = getMarketData(today)
 
     notional = 10000
     coupon = 0.04
     cpnRates = [coupon/2*i for i in range(1,7)]
     barriers = [90,90,85,85,80,70]
-    kibarrier = 70
+    kibarrier = 55
     issueDate = today    
     redmpDates = [issueDate] + [today + (i+1)*rd.relativedelta(months=6) for i in range(6)]
-    slopes = [10]*5 + [10]
-    underlyings = [("HSCEI", "SX5E", "SPX"), (0, 0, 0)]
+    slopes = [10000]*5 + [10000]
+    underlyings = [("KOSPI2", "SX5E", "SPX"), (0, 0, 0)]
+    underlyings = [("KOSPI2", "SX5E"), (0, 0)]
     discCode = "KRW"
     
     t0 = time.time()
@@ -221,18 +225,22 @@ if __name__=='__main__':
     
     
     els = StepDownELS(today, notional, cpnRates, barriers, kibarrier, redmpDates, slopes,
-          underlyings, discCode, mdata)
-    flatvol = [0.25, 0.25, 0.25]
-    flatvol = []
+          underlyings, discCode, mdata, True)
+    
+    flatvol = [0.22, 0.22, 0.22]
+    flatvol = [0.22, 0.22]
     #res = els.calc(flatvol)
     #print(res)
     
-    cpn = els.findCoupon(9850, flatvol)
-    els.cpnRates = [cpn/2*(i+1) for i in range(len(els.cpnRates))]
-    res2 = els.calc(flatvol)
-    
+    cpn = 0.06#els.findCoupon(9850, flatvol)
+    for i in range(10):
+        els.cpnRates = [cpn/2*(i+1) for i in range(len(els.cpnRates))]
+        flatvol = [0.25+i/100]*2
+        flatvol = []
+        #res = els.calc(flatvol)
+        res2 = els.calc(flatvol, "mc")
+        #print(res2)
+        vol = 0 if len(flatvol)==0 else flatvol[0]
+        print("vol = {0:0.2%}   price = {1:0.1f}, {2:0.1f}".format(vol, res2['npv'], res2['npv']*100))
     t1 = time.time()
-
-    print(res2)
-    print("coupon = {0:0.2%}".format(cpn))
     print("time = ", t1-t0)

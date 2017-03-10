@@ -17,6 +17,11 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+%begin %{
+#ifdef _MSC_VER
+#define SWIG_PYTHON_INTERPRETER_NO_DEBUG
+#endif
+%}
 
 #if defined(SWIGRUBY)
 %module QuantLibc

@@ -114,7 +114,7 @@ namespace QuantLib {
         
             wpt = blackTS_->blackVariance(t+dt, strikept, true);
             QL_ENSURE(wpt>=w,
-                      "decreasing variance at strike " << strike
+                      "(1) decreasing variance at strike " << strike
                       << " between time " << t << " and time " << t+dt);
             dwdt = (wpt-w)/dt;
         } else {
@@ -131,10 +131,10 @@ namespace QuantLib {
             wmt = blackTS_->blackVariance(t-dt, strikemt, true);
 
             QL_ENSURE(wpt>=w,
-                      "decreasing variance at strike " << strike
+                      "(2) decreasing variance at strike " << strike
                       << " between time " << t << " and time " << t+dt);
             QL_ENSURE(w>=wmt,
-                      "decreasing variance at strike " << strike
+                      "(3) decreasing variance at strike " << strike
                       << " between time " << t-dt << " and time " << t);
          
             dwdt = (wpt-wmt)/(2.0*dt);
@@ -150,7 +150,7 @@ namespace QuantLib {
             Real result = dwdt / den;
 
             QL_ENSURE(result>=0.0,
-                      "negative local vol^2 at strike " << strike
+                      "(4) negative local vol^2 at strike " << strike
                       << " and time " << t
                       << "; the black vol surface is not smooth enough");
 

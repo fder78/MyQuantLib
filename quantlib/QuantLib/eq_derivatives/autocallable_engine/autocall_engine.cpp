@@ -136,26 +136,26 @@ namespace QuantLib {
 			bool haveKIBarrier = arguments_.kibarrier->getBarrierNumbers() > 0;
 			if (!haveKIBarrier) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
-				for (Size i = 0; i < autocallPayoffs.size(); ++i)
+				for (Size i = 0; i < autocallPayoffs.size()-1; ++i)
 					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(autocallPayoffs[i], mesher)));
 				repeat = false;
 			}
 			else if (arguments_.isKI) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.KIPayoff, mesher));
-				for (Size i = 0; i < KIautocallPayoffs.size(); ++i)
+				for (Size i = 0; i < KIautocallPayoffs.size()-1; ++i)
 					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(KIautocallPayoffs[i], mesher)));
 				repeat = false;
 			}
 			else if (firstRound) {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.KIPayoff, mesher));
-				for (Size i = 0; i < KIautocallPayoffs.size(); ++i)
+				for (Size i = 0; i < KIautocallPayoffs.size()-1; ++i)
 					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(KIautocallPayoffs[i], mesher)));
 				firstRound = false;
 				type = firstKI;
 			}
 			else {
 				calculator = boost::shared_ptr<FdmInnerValueCalculator>(new FdmAutocallInnerValue(arguments_.terminalPayoff, mesher));
-				for (Size i = 0; i < autocallPayoffs.size(); ++i)
+				for (Size i = 0; i < autocallPayoffs.size()-1; ++i)
 					calculators.push_back(boost::shared_ptr<FdmAutocallInnerValue>(new FdmAutocallInnerValue(autocallPayoffs[i], mesher)));
 				repeat = false;
 				type = secondKI;
@@ -175,7 +175,7 @@ namespace QuantLib {
 			}
 
 
-			for (Size i = 0; i < arguments_.autocallPayoffs.size(); ++i) {
+			for (Size i = 0; i < arguments_.autocallPayoffs.size()-1; ++i) {
 				if (arguments_.autocallDates[i] > refDate) {
 					boost::shared_ptr<FdmCallStepCondition> autocallCondition;
 					if (type==firstKI || arguments_.isKI)

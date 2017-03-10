@@ -69,15 +69,19 @@ namespace QuantLib {
                 Time epsilon = std::min<Time>(1.0e-5, time1);
                 Real var1 = blackVarianceImpl(time1-epsilon, strike);
                 Real var2 = blackVarianceImpl(time1+epsilon, strike);
-                QL_ENSURE(var2>=var1,
-                          "variances must be non-decreasing");
+                //QL_ENSURE(var2>=var1,
+                //          "variances must be non-decreasing");
+				if (var2 < var1)
+					var2 = var1;
                 return std::sqrt((var2-var1)/(2*epsilon));
             }
         } else {
             Real var1 = blackVarianceImpl(time1, strike);
             Real var2 = blackVarianceImpl(time2, strike);
-            QL_ENSURE(var2 >= var1,
-                      "variances must be non-decreasing");
+            //QL_ENSURE(var2 >= var1,
+            //          "variances must be non-decreasing");
+			if (var2 < var1)
+				var2 = var1;
             return std::sqrt((var2-var1)/(time2-time1));
         }
     }
@@ -108,8 +112,10 @@ namespace QuantLib {
         checkStrike(strike, extrapolate);
         Real v1 = blackVarianceImpl(time1, strike);
         Real v2 = blackVarianceImpl(time2, strike);
-        QL_ENSURE(v2 >= v1,
-                  "variances must be non-decreasing");
+        //QL_ENSURE(v2 >= v1,
+        //          "variances must be non-decreasing");
+		if (v2 < v1)
+			v2 = v1;
         return v2-v1;
     }
 

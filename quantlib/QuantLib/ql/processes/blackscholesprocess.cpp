@@ -56,9 +56,9 @@ namespace QuantLib {
         // we could be more anticipatory if we know the right dt
         // for which the drift will be used
         Time t1 = t + 0.0001;
-        return riskFreeRate_->forwardRate(t,t1,Continuous,NoFrequency,true)
-             - dividendYield_->forwardRate(t,t1,Continuous,NoFrequency,true)
-             - 0.5 * sigma * sigma;
+		Real r = riskFreeRate_->forwardRate(t, t1, Continuous, NoFrequency, true);
+		Real q = dividendYield_->forwardRate(t, t1, Continuous, NoFrequency, true);             
+		return r - q - 0.5 * sigma * sigma;
     }
 
     Real GeneralizedBlackScholesProcess::diffusion(Time t, Real x) const {
@@ -88,9 +88,12 @@ namespace QuantLib {
                                                       NoFrequency, true)) *
                 dt - 0.5 * variance;
             return x0 * std::exp( std::sqrt(variance) * dw + drift );
-        } else
-            return apply(x0, discretization_->drift(*this, t0, x0, dt) +
-                                 stdDeviation(t0, x0, dt) * dw);
+		}
+		else {
+			Real d = discretization_->drift(*this, t0, x0, dt);
+			Real sd = stdDeviation(t0, x0, dt);
+			return apply(x0, d + sd * dw);
+		}
     }
 
     Time GeneralizedBlackScholesProcess::time(const Date& d) const {

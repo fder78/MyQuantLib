@@ -33,7 +33,7 @@ namespace QuantLib {
 		typedef typename McSimulation<MultiVariate, RNG, S>::path_pricer_type		path_pricer_type;
 		typedef typename McSimulation<MultiVariate, RNG, S>::stats_type			stats_type;
 
-		MCAutocallEngine(const boost::shared_ptr<StochasticProcessArray>&,
+		MCAutocallEngine(const boost::shared_ptr<StochasticProcessArray>& process,
 			const boost::shared_ptr<YieldTermStructure>& discCurve,
 			Size timeSteps,
 			Size timeStepsPerYear,
@@ -48,7 +48,12 @@ namespace QuantLib {
 			McSimulation<MultiVariate, RNG, S>::calculate(requiredTolerance_,
 				requiredSamples_,
 				maxSamples_);
-			results_.value = this->mcModel_->sampleAccumulator().mean();
+			Size assetNumber_ = processes_->size();
+			results_.value = this->mcModel_->sampleAccumulator().mean();					
+			results_.theta = std::vector<Real>(1, 0);
+			results_.delta = std::vector<Real>(assetNumber_, 0);
+			results_.gamma = std::vector<Real>(assetNumber_, 0);
+			results_.xgamma = std::vector<std::vector<Real> >(assetNumber_, std::vector<Real>(assetNumber_, 0));
 			if (RNG::allowsErrorEstimate)
 				results_.errorEstimate = this->mcModel_->sampleAccumulator().errorEstimate();
 		}
