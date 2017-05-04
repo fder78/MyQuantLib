@@ -97,7 +97,7 @@ class StepDownELS:
         if method=="fd":
             engine = ql.FdAutocallEngine(discountCurve, process, 200, 200)
         elif method=="mc":
-            engine = ql.MCAutocallEngine(discountCurve, process, 10000)
+            engine = ql.MCAutocallEngine(discountCurve, process, 50000)
         self.product.setPricingEngine(engine)
         
         res = {"underlyings": tuple(underlyingPrices),
@@ -216,6 +216,7 @@ if __name__=='__main__':
     slopes = [10000]*5 + [10000]
     underlyings = [("KOSPI2", "SX5E", "SPX"), (0, 0, 0)]
     underlyings = [("KOSPI2", "SX5E"), (0, 0)]
+    underlyings = [["SX5E"], [0]]
     discCode = "KRW"
     
     t0 = time.time()
@@ -229,18 +230,18 @@ if __name__=='__main__':
     
     flatvol = [0.22, 0.22, 0.22]
     flatvol = [0.22, 0.22]
+    flatvol = [0.22]
     #res = els.calc(flatvol)
     #print(res)
     
     cpn = 0.06#els.findCoupon(9850, flatvol)
-    for i in range(10):
+    for i in range(1):
         els.cpnRates = [cpn/2*(i+1) for i in range(len(els.cpnRates))]
-        flatvol = [0.25+i/100]*2
         flatvol = []
-        #res = els.calc(flatvol)
+        res = els.calc(flatvol)
         res2 = els.calc(flatvol, "mc")
         #print(res2)
         vol = 0 if len(flatvol)==0 else flatvol[0]
-        print("vol = {0:0.2%}   price = {1:0.1f}, {2:0.1f}".format(vol, res2['npv'], res2['npv']*100))
+        print("vol = {0:0.2%}   price = {1:0.1f}, {2:0.1f}".format(vol, res['npv'], res2['npv']*100))
     t1 = time.time()
     print("time = ", t1-t0)

@@ -195,9 +195,20 @@ void testEuroTwoValues() {
 		boost::shared_ptr<StochasticProcessArray> process(new StochasticProcessArray(procs, correlationMatrix));
 
 		boost::shared_ptr<PricingEngine> fdEngine_new(new FdAutocallEngine(discTS, process, 200, 100));
-		boost::shared_ptr<PricingEngine> mcEngine = MakeMCAutocallEngine<>(process, discTS)
+		
+		std::vector<std::string> names;
+		if (iter < 5) {
+			names.push_back("K");
+			names.push_back("H");
+		}
+		if (iter >= 5) {
+			names.push_back("H");
+			names.push_back("K");
+		}
+		Date maxDate = effectiveDate + 3 * Years;
+		boost::shared_ptr<MCAutocallEngine<> > mcEngine = MakeMCAutocallEngine<>(names, process, discTS, maxDate)
 			.withSteps(1)
-			.withSamples(40000);
+			.withSamples(40);
 
 
 		std::cout << x << "\t";
@@ -206,10 +217,10 @@ void testEuroTwoValues() {
 		Real se = autocallable.errorEstimate() * 100;
 		std::cout << mc << "\t";
 		// fd engine
-		autocallable.setPricingEngine(fdEngine_new);
-		Real fdm = autocallable.NPV();
+		//autocallable.setPricingEngine(fdEngine_new);
+		//Real fdm = autocallable.NPV();
 
-		std::cout << fdm << "\t";
+		//std::cout << fdm << "\t";
 		//std::cout << "theta=" << autocallable.theta()[0] << std::endl;
 		//for (Size i = 0; i < n; ++i) {
 		//	std::cout << "delta[" << i + 1 << "]=" << autocallable.delta()[i] << "   ";
@@ -223,7 +234,7 @@ void testEuroTwoValues() {
 		//}
 		std::cout << timer.elapsed() << std::endl;
 		//std::cout << std::string(30, '-') << std::endl;
-		fout << x << "," << fdm << "," << mc << "," << se <<std::endl;
+		//fout << x << "," << fdm << "," << mc << "," << se <<std::endl;
 	}
 	fout.close();
 }
